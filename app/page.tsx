@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 import { Rocket, Shield, Zap, CheckCircle, Menu, X, Mail } from "lucide-react";
