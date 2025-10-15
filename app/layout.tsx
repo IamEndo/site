@@ -1,9 +1,10 @@
+// app/layout.tsx
+import "./globals.css";
+
 export const metadata = {
   title: "My Site",
   description: "Launched on Railway",
 };
-
-import "./globals.css";
 
 export default function RootLayout({
   children,
