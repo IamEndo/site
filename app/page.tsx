@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 
-
 // Simple nav state for mobile menu
 function useToggle(initial = false) {
   const [open, setOpen] = React.useState(initial);
@@ -16,45 +15,103 @@ function useToggle(initial = false) {
   return { open, toggle, close };
 }
 
+// ———————————————————————————————————————————————————————————
+// Content (pulled from your brief; trimmed for web, not a paper)
+// ———————————————————————————————————————————————————————————
+
 const features = [
   {
-    icon: <Rocket className="w-6 h-6" aria-hidden />,
-    title: "Blazing Fast",
-    desc: "Optimized for performance with modern tooling and best practices.",
-  },
-  {
     icon: <Shield className="w-6 h-6" aria-hidden />,
-    title: "Secure by Default",
-    desc: "Hardened components and sensible defaults to keep your data safe.",
+    title: "Non-custodial & watch-only",
+    desc: "No private keys on device. Displays payment requests and watches the chain only.",
   },
   {
     icon: <Zap className="w-6 h-6" aria-hidden />,
-    title: "Easy to Customize",
-    desc: "Tweak colors, copy, and sections in minutes—not days.",
+    title: "Near-instant recognition",
+    desc: "Rostrum/Electrum server integration spots incoming tx in ~1s, network-dependent.",
+  },
+  {
+    icon: <Rocket className="w-6 h-6" aria-hidden />,
+    title: "Ultra-low hardware cost",
+    desc: "ESP32 + 2.8″ TFT reference build from ~USD 15. Open BOM and firmware.",
+  },
+  {
+    icon: <CheckCircle className="w-6 h-6" aria-hidden />,
+    title: "Offline-tolerant flow",
+    desc: "Queue payment requests and auto-sync when network returns.",
+  },
+  {
+    icon: <Shield className="w-6 h-6" aria-hidden />,
+    title: "Secure boot + flash enc.",
+    desc: "ESP-IDF secure boot, flash encryption, JTAG fuse options for tamper resistance.",
+  },
+  {
+    icon: <Zap className="w-6 h-6" aria-hidden />,
+    title: "~1W power draw",
+    desc: "≈180–250 mA @5V. Field-friendly for kiosks and mobile carts.",
   },
 ];
 
 const plans = [
   {
-    name: "Starter",
-    price: "Free",
-    perks: ["1 page", "Email capture", "Basic analytics"],
-    cta: "Get started",
+    name: "DIY Board",
+    price: "USD 15",
+    perks: [
+      "ESP32 + 2.8″ TFT (ref. build)",
+      "Open firmware (watch-only)",
+      "QR/Nexa URI display",
+    ],
+    cta: "Build from guide",
     highlight: false,
   },
   {
-    name: "Pro",
-    price: "$19/mo",
-    perks: ["Up to 10 pages", "Blog + CMS", "Priority support"],
-    cta: "Upgrade to Pro",
+    name: "Maker Kit",
+    price: "USD 29",
+    perks: [
+      "Pre-flashed firmware",
+      "Desk stand + cables",
+      "CSV/JSON logging to microSD",
+    ],
+    cta: "Get the kit",
     highlight: true,
   },
   {
-    name: "Business",
-    price: "$49/mo",
-    perks: ["Unlimited pages", "Team access", "Custom domain & SLA"],
-    cta: "Contact sales",
+    name: "Pro Bundle",
+    price: "USD 79",
+    perks: [
+      "Hardened case",
+      "Secure boot enabled",
+      "Priority support & docs",
+    ],
+    cta: "Talk to us",
     highlight: false,
+  },
+];
+
+const faqs = [
+  {
+    q: "What coins/tokens are supported?",
+    a: "Nexa mainnet today (BIP-21 style URIs). Additional assets and stablecoin layers are on the roadmap.",
+  },
+  {
+    q: "Does PayDeck ever hold funds?",
+    a: "No. It’s watch-only. You import or generate a seed to derive an xpub, then private material is wiped. The device can’t spend.",
+  },
+  {
+    q: "How fast are payments recognized?",
+    a: "Typically ~1s when connected to a nearby Rostrum/Electrum server. Finality follows network confirmations.",
+  },
+  {
+    q: "What are the fees?",
+    a: "Only the on-chain miner fee (often ~cent-level). PayDeck itself doesn’t charge per-transaction fees.",
+  },
+  {
+    q: "Is internet required?",
+    a: "A connection is needed to watch the mempool/chain. The device tolerates intermittent connectivity and syncs when back online.",
+  },
+  {
+    q: "What about compliance?",
+    a: "As watch-only hardware it’s generally outside card-network certifications. If you sell devices, follow regional electronics safety (e.g., CE/FCC).",
   },
 ];
 
@@ -75,7 +132,8 @@ export default function Website() {
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-6">
               <a href="#features" className="hover:opacity-80">Features</a>
-              <a href="#pricing" className="hover:opacity-80">Pricing</a>
+              <a href="#how" className="hover:opacity-80">How it works</a>
+              <a href="#pricing" className="hover:opacity-80">Hardware</a>
               <a href="#faq" className="hover:opacity-80">FAQ</a>
               <a href="#contact" className="hover:opacity-80">Contact</a>
               <Button asChild>
@@ -100,7 +158,8 @@ export default function Website() {
             <div className="max-w-6xl mx-auto px-4 py-3 grid gap-2">
               {[
                 { href: "#features", label: "Features" },
-                { href: "#pricing", label: "Pricing" },
+                { href: "#how", label: "How it works" },
+                { href: "#pricing", label: "Hardware" },
                 { href: "#faq", label: "FAQ" },
                 { href: "#contact", label: "Contact" },
               ].map((i) => (
@@ -127,27 +186,27 @@ export default function Website() {
             >
               <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
-                Build your site in minutes
+                Open, low-cost, watch-only POS
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                A modern website template that just works
+                PayDeck — Cryptocurrency POS Receiver for Real-World Checkout
               </h1>
               <p className="text-lg text-slate-600">
-                Launch faster with a clean, responsive, and accessible design. Swap in your
-                brand, tweak the sections, and you’re live.
+                Display payment requests, scan confirmations, and log receipts with a ~USD 15 ESP32 device.
+                Non-custodial by design. Built for emerging markets, pop-ups, and DIY kiosks.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button asChild className="h-12 px-6 text-base">
-                  <a href="#pricing">See pricing</a>
+                  <a href="#pricing">See hardware options</a>
                 </Button>
                 <Button variant="outline" asChild className="h-12 px-6 text-base">
-                  <a href="#features">Explore features</a>
+                  <a href="#how">How it works</a>
                 </Button>
               </div>
               <div className="flex items-center gap-4 pt-4 text-sm text-slate-600">
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> No code required</div>
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> SEO-friendly</div>
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Fully responsive</div>
+                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Non-custodial</div>
+                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Near-instant recognition</div>
+                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Open hardware & firmware</div>
               </div>
             </motion.div>
 
@@ -161,8 +220,8 @@ export default function Website() {
               <div className="aspect-video rounded-2xl border border-slate-200 shadow-sm bg-white p-4 grid place-items-center">
                 <div className="text-center">
                   <Rocket className="w-12 h-12 mx-auto mb-3" />
-                  <p className="font-semibold">Drop your app screenshot here</p>
-                  <p className="text-slate-500">(or replace with an image)</p>
+                  <p className="font-semibold">ESP32 “Cheap Yellow Display”</p>
+                  <p className="text-slate-500">2.8″ 240×320 TFT • Wi-Fi/BT • microSD</p>
                 </div>
               </div>
             </motion.div>
@@ -174,9 +233,9 @@ export default function Website() {
       <section id="features" className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Everything you need</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Why merchants pick PayDeck</h2>
             <p className="text-slate-600 mt-3">
-              Thoughtful defaults, clean components, and a smooth editing experience.
+              Thoughtful defaults, verifiable security, and a total cost that fits informal and experimental commerce.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -195,12 +254,67 @@ export default function Website() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* How it works */}
+      <section id="how" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
+            <p className="text-slate-600 mt-3">Four quick steps to accept crypto on-site.</p>
+          </div>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { t: "1. Provision", d: "Generate/import seed ➝ derive xpub ➝ wipe private material. Configure Rostrum server URL." },
+              { t: "2. Display request", d: "Enter amount; device renders Nexa URI + QR on the TFT display." },
+              { t: "3. Detect payment", d: "Mempool watch via Rostrum. States: Waiting → Seen → Accepted → Finalized." },
+              { t: "4. Log & reconcile", d: "Optional CSV/JSON logs to microSD with timestamps and rolling hashes." },
+            ].map((s) => (
+              <Card key={s.t} className="rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-xl">{s.t}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-slate-600">{s.d}</CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Specs / comparison */}
+      <section id="specs" className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-2xl">Reference hardware (ESP32-2432S028R)</CardTitle>
+              </CardHeader>
+              <CardContent className="text-slate-600 grid gap-2">
+                <div>• Dual-core 240 MHz • 520 KB SRAM • 2.8″ 240×320 TFT</div>
+                <div>• Resistive touchscreen • microSD • Wi-Fi b/g/n • BT LE</div>
+                <div>• Secure boot & flash encryption support</div>
+                <div>• Typical BOM: ~USD 10–15</div>
+              </CardContent>
+            </Card>
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-2xl">Costs vs. card terminals</CardTitle>
+              </CardHeader>
+              <CardContent className="text-slate-600 grid gap-2">
+                <div>• PayDeck miner fee only (≈ $0.01 nominal)</div>
+                <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
+                <div>• Mobile-money: 0.5–2% (typical)</div>
+                <div>• Power: ~1–1.25 W vs 5–10 W for many POS</div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing / hardware */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Simple, transparent pricing</h2>
-            <p className="text-slate-600 mt-3">Pick a plan that fits your stage.</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
+            <p className="text-slate-600 mt-3">Pick a build that matches your rollout and budget.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {plans.map((p) => (
@@ -232,23 +346,10 @@ export default function Website() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Frequently asked questions</h2>
-            <p className="text-slate-600 mt-3">Short, helpful answers to common questions.</p>
+            <p className="text-slate-600 mt-3">Short, practical answers for merchants and makers.</p>
           </div>
           <div className="grid gap-6">
-            {[
-              {
-                q: "Can I use this template commercially?",
-                a: "Yes. Replace the copy, adjust the styles, and ship it for your product or client.",
-              },
-              {
-                q: "Is Tailwind required?",
-                a: "No, but it’s set up for Tailwind out of the box. Swap classes for your preferred styling if needed.",
-              },
-              {
-                q: "How do I deploy?",
-                a: "Export to your framework of choice (Next.js, Vite, etc.) and deploy to services like Vercel, Netlify, or Cloudflare.",
-              },
-            ].map((item) => (
+            {faqs.map((item) => (
               <Card key={item.q} className="rounded-2xl">
                 <CardHeader>
                   <CardTitle className="text-xl">{item.q}</CardTitle>
@@ -264,8 +365,10 @@ export default function Website() {
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">Tell us about your project</h2>
-            <p className="text-slate-600 mt-3">Drop a note and we’ll get back to you.</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Tell us about your deployment</h2>
+            <p className="text-slate-600 mt-3">
+              Interested in pilots, bundles, or contributing firmware? Drop a note and we’ll get back to you.
+            </p>
           </div>
           <Card className="rounded-2xl">
             <CardContent className="p-6 grid gap-4">
@@ -273,13 +376,16 @@ export default function Website() {
                 <Input placeholder="Your name" />
                 <Input type="email" placeholder="Email address" />
               </div>
-              <Input placeholder="Subject" />
-              <Textarea placeholder="How can we help?" className="min-h-[120px]" />
+              <Input placeholder="Organization (optional)" />
+              <Textarea placeholder="Share your use-case, country, and timeline…" className="min-h-[120px]" />
               <Button className="w-full md:w-auto inline-flex items-center gap-2">
                 <Mail className="w-4 h-4" /> Send message
               </Button>
             </CardContent>
           </Card>
+          <p className="text-center text-xs text-slate-500 mt-4">
+            Version: Beta v0.1 — October 2025
+          </p>
         </div>
       </section>
 
@@ -288,11 +394,12 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600">
             <Rocket className="w-4 h-4" aria-hidden />
-            <span>© {new Date().getFullYear()} PayDeck.</span>
+            <span>© {new Date().getFullYear()} PayDeck. Open hardware & firmware.</span>
           </div>
           <div className="text-sm text-slate-600 flex gap-4">
             <a href="#features" className="hover:opacity-80">Features</a>
-            <a href="#pricing" className="hover:opacity-80">Pricing</a>
+            <a href="#how" className="hover:opacity-80">How it works</a>
+            <a href="#pricing" className="hover:opacity-80">Hardware</a>
             <a href="#faq" className="hover:opacity-80">FAQ</a>
             <a href="#contact" className="hover:opacity-80">Contact</a>
           </div>
