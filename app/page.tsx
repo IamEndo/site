@@ -24,6 +24,7 @@ import { Textarea } from "../components/ui/textarea";
 // NOTE: Keep ThemeToggle if it does NOT render "Light mode/Dark mode" text.
 // If it does, hide its text in that component or replace with an icon-only toggle.
 import { ThemeToggle } from "../components/ui/theme-toggle";
+import { surface } from "../components/ui/surface";
 
 // Simple nav state for mobile menu
 function useToggle(initial = false) {
@@ -222,7 +223,7 @@ export default function Website() {
       </header>
 
       {/* Hero */}
-      <section id="home" className="relative overflow-hidden">
+      <section id="home"    className={`relative overflow-hidden ${surface.primary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
           <div className="grid lg:grid-cols-2 items-center gap-12">
             <motion.div
@@ -293,7 +294,7 @@ export default function Website() {
       </section>
 
       {/* Features */}
-      <section id="features" className="py-20">
+      <section id="features" className={`py-20 ${surface.secondary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -323,7 +324,7 @@ export default function Website() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="py-20 bg-white dark:bg-black">
+      <section id="how"      className={`py-20 ${surface.primary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
@@ -364,7 +365,7 @@ export default function Website() {
       </section>
 
       {/* Specs / comparison */}
-      <section id="specs" className="py-20">
+      <section id="specs"    className={`py-20 ${surface.secondary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="rounded-2xl">
@@ -396,7 +397,7 @@ export default function Website() {
       </section>
 
       {/* Pricing / hardware */}
-      <section id="pricing" className="py-20 bg-white dark:bg-black">
+      <section id="pricing"  className={`py-20 ${surface.primary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
@@ -437,7 +438,7 @@ export default function Website() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20">
+      <section id="faq"      className={`py-20 ${surface.secondary}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -463,7 +464,7 @@ export default function Website() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 bg-white dark:bg-black">
+      <section id="contact"  className={`py-20 ${surface.primary}`}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
