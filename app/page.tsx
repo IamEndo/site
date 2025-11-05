@@ -136,7 +136,7 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
-              <Rocket className="w-5 h-5" aria-hidden />
+              <CheckCircle className="w-5 h-5" aria-hidden />
               <span>PayDeck</span>
             </a>
 
@@ -221,11 +221,11 @@ export default function Website() {
                 Open, low-cost, watch-only POS
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                PayDeck — Nexa Point-of-Sale Payments Receiver for Real-World Checkout
+                Nexa Point-of-Sale Payments Receiver for Real-World Checkout
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300">
                 No contracts, no fees, no data collection, fully open-source and verifiable.
-                Non-custodial by design. Built for emerging markets, pop-ups, and DIY kiosks.
+                Non-custodial by design.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button asChild className="h-12 px-6 text-base">
@@ -312,14 +312,14 @@ export default function Website() {
             {[
               {
                 t: "1. Cheap Yellow Board",
-                d: "You will need widely available esp32 cheap yellow display 2.8” – 2432s028r is the best fit.",
+                d: "You will need widely available ESP32 cheap yellow display 2.8” – 2432s028r is the best fit.",
               },
               {
                 t: "2. Install software",
                 d: "Download and install software for Gitlab following the instructions.",
               },
               {
-                t: "3. Set-up PayDeck",
+                t: "3. Set-up device",
                 d: "Create a wallet, connect to the internet and request a payment.",
               },
               {
@@ -364,7 +364,7 @@ export default function Website() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
-                <div>• PayDeck miner fee only (≈ $0.01 nominal)</div>
+                <div>• Nexa network fee only ≈ $0.01 nominal</div>
                 <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
                 <div>• Mobile-money: 0.5–2% (typical)</div>
                 <div>• Power: ~1–1.25 W vs 5–10 W for many POS</div>
@@ -380,7 +380,7 @@ export default function Website() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Pick a build that matches your rollout and budget.
+              Pick a size that matches your needs.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -476,7 +476,7 @@ export default function Website() {
       <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-            <Rocket className="w-4 h-4" aria-hidden />
+            <CheckCircle className="w-4 h-4" aria-hidden />
             <span>
               © {new Date().getFullYear()} PayDeck. Open source firmware.
             </span>
