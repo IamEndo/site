@@ -42,13 +42,13 @@ const features = [
   },
   {
     icon: <Zap className="w-6 h-6" aria-hidden />,
-    title: "Near-instant recognition",
-    desc: "Rostrum/Electrum server integration spots incoming tx in ~1s, network-dependent.",
+    title: "Instant recognition",
+    desc: "Rostrum server integration spots incoming tx instantly.",
   },
   {
     icon: <Rocket className="w-6 h-6" aria-hidden />,
     title: "Ultra-low hardware cost",
-    desc: "ESP32 + 2.8″ TFT reference build from ~USD 15. Open BOM and firmware.",
+    desc: "Hardware cost is only around ~15$.",
   },
   {
     icon: <CheckCircle className="w-6 h-6" aria-hidden />,
@@ -221,10 +221,10 @@ export default function Website() {
                 Open, low-cost, watch-only POS
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                PayDeck — Cryptocurrency POS Receiver for Real-World Checkout
+                PayDeck — Nexa Point-of-Sale Payments Receiver for Real-World Checkout
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300">
-                Display payment requests, scan confirmations, and log receipts with a ~USD 15 ESP32 device.
+                No contracts, no fees, no data collection, fully open-source and verifiable.
                 Non-custodial by design. Built for emerging markets, pop-ups, and DIY kiosks.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -237,13 +237,13 @@ export default function Website() {
               </div>
               <div className="flex items-center gap-4 pt-4 text-sm text-slate-600 dark:text-slate-300">
                 <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> Open-source
+                </div>
+                <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Non-custodial
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Near-instant recognition
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Open hardware & firmware
+                  <CheckCircle className="w-4 h-4" /> Instant
                 </div>
               </div>
             </motion.div>
@@ -274,11 +274,11 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
-              Why merchants pick PayDeck
+              Why merchants choose PayDeck
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Thoughtful defaults, verifiable security, and a total cost that
-              fits informal and experimental commerce.
+              Non-custodial, open-source, secure, a global payments platform
+              fully verifiable on the Nexa blockchain.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -305,26 +305,26 @@ export default function Website() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Four quick steps to accept crypto on-site.
+              Four quick steps to accept Nexa payments on-site.
             </p>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {[
               {
-                t: "1. Provision",
-                d: "Generate/import seed ➝ derive xpub ➝ wipe private material. Configure Rostrum server URL.",
+                t: "1. Cheap Yellow Board",
+                d: "You will need widely available esp32 cheap yellow display 2.8” – 2432s028r is the best fit.",
               },
               {
-                t: "2. Display request",
-                d: "Enter amount; device renders Nexa URI + QR on the TFT display.",
+                t: "2. Install software",
+                d: "Download and install software for Gitlab following the instructions.",
               },
               {
-                t: "3. Detect payment",
-                d: "Mempool watch via Rostrum. States: Waiting → Seen → Accepted → Finalized.",
+                t: "3. Set-up PayDeck",
+                d: "Create a wallet, connect to the internet and request a payment.",
               },
               {
-                t: "4. Log & reconcile",
-                d: "Optional CSV/JSON logs to microSD with timestamps and rolling hashes.",
+                t: "4. Request payment",
+                d: "You can request Nexa payments anywhere in the world.",
               },
             ].map((s) => (
               <Card key={s.t} className="rounded-2xl">
@@ -444,11 +444,10 @@ export default function Website() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">
-              Tell us about your deployment
+              Get in touch
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Interested in pilots, bundles, or contributing firmware? Drop a
-              note and we’ll get back to you.
+              Drop a message and we’ll get back to you.
             </p>
           </div>
           <Card className="rounded-2xl">
@@ -479,7 +478,7 @@ export default function Website() {
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <Rocket className="w-4 h-4" aria-hidden />
             <span>
-              © {new Date().getFullYear()} PayDeck. Open hardware & firmware.
+              © {new Date().getFullYear()} PayDeck. Open source firmware.
             </span>
           </div>
           <div className="text-sm text-slate-600 dark:text-slate-300 flex gap-4">
