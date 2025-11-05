@@ -25,15 +25,14 @@ export function ThemeToggle({ className }: { className?: string }) {
   };
 
   if (!mounted) return null;
+
   return (
     <button
       onClick={toggle}
-      className={`inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 ${className ?? ""}`}
-      aria-label="Toggle dark mode"
-      title="Toggle dark mode"
+      className={`inline-flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400/50 ${className ?? ""}`}
+      aria-label="Toggle theme"
     >
       {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-      <span className="hidden sm:inline">{isDark ? "Light" : "Dark"} mode</span>
     </button>
   );
 }
