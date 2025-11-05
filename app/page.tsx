@@ -1,11 +1,26 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-import { Rocket, Shield, Zap, CheckCircle, Menu, X, Mail } from "lucide-react";
+import {
+  Rocket,
+  Shield,
+  Zap,
+  CheckCircle,
+  Menu,
+  X,
+  Mail,
+} from "lucide-react";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
+import { ThemeToggle } from "../components/ui/theme-toggle";
 
 // Simple nav state for mobile menu
 function useToggle(initial = false) {
@@ -16,7 +31,7 @@ function useToggle(initial = false) {
 }
 
 // ———————————————————————————————————————————————————————————
-// Content (pulled from your brief; trimmed for web, not a paper)
+// Content
 // ———————————————————————————————————————————————————————————
 
 const features = [
@@ -78,11 +93,7 @@ const plans = [
   {
     name: "Pro Bundle",
     price: "USD 79",
-    perks: [
-      "Hardened case",
-      "Secure boot enabled",
-      "Priority support & docs",
-    ],
+    perks: ["Hardened case", "Secure boot enabled", "Priority support & docs"],
     cta: "Talk to us",
     highlight: false,
   },
@@ -119,9 +130,9 @@ export default function Website() {
   const nav = useToggle(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-slate-950 dark:to-slate-900 dark:text-slate-100">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-slate-200">
+      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-slate-900/70 border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
@@ -130,12 +141,23 @@ export default function Website() {
             </a>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#features" className="hover:opacity-80">Features</a>
-              <a href="#how" className="hover:opacity-80">How it works</a>
-              <a href="#pricing" className="hover:opacity-80">Hardware</a>
-              <a href="#faq" className="hover:opacity-80">FAQ</a>
-              <a href="#contact" className="hover:opacity-80">Contact</a>
+            <nav className="hidden md:flex items-center gap-3 sm:gap-6">
+              <a href="#features" className="hover:opacity-80">
+                Features
+              </a>
+              <a href="#how" className="hover:opacity-80">
+                How it works
+              </a>
+              <a href="#pricing" className="hover:opacity-80">
+                Hardware
+              </a>
+              <a href="#faq" className="hover:opacity-80">
+                FAQ
+              </a>
+              <a href="#contact" className="hover:opacity-80">
+                Contact
+              </a>
+              <ThemeToggle />
               <Button asChild>
                 <a href="#contact">Get started</a>
               </Button>
@@ -143,7 +165,7 @@ export default function Website() {
 
             {/* Mobile nav toggle */}
             <button
-              className="md:hidden p-2 rounded-xl border border-slate-200 hover:bg-slate-100"
+              className="md:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
               aria-label="Toggle menu"
               onClick={nav.toggle}
             >
@@ -154,7 +176,7 @@ export default function Website() {
 
         {/* Mobile menu */}
         {nav.open && (
-          <div className="md:hidden border-t border-slate-200">
+          <div className="md:hidden border-t border-slate-200 dark:border-slate-800">
             <div className="max-w-6xl mx-auto px-4 py-3 grid gap-2">
               {[
                 { href: "#features", label: "Features" },
@@ -163,10 +185,20 @@ export default function Website() {
                 { href: "#faq", label: "FAQ" },
                 { href: "#contact", label: "Contact" },
               ].map((i) => (
-                <a key={i.href} href={i.href} onClick={nav.close} className="py-2">{i.label}</a>
+                <a
+                  key={i.href}
+                  href={i.href}
+                  onClick={nav.close}
+                  className="py-2"
+                >
+                  {i.label}
+                </a>
               ))}
+              <ThemeToggle />
               <Button asChild>
-                <a href="#contact" onClick={nav.close}>Get started</a>
+                <a href="#contact" onClick={nav.close}>
+                  Get started
+                </a>
               </Button>
             </div>
           </div>
@@ -184,14 +216,14 @@ export default function Website() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 w-fit">
+              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
                 Open, low-cost, watch-only POS
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 PayDeck — Cryptocurrency POS Receiver for Real-World Checkout
               </h1>
-              <p className="text-lg text-slate-600">
+              <p className="text-lg text-slate-600 dark:text-slate-300">
                 Display payment requests, scan confirmations, and log receipts with a ~USD 15 ESP32 device.
                 Non-custodial by design. Built for emerging markets, pop-ups, and DIY kiosks.
               </p>
@@ -203,10 +235,16 @@ export default function Website() {
                   <a href="#how">How it works</a>
                 </Button>
               </div>
-              <div className="flex items-center gap-4 pt-4 text-sm text-slate-600">
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Non-custodial</div>
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Near-instant recognition</div>
-                <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" /> Open hardware & firmware</div>
+              <div className="flex items-center gap-4 pt-4 text-sm text-slate-600 dark:text-slate-300">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> Non-custodial
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> Near-instant recognition
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> Open hardware & firmware
+                </div>
               </div>
             </motion.div>
 
@@ -217,11 +255,13 @@ export default function Website() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative"
             >
-              <div className="aspect-video rounded-2xl border border-slate-200 shadow-sm bg-white p-4 grid place-items-center">
+              <div className="aspect-video rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 p-4 grid place-items-center">
                 <div className="text-center">
                   <Rocket className="w-12 h-12 mx-auto mb-3" />
                   <p className="font-semibold">ESP32 “Cheap Yellow Display”</p>
-                  <p className="text-slate-500">2.8″ 240×320 TFT • Wi-Fi/BT • microSD</p>
+                  <p className="text-slate-500 dark:text-slate-400">
+                    2.8″ 240×320 TFT • Wi-Fi/BT • microSD
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -233,21 +273,26 @@ export default function Website() {
       <section id="features" className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Why merchants pick PayDeck</h2>
-            <p className="text-slate-600 mt-3">
-              Thoughtful defaults, verifiable security, and a total cost that fits informal and experimental commerce.
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Why merchants pick PayDeck
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mt-3">
+              Thoughtful defaults, verifiable security, and a total cost that
+              fits informal and experimental commerce.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
               <Card key={f.title} className="rounded-2xl">
                 <CardHeader>
-                  <div className="w-10 h-10 rounded-xl border border-slate-200 grid place-items-center">
+                  <div className="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 grid place-items-center">
                     {f.icon}
                   </div>
                   <CardTitle className="mt-4 text-xl">{f.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600">{f.desc}</CardContent>
+                <CardContent className="text-slate-600 dark:text-slate-300">
+                  {f.desc}
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -255,24 +300,40 @@ export default function Website() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="py-20 bg-white">
+      <section id="how" className="py-20 bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
-            <p className="text-slate-600 mt-3">Four quick steps to accept crypto on-site.</p>
+            <p className="text-slate-600 dark:text-slate-300 mt-3">
+              Four quick steps to accept crypto on-site.
+            </p>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { t: "1. Provision", d: "Generate/import seed ➝ derive xpub ➝ wipe private material. Configure Rostrum server URL." },
-              { t: "2. Display request", d: "Enter amount; device renders Nexa URI + QR on the TFT display." },
-              { t: "3. Detect payment", d: "Mempool watch via Rostrum. States: Waiting → Seen → Accepted → Finalized." },
-              { t: "4. Log & reconcile", d: "Optional CSV/JSON logs to microSD with timestamps and rolling hashes." },
+              {
+                t: "1. Provision",
+                d: "Generate/import seed ➝ derive xpub ➝ wipe private material. Configure Rostrum server URL.",
+              },
+              {
+                t: "2. Display request",
+                d: "Enter amount; device renders Nexa URI + QR on the TFT display.",
+              },
+              {
+                t: "3. Detect payment",
+                d: "Mempool watch via Rostrum. States: Waiting → Seen → Accepted → Finalized.",
+              },
+              {
+                t: "4. Log & reconcile",
+                d: "Optional CSV/JSON logs to microSD with timestamps and rolling hashes.",
+              },
             ].map((s) => (
               <Card key={s.t} className="rounded-2xl">
                 <CardHeader>
                   <CardTitle className="text-xl">{s.t}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600">{s.d}</CardContent>
+                <CardContent className="text-slate-600 dark:text-slate-300">
+                  {s.d}
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -285,9 +346,11 @@ export default function Website() {
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Reference hardware (ESP32-2432S028R)</CardTitle>
+                <CardTitle className="text-2xl">
+                  Reference hardware (ESP32-2432S028R)
+                </CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-600 grid gap-2">
+              <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
                 <div>• Dual-core 240 MHz • 520 KB SRAM • 2.8″ 240×320 TFT</div>
                 <div>• Resistive touchscreen • microSD • Wi-Fi b/g/n • BT LE</div>
                 <div>• Secure boot & flash encryption support</div>
@@ -296,9 +359,11 @@ export default function Website() {
             </Card>
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Costs vs. card terminals</CardTitle>
+                <CardTitle className="text-2xl">
+                  Costs vs. card terminals
+                </CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-600 grid gap-2">
+              <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
                 <div>• PayDeck miner fee only (≈ $0.01 nominal)</div>
                 <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
                 <div>• Mobile-money: 0.5–2% (typical)</div>
@@ -310,15 +375,22 @@ export default function Website() {
       </section>
 
       {/* Pricing / hardware */}
-      <section id="pricing" className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
-            <p className="text-slate-600 mt-3">Pick a build that matches your rollout and budget.</p>
+            <p className="text-slate-600 dark:text-slate-300 mt-3">
+              Pick a build that matches your rollout and budget.
+            </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {plans.map((p) => (
-              <Card key={p.name} className={`rounded-2xl ${p.highlight ? "ring-2 ring-slate-900" : ""}`}>
+              <Card
+                key={p.name}
+                className={`rounded-2xl ${
+                  p.highlight ? "ring-2 ring-slate-900 dark:ring-slate-100" : ""
+                }`}
+              >
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-baseline justify-between">
                     <span>{p.name}</span>
@@ -345,8 +417,12 @@ export default function Website() {
       <section id="faq" className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Frequently asked questions</h2>
-            <p className="text-slate-600 mt-3">Short, practical answers for merchants and makers.</p>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Frequently asked questions
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mt-3">
+              Short, practical answers for merchants and makers.
+            </p>
           </div>
           <div className="grid gap-6">
             {faqs.map((item) => (
@@ -354,7 +430,9 @@ export default function Website() {
                 <CardHeader>
                   <CardTitle className="text-xl">{item.q}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600">{item.a}</CardContent>
+                <CardContent className="text-slate-600 dark:text-slate-300">
+                  {item.a}
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -362,12 +440,15 @@ export default function Website() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">Tell us about your deployment</h2>
-            <p className="text-slate-600 mt-3">
-              Interested in pilots, bundles, or contributing firmware? Drop a note and we’ll get back to you.
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Tell us about your deployment
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mt-3">
+              Interested in pilots, bundles, or contributing firmware? Drop a
+              note and we’ll get back to you.
             </p>
           </div>
           <Card className="rounded-2xl">
@@ -377,31 +458,46 @@ export default function Website() {
                 <Input type="email" placeholder="Email address" />
               </div>
               <Input placeholder="Organization (optional)" />
-              <Textarea placeholder="Share your use-case, country, and timeline…" className="min-h-[120px]" />
+              <Textarea
+                placeholder="Share your use-case, country, and timeline…"
+                className="min-h-[120px]"
+              />
               <Button className="w-full md:w-auto inline-flex items-center gap-2">
                 <Mail className="w-4 h-4" /> Send message
               </Button>
             </CardContent>
           </Card>
-          <p className="text-center text-xs text-slate-500 mt-4">
+          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4">
             Version: Beta v0.1 — October 2025
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-slate-200">
+      <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-slate-600">
+          <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <Rocket className="w-4 h-4" aria-hidden />
-            <span>© {new Date().getFullYear()} PayDeck. Open hardware & firmware.</span>
+            <span>
+              © {new Date().getFullYear()} PayDeck. Open hardware & firmware.
+            </span>
           </div>
-          <div className="text-sm text-slate-600 flex gap-4">
-            <a href="#features" className="hover:opacity-80">Features</a>
-            <a href="#how" className="hover:opacity-80">How it works</a>
-            <a href="#pricing" className="hover:opacity-80">Hardware</a>
-            <a href="#faq" className="hover:opacity-80">FAQ</a>
-            <a href="#contact" className="hover:opacity-80">Contact</a>
+          <div className="text-sm text-slate-600 dark:text-slate-300 flex gap-4">
+            <a href="#features" className="hover:opacity-80">
+              Features
+            </a>
+            <a href="#how" className="hover:opacity-80">
+              How it works
+            </a>
+            <a href="#pricing" className="hover:opacity-80">
+              Hardware
+            </a>
+            <a href="#faq" className="hover:opacity-80">
+              FAQ
+            </a>
+            <a href="#contact" className="hover:opacity-80">
+              Contact
+            </a>
           </div>
         </div>
       </footer>

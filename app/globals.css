@@ -1,6 +1,9 @@
-/* v4 uses a single import */
+/* global(s).css */
+@config "../tailwind.config.ts";
 @import "tailwindcss";
 
-body {
-  font-family: system-ui, sans-serif;
-}
+/* Let the browser know which palette to use */
+html.dark { color-scheme: dark; }
+html:not(.dark) { color-scheme: light; }
+
+body { font-family: system-ui, sans-serif; }
