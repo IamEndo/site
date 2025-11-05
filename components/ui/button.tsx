@@ -12,31 +12,69 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // ✅ Light: neutral grays; Dark: white-on-black
+        // Light = neutral gray; Dark = white-on-black
         default:
           "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200",
 
-        // ✅ Outline: soft gray borders on white (light), black surface on dark
+        // Outline: solid white (light) / solid black (dark). No transparent hover in light mode.
         outline:
           "border border-neutral-300 bg-white hover:bg-neutral-50 text-neutral-900 dark:border-neutral-800 dark:bg-black dark:hover:bg-neutral-900 dark:text-gray-100",
 
-        // ✅ Ghost: subtle gray hover background
+        // Ghost: subtle
         ghost:
           "hover:bg-neutral-100 text-neutral-900 dark:text-gray-100 dark:hover:bg-neutral-900",
 
-        // ✅ Link variant unchanged
         link: "underline underline-offset-4 hover:opacity-80",
       },
+
       size: {
         sm: "h-9 px-3",
         md: "h-10 px-4",
         lg: "h-12 px-6 text-base",
       },
+
+      // NEW: layout context (normal pages vs. hero image overlay)
+      context: {
+        default: "",    // normal behavior
+        hero: "",       // special styles applied via compoundVariants below
+      },
     },
+
+    // Default variant values
     defaultVariants: {
       variant: "default",
       size: "md",
+      context: "default",
     },
+
+    // Context-specific overrides for the hero (photo background)
+    compoundVariants: [
+      // Primary button on hero: white bg, black text, gentle darker hover
+      {
+        variant: "default",
+        context: "hero",
+        class: "bg-white text-black hover:bg-neutral-200",
+      },
+      // Outline on hero: white border/text + subtle dark fill; hover gets darker (not transparent)
+      {
+        variant: "outline",
+        context: "hero",
+        class: "border-white/80 text-white bg-black/30 hover:bg-black/55",
+      },
+      // Ghost on hero: white text, darker hover film
+      {
+        variant: "ghost",
+        context: "hero",
+        class: "text-white hover:bg-black/40",
+      },
+      // Link on hero: keep white text
+      {
+        variant: "link",
+        context: "hero",
+        class: "text-white",
+      },
+    ],
+
   }
 );
 
@@ -49,8 +87,8 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, children, ...props }, ref) => {
-    const classes = cn(buttonVariants({ variant, size }), className);
+  ({ className, variant, size, context, asChild, children, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size, context }), className);
 
     if (asChild && React.isValidElement(children)) {
       return React.cloneElement(children as React.ReactElement, {

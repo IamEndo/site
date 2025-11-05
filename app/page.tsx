@@ -24,6 +24,7 @@ import { Textarea } from "../components/ui/textarea";
 // NOTE: Keep ThemeToggle if it does NOT render "Light mode/Dark mode" text.
 // If it does, hide its text in that component or replace with an icon-only toggle.
 import { ThemeToggle } from "../components/ui/theme-toggle";
+import { HeroBackdrop } from "../components/ui/hero-backdrop";
 import { surface } from "../components/ui/surface";
 
 // Simple nav state for mobile menu
@@ -134,9 +135,12 @@ export default function Website() {
   const nav = useToggle(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-black dark:to-black dark:text-gray-100">
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-black/70 border-b border-slate-200 dark:border-neutral-800">
+    <div className="relative isolate min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-black dark:to-black dark:text-gray-100">
+      {/* Fixed hero photo behind the first viewport (make sure HeroBackdrop uses -z-10 & pointer-events-none) */}
+      <HeroBackdrop src="/images/hero-paydeck.png" dimOpacity={60} />
+
+      {/* Header — lighter translucency over photo */}
+      <header className="sticky top-0 z-50 bg-white dark:bg-black border-b border-slate-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
@@ -165,10 +169,10 @@ export default function Website() {
               {/* Ensure ThemeToggle renders icon-only (no “Light/Dark mode” text). */}
               <ThemeToggle />
 
-              {/* Buttons forced to dark gray, not blue */}
+              {/* Buttons forced to neutral (no blue cast) */}
               <Button
                 asChild
-                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
                 <a href="#contact">Get started</a>
               </Button>
@@ -211,7 +215,7 @@ export default function Website() {
 
               <Button
                 asChild
-                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
                 <a href="#contact" onClick={nav.close}>
                   Get started
@@ -222,9 +226,9 @@ export default function Website() {
         )}
       </header>
 
-      {/* Hero */}
-      <section id="home"    className={`relative overflow-hidden ${surface.primary}`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
+      {/* Hero — transparent section; inner content forced to light-on-dark for photo mode */}
+      <section id="home" className="relative overflow-hidden bg-transparent">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-24 text-white">
           <div className="grid lg:grid-cols-2 items-center gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -233,33 +237,38 @@ export default function Website() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-neutral-800 w-fit">
+              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-white/30 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
                 Open-source • Low-cost • Instant
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Instant Nexa payments at checkout
               </h1>
-              <p className="text-lg text-slate-600 dark:text-gray-300">
+              <p className="text-lg text-white/80">
                 No contracts. No added fees. No data harvesting. PayDeck is open-source,
                 non-custodial, and built for real-world retail.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
+                {/* Primary — black button, white text */}
                 <Button
                   asChild
-                  className="h-12 px-6 text-base bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                  className="h-12 px-6 text-base bg-neutral-900 text-white hover:bg-neutral-800"
                 >
                   <a href="#pricing">See hardware options</a>
                 </Button>
+
+                {/* Secondary — white outline, white text, subtle hover darken */}
                 <Button
-                  variant="outline"
                   asChild
-                  className="h-12 px-6 text-base border-slate-300 text-slate-900 hover:bg-slate-100 dark:text-gray-100 dark:border-neutral-700 dark:hover:bg-neutral-900"
+                  className="h-12 px-6 text-base bg-neutral-800 text-white hover:bg-neutral-700"
                 >
                   <a href="#how">How it works</a>
                 </Button>
               </div>
-              <div className="flex items-center gap-4 pt-4 text-sm text-slate-600 dark:text-gray-300">
+
+
+
+              <div className="flex items-center gap-4 pt-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Open-source
                 </div>
@@ -279,11 +288,11 @@ export default function Website() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative"
             >
-              <div className="aspect-video rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm bg-white dark:bg-neutral-900 p-4 grid place-items-center">
+              <div className="aspect-video rounded-2xl border border-white/20 bg-black/50 backdrop-blur-sm p-4 grid place-items-center">
                 <div className="text-center">
                   <CheckSquare className="w-12 h-12 mx-auto mb-3" />
                   <p className="font-semibold">Open-source receiver</p>
-                  <p className="text-slate-500 dark:text-gray-400">
+                  <p className="text-white/70">
                     ESP32 “Cheap Yellow Display” • 2.8″ 240×320 TFT
                   </p>
                 </div>
@@ -324,7 +333,7 @@ export default function Website() {
       </section>
 
       {/* How it works */}
-      <section id="how"      className={`py-20 ${surface.primary}`}>
+      <section id="how" className={`py-20 ${surface.primary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
@@ -365,7 +374,7 @@ export default function Website() {
       </section>
 
       {/* Specs / comparison */}
-      <section id="specs"    className={`py-20 ${surface.secondary}`}>
+      <section id="specs" className={`py-20 ${surface.secondary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="rounded-2xl">
@@ -397,7 +406,7 @@ export default function Website() {
       </section>
 
       {/* Pricing / hardware */}
-      <section id="pricing"  className={`py-20 ${surface.primary}`}>
+      <section id="pricing" className={`py-20 ${surface.primary}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
@@ -427,7 +436,7 @@ export default function Website() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+                  <Button className="w-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
                     {p.cta}
                   </Button>
                 </CardContent>
@@ -438,7 +447,7 @@ export default function Website() {
       </section>
 
       {/* FAQ */}
-      <section id="faq"      className={`py-20 ${surface.secondary}`}>
+      <section id="faq" className={`py-20 ${surface.secondary}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -464,7 +473,7 @@ export default function Website() {
       </section>
 
       {/* Contact */}
-      <section id="contact"  className={`py-20 ${surface.primary}`}>
+      <section id="contact" className={`py-20 ${surface.primary}`}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
@@ -483,19 +492,21 @@ export default function Website() {
                 placeholder="Share your use case, country, and timeline…"
                 className="min-h-[120px]"
               />
-              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
                 <Mail className="w-4 h-4" /> Send message
               </Button>
             </CardContent>
           </Card>
           <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
-            Version: Beta v0.1 — October 2025
+            Version: Beta v0.1 — October {new Date().getFullYear()}
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-slate-200 dark:border-neutral-800">
+      <footer
+        className={`py-10 ${surface.secondary} border-t border-slate-200 dark:border-neutral-800`}
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-300">
             <CheckSquare className="w-4 h-4" aria-hidden />
