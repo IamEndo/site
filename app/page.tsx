@@ -69,7 +69,7 @@ export default function Website() {
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
               <Rocket className="w-5 h-5" aria-hidden />
-              <span>Acme</span>
+              <span>PayDeck</span>
             </a>
 
             {/* Desktop nav */}
@@ -288,7 +288,7 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600">
             <Rocket className="w-4 h-4" aria-hidden />
-            <span>© {new Date().getFullYear()} Acme, Inc.</span>
+            <span>© {new Date().getFullYear()} PayDeck.</span>
           </div>
           <div className="text-sm text-slate-600 flex gap-4">
             <a href="#features" className="hover:opacity-80">Features</a>
