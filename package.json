@@ -14,8 +14,8 @@
     "framer-motion": "latest",
     "lucide-react": "latest",
     "tailwindcss": "latest",
-    "postcss": "latest",
-    "autoprefixer": "latest"
+    "@tailwindcss/postcss": "latest",
+    "postcss": "latest"
   },
   "engines": { "node": ">=20.9.0" }
 }
