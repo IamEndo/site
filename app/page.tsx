@@ -133,7 +133,7 @@ export default function Website() {
   const nav = useToggle(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-slate-950 dark:to-slate-900 dark:text-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-slate-900/70 border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -323,7 +323,7 @@ export default function Website() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="py-20 bg-white dark:bg-slate-950">
+      <section id="how" className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
@@ -396,7 +396,7 @@ export default function Website() {
       </section>
 
       {/* Pricing / hardware */}
-      <section id="pricing" className="py-20 bg-white dark:bg-slate-950">
+      <section id="pricing" className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
@@ -463,7 +463,7 @@ export default function Website() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 bg-white dark:bg-slate-950">
+      <section id="contact" className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
