@@ -17,5 +17,5 @@
     "postcss": "latest",
     "autoprefixer": "latest"
   },
-  "engines": { "node": ">=18" }
+  "engines": { "node": ">=20.9.0" }
 }
