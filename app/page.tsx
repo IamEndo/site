@@ -21,6 +21,8 @@ import {
 } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
+// NOTE: Keep ThemeToggle if it does NOT render "Light mode/Dark mode" text.
+// If it does, hide its text in that component or replace with an icon-only toggle.
 import { ThemeToggle } from "../components/ui/theme-toggle";
 
 // Simple nav state for mobile menu
@@ -32,39 +34,39 @@ function useToggle(initial = false) {
 }
 
 // ———————————————————————————————————————————————————————————
-// Content
+// Content (marketing-first, typos fixed)
 // ———————————————————————————————————————————————————————————
 
 const features = [
   {
     icon: <Shield className="w-6 h-6" aria-hidden />,
-    title: "Non-custodial & watch-only",
-    desc: "No private keys on device. Displays payment requests and watches the chain only.",
+    title: "Your funds stay in your control",
+    desc: "Non-custodial by design. The display shows payment requests and tracks incoming payments — it can’t spend your funds.",
   },
   {
     icon: <Zap className="w-6 h-6" aria-hidden />,
-    title: "Instant recognition",
-    desc: "Rostrum server integration spots incoming tx instantly.",
+    title: "Instant payment visibility",
+    desc: "See payments appear in seconds so you can keep the line moving.",
   },
   {
     icon: <Rocket className="w-6 h-6" aria-hidden />,
-    title: "Ultra-low hardware cost",
-    desc: "Hardware cost is only around ~15$.",
+    title: "Affordable to deploy",
+    desc: "Get started with hardware from around $15 — perfect for kiosks, cafes, and events.",
   },
   {
     icon: <CheckCircle className="w-6 h-6" aria-hidden />,
-    title: "Offline-tolerant flow",
-    desc: "Queue payment requests and auto-sync when network returns.",
+    title: "Works through spotty internet",
+    desc: "Queue payment requests offline and sync automatically when you’re back online.",
   },
   {
     icon: <Shield className="w-6 h-6" aria-hidden />,
-    title: "Secure boot + flash enc.",
-    desc: "ESP-IDF secure boot, flash encryption, JTAG fuse options for tamper resistance.",
+    title: "Built for peace of mind",
+    desc: "Open-source and verifiable. Designed with best-practice device hardening in mind.",
   },
   {
     icon: <Zap className="w-6 h-6" aria-hidden />,
-    title: "~1W power draw",
-    desc: "≈180–250 mA @5V. Field-friendly for kiosks and mobile carts.",
+    title: "Sips power",
+    desc: "Runs on roughly 1 W — great for counters, markets, and mobile carts.",
   },
 ];
 
@@ -73,9 +75,9 @@ const plans = [
     name: "Cheap Yellow Board 2.8″",
     price: "USD 15",
     perks: [
-      "ESP32 + 2.8″ TFT (ref. build)",
-      "Open-source software (watch-only)",
-      "QR/Nexa URI display",
+      "ESP32 + 2.8″ TFT (reference build)",
+      "Open-source receiver (watch-only)",
+      "QR / Nexa link display",
     ],
     cta: "Build from guide",
     highlight: false,
@@ -84,9 +86,9 @@ const plans = [
     name: "Cheap Yellow Board 3.5″",
     price: "USD 15",
     perks: [
-      "ESP32 + 3.5″ TFT (ref. build)",
+      "ESP32 + 3.5″ TFT (reference build)",
       "Desk stand + cables",
-      "CSV/JSON logging to microSD",
+      "Optional receipt logging to microSD",
     ],
     cta: "Get the kit",
     highlight: true,
@@ -94,7 +96,7 @@ const plans = [
   {
     name: "Cheap Yellow Board 4″",
     price: "USD 15",
-    perks: ["Hardened case", "Secure boot enabled", "Priority support & docs"],
+    perks: ["Durable enclosure", "Hardened setup", "Priority help & docs"],
     cta: "Talk to us",
     highlight: false,
   },
@@ -102,28 +104,28 @@ const plans = [
 
 const faqs = [
   {
-    q: "What coins/tokens are supported?",
-    a: "Nexa mainnet today (BIP-21 style URIs). Additional assets and stablecoin layers are on the roadmap.",
+    q: "Which assets can I accept?",
+    a: "Nexa mainnet today, with more assets on the roadmap.",
   },
   {
-    q: "Does PayDeck ever hold funds?",
-    a: "No. It’s watch-only. You import or generate a seed to derive an xpub, then private material is wiped. The device can’t spend.",
+    q: "Does PayDeck hold my money?",
+    a: "No. It’s watch-only. You keep control of your funds at all times.",
   },
   {
-    q: "How fast are payments recognized?",
-    a: "Typically ~1s when connected to a nearby Rostrum/Electrum server. Finality follows network confirmations.",
+    q: "How fast do payments show up?",
+    a: "Typically in about a second, so you can serve the next customer without waiting.",
   },
   {
     q: "What are the fees?",
-    a: "Only the on-chain miner fee (often ~cent-level). PayDeck itself doesn’t charge per-transaction fees.",
+    a: "Only the Nexa network fee, which is usually around a cent. PayDeck doesn’t add per-transaction fees.",
   },
   {
-    q: "Is internet required?",
-    a: "A connection is needed to watch the mempool/chain. The device tolerates intermittent connectivity and syncs when back online.",
+    q: "Do I need constant internet?",
+    a: "You’ll need a connection to see payments as they arrive. If your connection drops, requests queue and sync when you’re back online.",
   },
   {
-    q: "What about compliance?",
-    a: "As watch-only hardware it’s generally outside card-network certifications. If you sell devices, follow regional electronics safety (e.g., CE/FCC).",
+    q: "Is this compliant for my store?",
+    a: "As watch-only display hardware, it’s generally outside card-network certifications. If you sell devices, follow local electronics requirements (e.g., CE/FCC).",
   },
 ];
 
@@ -158,8 +160,15 @@ export default function Website() {
               <a href="#contact" className="hover:opacity-80">
                 Contact
               </a>
+
+              {/* Ensure ThemeToggle renders icon-only (no “Light/Dark mode” text). */}
               <ThemeToggle />
-              <Button asChild>
+
+              {/* Buttons forced to dark gray, not blue */}
+              <Button
+                asChild
+                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+              >
                 <a href="#contact">Get started</a>
               </Button>
             </nav>
@@ -195,8 +204,14 @@ export default function Website() {
                   {i.label}
                 </a>
               ))}
+
+              {/* Icon-only theme toggle recommended */}
               <ThemeToggle />
-              <Button asChild>
+
+              <Button
+                asChild
+                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+              >
                 <a href="#contact" onClick={nav.close}>
                   Get started
                 </a>
@@ -219,20 +234,27 @@ export default function Website() {
             >
               <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
-                Open-source, low-cost, instant
+                Open-source • Low-cost • Instant
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Nexa POS Payments Receiver for Real-World Checkout
+                Instant Nexa payments at checkout
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300">
-                No contracts, no fees, no data collection, fully open-source and verifiable.
-                Non-custodial by design.
+                No contracts. No added fees. No data harvesting. PayDeck is open-source,
+                non-custodial, and built for real-world retail.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild className="h-12 px-6 text-base">
+                <Button
+                  asChild
+                  className="h-12 px-6 text-base bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+                >
                   <a href="#pricing">See hardware options</a>
                 </Button>
-                <Button variant="outline" asChild className="h-12 px-6 text-base">
+                <Button
+                  variant="outline"
+                  asChild
+                  className="h-12 px-6 text-base border-slate-300 text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                >
                   <a href="#how">How it works</a>
                 </Button>
               </div>
@@ -244,7 +266,7 @@ export default function Website() {
                   <CheckCircle className="w-4 h-4" /> Non-custodial
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Instant
+                  <CheckCircle className="w-4 h-4" /> Near-instant
                 </div>
               </div>
             </motion.div>
@@ -259,9 +281,9 @@ export default function Website() {
               <div className="aspect-video rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 p-4 grid place-items-center">
                 <div className="text-center">
                   <CheckSquare className="w-12 h-12 mx-auto mb-3" />
-                  <p className="font-semibold">Open-source software</p>
+                  <p className="font-semibold">Open-source receiver</p>
                   <p className="text-slate-500 dark:text-slate-400">
-                    2.8″ 240×320 TFT • ESP32 “Cheap Yellow Display”
+                    ESP32 “Cheap Yellow Display” • 2.8″ 240×320 TFT
                   </p>
                 </div>
               </div>
@@ -278,8 +300,8 @@ export default function Website() {
               Why merchants choose PayDeck
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Non-custodial, open-source, secure, a global payments platform
-              fully verifiable on the Nexa blockchain.
+              Simple, secure, and built for the checkout counter — fully
+              verifiable on the Nexa blockchain.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -306,26 +328,26 @@ export default function Website() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Four quick steps to accept Nexa payments on-site.
+              Four quick steps to start accepting Nexa payments.
             </p>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {[
               {
-                t: "1. Cheap Yellow Board",
-                d: "You will need widely available ESP32 cheap yellow display 2.8” – 2432s028r is the best fit.",
+                t: "1. Get the display",
+                d: "Choose the widely available ESP32 Cheap Yellow Display. The ESP32-2432S028R model fits best.",
               },
               {
-                t: "2. Install software",
-                d: "Download and install software for Gitlab following the instructions.",
+                t: "2. Install the software",
+                d: "Download the project from GitLab and follow the quick guide.",
               },
               {
-                t: "3. Set-up device",
-                d: "Create a wallet, connect to the internet and request a payment.",
+                t: "3. Set up your device",
+                d: "Create a wallet, connect to the internet, and customize your store name.",
               },
               {
-                t: "4. Request payment",
-                d: "You can request Nexa payments anywhere in the world.",
+                t: "4. Request a payment",
+                d: "Show a QR code and let customers pay in Nexa — at the counter or on the go.",
               },
             ].map((s) => (
               <Card key={s.t} className="rounded-2xl">
@@ -354,20 +376,18 @@ export default function Website() {
               <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
                 <div>• Dual-core 240 MHz • 520 KB SRAM • 2.8″ 240×320 TFT</div>
                 <div>• Resistive touchscreen • microSD • Wi-Fi b/g/n • BT LE</div>
-                <div>• Secure boot & flash encryption support</div>
-                <div>• Typical BOM: ~USD 10–15</div>
+                <div>• Supports secure boot & flash encryption</div>
+                <div>• Typical cost: ~USD 10–15</div>
               </CardContent>
             </Card>
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">
-                  Costs vs. card terminals
-                </CardTitle>
+                <CardTitle className="text-2xl">Costs vs card terminals</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
-                <div>• Nexa network fee only ≈ $0.01 nominal</div>
+                <div>• Nexa network fee only ≈ $0.01 (typical)</div>
                 <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
-                <div>• Mobile-money: 0.5–2% (typical)</div>
+                <div>• Mobile money: ~0.5–2%</div>
                 <div>• Power: ~1–1.25 W vs 5–10 W for many POS</div>
               </CardContent>
             </Card>
@@ -381,7 +401,7 @@ export default function Website() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Pick a size that matches your needs.
+              Pick a size that matches your counter and budget.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -406,7 +426,9 @@ export default function Website() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full">{p.cta}</Button>
+                  <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200">
+                    {p.cta}
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -422,7 +444,7 @@ export default function Website() {
               Frequently asked questions
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
-              Short, practical answers for merchants and makers.
+              Quick answers for busy merchants.
             </p>
           </div>
           <div className="grid gap-6">
@@ -444,9 +466,7 @@ export default function Website() {
       <section id="contact" className="py-20 bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Get in touch
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
             <p className="text-slate-600 dark:text-slate-300 mt-3">
               Drop a message and we’ll get back to you.
             </p>
@@ -459,10 +479,10 @@ export default function Website() {
               </div>
               <Input placeholder="Organization (optional)" />
               <Textarea
-                placeholder="Share your use-case, country, and timeline…"
+                placeholder="Share your use case, country, and timeline…"
                 className="min-h-[120px]"
               />
-              <Button className="w-full md:w-auto inline-flex items-center gap-2">
+              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200">
                 <Mail className="w-4 h-4" /> Send message
               </Button>
             </CardContent>
@@ -479,7 +499,7 @@ export default function Website() {
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <CheckSquare className="w-4 h-4" aria-hidden />
             <span>
-              © {new Date().getFullYear()} PayDeck. Open source software.
+              © {new Date().getFullYear()} PayDeck. Open-source software.
             </span>
           </div>
           <div className="text-sm text-slate-600 dark:text-slate-300 flex gap-4">
