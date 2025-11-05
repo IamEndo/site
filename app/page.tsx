@@ -133,9 +133,9 @@ export default function Website() {
   const nav = useToggle(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-slate-950 dark:to-slate-900 dark:text-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-black dark:to-black dark:text-gray-100">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-slate-900/70 border-b border-slate-200 dark:border-slate-800">
+      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-black/70 border-b border-slate-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
@@ -167,7 +167,7 @@ export default function Website() {
               {/* Buttons forced to dark gray, not blue */}
               <Button
                 asChild
-                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
                 <a href="#contact">Get started</a>
               </Button>
@@ -175,7 +175,7 @@ export default function Website() {
 
             {/* Mobile nav toggle */}
             <button
-              className="md:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="md:hidden p-2 rounded-xl border border-slate-200 dark:border-neutral-800 hover:bg-slate-100 dark:hover:bg-neutral-900"
               aria-label="Toggle menu"
               onClick={nav.toggle}
             >
@@ -186,7 +186,7 @@ export default function Website() {
 
         {/* Mobile menu */}
         {nav.open && (
-          <div className="md:hidden border-t border-slate-200 dark:border-slate-800">
+          <div className="md:hidden border-t border-slate-200 dark:border-neutral-800">
             <div className="max-w-6xl mx-auto px-4 py-3 grid gap-2">
               {[
                 { href: "#features", label: "Features" },
@@ -210,7 +210,7 @@ export default function Website() {
 
               <Button
                 asChild
-                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+                className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
                 <a href="#contact" onClick={nav.close}>
                   Get started
@@ -232,33 +232,33 @@ export default function Website() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 w-fit">
+              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-neutral-800 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
                 Open-source • Low-cost • Instant
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Instant Nexa payments at checkout
               </h1>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
+              <p className="text-lg text-slate-600 dark:text-gray-300">
                 No contracts. No added fees. No data harvesting. PayDeck is open-source,
                 non-custodial, and built for real-world retail.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   asChild
-                  className="h-12 px-6 text-base bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
+                  className="h-12 px-6 text-base bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
                   <a href="#pricing">See hardware options</a>
                 </Button>
                 <Button
                   variant="outline"
                   asChild
-                  className="h-12 px-6 text-base border-slate-300 text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                  className="h-12 px-6 text-base border-slate-300 text-slate-900 hover:bg-slate-100 dark:text-gray-100 dark:border-neutral-700 dark:hover:bg-neutral-900"
                 >
                   <a href="#how">How it works</a>
                 </Button>
               </div>
-              <div className="flex items-center gap-4 pt-4 text-sm text-slate-600 dark:text-slate-300">
+              <div className="flex items-center gap-4 pt-4 text-sm text-slate-600 dark:text-gray-300">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Open-source
                 </div>
@@ -278,11 +278,11 @@ export default function Website() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative"
             >
-              <div className="aspect-video rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 p-4 grid place-items-center">
+              <div className="aspect-video rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm bg-white dark:bg-neutral-900 p-4 grid place-items-center">
                 <div className="text-center">
                   <CheckSquare className="w-12 h-12 mx-auto mb-3" />
                   <p className="font-semibold">Open-source receiver</p>
-                  <p className="text-slate-500 dark:text-slate-400">
+                  <p className="text-slate-500 dark:text-gray-400">
                     ESP32 “Cheap Yellow Display” • 2.8″ 240×320 TFT
                   </p>
                 </div>
@@ -299,7 +299,7 @@ export default function Website() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Why merchants choose PayDeck
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-3">
+            <p className="text-slate-600 dark:text-gray-300 mt-3">
               Simple, secure, and built for the checkout counter — fully
               verifiable on the Nexa blockchain.
             </p>
@@ -308,12 +308,12 @@ export default function Website() {
             {features.map((f) => (
               <Card key={f.title} className="rounded-2xl">
                 <CardHeader>
-                  <div className="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 grid place-items-center">
+                  <div className="w-10 h-10 rounded-xl border border-slate-200 dark:border-neutral-800 grid place-items-center">
                     {f.icon}
                   </div>
                   <CardTitle className="mt-4 text-xl">{f.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600 dark:text-slate-300">
+                <CardContent className="text-slate-600 dark:text-gray-300">
                   {f.desc}
                 </CardContent>
               </Card>
@@ -323,11 +323,11 @@ export default function Website() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="py-20 bg-white dark:bg-slate-950">
+      <section id="how" className="py-20 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-3">
+            <p className="text-slate-600 dark:text-gray-300 mt-3">
               Four quick steps to start accepting Nexa payments.
             </p>
           </div>
@@ -354,7 +354,7 @@ export default function Website() {
                 <CardHeader>
                   <CardTitle className="text-xl">{s.t}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600 dark:text-slate-300">
+                <CardContent className="text-slate-600 dark:text-gray-300">
                   {s.d}
                 </CardContent>
               </Card>
@@ -373,7 +373,7 @@ export default function Website() {
                   Reference hardware (ESP32-2432S028R)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
+              <CardContent className="text-slate-600 dark:text-gray-300 grid gap-2">
                 <div>• Dual-core 240 MHz • 520 KB SRAM • 2.8″ 240×320 TFT</div>
                 <div>• Resistive touchscreen • microSD • Wi-Fi b/g/n • BT LE</div>
                 <div>• Supports secure boot & flash encryption</div>
@@ -384,7 +384,7 @@ export default function Website() {
               <CardHeader>
                 <CardTitle className="text-2xl">Costs vs card terminals</CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-600 dark:text-slate-300 grid gap-2">
+              <CardContent className="text-slate-600 dark:text-gray-300 grid gap-2">
                 <div>• Nexa network fee only ≈ $0.01 (typical)</div>
                 <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
                 <div>• Mobile money: ~0.5–2%</div>
@@ -396,11 +396,11 @@ export default function Website() {
       </section>
 
       {/* Pricing / hardware */}
-      <section id="pricing" className="py-20 bg-white dark:bg-slate-950">
+      <section id="pricing" className="py-20 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-3">
+            <p className="text-slate-600 dark:text-gray-300 mt-3">
               Pick a size that matches your counter and budget.
             </p>
           </div>
@@ -409,7 +409,7 @@ export default function Website() {
               <Card
                 key={p.name}
                 className={`rounded-2xl ${
-                  p.highlight ? "ring-2 ring-slate-900 dark:ring-slate-100" : ""
+                  p.highlight ? "ring-2 ring-slate-900 dark:ring-gray-100" : ""
                 }`}
               >
                 <CardHeader>
@@ -426,7 +426,7 @@ export default function Website() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200">
+                  <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
                     {p.cta}
                   </Button>
                 </CardContent>
@@ -443,7 +443,7 @@ export default function Website() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Frequently asked questions
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-3">
+            <p className="text-slate-600 dark:text-gray-300 mt-3">
               Quick answers for busy merchants.
             </p>
           </div>
@@ -453,7 +453,7 @@ export default function Website() {
                 <CardHeader>
                   <CardTitle className="text-xl">{item.q}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-slate-600 dark:text-slate-300">
+                <CardContent className="text-slate-600 dark:text-gray-300">
                   {item.a}
                 </CardContent>
               </Card>
@@ -463,11 +463,11 @@ export default function Website() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 bg-white dark:bg-slate-950">
+      <section id="contact" className="py-20 bg-white dark:bg-black">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-3">
+            <p className="text-slate-600 dark:text-gray-300 mt-3">
               Drop a message and we’ll get back to you.
             </p>
           </div>
@@ -482,27 +482,27 @@ export default function Website() {
                 placeholder="Share your use case, country, and timeline…"
                 className="min-h-[120px]"
               />
-              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200">
+              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
                 <Mail className="w-4 h-4" /> Send message
               </Button>
             </CardContent>
           </Card>
-          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4">
+          <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
             Version: Beta v0.1 — October 2025
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
+      <footer className="py-10 border-t border-slate-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+          <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-300">
             <CheckSquare className="w-4 h-4" aria-hidden />
             <span>
               © {new Date().getFullYear()} PayDeck. Open-source software.
             </span>
           </div>
-          <div className="text-sm text-slate-600 dark:text-slate-300 flex gap-4">
+          <div className="text-sm text-slate-600 dark:text-gray-300 flex gap-4">
             <a href="#features" className="hover:opacity-80">
               Features
             </a>
