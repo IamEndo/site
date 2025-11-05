@@ -18,7 +18,9 @@
     "postcss": "latest",
     "typescript": "5.6.3",
     "@types/react": "18.3.12",
-    "@types/node": "20.11.30"
+    "@types/node": "20.11.30",
+    "class-variance-authority": "latest",
+    "@radix-ui/react-slot": "latest"
   },
   "engines": { "node": ">=20.9.0" }
 }
