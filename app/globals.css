@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* v4 uses a single import */
+@import "tailwindcss";
 
 body {
   font-family: system-ui, sans-serif;
