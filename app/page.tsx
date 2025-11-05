@@ -7,6 +7,7 @@ import {
   Shield,
   Zap,
   CheckCircle,
+  CheckSquare,
   Menu,
   X,
   Mail,
@@ -69,21 +70,21 @@ const features = [
 
 const plans = [
   {
-    name: "DIY Board",
+    name: "Cheap Yellow Board 2.8″",
     price: "USD 15",
     perks: [
       "ESP32 + 2.8″ TFT (ref. build)",
-      "Open firmware (watch-only)",
+      "Open-source software (watch-only)",
       "QR/Nexa URI display",
     ],
     cta: "Build from guide",
     highlight: false,
   },
   {
-    name: "Maker Kit",
-    price: "USD 29",
+    name: "Cheap Yellow Board 3.5″",
+    price: "USD 15",
     perks: [
-      "Pre-flashed firmware",
+      "ESP32 + 3.5″ TFT (ref. build)",
       "Desk stand + cables",
       "CSV/JSON logging to microSD",
     ],
@@ -91,8 +92,8 @@ const plans = [
     highlight: true,
   },
   {
-    name: "Pro Bundle",
-    price: "USD 79",
+    name: "Cheap Yellow Board 4″",
+    price: "USD 15",
     perks: ["Hardened case", "Secure boot enabled", "Priority support & docs"],
     cta: "Talk to us",
     highlight: false,
@@ -136,7 +137,7 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
-              <CheckCircle className="w-5 h-5" aria-hidden />
+              <CheckSquare className="w-5 h-5" aria-hidden />
               <span>PayDeck</span>
             </a>
 
@@ -218,10 +219,10 @@ export default function Website() {
             >
               <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 w-fit">
                 <Zap className="w-4 h-4" aria-hidden />
-                Open, low-cost, watch-only POS
+                Open-source, low-cost, instant
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Nexa Point-of-Sale Payments Receiver for Real-World Checkout
+                Nexa POS Payments Receiver for Real-World Checkout
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300">
                 No contracts, no fees, no data collection, fully open-source and verifiable.
@@ -257,10 +258,10 @@ export default function Website() {
             >
               <div className="aspect-video rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 p-4 grid place-items-center">
                 <div className="text-center">
-                  <Rocket className="w-12 h-12 mx-auto mb-3" />
-                  <p className="font-semibold">ESP32 “Cheap Yellow Display”</p>
+                  <CheckSquare className="w-12 h-12 mx-auto mb-3" />
+                  <p className="font-semibold">Open-source software</p>
                   <p className="text-slate-500 dark:text-slate-400">
-                    2.8″ 240×320 TFT • Wi-Fi/BT • microSD
+                    2.8″ 240×320 TFT • ESP32 “Cheap Yellow Display”
                   </p>
                 </div>
               </div>
@@ -476,9 +477,9 @@ export default function Website() {
       <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-            <CheckCircle className="w-4 h-4" aria-hidden />
+            <CheckSquare className="w-4 h-4" aria-hidden />
             <span>
-              © {new Date().getFullYear()} PayDeck. Open source firmware.
+              © {new Date().getFullYear()} PayDeck. Open source software.
             </span>
           </div>
           <div className="text-sm text-slate-600 dark:text-slate-300 flex gap-4">
