@@ -227,8 +227,8 @@ export default function Website() {
       </header>
 
       {/* Hero — transparent section; inner content forced to light-on-dark for photo mode */}
-      <section id="home" className="relative overflow-hidden bg-transparent">
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-24 text-white">
+      <section id="home" className="relative overflow-hidden bg-transparent scroll-mt-16">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-white min-h-[calc(100svh-64px)] flex items-center pt-8 pb-10 md:pt-12 md:pb-14">
           <div className="grid lg:grid-cols-2 items-center gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
