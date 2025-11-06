@@ -174,7 +174,9 @@ export default function Website() {
                 asChild
                 className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
-                <a href="#contact">Get started</a>
+                <a href="https://gitlab.com/IamEndo/paydeck" target="_blank" rel="noopener noreferrer">
+                  Get started
+                </a>
               </Button>
             </nav>
 
@@ -217,7 +219,12 @@ export default function Website() {
                 asChild
                 className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
-                <a href="#contact" onClick={nav.close}>
+                <a
+                  href="https://gitlab.com/IamEndo/paydeck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={nav.close}
+                >
                   Get started
                 </a>
               </Button>
@@ -270,13 +277,13 @@ export default function Website() {
 
               <div className="flex items-center gap-4 pt-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Open-source
+                  <CheckCircle className="w-4 h-4" /> Watch-only
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Non-custodial
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Near-instant
+                  <CheckCircle className="w-4 h-4" /> Secure by design
                 </div>
               </div>
             </motion.div>
