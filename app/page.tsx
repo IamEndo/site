@@ -74,35 +74,43 @@ const features = [
 
 const plans = [
   {
-    name: "Cheap Yellow Board 2.8″",
-    price: "USD 15",
+    name: "ESP32 Display Board 3.5″",
+    price: "",
     perks: [
-      "ESP32 + 2.8″ TFT (reference build)",
-      "Open-source receiver (watch-only)",
-      "QR / Nexa link display",
+      "ESP32 with 3.5″ TFT touchscreen",
+      "LVGL display, 240×320 resolution",
+      "Bluetooth & Wi-Fi connectivity",
     ],
-    cta: "Build from guide",
+    cta: "Get the board",
+    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-3.5-TFT-Display.html",
     highlight: false,
   },
   {
-    name: "Cheap Yellow Board 3.5″",
-    price: "USD 15",
+    name: "ESP32 Display Board 2.8″",
+    price: "",
     perks: [
-      "ESP32 + 3.5″ TFT (reference build)",
-      "Desk stand + cables",
-      "Optional receipt logging to microSD",
+      "ESP32 with 2.8″ TFT touchscreen",
+      "LVGL display, 320×240 resolution",
+      "Bluetooth & Wi-Fi connectivity",
     ],
-    cta: "Get the kit",
+    cta: "Get the board",
+    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
     highlight: true,
   },
   {
-    name: "Cheap Yellow Board 4″",
-    price: "USD 15",
-    perks: ["Durable enclosure", "Hardened setup", "Priority help & docs"],
-    cta: "Talk to us",
+    name: "ESP32 Display Board 4.0″",
+    price: "",
+    perks: [
+      "ESP32 with 4.0″ TFT touchscreen",
+      "LVGL display, 320×480 resolution",
+      "Bluetooth & Wi-Fi connectivity",
+    ],
+    cta: "Get the board",
+    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-4.0-TFT-Display.html",
     highlight: false,
   },
 ];
+
 
 const faqs = [
   {
@@ -351,8 +359,8 @@ export default function Website() {
           <div className="grid md:grid-cols-4 gap-6">
             {[
               {
-                t: "1. Get the display",
-                d: "Choose the widely available ESP32 Cheap Yellow Display. The ESP32-2432S028R model fits best.",
+                t: "1. Get the device",
+                d: "Choose the widely available ESP32 'Cheap Yellow Display' device.",
               },
               {
                 t: "2. Install the software",
@@ -360,11 +368,11 @@ export default function Website() {
               },
               {
                 t: "3. Set up your device",
-                d: "Create a wallet, connect to the internet, and customize your store name.",
+                d: "Create a wallet, connect to the internet, and set your security PIN.",
               },
               {
                 t: "4. Request a payment",
-                d: "Show a QR code and let customers pay in Nexa — at the counter or on the go.",
+                d: "Show a QR code and let customers pay in Nexa.",
               },
             ].map((s) => (
               <Card key={s.t} className="rounded-2xl">
@@ -387,25 +395,25 @@ export default function Website() {
             <Card className="rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-2xl">
-                  Reference hardware (ESP32-2432S028R)
+                  Nexa checkout
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600 dark:text-gray-300 grid gap-2">
-                <div>• Dual-core 240 MHz • 520 KB SRAM • 2.8″ 240×320 TFT</div>
-                <div>• Resistive touchscreen • microSD • Wi-Fi b/g/n • BT LE</div>
-                <div>• Supports secure boot & flash encryption</div>
-                <div>• Typical cost: ~USD 10–15</div>
+                <div>• No contracts. No hidden fees.</div>
+                <div>• Fully verifiable and open-source.</div>
+                <div>• Non-custodial — you control your funds.</div>
+                <div>• The device is truly yours.</div>
               </CardContent>
             </Card>
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Costs vs card terminals</CardTitle>
+                <CardTitle className="text-2xl">Traditional finance</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600 dark:text-gray-300 grid gap-2">
-                <div>• Nexa network fee only ≈ $0.01 (typical)</div>
-                <div>• Card networks: 1.5–3.5% + $0.10–$0.30 fixed</div>
-                <div>• Mobile money: ~0.5–2%</div>
-                <div>• Power: ~1–1.25 W vs 5–10 W for many POS</div>
+                <div>• Average processing fees: ~1.5% to 3%.</div>
+                <div>• Owned and controlled by third-party companies.</div>
+                <div>• Custodial — service providers hold your funds.</div>
+                <div>• In most cases, you’re only renting the device.</div>
               </CardContent>
             </Card>
           </div>
@@ -418,7 +426,7 @@ export default function Website() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
             <p className="text-slate-600 dark:text-gray-300 mt-3">
-              Pick a size that matches your counter and budget.
+              Choose your ESP32 device and pick the size that best fits your needs.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -443,8 +451,18 @@ export default function Website() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-                    {p.cta}
+                  <Button
+                    asChild
+                    className="w-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                  >
+                    <a
+                      href={p.ctaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${p.cta} — ${p.name}`}
+                    >
+                      {p.cta}
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
