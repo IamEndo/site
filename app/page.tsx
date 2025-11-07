@@ -12,6 +12,8 @@ import {
   X,
   Mail,
 } from "lucide-react";
+// Add Telegram icon
+import { MessageCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -34,6 +36,26 @@ function useToggle(initial = false) {
   const close = React.useCallback(() => setOpen(false), []);
   return { open, toggle, close };
 }
+
+// Lightweight email obfuscation to avoid scrapers
+function ObfuscatedEmail() {
+  const [e, setE] = React.useState("");
+  React.useEffect(() => {
+    const u = "info"; // username
+    const d = "paydeck.org"; // domain
+    setE(`${u}@${d}`);
+  }, []);
+  if (!e) return <span className="select-none">loading…</span>;
+  return (
+    <a
+      href={`mailto:${e}?subject=PayDeck inquiry&body=Hi PayDeck team,%0D%0A%0D%0AUse case: ...%0D%0ACountry: ...%0D%0ATimeline: ...`}
+      className="underline underline-offset-4 hover:opacity-80"
+    >
+      {e}
+    </a>
+  );
+}
+
 
 // ———————————————————————————————————————————————————————————
 // Content (marketing-first, typos fixed)
@@ -507,23 +529,62 @@ export default function Website() {
             </p>
           </div>
           <Card className="rounded-2xl">
-            <CardContent className="p-6 grid gap-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <Input placeholder="Your name" />
-                <Input type="email" placeholder="Email address" />
-              </div>
-              <Input placeholder="Organization (optional)" />
-              <Textarea
-                placeholder="Share your use case, country, and timeline…"
-                className="min-h-[120px]"
-              />
-              <Button className="w-full md:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-                <Mail className="w-4 h-4" /> Send message
-              </Button>
-            </CardContent>
+            <CardContent className="p-8 grid gap-5">
+  {/* Telegram contact */}
+  <div className="space-y-2">
+    <p className="text-slate-700 dark:text-gray-200 font-medium">Contact via Telegram</p>
+    <p className="text-slate-600 dark:text-gray-300 text-sm">
+      Prefer chat? Reach out in our public channel and we’ll respond as soon as we can.
+    </p>
+    <Button
+      asChild
+      className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+    >
+      <a
+        href="https://t.me/paydeckproject"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Telegram channel"
+      >
+        <MessageCircle className="w-4 h-4" /> Open Telegram
+      </a>
+    </Button>
+  </div>
+
+  {/* Email contact */}
+  <div className="space-y-2">
+    <p className="text-slate-700 dark:text-gray-200 font-medium">Prefer email?</p>
+    <p className="text-slate-600 dark:text-gray-300 text-sm">
+      Reach us at <ObfuscatedEmail /> — we usually reply within a business day.
+    </p>
+  </div>
+
+  <div className="flex flex-col sm:flex-row gap-3">
+    <Button asChild className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+      <a href="mailto:info@paydeck.org?subject=PayDeck inquiry&body=Hi PayDeck team,%0D%0A%0D%0AUse case: ...%0D%0ACountry: ...%0D%0ATimeline: ...">
+        <Mail className="w-4 h-4" /> Email us
+      </a>
+    </Button>
+
+    <Button asChild variant="outline" className="w-full sm:w-auto border-slate-300 dark:border-neutral-700">
+      <a
+        href="https://gitlab.com/IamEndo/paydeck/-/issues/new?issue%5Btitle%5D=Inquiry%3A%20PayDeck%20for%20%3Cyour%20use%20case%3E&issue%5Bdescription%5D=**Use%20case**%3A%0A**Country**%3A%0A**Timeline**%3A"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open a GitLab issue to contact us"
+      >
+        <CheckSquare className="w-4 h-4" /> Open GitLab issue
+      </a>
+    </Button>
+  </div>
+
+  <p className="text-xs text-slate-500 dark:text-gray-400">
+    For security-sensitive bugs, please create a private GitLab issue.
+  </p>
+</CardContent>
           </Card>
           <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
-            Version: Beta v0.1 — October {new Date().getFullYear()}
+            All versions below v1.0.0 are considered experimental beta software, provided “as is” without warranty of any kind.
           </p>
         </div>
       </section>
@@ -557,7 +618,13 @@ export default function Website() {
             </a>
           </div>
         </div>
-      </footer>
+        <div className="mt-8 max-w-4xl mx-auto text-center text-xs text-slate-500 dark:text-gray-400 leading-relaxed">
+    <p>PayDeck is software provided on an open-source, non-custodial basis. We do not manufacture, sell, or profit from any hardware devices referenced on this website. All hardware links are provided solely for convenience, and no warranty or endorsement is expressed or implied.</p>
+    <p className="mt-3">PayDeck does not hold, store, transmit, or have access to users’ private keys or funds. The software operates exclusively as a watch-only display tool and address generator intended to enhance operational security for merchants. No transaction-sending capability is included, and the software cannot initiate, authorize, or execute payments.</p>
+    <p className="mt-3">PayDeck collects no personal or financial information and does not provide money-transmission, custodial, banking, or financial-services activities of any kind. Users are solely responsible for their own wallet configurations, regulatory obligations, and compliance with all applicable laws in their jurisdiction.</p>
+    <p className="mt-3">All versions below v1.0.0 are considered experimental beta software and are provided "as is" without warranty of any kind. This software is open-source, and users are advised to use it with caution and at their own responsibility. For reporting any security-sensitive issues, please create a private issue on GitLab.</p>
+  </div>
+</footer>
     </div>
   );
 }
