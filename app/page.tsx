@@ -103,17 +103,16 @@ const plans = [
       "LVGL display, 240×320 resolution",
       "Bluetooth & Wi-Fi connectivity",
     ],
-    cta: "Get the board",
-    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-3.5-TFT-Display.html",
+    cta: "Coming soon",
     highlight: false,
   },
   {
     name: "ESP32 Display Board 2.8″",
     price: "",
     perks: [
-      "ESP32 with 2.8″ TFT touchscreen",
-      "LVGL display, 320×240 resolution",
-      "Bluetooth & Wi-Fi connectivity",
+      "ESP32-2432S028 with 2.8″ TFT touchscreen",
+      "ST7789, LVGL display, 320×240",
+      "USB Type-C & Wi-Fi connectivity",
     ],
     cta: "Get the board",
     ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
@@ -127,8 +126,7 @@ const plans = [
       "LVGL display, 320×480 resolution",
       "Bluetooth & Wi-Fi connectivity",
     ],
-    cta: "Get the board",
-    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-4.0-TFT-Display.html",
+    cta: "Coming soon",
     highlight: false,
   },
 ];
@@ -584,7 +582,7 @@ export default function Website() {
 </CardContent>
           </Card>
           <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
-            All versions below v1.0.0 are considered experimental beta software, provided “as is” without warranty of any kind.
+            All versions below v1.0.0 are considered experimental beta software.
           </p>
         </div>
       </section>
@@ -619,10 +617,7 @@ export default function Website() {
           </div>
         </div>
         <div className="mt-8 max-w-4xl mx-auto text-center text-xs text-slate-500 dark:text-gray-400 leading-relaxed">
-    <p>PayDeck is software provided on an open-source, non-custodial basis. We do not manufacture, sell, or profit from any hardware devices referenced on this website. All hardware links are provided solely for convenience, and no warranty or endorsement is expressed or implied.</p>
-    <p className="mt-3">PayDeck does not hold, store, transmit, or have access to users’ private keys or funds. The software operates exclusively as a watch-only display tool and address generator intended to enhance operational security for merchants. No transaction-sending capability is included, and the software cannot initiate, authorize, or execute payments.</p>
-    <p className="mt-3">PayDeck collects no personal or financial information and does not provide money-transmission, custodial, banking, or financial-services activities of any kind. Users are solely responsible for their own wallet configurations, regulatory obligations, and compliance with all applicable laws in their jurisdiction.</p>
-    <p className="mt-3">All versions below v1.0.0 are considered experimental beta software and are provided "as is" without warranty of any kind. This software is open-source, and users are advised to use it with caution and at their own responsibility. For reporting any security-sensitive issues, please create a private issue on GitLab.</p>
+    <p>PayDeck is open-source, non-custodial software provided “as is” without warranty of any kind. We do not sell or endorse any hardware; links are for convenience only. PayDeck never holds keys, funds, or user data and cannot send or authorize transactions. Users are responsible for their own wallet setup, compliance, and security.</p>
   </div>
 </footer>
     </div>
