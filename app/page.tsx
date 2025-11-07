@@ -528,7 +528,7 @@ export default function Website() {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
             <p className="text-slate-600 dark:text-gray-300 mt-3">
-              Connect with us however is most convenient for you
+              Connect with us however is most convenient for you.
             </p>
           </div>
           <Card className="rounded-2xl">
