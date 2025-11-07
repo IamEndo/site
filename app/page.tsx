@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   Rocket,
   Zap,
+  Store,
   CheckCircle,
   CheckSquare,
   Menu,
@@ -278,8 +279,8 @@ export default function Website() {
               className="space-y-6"
             >
               <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-white/30 w-fit">
-                <Zap className="w-4 h-4" aria-hidden />
-                Open-source • Low-cost • Instant
+                <Store className="w-4 h-4" aria-hidden />
+                Point-of-sale • Worldwide • Permissionless
               </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Instant Nexa payments at checkout
@@ -310,13 +311,13 @@ export default function Website() {
 
               <div className="flex items-center gap-4 pt-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> Open-source
+                </div>
+                <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Watch-only
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" /> Non-custodial
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> Secure by design
                 </div>
               </div>
             </motion.div>
