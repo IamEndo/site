@@ -4,13 +4,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Rocket,
-  Shield,
   Zap,
   CheckCircle,
   CheckSquare,
   Menu,
   X,
   Mail,
+  Shield,
+  ShieldCheck,
+  Lock,
+  Activity,
+  Coins,
+  BadgeCheck,
+  Cpu,
 } from "lucide-react";
 // Add Telegram icon
 import { MessageCircle } from "lucide-react";
@@ -63,34 +69,34 @@ function ObfuscatedEmail() {
 
 const features = [
   {
-    icon: <Shield className="w-6 h-6" aria-hidden />,
+    icon: <Lock className="w-6 h-6" aria-hidden />,
     title: "Your funds stay in your control",
-    desc: "Non-custodial by design. The display shows payment requests and tracks incoming payments — it can’t spend your funds.",
+    desc: "The device is fully non-custodial and only displays payment requests and incoming transactions.",
   },
   {
-    icon: <Zap className="w-6 h-6" aria-hidden />,
+    icon: <Activity className="w-6 h-6" aria-hidden />,
     title: "Instant payment visibility",
-    desc: "See payments appear in seconds so you can keep the line moving.",
+    desc: "See payments appear instantly so you can keep the line moving.",
   },
   {
-    icon: <Rocket className="w-6 h-6" aria-hidden />,
+    icon: <Coins className="w-6 h-6" aria-hidden />,
     title: "Affordable to deploy",
-    desc: "Get started with hardware from around $15 — perfect for kiosks, cafes, and events.",
+    desc: "Get started with hardware from around $10. Perfect for kiosks, cafés, and events.",
   },
   {
-    icon: <CheckCircle className="w-6 h-6" aria-hidden />,
-    title: "Works through spotty internet",
-    desc: "Queue payment requests offline and sync automatically when you’re back online.",
+    icon: <BadgeCheck className="w-6 h-6" aria-hidden />,
+    title: "No hidden fees or contracts",
+    desc: "Set up or import your wallet and use it freely without restrictions. Device use is completely free.",
   },
   {
-    icon: <Shield className="w-6 h-6" aria-hidden />,
+    icon: <ShieldCheck className="w-6 h-6" aria-hidden />,
     title: "Built for peace of mind",
-    desc: "Open-source and verifiable. Designed with best-practice device hardening in mind.",
+    desc: "Open-source and verifiable software. You remain the only one in control of your assets.",
   },
   {
-    icon: <Zap className="w-6 h-6" aria-hidden />,
-    title: "Sips power",
-    desc: "Runs on roughly 1 W — great for counters, markets, and mobile carts.",
+    icon: <Cpu className="w-6 h-6" aria-hidden />,
+    title: "Powerful infrastructure",
+    desc: "Runs on Nexa, a network capable of handling throughput comparable to VISA, Mastercard, and SWIFT.",
   },
 ];
 
@@ -131,31 +137,30 @@ const plans = [
   },
 ];
 
-
 const faqs = [
   {
     q: "Which assets can I accept?",
-    a: "Nexa mainnet today, with more assets on the roadmap.",
+    a: "Nexa coin today, with more native assets planned for the future.",
   },
   {
     q: "Does PayDeck hold my money?",
-    a: "No. It’s watch-only. You keep control of your funds at all times.",
+    a: "No. It’s watch-only — you control your funds at all times.",
   },
   {
     q: "How fast do payments show up?",
-    a: "Typically in about a second, so you can serve the next customer without waiting.",
+    a: "Typically instantly, so you can serve the next customer without waiting.",
   },
   {
     q: "What are the fees?",
-    a: "Only the Nexa network fee, which is usually around a cent. PayDeck doesn’t add per-transaction fees.",
+    a: "Only the Nexa network fee, usually around a cent. PayDeck doesn’t add per-transaction fees.",
   },
   {
     q: "Do I need constant internet?",
-    a: "You’ll need a connection to see payments as they arrive. If your connection drops, requests queue and sync when you’re back online.",
+    a: "You’ll need a connection to see payments as they arrive. If your connection drops, you can continue accepting payments manually.",
   },
   {
     q: "Is this compliant for my store?",
-    a: "As watch-only display hardware, it’s generally outside card-network certifications. If you sell devices, follow local electronics requirements (e.g., CE/FCC).",
+    a: "As watch-only display hardware, it’s generally outside card-network certifications. If you sell devices, follow local electronics requirements.",
   },
 ];
 
@@ -523,7 +528,7 @@ export default function Website() {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
             <p className="text-slate-600 dark:text-gray-300 mt-3">
-              Drop a message and we’ll get back to you.
+              Connect with us however is most convenient for you
             </p>
           </div>
           <Card className="rounded-2xl">
@@ -575,14 +580,12 @@ export default function Website() {
       </a>
     </Button>
   </div>
-
   <p className="text-xs text-slate-500 dark:text-gray-400">
-    For security-sensitive bugs, please create a private GitLab issue.
+    For software-related reports, please create a GitLab issue.
   </p>
 </CardContent>
           </Card>
           <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
-            All versions below v1.0.0 are considered experimental beta software.
           </p>
         </div>
       </section>
@@ -593,7 +596,6 @@ export default function Website() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-300">
-            <CheckSquare className="w-4 h-4" aria-hidden />
             <span>
               © {new Date().getFullYear()} PayDeck. Open-source software.
             </span>
