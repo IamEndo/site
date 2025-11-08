@@ -1,17 +1,15 @@
 "use client";
 
 import React from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import {
-  Rocket,
-  Zap,
   Store,
   CheckCircle,
   CheckSquare,
   Menu,
   X,
   Mail,
-  Shield,
   ShieldCheck,
   Lock,
   Activity,
@@ -19,7 +17,6 @@ import {
   BadgeCheck,
   Cpu,
 } from "lucide-react";
-// Add Telegram icon
 import { MessageCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -28,15 +25,14 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-// NOTE: Keep ThemeToggle if it does NOT render "Light mode/Dark mode" text.
-// If it does, hide its text in that component or replace with an icon-only toggle.
 import { ThemeToggle } from "../components/ui/theme-toggle";
 import { HeroBackdrop } from "../components/ui/hero-backdrop";
 import { surface } from "../components/ui/surface";
 
-// Simple nav state for mobile menu
+// ------------------------------
+// Helpers
+// ------------------------------
+
 function useToggle(initial = false) {
   const [open, setOpen] = React.useState(initial);
   const toggle = React.useCallback(() => setOpen((v) => !v), []);
@@ -48,8 +44,8 @@ function useToggle(initial = false) {
 function ObfuscatedEmail() {
   const [e, setE] = React.useState("");
   React.useEffect(() => {
-    const u = "info"; // username
-    const d = "paydeck.org"; // domain
+    const u = "info";
+    const d = "paydeck.org";
     setE(`${u}@${d}`);
   }, []);
   if (!e) return <span className="select-none">loading…</span>;
@@ -63,10 +59,9 @@ function ObfuscatedEmail() {
   );
 }
 
-
-// ———————————————————————————————————————————————————————————
-// Content (marketing-first, typos fixed)
-// ———————————————————————————————————————————————————————————
+// ------------------------------
+// Content
+// ------------------------------
 
 const features = [
   {
@@ -122,7 +117,8 @@ const plans = [
       "USB Type-C & Wi-Fi connectivity",
     ],
     cta: "Get the board",
-    ctaUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
+    ctaUrl:
+      "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
     highlight: true,
   },
   {
@@ -165,15 +161,66 @@ const faqs = [
   },
 ];
 
+// ------------------------------
+// Page
+// ------------------------------
+
 export default function Website() {
   const nav = useToggle(false);
 
+  // ---------- JSON-LD payloads ----------
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "PayDeck",
+    url: "https://paydeck.org",
+    logo: "https://paydeck.org/apple-touch-icon.png",
+    sameAs: [
+      "https://t.me/paydeckproject",
+      "https://gitlab.com/IamEndo/paydeck",
+    ],
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
+  const hardwareJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: plans.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        description: p.perks.join("; "),
+        brand: "ESP32",
+        url: "https://paydeck.org/#pricing",
+      },
+    })),
+  };
+
   return (
     <div className="relative isolate min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900 dark:from-black dark:to-black dark:text-gray-100">
-      {/* Fixed hero photo behind the first viewport (make sure HeroBackdrop uses -z-10 & pointer-events-none) */}
+      {/* Structured Data (render once near top) */}
+      <Script
+        id="org-jsonld"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
+
+      {/* Fixed hero image */}
       <HeroBackdrop src="/images/hero-paydeck.png" dimOpacity={60} />
 
-      {/* Header — lighter translucency over photo */}
+      {/* Header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-black border-b border-slate-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
@@ -183,7 +230,7 @@ export default function Website() {
             </a>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-3 sm:gap-6">
+            <nav className="hidden md:flex items-center gap-3 sm:gap-6" aria-label="Primary">
               <a href="#features" className="hover:opacity-80">
                 Features
               </a>
@@ -200,15 +247,17 @@ export default function Website() {
                 Contact
               </a>
 
-              {/* Ensure ThemeToggle renders icon-only (no “Light/Dark mode” text). */}
               <ThemeToggle />
 
-              {/* Buttons forced to neutral (no blue cast) */}
               <Button
                 asChild
                 className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
-                <a href="https://gitlab.com/IamEndo/paydeck" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://gitlab.com/IamEndo/paydeck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Get started
                 </a>
               </Button>
@@ -246,7 +295,6 @@ export default function Website() {
                 </a>
               ))}
 
-              {/* Icon-only theme toggle recommended */}
               <ThemeToggle />
 
               <Button
@@ -267,7 +315,7 @@ export default function Website() {
         )}
       </header>
 
-      {/* Hero — transparent section; inner content forced to light-on-dark for photo mode */}
+      {/* Hero */}
       <section id="home" className="relative overflow-hidden bg-transparent scroll-mt-16">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-white min-h-[calc(100svh-64px)] flex items-center pt-8 pb-10 md:pt-12 md:pb-14">
           <div className="grid lg:grid-cols-2 items-center gap-12">
@@ -286,19 +334,16 @@ export default function Website() {
                 Instant Nexa payments at checkout
               </h1>
               <p className="text-lg text-white/80">
-                No contracts. No added fees. No data harvesting. PayDeck is open-source,
-                non-custodial, and built for real-world retail.
+                No contracts. No added fees. No data harvesting. PayDeck is
+                open-source, non-custodial, and built for real-world retail.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                {/* Primary — black button, white text */}
                 <Button
                   asChild
                   className="h-12 px-6 text-base bg-neutral-900 text-white hover:bg-neutral-800"
                 >
                   <a href="#pricing">See hardware options</a>
                 </Button>
-
-                {/* Secondary — white outline, white text, subtle hover darken */}
                 <Button
                   asChild
                   className="h-12 px-6 text-base bg-neutral-800 text-white hover:bg-neutral-700"
@@ -306,8 +351,6 @@ export default function Website() {
                   <a href="#how">How it works</a>
                 </Button>
               </div>
-
-
 
               <div className="flex items-center gap-4 pt-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
@@ -351,8 +394,8 @@ export default function Website() {
               Why merchants choose PayDeck
             </h2>
             <p className="text-slate-600 dark:text-gray-300 mt-3">
-              Simple, secure, and built for the checkout counter — fully
-              verifiable on the Nexa blockchain.
+              Simple, secure, and built for the checkout counter — fully verifiable
+              on the Nexa blockchain.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -420,9 +463,7 @@ export default function Website() {
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">
-                  Nexa checkout
-                </CardTitle>
+                <CardTitle className="text-2xl">Nexa checkout</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600 dark:text-gray-300 grid gap-2">
                 <div>• No contracts. No hidden fees.</div>
@@ -448,6 +489,14 @@ export default function Website() {
 
       {/* Pricing / hardware */}
       <section id="pricing" className={`py-20 ${surface.primary}`}>
+        {/* Hardware JSON-LD */}
+        <Script
+          id="hardware-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(hardwareJsonLd) }}
+        />
+
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Hardware options</h2>
@@ -499,6 +548,14 @@ export default function Website() {
 
       {/* FAQ */}
       <section id="faq" className={`py-20 ${surface.secondary}`}>
+        {/* FAQ JSON-LD */}
+        <Script
+          id="faq-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -534,60 +591,71 @@ export default function Website() {
           </div>
           <Card className="rounded-2xl">
             <CardContent className="p-8 grid gap-5">
-  {/* Telegram contact */}
-  <div className="space-y-2">
-    <p className="text-slate-700 dark:text-gray-200 font-medium">Contact via Telegram</p>
-    <p className="text-slate-600 dark:text-gray-300 text-sm">
-      Prefer chat? Reach out in our public channel and we’ll respond as soon as we can.
-    </p>
-    <Button
-      asChild
-      className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-    >
-      <a
-        href="https://t.me/paydeckproject"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open Telegram channel"
-      >
-        <MessageCircle className="w-4 h-4" /> Open Telegram
-      </a>
-    </Button>
-  </div>
+              {/* Telegram contact */}
+              <div className="space-y-2">
+                <p className="text-slate-700 dark:text-gray-200 font-medium">
+                  Contact via Telegram
+                </p>
+                <p className="text-slate-600 dark:text-gray-300 text-sm">
+                  Prefer chat? Reach out in our public channel and we’ll
+                  respond as soon as we can.
+                </p>
+                <Button
+                  asChild
+                  className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                >
+                  <a
+                    href="https://t.me/paydeckproject"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Telegram channel"
+                  >
+                    <MessageCircle className="w-4 h-4" /> Open Telegram
+                  </a>
+                </Button>
+              </div>
 
-  {/* Email contact */}
-  <div className="space-y-2">
-    <p className="text-slate-700 dark:text-gray-200 font-medium">Prefer email?</p>
-    <p className="text-slate-600 dark:text-gray-300 text-sm">
-      Reach us at <ObfuscatedEmail /> — we usually reply within a business day.
-    </p>
-  </div>
+              {/* Email contact */}
+              <div className="space-y-2">
+                <p className="text-slate-700 dark:text-gray-200 font-medium">
+                  Prefer email?
+                </p>
+                <p className="text-slate-600 dark:text-gray-300 text-sm">
+                  Reach us at <ObfuscatedEmail /> — we usually reply within a
+                  business day.
+                </p>
+              </div>
 
-  <div className="flex flex-col sm:flex-row gap-3">
-    <Button asChild className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-      <a href="mailto:info@paydeck.org?subject=PayDeck inquiry&body=Hi PayDeck team,%0D%0A%0D%0AUse case: ...%0D%0ACountry: ...%0D%0ATimeline: ...">
-        <Mail className="w-4 h-4" /> Email us
-      </a>
-    </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  asChild
+                  className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                >
+                  <a href="mailto:info@paydeck.org?subject=PayDeck inquiry&body=Hi PayDeck team,%0D%0A%0D%0AUse case: ...%0D%0ACountry: ...%0D%0ATimeline: ...">
+                    <Mail className="w-4 h-4" /> Email us
+                  </a>
+                </Button>
 
-    <Button asChild variant="outline" className="w-full sm:w-auto border-slate-300 dark:border-neutral-700">
-      <a
-        href="https://gitlab.com/IamEndo/paydeck/-/issues/new?issue%5Btitle%5D=Inquiry%3A%20PayDeck%20for%20%3Cyour%20use%20case%3E&issue%5Bdescription%5D=**Use%20case**%3A%0A**Country**%3A%0A**Timeline**%3A"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open a GitLab issue to contact us"
-      >
-        <CheckSquare className="w-4 h-4" /> Open GitLab issue
-      </a>
-    </Button>
-  </div>
-  <p className="text-xs text-slate-500 dark:text-gray-400">
-    For software-related reports, please create a GitLab issue.
-  </p>
-</CardContent>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full sm:w-auto border-slate-300 dark:border-neutral-700"
+                >
+                  <a
+                    href="https://gitlab.com/IamEndo/paydeck/-/issues/new?issue%5Btitle%5D=Inquiry%3A%20PayDeck%20for%20%3Cyour%20use%20case%3E&issue%5Bdescription%5D=**Use%20case**%3A%0A**Country**%3A%0A**Timeline**%3A"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open a GitLab issue to contact us"
+                  >
+                    <CheckSquare className="w-4 h-4" /> Open GitLab issue
+                  </a>
+                </Button>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-gray-400">
+                For software-related reports, please create a GitLab issue.
+              </p>
+            </CardContent>
           </Card>
-          <p className="text-center text-xs text-slate-500 dark:text-gray-400 mt-4">
-          </p>
         </div>
       </section>
 
@@ -597,11 +665,12 @@ export default function Website() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-300">
-            <span>
-              © {new Date().getFullYear()} PayDeck. Open-source software.
-            </span>
+            <span>© {new Date().getFullYear()} PayDeck. Open-source software.</span>
           </div>
-          <div className="text-sm text-slate-600 dark:text-gray-300 flex gap-4">
+          <nav
+            className="text-sm text-slate-600 dark:text-gray-300 flex gap-4"
+            aria-label="Footer"
+          >
             <a href="#features" className="hover:opacity-80">
               Features
             </a>
@@ -617,12 +686,19 @@ export default function Website() {
             <a href="#contact" className="hover:opacity-80">
               Contact
             </a>
-          </div>
+          </nav>
         </div>
+
         <div className="mt-8 max-w-4xl mx-auto text-center text-xs text-slate-500 dark:text-gray-400 leading-relaxed">
-    <p>PayDeck is open-source, non-custodial software provided “as is” without warranty of any kind. We do not sell or endorse any hardware; links are for convenience only. PayDeck never holds keys, funds, or user data and cannot send or authorize transactions. Users are responsible for their own wallet setup, compliance, and security.</p>
-  </div>
-</footer>
+          <p>
+            PayDeck is open-source, non-custodial software provided “as is”
+            without warranty of any kind. We do not sell or endorse any
+            hardware; links are for convenience only. PayDeck never holds keys,
+            funds, or user data and cannot send or authorize transactions. Users
+            are responsible for their own wallet setup, compliance, and security.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
