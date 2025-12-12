@@ -16,6 +16,7 @@ import {
   Coins,
   BadgeCheck,
   Cpu,
+  Shield,
 } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
@@ -225,7 +226,7 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
-              <CheckSquare className="w-5 h-5" aria-hidden />
+              <Shield className="w-5 h-5" aria-hidden />
               <span>PayDeck</span>
             </a>
 
