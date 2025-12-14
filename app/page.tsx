@@ -139,27 +139,27 @@ const plans = [
 const faqs = [
   {
     q: "Which assets can I accept?",
-    a: "Nexa coin today, with more native assets planned for the future.",
+    a: "Currently Nexa coin is supported, with additional native assets planned in the future.",
   },
   {
     q: "Does PayDeck hold my money?",
-    a: "No. It’s watch-only — you control your funds at all times.",
+    a: "No. PayDeck is strictly watch-only; you retain full control of your funds at all times.",
   },
   {
-    q: "How fast do payments show up?",
-    a: "Typically instantly, so you can serve the next customer without waiting.",
+    q: "How quickly do payments appear?",
+    a: "Payments typically appear instantly, allowing you to serve the next customer without delay.",
   },
   {
     q: "What are the fees?",
-    a: "Only the Nexa network fee, usually around a cent. PayDeck doesn’t add per-transaction fees.",
+    a: "Only the Nexa network fee applies, usually around one cent. PayDeck does not charge any additional transaction fees.",
   },
   {
-    q: "Do I need constant internet?",
-    a: "You’ll need a connection to see payments as they arrive. If your connection drops, you can continue accepting payments manually.",
+    q: "Do I need a constant internet connection?",
+    a: "A connection is required to display incoming payments in real time. If your connection drops, you may still accept payments manually.",
   },
   {
     q: "Is this compliant for my store?",
-    a: "As watch-only display hardware, it’s generally outside card-network certifications. If you sell devices, follow local electronics requirements.",
+    a: "As a watch-only display device, PayDeck generally falls outside card-network certification requirements. If you manufacture and sell devices, ensure compliance with applicable local electronics regulations.",
   },
 ];
 
@@ -576,26 +576,34 @@ export default function Website() {
 
       {/* Contact */}
       <section id="contact" className={`py-20 ${surface.primary}`}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        {/* Narrower container */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">Get in touch</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Get in touch
+            </h2>
             <p className="text-slate-600 dark:text-gray-300 mt-3">
-              Connect with us however is most convenient for you.
+              Connect with us in most convenient way for you.
             </p>
           </div>
-          <Card className="rounded-2xl">
-            <CardContent className="p-8 grid gap-5">
-              {/* Telegram contact */}
-              <div className="space-y-2">
-                <p className="text-slate-700 dark:text-gray-200 font-medium">
-                  Contact via Telegram
-                </p>
-                <p className="text-slate-600 dark:text-gray-300 text-sm">
-                  Prefer chat? Reach out in our public channel and we’ll
-                  respond as soon as we can.
-                </p>
+
+          {/* Two tighter cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {/* Card 1 — Telegram */}
+            <Card className="rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-6 md:p-7 grid gap-4">
+                <div className="space-y-1.5">
+                  <p className="text-slate-800 dark:text-gray-100 font-semibold">
+                    Contact via Telegram
+                  </p>
+                  <p className="text-slate-600 dark:text-gray-300 text-sm leading-relaxed">
+                    Please reach out in our public channel, and we will respond as soon as possible.
+                  </p>
+                </div>
+
                 <Button
                   asChild
+                  size="sm"
                   className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
                   <a
@@ -607,49 +615,42 @@ export default function Website() {
                     <MessageCircle className="w-4 h-4" /> Open Telegram
                   </a>
                 </Button>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Email contact */}
-              <div className="space-y-2">
-                <p className="text-slate-700 dark:text-gray-200 font-medium">
-                  Prefer email?
-                </p>
-                <p className="text-slate-600 dark:text-gray-300 text-sm">
-                  Reach us at <ObfuscatedEmail /> — we usually reply within a
-                  business day.
-                </p>
-              </div>
+            {/* Card 2 — Email + GitLab */}
+            <Card className="rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-6 md:p-7 grid gap-4">
+                <div className="space-y-1.5">
+                  <p className="text-slate-800 dark:text-gray-100 font-semibold">
+                    Report an Issue
+                  </p>
+                  <p className="text-slate-600 dark:text-gray-300 text-sm leading-relaxed">
+                    Please report any bugs or software related requests on GitLab.
+                  </p>
+                </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  asChild
-                  className="w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-                >
-                  <a href="mailto:info@paydeck.org?subject=PayDeck inquiry&body=Hi PayDeck team,%0D%0A%0D%0AUse case: ...%0D%0ACountry: ...%0D%0ATimeline: ...">
-                    <Mail className="w-4 h-4" /> Email us
-                  </a>
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-2.5">
 
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full sm:w-auto border-slate-300 dark:border-neutral-700"
-                >
-                  <a
-                    href="https://gitlab.com/IamEndo/paydeck/-/issues/new?issue%5Btitle%5D=Inquiry%3A%20PayDeck%20for%20%3Cyour%20use%20case%3E&issue%5Bdescription%5D=**Use%20case**%3A%0A**Country**%3A%0A**Timeline**%3A"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open a GitLab issue to contact us"
+                  <Button
+                    asChild
+                    size="sm"
+                    variant="outline"
+                    className="w-full sm:w-auto border-slate-300 dark:border-neutral-700"
                   >
-                    <CheckSquare className="w-4 h-4" /> Open GitLab issue
-                  </a>
-                </Button>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-gray-400">
-                For software-related reports, please create a GitLab issue.
-              </p>
-            </CardContent>
-          </Card>
+                    <a
+                      href="https://gitlab.com/IamEndo/paydeck/-/issues/new?issue%5Btitle%5D=Inquiry%3A%20PayDeck%20for%20%3Cyour%20use%20case%3E&issue%5Bdescription%5D=**Use%20case**%3A%0A**Country**%3A%0A**Timeline**%3A"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open a GitLab issue to contact us"
+                    >
+                      <CheckSquare className="w-4 h-4" /> Open GitLab issue
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
