@@ -220,7 +220,7 @@ export default function Website() {
       />
 
       {/* Fixed hero image */}
-      <HeroBackdrop src="/images/hero-paydeck.png" dimOpacity={60} />
+      <HeroBackdrop src="/images/hero-paydeck.png" dimOpacity={40} dimLight={20} dimDark={40} />
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-black border-b border-slate-200 dark:border-neutral-800">
