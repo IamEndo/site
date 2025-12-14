@@ -17,6 +17,7 @@ import {
   BadgeCheck,
   Cpu,
   Shield,
+  Origami,
 } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
@@ -226,7 +227,7 @@ export default function Website() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2 font-semibold">
-              <Shield className="w-5 h-5" aria-hidden />
+              <Origami className="w-5 h-5" aria-hidden />
               <span>PayDeck</span>
             </a>
 
@@ -375,7 +376,7 @@ export default function Website() {
             >
               <div className="aspect-video rounded-2xl border border-white/20 bg-black/50 backdrop-blur-sm p-4 grid place-items-center">
                 <div className="text-center">
-                  <CheckSquare className="w-12 h-12 mx-auto mb-3" />
+                  <Origami className="w-12 h-12 mx-auto mb-3" />
                   <p className="font-semibold">Open-source receiver</p>
                   <p className="text-white/70">
                     ESP32 “Cheap Yellow Display” • 2.8″ 240×320 TFT
