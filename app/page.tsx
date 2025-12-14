@@ -328,10 +328,6 @@ export default function Website() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border border-white/30 w-fit">
-                <Store className="w-4 h-4" aria-hidden />
-                Point-of-sale • Worldwide • Permissionless
-              </span>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Instant Nexa payments at checkout
               </h1>
@@ -377,10 +373,6 @@ export default function Website() {
               <div className="aspect-video rounded-2xl border border-white/20 bg-black/50 backdrop-blur-sm p-4 grid place-items-center">
                 <div className="text-center">
                   <Origami className="w-12 h-12 mx-auto mb-3" />
-                  <p className="font-semibold">Open-source receiver</p>
-                  <p className="text-white/70">
-                    ESP32 “Cheap Yellow Display” • 2.8″ 240×320 TFT
-                  </p>
                 </div>
               </div>
             </motion.div>
