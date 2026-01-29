@@ -44,7 +44,7 @@ export function AccordionItem({ question, answer, isOpen = false, onToggle }: Ac
 }
 
 interface AccordionProps {
-  items: Array<{ id: string; question: string; answer: string }>;
+  items: readonly { readonly id: string; readonly question: string; readonly answer: string }[];
   className?: string;
 }
 
