@@ -21,6 +21,9 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Text content */}
           <div className="space-y-8">
+            {/* Spacer to maintain alignment */}
+            <div className="h-7"></div>
+            
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1]">
                 Accept Nexa
