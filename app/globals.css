@@ -1,9 +1,71 @@
-/* global(s).css */
 @config "../tailwind.config.ts";
 @import "tailwindcss";
 
-/* Let the browser know which palette to use */
-html.dark { color-scheme: dark; }
-html:not(.dark) { color-scheme: light; }
+/* Theme color schemes */
+html.dark {
+  color-scheme: dark;
+}
+html:not(.dark) {
+  color-scheme: light;
+}
 
-body { font-family: system-ui, sans-serif; }
+/* Font stack */
+.font-sans {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark ::selection {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Remove default button styles */
+button {
+  cursor: pointer;
+}
+
+/* Scrollbar styling (optional, subtle) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #404040;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}

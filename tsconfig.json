@@ -17,6 +17,10 @@
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "plugins": [
       {
         "name": "next"
