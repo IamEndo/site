@@ -82,7 +82,7 @@ function Terminal() {
             {"\n"}
             <span className="text-neutral-500">{"   "}## USB cable and drivers (CP210x or CH340)</span>
             {"\n\n"}
-            <span className="text-neutral-500">{"   "}## Clone Repository</span>
+            <span className="text-neutral-500">{"   "}## Clone repository</span>
             {"\n\n"}
             <span>{"   "}</span>
             <span style={{ color: NEXA_YELLOW }}>git</span>
