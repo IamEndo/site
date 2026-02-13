@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | PayDeck",
   },
   description:
-    "Accept Nexa cryptocurrency payments instantly with PayDeck. Open source, non-custodial POS terminal running on $10 ESP32 hardware. No contracts, no fees, full control of your funds.",
+    "Accept Nexa cryptocurrency payments instantly with PayDeck. Open source, non-custodial POS terminal running on affordable ESP32 hardware. No contracts, no fees, full control of your funds.",
   keywords: [
     "Nexa",
     "Nexa payments",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "PayDeck",
     title: "PayDeck | Open Source Cryptocurrency Point of Sale",
     description:
-      "Accept Nexa payments instantly. Open source, non-custodial POS on $10 hardware. No contracts, no fees.",
+      "Accept Nexa payments instantly. Open source, non-custodial POS on affordable hardware. No contracts, no fees.",
     images: [
       {
         url: "/og.png",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PayDeck | Open Source Crypto POS",
     description:
-      "Accept Nexa payments instantly. Non-custodial, open source, runs on $10 hardware.",
+      "Accept Nexa payments instantly. Non-custodial, open source, runs on affordable hardware.",
     images: ["/og.png"],
     creator: "@paydeckproject",
   },
@@ -149,6 +149,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans antialiased bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+        {/* Skip to content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neutral-900 focus:text-white focus:rounded-sm"
+        >
+          Skip to content
+        </a>
         <Script
           id="org-jsonld"
           type="application/ld+json"

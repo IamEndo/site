@@ -31,13 +31,6 @@ const productJsonLd = {
   brand: { "@type": "Brand", name: "ESP32" },
   url: "https://paydeck.org/#device",
   image: "https://paydeck.org/images/esp32-device.png",
-  offers: {
-    "@type": "Offer",
-    price: "10",
-    priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
-    url: device.purchaseUrl,
-  },
 };
 
 // HowTo structured data for SEO
@@ -47,11 +40,6 @@ const howToJsonLd = {
   name: "How to Set Up PayDeck for Nexa Payments",
   description: "Learn how to set up your PayDeck device to accept Nexa cryptocurrency payments at your business.",
   totalTime: "PT30M",
-  estimatedCost: {
-    "@type": "MonetaryAmount",
-    currency: "USD",
-    value: "10",
-  },
   step: steps.map((step, index) => ({
     "@type": "HowToStep",
     position: index + 1,
@@ -106,7 +94,7 @@ export default function HomePage() {
 
       <Header />
 
-      <main>
+      <main id="main-content">
         <Hero />
         <Features />
         <Device />

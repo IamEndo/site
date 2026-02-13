@@ -22,7 +22,7 @@ export const features = [
   {
     id: "affordable",
     title: "Affordable hardware",
-    description: "Get started with a $10 device. No rentals, no contracts.",
+    description: "Get started with low-cost hardware. No rentals, no contracts.",
   },
   {
     id: "scalable",

@@ -23,6 +23,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor offset for fixed header */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
 /* Selection styling */
 ::selection {
   background-color: rgba(0, 0, 0, 0.1);

@@ -1,7 +1,6 @@
 import { cn } from "@/lib/cn";
 import { device } from "@/app/_data/device";
 import { Button } from "../ui/Button";
-import { Badge } from "../ui/Badge";
 import { ArrowUpRight, Check } from "lucide-react";
 import Image from "next/image";
 
