@@ -14,15 +14,11 @@ export function Device() {
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-video bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 rounded-sm overflow-hidden">
               <Image
-                src="/images/esp32-device.jpg"
+                src="/images/esp32-device.png"
                 alt={device.name}
                 fill
                 className="object-contain"
               />
-            </div>
-            {/* Price badge */}
-            <div className="absolute top-4 left-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-sm px-3 py-1.5">
-              <span className="text-sm font-semibold text-neutral-900 dark:text-white">{device.price}</span>
             </div>
           </div>
 
@@ -75,11 +71,24 @@ export function Device() {
               </Button>
               <Button asChild variant="outline" size="lg">
                 <a
-                  href="https://gitlab.com/IamEndo/paydeck"
+                  href="https://www.printables.com/model/793451-esp32-2432s028-usb-c-module-case-cheap-yellow-disp"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="gap-2"
                 >
-                  Installation guide
+                  3D print enclosure
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a
+                  href="https://www.etsy.com/listing/1680602383/esp32-2432s028-esp-wroom-32-development"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gap-2"
+                >
+                  Buy enclosure
+                  <ArrowUpRight className="w-4 h-4" />
                 </a>
               </Button>
             </div>
