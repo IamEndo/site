@@ -30,7 +30,7 @@ const productJsonLd = {
   description: `ESP32 based cryptocurrency payment terminal. ${device.specs.map((s) => `${s.label}: ${s.value}`).join(". ")}`,
   brand: { "@type": "Brand", name: "ESP32" },
   url: "https://paydeck.org/#device",
-  image: "https://paydeck.org/images/esp32-device.jpg",
+  image: "https://paydeck.org/images/esp32-device.png",
   offers: {
     "@type": "Offer",
     price: "10",
