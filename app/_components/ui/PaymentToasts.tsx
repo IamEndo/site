@@ -20,12 +20,13 @@ export function PaymentToasts() {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const createToast = useCallback(() => {
+    const side = Math.random() > 0.5;
     const toast: Toast = {
       id: ++toastId,
       amount: AMOUNTS[Math.floor(Math.random() * AMOUNTS.length)],
       label: LABELS[Math.floor(Math.random() * LABELS.length)],
-      left: Math.random() * 55 + 5,
-      top: Math.random() * 45 + 20,
+      left: side ? Math.random() * 20 + 3 : Math.random() * 20 + 65,
+      top: Math.random() * 50 + 15,
     };
     setToasts((prev) => [...prev, toast]);
     setTimeout(() => {
