@@ -1,6 +1,7 @@
 export const device = {
   name: 'ESP32 Display 2.8"',
   model: "ESP32-2432S028",
+  price: "~$10",
   purchaseUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
   specs: [
     { label: "Display", value: '2.8" TFT touchscreen' },

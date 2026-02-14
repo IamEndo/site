@@ -6,7 +6,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+    <footer className="border-t border-neutral-200 dark:border-neutral-800">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Main footer content */}
         <div className="py-12 md:py-16 grid md:grid-cols-2 gap-8 md:gap-12">
@@ -35,6 +35,8 @@ export function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
+                      target={link.href.startsWith('/docs') ? '_blank' : undefined}
+                      rel={link.href.startsWith('/docs') ? 'noopener noreferrer' : undefined}
                       className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                     >
                       {link.label}
@@ -88,3 +90,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default Footer;

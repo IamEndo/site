@@ -42,6 +42,8 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
+                target={link.href.startsWith('/docs') ? '_blank' : undefined}
+                rel={link.href.startsWith('/docs') ? 'noopener noreferrer' : undefined}
                 className={cn(
                   "px-4 py-2 text-sm",
                   "text-neutral-600 hover:text-neutral-900",
@@ -89,6 +91,8 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
+                target={link.href.startsWith('/docs') ? '_blank' : undefined}
+                rel={link.href.startsWith('/docs') ? 'noopener noreferrer' : undefined}
                 onClick={() => setMobileOpen(false)}
                 className="py-3 text-neutral-900 dark:text-white"
               >
@@ -153,3 +157,5 @@ function ThemeToggle() {
     </button>
   );
 }
+
+export default Header;

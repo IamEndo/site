@@ -14,6 +14,7 @@ export const NAV_LINKS = [
   { href: "#device", label: "Hardware" },
   { href: "#how", label: "How it works" },
   { href: "#faq", label: "FAQ" },
+  { href: "/docs", label: "Docs" },
 ] as const;
 
 // Consistent border radius - squared off, not rounded

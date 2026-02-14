@@ -2,7 +2,7 @@ export const steps = [
   {
     number: "01",
     title: "Get the hardware",
-    description: "Purchase the ESP32 2.8\" display board. Available worldwide from various vendors.",
+    description: "Purchase the ESP32 2.8\" display board. Available worldwide for around $10.",
   },
   {
     number: "02",

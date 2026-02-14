@@ -27,21 +27,34 @@ export function FAQ() {
               Quick answers for merchants evaluating PayDeck for their business.
             </p>
 
-            <div className="pt-4">
-              <p className="text-sm text-neutral-500 mb-4">
+            <div className="pt-4 space-y-4">
+              <p className="text-sm text-neutral-500">
                 Have a question not listed here?
               </p>
-              <Button asChild variant="outline">
-                <a
-                  href={SITE.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gap-2"
-                >
-                  Ask on Telegram
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild variant="outline">
+                  <a
+                    href="/docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    Read the docs
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline">
+                  <a
+                    href={SITE.telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    Ask on Telegram
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
