@@ -83,7 +83,7 @@ function Terminal() {
               {"\n"}
               <span className="text-neutral-500">{"   "}## USB cable and drivers (CP210x/CH340)</span>
               {"\n\n"}
-              <span className="text-neutral-500">{"   "}## Installation Guide</span>
+              <span className="text-neutral-500">{"   "}## Clone repository</span>
               {"\n\n"}
               <span>{"   "}</span>
               <span style={{ color: ACCENT_GREEN }}>git</span>
