@@ -80,7 +80,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="py-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-neutral-500 dark:text-neutral-500">
-            © {currentYear} {SITE.name}. Open-source software provided as-is.
+            © {currentYear} {SITE.name}. Open-source firmware provided as-is.
           </p>
           <p className="text-xs text-neutral-500 dark:text-neutral-500 text-center md:text-right">
             PayDeck never holds keys, funds, or user data. Users are responsible for their own&nbsp;security.
