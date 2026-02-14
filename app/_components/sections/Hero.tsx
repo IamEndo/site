@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "../ui/Button";
+import { RotatingText } from "../ui/RotatingText";
+import { PaymentToasts } from "../ui/PaymentToasts";
 import { ArrowDown, Check, Copy, CheckCheck } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -20,6 +22,30 @@ const osConfig: Record<OS, { label: string; prompt: string }> = {
 
 const ACCENT_GREEN = "#22c55e";
 
+type LineType =
+  | { type: "comment"; text: string; hasPrompt?: boolean }
+  | { type: "cmd"; cmd: string; args: string }
+  | { type: "blank" };
+
+const terminalLines: LineType[] = [
+  { type: "comment", text: "## Requirements", hasPrompt: true },
+  { type: "comment", text: "## VSC and PlatformIO or Arduino IDE" },
+  { type: "comment", text: "## USB cable and drivers (CP210x/CH340)" },
+  { type: "blank" },
+  { type: "comment", text: "## Clone repository" },
+  { type: "blank" },
+  { type: "cmd", cmd: "git", args: " clone https://gitlab.com/IamEndo/paydeck.git" },
+  { type: "cmd", cmd: "cd", args: " paydeck" },
+  { type: "blank" },
+  { type: "comment", text: "## Build and upload" },
+  { type: "blank" },
+  { type: "cmd", cmd: "pio", args: " run -t upload -e esp32dev-hspi-st7789-2v8" },
+  { type: "blank" },
+  { type: "comment", text: "## Monitor serial output" },
+  { type: "blank" },
+  { type: "cmd", cmd: "pio", args: " device monitor -b 115200" },
+];
+
 function Terminal() {
   const [activeOS, setActiveOS] = useState<OS>("linux");
   const [copied, setCopied] = useState(false);
@@ -31,8 +57,9 @@ function Terminal() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-neutral-200 dark:bg-neutral-800 rounded-t-sm flex-shrink-0">
+    <div className="w-full h-full flex flex-col overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-800 shadow-2xl shadow-black/20 dark:shadow-black/50">
+      {/* Header */}
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-neutral-100 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800 flex-shrink-0">
         <div className="flex items-center gap-2 sm:gap-2.5">
           <div className="flex gap-1.5">
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500" />
@@ -61,51 +88,54 @@ function Terminal() {
         </div>
       </div>
 
-      <div className="relative bg-neutral-900 rounded-b-sm flex-1 min-h-0">
+      {/* Body */}
+      <div className="relative bg-white dark:bg-neutral-950 rounded-b-sm flex-1 min-h-0">
         <button
           onClick={handleCopy}
           className={cn(
             "absolute top-2 sm:top-3 right-2 sm:right-3 p-1 sm:p-1.5 rounded-sm transition-all z-10",
-            "text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800"
+            "text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
           )}
           style={copied ? { color: ACCENT_GREEN } : undefined}
           aria-label="Copy commands to clipboard"
         >
-          {copied ? <CheckCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
+          {copied ? (
+            <CheckCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+          ) : (
+            <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+          )}
         </button>
 
         <div className="overflow-auto h-full">
-          <pre className="p-3 sm:p-4 pr-8 sm:pr-10 text-[10px] sm:text-xs font-mono leading-relaxed whitespace-pre">
-            <code>
-              <span className="text-neutral-500">{osConfig[activeOS].prompt} ## Requirements</span>
-              {"\n"}
-              <span className="text-neutral-500">{"   "}## VSC and PlatformIO or Arduino IDE</span>
-              {"\n"}
-              <span className="text-neutral-500">{"   "}## USB cable and drivers (CP210x/CH340)</span>
-              {"\n\n"}
-              <span className="text-neutral-500">{"   "}## Clone repository</span>
-              {"\n\n"}
-              <span>{"   "}</span>
-              <span style={{ color: ACCENT_GREEN }}>git</span>
-              <span className="text-neutral-300"> clone https://gitlab.com/IamEndo/paydeck.git</span>
-              {"\n"}
-              <span>{"   "}</span>
-              <span style={{ color: ACCENT_GREEN }}>cd</span>
-              <span className="text-neutral-300"> paydeck</span>
-              {"\n\n"}
-              <span className="text-neutral-500">{"   "}## Build and upload</span>
-              {"\n\n"}
-              <span>{"   "}</span>
-              <span style={{ color: ACCENT_GREEN }}>pio</span>
-              <span className="text-neutral-300"> run -t upload -e esp32dev-hspi-st7789-2v8</span>
-              {"\n\n"}
-              <span className="text-neutral-500">{"   "}## Monitor serial output</span>
-              {"\n\n"}
-              <span>{"   "}</span>
-              <span style={{ color: ACCENT_GREEN }}>pio</span>
-              <span className="text-neutral-300"> device monitor -b 115200</span>
-            </code>
-          </pre>
+          <div className="p-3 sm:p-4 sm:pt-5 pr-8 sm:pr-10 font-mono text-[10px] sm:text-xs leading-relaxed">
+            {terminalLines.map((line, i) => (
+              <div
+                key={i}
+                className="animate-line-in opacity-0"
+                style={{ animationDelay: `${600 + i * 80}ms` }}
+              >
+                {line.type === "blank" && <br />}
+                {line.type === "comment" && (
+                  <span className="text-neutral-400 dark:text-neutral-600">
+                    {line.hasPrompt && (
+                      <span className="text-neutral-500 dark:text-neutral-500">
+                        {osConfig[activeOS].prompt}{" "}
+                      </span>
+                    )}
+                    {!line.hasPrompt && "   "}
+                    {line.text}
+                  </span>
+                )}
+                {line.type === "cmd" && (
+                  <>
+                    <span>{"   "}</span>
+                    <span style={{ color: ACCENT_GREEN }}>{line.cmd}</span>
+                    <span className="text-neutral-700 dark:text-neutral-300">{line.args}</span>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -115,7 +145,21 @@ function Terminal() {
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 -z-10" />
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 -z-20" />
+
+      {/* Subtle green radial glow */}
+      <div
+        className="absolute inset-0 -z-[15] pointer-events-none"
+        style={{
+          background: [
+            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(34,197,94,0.04), transparent)",
+            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(34,197,94,0.025), transparent)",
+          ].join(", "),
+        }}
+      />
+
+      {/* Grid pattern */}
       <div
         className="absolute inset-0 -z-10 opacity-[0.015] dark:opacity-[0.03]"
         style={{
@@ -123,22 +167,43 @@ export function Hero() {
         }}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-24">
+      {/* Floating payment toasts */}
+      <PaymentToasts />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-24">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          {/* Left column */}
           <div className="space-y-5 sm:space-y-6">
+            {/* Version badge */}
+            <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-green-500/10 dark:bg-green-500/15 text-green-600 dark:text-green-400 border border-green-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse-dot" />
+                Available &middot; v0.3.0
+              </span>
+            </div>
+
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1]">
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1] animate-hero-in opacity-0"
+                style={{ animationDelay: "200ms" }}
+              >
                 Accept Nexa
                 <br />
-                <span className="text-neutral-400 dark:text-neutral-500">at checkout</span>
+                <RotatingText />
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
-                A simple device that turns any counter into a cryptocurrency point-of-sale. No
-                contracts, no fees, no middlemen.
+              <p
+                className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed animate-hero-in opacity-0"
+                style={{ animationDelay: "350ms" }}
+              >
+                A simple device that turns any counter into a cryptocurrency
+                point&#8209;of&#8209;sale. No contracts, no fees, no middlemen.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-1 sm:pt-2">
+            <div
+              className="flex flex-col sm:flex-row gap-3 pt-1 sm:pt-2 animate-hero-in opacity-0"
+              style={{ animationDelay: "500ms" }}
+            >
               <Button asChild size="lg">
                 <a href="#device">View hardware</a>
               </Button>
@@ -147,7 +212,10 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 pt-2 sm:pt-4">
+            <div
+              className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 pt-2 sm:pt-4 animate-hero-in opacity-0"
+              style={{ animationDelay: "650ms" }}
+            >
               {["Watch-only", "Self-custodial", "Fully verifiable"].map((item) => (
                 <div
                   key={item}
@@ -160,12 +228,22 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="h-[260px] sm:h-[320px] md:h-[360px] lg:h-[400px] w-full min-w-0">
+          {/* Right column — terminal */}
+          <div
+            className="h-[260px] sm:h-[320px] md:h-[360px] lg:h-[400px] w-full min-w-0 animate-hero-in opacity-0 relative"
+            style={{ animationDelay: "350ms" }}
+          >
+            {/* Glow behind terminal */}
+            <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.05),transparent_70%)]" />
             <Terminal />
           </div>
         </div>
 
-        <div className="hidden md:flex justify-center mt-16 lg:mt-20">
+        {/* Scroll indicator */}
+        <div
+          className="hidden md:flex justify-center mt-16 lg:mt-20 animate-hero-in opacity-0"
+          style={{ animationDelay: "1200ms" }}
+        >
           <a
             href="#features"
             className="flex flex-col items-center gap-2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"

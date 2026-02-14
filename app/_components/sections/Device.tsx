@@ -1,6 +1,8 @@
-import { cn } from "@/lib/cn";
+"use client";
+
 import { device } from "@/app/_data/device";
 import { Button } from "../ui/Button";
+import { ScrollReveal } from "../ui/ScrollReveal";
 import { ArrowUpRight, Check } from "lucide-react";
 import Image from "next/image";
 
@@ -10,7 +12,7 @@ export function Device() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Device image */}
-          <div className="relative order-2 lg:order-1">
+          <ScrollReveal className="order-2 lg:order-1">
             <div className="relative aspect-video bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 rounded-sm overflow-hidden">
               <Image
                 src="/images/esp32-device.png"
@@ -19,82 +21,94 @@ export function Device() {
                 className="object-contain"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right - Info */}
           <div className="space-y-8 order-1 lg:order-2">
-            <div className="space-y-4">
-              <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
-                The Hardware
-              </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
-                {device.name}
-              </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400">
-                Model: {device.model}
-              </p>
-            </div>
+            <ScrollReveal>
+              <div className="space-y-4">
+                <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+                  The Hardware
+                </p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
+                  {device.name}
+                </h2>
+                <p className="text-lg text-neutral-600 dark:text-neutral-400">
+                  Model: {device.model}
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* Specs table */}
-            <div className="border border-neutral-200 dark:border-neutral-800 rounded-sm divide-y divide-neutral-200 dark:divide-neutral-800">
-              {device.specs.map((spec) => (
-                <div key={spec.label} className="flex justify-between px-4 py-3">
-                  <span className="text-sm text-neutral-500">{spec.label}</span>
-                  <span className="text-sm font-medium text-neutral-900 dark:text-white">{spec.value}</span>
-                </div>
-              ))}
-            </div>
+            <ScrollReveal delay={100}>
+              <div className="border border-neutral-200 dark:border-neutral-800 rounded-sm divide-y divide-neutral-200 dark:divide-neutral-800">
+                {device.specs.map((spec) => (
+                  <div key={spec.label} className="flex justify-between px-4 py-3">
+                    <span className="text-sm text-neutral-500">{spec.label}</span>
+                    <span className="text-sm font-medium text-neutral-900 dark:text-white">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
 
             {/* Highlights */}
-            <div className="grid grid-cols-2 gap-3">
-              {device.highlights.map((highlight) => (
-                <div key={highlight} className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                  <Check className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                  {highlight}
-                </div>
-              ))}
-            </div>
+            <ScrollReveal delay={200}>
+              <div className="grid grid-cols-2 gap-3">
+                {device.highlights.map((highlight) => (
+                  <div
+                    key={highlight}
+                    className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400"
+                  >
+                    <Check className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+                    {highlight}
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
 
             {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4">
-              <Button asChild size="lg">
-                <a
-                  href={device.purchaseUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gap-2"
-                >
-                  Get the board
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <a
-                  href="https://www.printables.com/model/793451-esp32-2432s028-usb-c-module-case-cheap-yellow-disp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gap-2"
-                >
-                  3D print enclosure
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <a
-                  href="https://www.etsy.com/listing/1680602383/esp32-2432s028-esp-wroom-32-development"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gap-2"
-                >
-                  Buy enclosure
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
-
-            <p className="text-xs text-neutral-500">
-              Board available from multiple vendors. Link is for reference only.
-            </p>
+            <ScrollReveal delay={300}>
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <Button asChild size="lg">
+                  <a
+                    href={device.purchaseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    Get the board
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <a
+                    href="https://www.printables.com/model/793451-esp32-2432s028-usb-c-module-case-cheap-yellow-disp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    3D print enclosure
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <a
+                    href="https://www.etsy.com/listing/1680602383/esp32-2432s028-esp-wroom-32-development"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    Buy enclosure
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
+              <p className="text-xs text-neutral-500 mt-4">
+                Board available from multiple vendors. Link is for reference only.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </div>
