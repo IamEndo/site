@@ -26,7 +26,7 @@ export default function SoftwareSetupPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Download className="w-4 h-4" />
           Getting Started
         </div>
@@ -103,7 +103,7 @@ export default function SoftwareSetupPage() {
                 href="https://git-scm.com/downloads" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400 hover:underline"
+                className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
               >
                 Download Git
                 <ExternalLink className="w-3 h-3" />
@@ -236,7 +236,7 @@ export default function SoftwareSetupPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Ready to install?
         </h3>
@@ -245,7 +245,7 @@ export default function SoftwareSetupPage() {
         </p>
         <Link 
           href="/docs/installation/vscode"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Install VS Code
           <ArrowRight className="w-4 h-4" />
@@ -278,7 +278,7 @@ function SoftwareCard({
   return (
     <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
       <div className="flex gap-4">
-        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
           {icon}
         </div>
         <div className="flex-1">
@@ -295,7 +295,7 @@ function SoftwareCard({
           {isInternal ? (
             <Link 
               href={downloadUrl}
-              className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400 hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
             >
               {downloadText}
               <ArrowRight className="w-3 h-3" />
@@ -305,7 +305,7 @@ function SoftwareCard({
               href={downloadUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400 hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
             >
               {downloadText}
               <ExternalLink className="w-3 h-3" />
@@ -334,7 +334,7 @@ function ChecklistItem({
   return (
     <div className="flex gap-4">
       <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm">
+        <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
           {number}
         </div>
         {!isLast && <div className="w-px h-full bg-zinc-200 dark:bg-zinc-800 my-2" />}
@@ -346,7 +346,7 @@ function ChecklistItem({
           {link && (
             <>
               {' '}
-              <Link href={link.href} className="text-green-600 dark:text-green-400 hover:underline">
+              <Link href={link.href} className="text-accent-600 dark:text-accent-dark-400 hover:underline">
                 {link.text} →
               </Link>
             </>

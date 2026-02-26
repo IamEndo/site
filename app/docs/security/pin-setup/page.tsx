@@ -22,7 +22,7 @@ export default function PinSetupPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Shield className="w-4 h-4" />
           Security
         </div>
@@ -107,7 +107,7 @@ export default function PinSetupPage() {
             <div className="mt-3 p-3 rounded-lg bg-zinc-100 dark:bg-zinc-800">
               <p className="text-xs text-zinc-600 dark:text-zinc-400">
                 Choose a PIN you can remember but others cannot guess. 
-                See <Link href="/docs/security/pin-practices" className="text-green-600 dark:text-green-400 hover:underline">PIN best practices</Link>.
+                See <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">PIN best practices</Link>.
               </p>
             </div>
           </Step>
@@ -129,19 +129,19 @@ export default function PinSetupPage() {
         <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
           <ul className="space-y-2">
             <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
               Enter 6 digits PIN
             </li>
             <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
               Numbers only (0-9)
             </li>
             <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
               Can be changed anytime in settings
             </li>
             <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
               Can be disabled if not needed
             </li>
           </ul>
@@ -264,7 +264,7 @@ export default function PinSetupPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Choose a strong PIN
         </h3>
@@ -273,7 +273,7 @@ export default function PinSetupPage() {
         </p>
         <Link 
           href="/docs/security/pin-practices"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           PIN Best Practices
           <ArrowRight className="w-4 h-4" />
@@ -287,7 +287,7 @@ export default function PinSetupPage() {
 function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">
@@ -302,14 +302,14 @@ function Step({ number, title, description, children }: { number: number; title:
 // Component: Protection Card
 function ProtectionCard({ title, items, protected: isProtected }: { title: string; items: string[]; protected: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${isProtected ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
+    <div className={`p-4 rounded-lg border ${isProtected ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
       <div className="flex items-center gap-2 mb-3">
         {isProtected ? (
-          <Lock className="w-4 h-4 text-green-600 dark:text-green-400" />
+          <Lock className="w-4 h-4 text-accent-600 dark:text-accent-dark-400" />
         ) : (
           <Key className="w-4 h-4 text-zinc-500" />
         )}
-        <h4 className={`font-medium ${isProtected ? 'text-green-700 dark:text-green-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
+        <h4 className={`font-medium ${isProtected ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
           {title}
         </h4>
       </div>
@@ -317,7 +317,7 @@ function ProtectionCard({ title, items, protected: isProtected }: { title: strin
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
             {isProtected ? (
-              <CheckCircle2 className="w-3 h-3 text-green-500" />
+              <CheckCircle2 className="w-3 h-3 text-accent-500 dark:text-accent-dark-500" />
             ) : (
               <span className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-700" />
             )}

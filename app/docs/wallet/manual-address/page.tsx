@@ -22,7 +22,7 @@ export default function ManualAddressPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Wallet
         </div>
@@ -219,7 +219,7 @@ export default function ManualAddressPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Want better privacy?
         </h3>
@@ -229,7 +229,7 @@ export default function ManualAddressPage() {
         <div className="flex flex-wrap gap-3">
           <Link 
             href="/docs/wallet/seed-generation"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Generate Seed (Recommended)
             <ArrowRight className="w-4 h-4" />
@@ -263,7 +263,7 @@ function StatCard({ icon, label, value, warning }: { icon: React.ReactNode; labe
 function UseCase({ title, description, good }: { title: string; description: string; good: boolean }) {
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${good ? 'text-green-500' : 'text-red-500'}`} />
+      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${good ? 'text-accent-500 dark:text-accent-dark-500' : 'text-red-500'}`} />
       <div>
         <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
         <p className="text-sm text-zinc-500">{description}</p>
@@ -276,7 +276,7 @@ function UseCase({ title, description, good }: { title: string; description: str
 function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">
@@ -292,7 +292,7 @@ function Step({ number, title, description, children }: { number: number; title:
 function Tip({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+      <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
       <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
     </div>
   );
@@ -301,7 +301,7 @@ function Tip({ text }: { text: string }) {
 // Component: Address Source
 function AddressSource({ title, description, url }: { title: string; description: string; url: string }) {
   const content = (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-green-300 dark:hover:border-green-700 transition-colors">
+    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
       <p className="text-sm text-zinc-500">{description}</p>
     </div>

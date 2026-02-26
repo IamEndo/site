@@ -20,7 +20,7 @@ export default function SpecificationsPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <BookOpen className="w-4 h-4" />
           Reference
         </div>
@@ -157,7 +157,7 @@ export default function SpecificationsPage() {
                 <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
                 <td className="px-4 py-3 text-zinc-500">No</td>
                 <td className="px-4 py-3 text-zinc-500">No</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400">Yes</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">Yes</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-dev</td>
@@ -211,7 +211,7 @@ export default function SpecificationsPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Need terminology help?
         </h3>
@@ -220,7 +220,7 @@ export default function SpecificationsPage() {
         </p>
         <Link 
           href="/docs/reference/glossary"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Glossary
           <ArrowRight className="w-4 h-4" />

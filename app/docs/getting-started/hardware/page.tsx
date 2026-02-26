@@ -28,7 +28,7 @@ export default function HardwarePage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Cpu className="w-4 h-4" />
           Getting Started
         </div>
@@ -239,7 +239,7 @@ export default function HardwarePage() {
           />
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-4">
-          See <Link href="/docs/installation/usb-drivers" className="text-green-600 dark:text-green-400 hover:underline">USB Drivers</Link> for 
+          See <Link href="/docs/installation/usb-drivers" className="text-accent-600 dark:text-accent-dark-400 hover:underline">USB Drivers</Link> for 
           installation instructions.
         </p>
       </section>
@@ -335,23 +335,23 @@ export default function HardwarePage() {
           </h3>
           <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
             <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
               Buy from sellers with good reviews and multiple orders
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
               Consider ordering 2–3 units for backup or in case of defects
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
               Verify the exact model number: ESP32-2432S028R
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
               Note whether it has single or dual USB ports (affects driver selection)
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
               Check that it includes USB-C (some older versions have Micro-USB)
             </li>
           </ul>
@@ -359,7 +359,7 @@ export default function HardwarePage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Got your hardware?
         </h3>
@@ -368,7 +368,7 @@ export default function HardwarePage() {
         </p>
         <Link 
           href="/docs/getting-started/prerequisites"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Software Setup
           <ArrowRight className="w-4 h-4" />
@@ -393,7 +393,7 @@ function QuickSpec({ icon, label, value }: { icon: React.ReactNode; label: strin
 function BoardFeature({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300">
-      <CheckCircle2 className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
+      <CheckCircle2 className="w-3.5 h-3.5 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
       <span dangerouslySetInnerHTML={{ __html: text }} />
     </div>
   );
@@ -489,7 +489,7 @@ function EnclosureOption({
   comingSoon?: boolean;
 }) {
   return (
-    <div className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-green-300 dark:hover:border-green-700 transition-colors">
+    <div className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <div className="text-zinc-400 dark:text-zinc-500 mb-3">{icon}</div>
       <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">{title}</h3>
       <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">{description}</p>
@@ -502,7 +502,7 @@ function EnclosureOption({
           href={linkHref}
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
-          className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400 hover:underline"
+          className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
         >
           {linkText}
           {external && <ExternalLink className="w-3 h-3" />}
@@ -530,7 +530,7 @@ function SourceOption({
     <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
         <h3 className="font-semibold text-zinc-900 dark:text-white">{name}</h3>
-        <span className="px-2 py-0.5 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium">
+        <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs font-medium">
           {price}
         </span>
         <span className="text-xs text-zinc-500">
@@ -541,7 +541,7 @@ function SourceOption({
         <div>
           {pros.map((pro, i) => (
             <div key={i} className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-accent-500 dark:text-accent-dark-500" />
               {pro}
             </div>
           ))}

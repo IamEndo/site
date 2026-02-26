@@ -26,7 +26,7 @@ export default function FirstBootPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Power className="w-4 h-4" />
           Installation
         </div>
@@ -118,7 +118,7 @@ export default function FirstBootPage() {
             </div>
             <p className="text-xs text-zinc-500">
               The default server works for most users. You can change this later in Settings, 
-              or <Link href="/docs/setup/own-server" className="text-green-600 dark:text-green-400 hover:underline">run your own server</Link>.
+              or <Link href="/docs/setup/own-server" className="text-accent-600 dark:text-accent-dark-400 hover:underline">run your own server</Link>.
             </p>
           </SetupStepCard>
 
@@ -155,7 +155,7 @@ export default function FirstBootPage() {
               />
             </div>
             <p className="text-xs text-zinc-500 mt-3">
-              See <Link href="/docs/wallet/options" className="text-green-600 dark:text-green-400 hover:underline">Wallet Options</Link> for 
+              See <Link href="/docs/wallet/options" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Wallet Options</Link> for 
               detailed comparison of each mode.
             </p>
           </SetupStepCard>
@@ -173,15 +173,15 @@ export default function FirstBootPage() {
             </p>
             <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400 mb-3">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Shared or public deployments
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Preventing accidental settings changes
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Devices accessible to employees
               </li>
             </ul>
@@ -225,12 +225,12 @@ export default function FirstBootPage() {
           />
         </div>
 
-        <div className="mt-6 p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="mt-6 p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-medium text-green-900 dark:text-green-200 mb-1">Setup Complete!</div>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Setup Complete!</div>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 Your PayDeck is ready to accept Nexa payments.
               </p>
             </div>
@@ -309,7 +309,7 @@ export default function FirstBootPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Ready to configure WiFi?
         </h3>
@@ -318,7 +318,7 @@ export default function FirstBootPage() {
         </p>
         <Link 
           href="/docs/setup/wifi"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           WiFi Configuration
           <ArrowRight className="w-4 h-4" />
@@ -332,7 +332,7 @@ export default function FirstBootPage() {
 function BootStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center font-semibold text-sm">
+      <div className="w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center font-semibold text-sm">
         {number}
       </div>
       <p className="text-zinc-600 dark:text-zinc-400">{text}</p>
@@ -357,7 +357,7 @@ function SetupStepCard({
   return (
     <div className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
@@ -381,7 +381,7 @@ function WalletOption({ title, description, best }: { title: string; description
     <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
       <h4 className="font-medium text-zinc-900 dark:text-white text-sm mb-1">{title}</h4>
       <p className="text-xs text-zinc-500 mb-2">{description}</p>
-      <p className="text-xs text-green-600 dark:text-green-400">{best}</p>
+      <p className="text-xs text-accent-600 dark:text-accent-dark-400">{best}</p>
     </div>
   );
 }
@@ -406,13 +406,13 @@ function NextStepCard({ href, title, description }: { href: string; title: strin
   return (
     <Link 
       href={href}
-      className="group p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/20 transition-colors"
+      className="group p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
     >
-      <h4 className="font-medium text-zinc-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors mb-1">
+      <h4 className="font-medium text-zinc-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors mb-1">
         {title}
       </h4>
       <p className="text-xs text-zinc-500">{description}</p>
-      <span className="inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400 mt-2">
+      <span className="inline-flex items-center gap-1 text-xs text-accent-600 dark:text-accent-dark-400 mt-2">
         Learn more <ArrowRight className="w-3 h-3" />
       </span>
     </Link>

@@ -24,7 +24,7 @@ export default function VerificationPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Wallet
         </div>
@@ -182,10 +182,10 @@ export default function VerificationPage() {
             title="Compare Addresses"
             description="Generate a receiving address in Wally and compare it to an address shown on PayDeck"
           >
-            <div className="mt-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+            <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
               <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-green-800 dark:text-green-300">
+                <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                   <strong>Addresses match?</strong> Your seed is correctly recorded. 
                   Both wallets are viewing the same funds.
                 </p>
@@ -268,7 +268,7 @@ export default function VerificationPage() {
                 href="https://otoplo.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-green-600 dark:text-green-400 hover:underline"
+                className="text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
               >
                 Visit →
               </a>
@@ -278,7 +278,7 @@ export default function VerificationPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Seed verified?
         </h3>
@@ -287,7 +287,7 @@ export default function VerificationPage() {
         </p>
         <Link 
           href="/docs/wallet/import-xpub"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Import xPub
           <ArrowRight className="w-4 h-4" />
@@ -301,7 +301,7 @@ export default function VerificationPage() {
 function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">
@@ -328,9 +328,9 @@ function ComparisonCard({
   highlighted?: boolean;
 }) {
   return (
-    <div className={`p-5 rounded-lg border ${highlighted ? 'border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-5 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
       <div className="flex items-center gap-3 mb-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
           {icon}
         </div>
         <div>
@@ -341,7 +341,7 @@ function ComparisonCard({
       <ul className="space-y-1">
         {features.map((feature, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${highlighted ? 'text-green-500' : 'text-zinc-400'}`} />
+            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${highlighted ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
             {feature}
           </li>
         ))}
@@ -355,7 +355,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
   return (
     <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>

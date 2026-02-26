@@ -16,7 +16,7 @@ function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       onClick={onClick}
       className={`block py-1.5 pl-4 border-l text-sm transition-colors ${
         isActive
-          ? 'border-green-500 text-green-600 dark:text-green-400 font-medium bg-green-50 dark:bg-green-950/30'
+          ? 'border-accent-500 dark:border-accent-dark-500 text-accent-600 dark:text-accent-dark-400 font-medium bg-accent-50 dark:bg-accent-dark-950/30'
           : 'border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-600'
       }`}
     >
@@ -121,7 +121,7 @@ export function DocsSidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed bottom-4 right-4 z-50 lg:hidden p-3 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition-colors"
+        className="fixed bottom-4 right-4 z-50 lg:hidden p-3 rounded-full bg-accent-500 dark:bg-accent-dark-500 text-white shadow-lg hover:bg-accent-600 dark:hover:bg-accent-dark-600 transition-colors"
         aria-label="Toggle documentation menu"
       >
         {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -144,7 +144,7 @@ export function DocsSidebar() {
         <div className="p-6 pt-20 lg:pt-6">
           <Link
             href="/docs"
-            className="block text-lg font-semibold text-zinc-900 dark:text-white mb-6 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+            className="block text-lg font-semibold text-zinc-900 dark:text-white mb-6 hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors"
           >
             Documentation
           </Link>

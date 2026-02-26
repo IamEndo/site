@@ -26,7 +26,7 @@ export default function DocsPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <BookOpen className="w-4 h-4" />
           Documentation
         </div>
@@ -247,9 +247,9 @@ export default function DocsPage() {
             <div className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
               <p>If you run into issues or have questions:</p>
               <ul className="list-disc list-inside space-y-1 ml-1">
-                <li>Check the <Link href="/docs/maintenance/troubleshooting" className="text-green-600 dark:text-green-400 hover:underline">Troubleshooting</Link> guide</li>
-                <li>Open an issue on <a href="https://gitlab.com/nicetokno/paydeck" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">GitLab</a></li>
-                <li>Join the <a href="https://t.me/nicetokno" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">Telegram community</a> for real-time help</li>
+                <li>Check the <Link href="/docs/maintenance/troubleshooting" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Troubleshooting</Link> guide</li>
+                <li>Open an issue on <a href="https://gitlab.com/nicetokno/paydeck" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">GitLab</a></li>
+                <li>Join the <a href="https://t.me/nicetokno" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Telegram community</a> for real-time help</li>
               </ul>
             </div>
           </div>
@@ -257,7 +257,7 @@ export default function DocsPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Ready to get started?
         </h3>
@@ -266,7 +266,7 @@ export default function DocsPage() {
         </p>
         <Link 
           href="/docs/getting-started/hardware"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Hardware Requirements
           <ArrowRight className="w-4 h-4" />
@@ -280,7 +280,7 @@ export default function DocsPage() {
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
         {icon}
       </div>
       <div>
@@ -296,7 +296,7 @@ function Step({ number, title, description, isLast }: { number: number; title: s
   return (
     <div className="flex gap-4">
       <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm">
+        <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
           {number}
         </div>
         {!isLast && <div className="w-px h-full bg-zinc-200 dark:bg-zinc-800 my-2" />}
@@ -330,16 +330,16 @@ function DocSection({ icon, title, description, href }: { icon: React.ReactNode;
   return (
     <Link 
       href={href}
-      className="group p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/20 transition-colors"
+      className="group p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
     >
       <div className="flex items-center gap-3 mb-2">
-        <div className="text-zinc-400 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+        <div className="text-zinc-400 group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors">
           {icon}
         </div>
-        <h3 className="font-semibold text-zinc-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+        <h3 className="font-semibold text-zinc-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors">
           {title}
         </h3>
-        <ArrowRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-green-500 ml-auto transition-colors" />
+        <ArrowRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-accent-500 dark:text-accent-dark-500 ml-auto transition-colors" />
       </div>
       <p className="text-sm text-zinc-500 dark:text-zinc-500">{description}</p>
     </Link>
@@ -350,7 +350,7 @@ function DocSection({ icon, title, description, href }: { icon: React.ReactNode;
 function Prerequisite({ text }: { text: string }) {
   return (
     <li className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+      <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
       {text}
     </li>
   );

@@ -23,7 +23,7 @@ export default function ImportXpubPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Wallet
         </div>
@@ -45,12 +45,12 @@ export default function ImportXpubPage() {
 
       {/* How It Works */}
       <section className="mb-12">
-        <div className="p-5 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <Shield className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <Shield className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-medium text-green-900 dark:text-green-200 mb-1">Maximum Security</div>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Maximum Security</div>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 With xPub import, your seed phrase <strong>never exists on PayDeck</strong>, not even 
                 temporarily. You extract the xPub from your wallet software and enter only the public 
                 key. This is ideal for hardware wallet users or anyone who wants complete key isolation.
@@ -241,10 +241,10 @@ export default function ImportXpubPage() {
             title="Compare Addresses"
             description="Generate an address on PayDeck and verify it matches your wallet software"
           >
-            <div className="mt-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+            <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
               <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-green-800 dark:text-green-300">
+                <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                   <strong>Addresses match?</strong> Setup complete. PayDeck will generate the 
                   same addresses as your main wallet.
                 </p>
@@ -316,10 +316,10 @@ export default function ImportXpubPage() {
                 <td className="px-4 py-3 text-amber-600 dark:text-amber-400 text-xs">Briefly (then erased)</td>
                 <td className="px-4 py-3 text-zinc-500 text-xs">High</td>
               </tr>
-              <tr className="bg-green-50/50 dark:bg-green-950/20">
+              <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                 <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">Import xPub</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Never</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs font-medium">Maximum</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Never</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs font-medium">Maximum</td>
               </tr>
             </tbody>
           </table>
@@ -327,7 +327,7 @@ export default function ImportXpubPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Prefer a simpler setup?
         </h3>
@@ -336,7 +336,7 @@ export default function ImportXpubPage() {
         </p>
         <Link 
           href="/docs/wallet/seed-generation"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Generate Seed
           <ArrowRight className="w-4 h-4" />
@@ -350,7 +350,7 @@ export default function ImportXpubPage() {
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400">
         {icon}
       </div>
       <p className="text-xs text-zinc-500 mb-1">{label}</p>
@@ -362,14 +362,14 @@ function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string
 // Component: Info Card
 function InfoCard({ title, items, positive }: { title: string; items: string[]; positive: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${positive ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
-      <h4 className={`font-medium mb-3 ${positive ? 'text-green-700 dark:text-green-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
+    <div className={`p-4 rounded-lg border ${positive ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
+      <h4 className={`font-medium mb-3 ${positive ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
         {title}
       </h4>
       <ul className="space-y-1">
         {items.map((item, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${positive ? 'text-green-500' : 'text-zinc-400'}`} />
+            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${positive ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
             {item}
           </li>
         ))}
@@ -382,7 +382,7 @@ function InfoCard({ title, items, positive }: { title: string; items: string[]; 
 function UseCase({ title, description }: { title: string; description: string }) {
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+      <CheckCircle2 className="w-5 h-5 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
         <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
         <p className="text-sm text-zinc-500">{description}</p>
@@ -395,7 +395,7 @@ function UseCase({ title, description }: { title: string; description: string })
 function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">

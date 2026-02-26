@@ -22,7 +22,7 @@ export default function BuildingPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wrench className="w-4 h-4" />
           Installation
         </div>
@@ -124,10 +124,10 @@ export default function BuildingPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr className="bg-green-50/50 dark:bg-green-950/20">
+              <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                 <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
                 <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Development</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Recommended for most users</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended for most users</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-dev</td>
@@ -213,11 +213,11 @@ Environment                  Status    Duration
 esp32dev-hspi-st7789-2v8     SUCCESS   00:00:42`} />
         </div>
 
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
-              If you see <code className="px-1 py-0.5 rounded bg-green-100 dark:bg-green-900 text-xs">[SUCCESS]</code>, the firmware has been built and uploaded to the device.
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
+              If you see <code className="px-1 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900 text-xs">[SUCCESS]</code>, the firmware has been built and uploaded to the device.
             </p>
           </div>
         </div>
@@ -241,12 +241,12 @@ Hard resetting via RTS pin...
 ========================= [SUCCESS] =========================`} />
         </div>
 
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-medium text-green-900 dark:text-green-200 mb-1">Success!</div>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success!</div>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 You should see the PayDeck welcome screen on the display.
               </p>
             </div>
@@ -300,7 +300,7 @@ Hard resetting via RTS pin...
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Firmware flashed successfully?
         </h3>
@@ -309,7 +309,7 @@ Hard resetting via RTS pin...
         </p>
         <Link 
           href="/docs/installation/first-boot"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           First Boot
           <ArrowRight className="w-4 h-4" />
@@ -322,10 +322,10 @@ Hard resetting via RTS pin...
 // Component: Option Card
 function OptionCard({ title, description, recommended, children }: { title: string; description: string; recommended: boolean; children: React.ReactNode }) {
   return (
-    <div className={`p-4 rounded-lg border ${recommended ? 'border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
       <div className="flex items-center gap-2 mb-1">
         <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
-        {recommended && <span className="px-2 py-0.5 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs">Recommended</span>}
+        {recommended && <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs">Recommended</span>}
       </div>
       <p className="text-sm text-zinc-500 mb-3">{description}</p>
       {children}
@@ -337,7 +337,7 @@ function OptionCard({ title, description, recommended, children }: { title: stri
 function Step({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-zinc-600 dark:text-zinc-400 pt-0.5">{text}</p>

@@ -62,7 +62,7 @@ export function RotatingText() {
   return (
     <span className="text-neutral-400 dark:text-neutral-500">
       {display}
-      <span className="inline-block w-[3px] h-[0.85em] bg-green-500 ml-[3px] align-baseline relative top-[0.08em] animate-cursor-blink" />
+      <span className="inline-block w-[3px] h-[0.85em] bg-accent-500 dark:bg-accent-dark-500 ml-[3px] align-baseline relative top-[0.08em] animate-cursor-blink" />
     </span>
   );
 }

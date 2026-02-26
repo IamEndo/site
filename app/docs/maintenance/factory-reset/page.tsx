@@ -21,7 +21,7 @@ export default function FactoryResetPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wrench className="w-4 h-4" />
           Maintenance
         </div>
@@ -123,7 +123,7 @@ export default function FactoryResetPage() {
         </p>
 
         <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
-          <code className="text-green-400 font-mono text-sm">
+          <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm">
             pio run -t erase -e esp32dev-hspi-st7789-2v8
           </code>
         </div>
@@ -180,12 +180,12 @@ export default function FactoryResetPage() {
 
       {/* Your Funds Are Safe */}
       <section className="mb-12">
-        <div className="p-5 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-6 h-6 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2">Your Funds Are Safe</h3>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <h3 className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">Your Funds Are Safe</h3>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 Factory reset only erases device settings. Your cryptocurrency is stored on the 
                 blockchain, not on the device. As long as you have your seed phrase backed up, 
                 you can always recover access to your funds by importing the seed into PayDeck 
@@ -197,7 +197,7 @@ export default function FactoryResetPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Ready to set up again?
         </h3>
@@ -206,7 +206,7 @@ export default function FactoryResetPage() {
         </p>
         <Link 
           href="/docs/installation/first-boot"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           First Boot Guide
           <ArrowRight className="w-4 h-4" />
@@ -219,14 +219,14 @@ export default function FactoryResetPage() {
 // Component: Erase Card
 function EraseCard({ title, items, erased }: { title: string; items: string[]; erased: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${erased ? 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20' : 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20'}`}>
+    <div className={`p-4 rounded-lg border ${erased ? 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20' : 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20'}`}>
       <div className="flex items-center gap-2 mb-3">
         {erased ? (
           <Trash2 className="w-4 h-4 text-red-600 dark:text-red-400" />
         ) : (
-          <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400" />
+          <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400" />
         )}
-        <h4 className={`font-medium ${erased ? 'text-red-700 dark:text-red-300' : 'text-green-700 dark:text-green-300'}`}>
+        <h4 className={`font-medium ${erased ? 'text-red-700 dark:text-red-300' : 'text-accent-700 dark:text-accent-dark-300'}`}>
           {title}
         </h4>
       </div>
@@ -236,7 +236,7 @@ function EraseCard({ title, items, erased }: { title: string; items: string[]; e
             {erased ? (
               <XCircle className="w-3 h-3 text-red-500" />
             ) : (
-              <CheckCircle2 className="w-3 h-3 text-green-500" />
+              <CheckCircle2 className="w-3 h-3 text-accent-500 dark:text-accent-dark-500" />
             )}
             {item}
           </li>
@@ -260,7 +260,7 @@ function ReasonItem({ text }: { text: string }) {
 function Step({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
         {number}
       </div>
       <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>

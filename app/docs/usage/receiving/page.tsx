@@ -21,7 +21,7 @@ export default function ReceivingPaymentsPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Usage
         </div>
@@ -208,7 +208,7 @@ export default function ReceivingPaymentsPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Need specific amounts?
         </h3>
@@ -217,7 +217,7 @@ export default function ReceivingPaymentsPage() {
         </p>
         <Link 
           href="/docs/usage/invoices"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Creating Invoices
           <ArrowRight className="w-4 h-4" />
@@ -231,10 +231,10 @@ export default function ReceivingPaymentsPage() {
 function StepCard({ number, icon, title, description }: { number: number; icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm mx-auto mb-3">
+      <div className="w-10 h-10 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm mx-auto mb-3">
         {number}
       </div>
-      <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mx-auto mb-2">
+      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center mx-auto mb-2">
         {icon}
       </div>
       <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
@@ -247,7 +247,7 @@ function StepCard({ number, icon, title, description }: { number: number; icon: 
 function FlowStep({ number, title, note }: { number: number; title: string; note: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
@@ -263,7 +263,7 @@ function StateCard({ state, description, color }: { state: string; description: 
   const colors = {
     blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
     amber: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
-    green: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800'
+    green: 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 border-accent-200 dark:border-accent-dark-800'
   };
 
   return (
@@ -281,7 +281,7 @@ function StateCard({ state, description, color }: { state: string; description: 
 function FeatureItem({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+      <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
       <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
     </div>
   );

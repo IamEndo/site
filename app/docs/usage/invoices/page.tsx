@@ -22,7 +22,7 @@ export default function InvoicesPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Usage
         </div>
@@ -114,7 +114,7 @@ export default function InvoicesPage() {
         </p>
 
         <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
-          <code className="text-green-400 font-mono text-sm break-all">
+          <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm break-all">
             nexa:nexa1qr...address...?amount=25.50
           </code>
         </div>
@@ -209,7 +209,7 @@ export default function InvoicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Understanding confirmations
         </h3>
@@ -218,7 +218,7 @@ export default function InvoicesPage() {
         </p>
         <Link 
           href="/docs/usage/confirmation"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Payment Confirmation
           <ArrowRight className="w-4 h-4" />
@@ -231,13 +231,13 @@ export default function InvoicesPage() {
 // Component: Mode Card
 function ModeCard({ icon, title, description, features, recommended }: { icon: React.ReactNode; title: string; description: string; features: string[]; recommended?: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${recommended ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
       <div className="flex items-center gap-2 mb-2">
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
           {icon}
         </div>
         <div>
-          <h4 className={`font-medium ${recommended ? 'text-green-700 dark:text-green-300' : 'text-zinc-900 dark:text-white'}`}>
+          <h4 className={`font-medium ${recommended ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-900 dark:text-white'}`}>
             {title}
           </h4>
           <p className="text-xs text-zinc-500">{description}</p>
@@ -246,7 +246,7 @@ function ModeCard({ icon, title, description, features, recommended }: { icon: R
       <ul className="space-y-1 mt-3">
         {features.map((feature, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${recommended ? 'text-green-500' : 'text-zinc-400'}`} />
+            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${recommended ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
             {feature}
           </li>
         ))}
@@ -259,7 +259,7 @@ function ModeCard({ icon, title, description, features, recommended }: { icon: R
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
@@ -273,9 +273,9 @@ function Step({ number, title, description }: { number: number; title: string; d
 // Component: Amount Item
 function AmountItem({ scenario, result, success }: { scenario: string; result: string; success: boolean }) {
   return (
-    <div className={`flex items-center justify-between gap-4 p-3 rounded-lg border ${success ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
+    <div className={`flex items-center justify-between gap-4 p-3 rounded-lg border ${success ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
       <span className="text-sm text-zinc-700 dark:text-zinc-300">{scenario}</span>
-      <span className={`text-sm font-medium ${success ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>{result}</span>
+      <span className={`text-sm font-medium ${success ? 'text-accent-700 dark:text-accent-dark-300' : 'text-red-700 dark:text-red-300'}`}>{result}</span>
     </div>
   );
 }

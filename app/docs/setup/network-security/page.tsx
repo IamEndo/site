@@ -27,7 +27,7 @@ export default function NetworkSecurityPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Settings className="w-4 h-4" />
           Setup
         </div>
@@ -94,15 +94,15 @@ export default function NetworkSecurityPage() {
           >
             <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Standard home WiFi with WPA2/WPA3 is sufficient
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Use the public Rostrum server or run your own
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 PIN protection recommended but optional
               </li>
             </ul>
@@ -116,19 +116,19 @@ export default function NetworkSecurityPage() {
           >
             <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Use a dedicated WiFi network separate from guest WiFi
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Enable PIN protection to prevent unauthorized access
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Consider production firmware for tamper resistance
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Position device where staff can monitor it
               </li>
             </ul>
@@ -142,23 +142,23 @@ export default function NetworkSecurityPage() {
           >
             <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Dedicated VLAN for payment devices
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Run your own Rostrum server on-premises
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Use production firmware (encrypted, locked)
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Implement network monitoring and logging
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Physical security controls for devices
               </li>
             </ul>
@@ -236,11 +236,11 @@ export default function NetworkSecurityPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr className="bg-green-50/50 dark:bg-green-950/20">
+              <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Outbound</td>
                 <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">TCP/WSS</td>
                 <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">20004</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Rostrum WSS (required)</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Rostrum WSS (required)</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Outbound</td>
@@ -336,7 +336,7 @@ export default function NetworkSecurityPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Network secured?
         </h3>
@@ -345,7 +345,7 @@ export default function NetworkSecurityPage() {
         </p>
         <Link 
           href="/docs/wallet/options"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Wallet Options
           <ArrowRight className="w-4 h-4" />
@@ -358,9 +358,9 @@ export default function NetworkSecurityPage() {
 // Component: Security Fact
 function SecurityFact({ icon, title, description, positive }: { icon: React.ReactNode; title: string; description: string; positive: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${positive ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20'}`}>
+    <div className={`p-4 rounded-lg border ${positive ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20'}`}>
       <div className="flex items-start gap-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${positive ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'}`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${positive ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'}`}>
           {icon}
         </div>
         <div>
@@ -375,7 +375,7 @@ function SecurityFact({ icon, title, description, positive }: { icon: React.Reac
 // Component: Deployment Card
 function DeploymentCard({ title, risk, description, children }: { title: string; risk: string; description: string; children: React.ReactNode }) {
   const riskColors = {
-    Low: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
+    Low: 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300',
     Medium: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300',
     High: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
   };
@@ -397,7 +397,7 @@ function DeploymentCard({ title, risk, description, children }: { title: string;
 // Component: Isolation Method
 function IsolationMethod({ title, difficulty, description, steps }: { title: string; difficulty: string; description: string; steps: string[] }) {
   const difficultyColors = {
-    Easy: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
+    Easy: 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300',
     Medium: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300',
     Advanced: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
   };
@@ -427,7 +427,7 @@ function IsolationMethod({ title, difficulty, description, steps }: { title: str
 function SecurityTip({ tip }: { tip: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <Shield className="w-4 h-4 text-green-500 flex-shrink-0" />
+      <Shield className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
       <p className="text-sm text-zinc-600 dark:text-zinc-400">{tip}</p>
     </div>
   );

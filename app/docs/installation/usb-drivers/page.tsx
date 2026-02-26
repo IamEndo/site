@@ -24,7 +24,7 @@ export default function USBDriversPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Download className="w-4 h-4" />
           Installation
         </div>
@@ -80,10 +80,10 @@ export default function USBDriversPage() {
           />
         </div>
 
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
               <strong>Device detected?</strong> Skip to <Link href="/docs/installation/building" className="underline">Building Firmware</Link>. 
               If not, continue below to install drivers.
             </p>
@@ -234,12 +234,12 @@ export default function USBDriversPage() {
           <VerifyStep number={4} text="Note the port name (e.g., COM3, /dev/ttyUSB0) for later" />
         </div>
 
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-medium text-green-900 dark:text-green-200 mb-1">Success</div>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success</div>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 If a port appears when you connect the device, your drivers are working correctly.
               </p>
             </div>
@@ -292,7 +292,7 @@ export default function USBDriversPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Drivers working?
         </h3>
@@ -301,7 +301,7 @@ export default function USBDriversPage() {
         </p>
         <Link 
           href="/docs/installation/building"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Building Firmware
           <ArrowRight className="w-4 h-4" />
@@ -329,7 +329,7 @@ function OSCheckCard({ icon, os, steps, success }: { icon: React.ReactNode; os: 
           </li>
         ))}
       </ol>
-      <p className="text-xs text-green-600 dark:text-green-400">{success}</p>
+      <p className="text-xs text-accent-600 dark:text-accent-dark-400">{success}</p>
     </div>
   );
 }
@@ -337,10 +337,10 @@ function OSCheckCard({ icon, os, steps, success }: { icon: React.ReactNode; os: 
 // Component: Chip Card
 function ChipCard({ name, description, identifier, common }: { name: string; description: string; identifier: string; common: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${common ? 'border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${common ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
       <div className="flex items-center gap-2 mb-2">
         <h3 className="font-semibold text-zinc-900 dark:text-white">{name}</h3>
-        {common && <span className="px-2 py-0.5 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs">Most common</span>}
+        {common && <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs">Most common</span>}
       </div>
       <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">{description}</p>
       <p className="text-xs text-zinc-500">{identifier}</p>
@@ -387,7 +387,7 @@ function DriverInstallCard({
         href={downloadUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-sm text-green-600 dark:text-green-400 hover:underline"
+        className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
       >
         {downloadText}
         <ExternalLink className="w-3 h-3" />
@@ -400,7 +400,7 @@ function DriverInstallCard({
 function VerifyStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-zinc-600 dark:text-zinc-400 pt-0.5">{text}</p>

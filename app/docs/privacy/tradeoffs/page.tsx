@@ -23,7 +23,7 @@ export default function TradeoffsPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Shield className="w-4 h-4" />
           Privacy
         </div>
@@ -241,22 +241,22 @@ export default function TradeoffsPage() {
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               <tr>
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Simplicity</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Better</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Better</td>
                 <td className="px-4 py-3 text-zinc-500 text-xs">More complex</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Privacy</td>
                 <td className="px-4 py-3 text-zinc-500 text-xs">None</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Better</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Better</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Accounting</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Easier</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Easier</td>
                 <td className="px-4 py-3 text-zinc-500 text-xs">Requires wallet</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 text-zinc-900 dark:text-white">Consolidation</td>
-                <td className="px-4 py-3 text-green-600 dark:text-green-400 text-xs">Not needed</td>
+                <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Not needed</td>
                 <td className="px-4 py-3 text-zinc-500 text-xs">Sometimes needed</td>
               </tr>
             </tbody>
@@ -265,7 +265,7 @@ export default function TradeoffsPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Ready to decide?
         </h3>
@@ -274,7 +274,7 @@ export default function TradeoffsPage() {
         </p>
         <Link 
           href="/docs/privacy/enabling"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Configure Privacy Mode
           <ArrowRight className="w-4 h-4" />
@@ -296,11 +296,11 @@ function ComparisonCard({ icon, title, pros, cons }: { icon: React.ReactNode; ti
       </div>
       <div className="space-y-3">
         <div>
-          <p className="text-xs text-green-600 dark:text-green-400 font-medium mb-1">Pros</p>
+          <p className="text-xs text-accent-600 dark:text-accent-dark-400 font-medium mb-1">Pros</p>
           <ul className="space-y-1">
             {pros.map((pro, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400">
-                <span className="text-green-500">+</span>
+                <span className="text-accent-500 dark:text-accent-dark-500">+</span>
                 {pro}
               </li>
             ))}
@@ -354,7 +354,7 @@ function RecommendationCard({ scenario, recommendation, reason }: { scenario: st
           <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{scenario}</h4>
           <p className="text-sm text-zinc-500">{reason}</p>
         </div>
-        <div className={`px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${isOn ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
+        <div className={`px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${isOn ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
           {recommendation}
         </div>
       </div>

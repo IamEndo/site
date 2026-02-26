@@ -84,7 +84,7 @@ export function Comparison() {
                   {row.aspect}
                 </div>
                 <div className="px-4 md:px-6 py-4 text-sm text-neutral-900 dark:text-white border-l border-neutral-200 dark:border-neutral-800 flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-600 dark:text-green-500 flex-shrink-0 hidden sm:block" />
+                  <Check className="w-4 h-4 text-accent-600 dark:text-accent-dark-500 flex-shrink-0 hidden sm:block" />
                   <span>{row.paydeck}</span>
                 </div>
                 <div className="px-4 md:px-6 py-4 text-sm text-neutral-500 border-l border-neutral-200 dark:border-neutral-800 flex items-center gap-2">

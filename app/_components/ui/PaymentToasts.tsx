@@ -57,8 +57,8 @@ export function PaymentToasts() {
           className="absolute flex items-center gap-2.5 px-4 py-2.5 bg-neutral-950/85 dark:bg-neutral-900/85 backdrop-blur-lg border border-neutral-200/10 dark:border-neutral-700/50 rounded-lg text-sm whitespace-nowrap animate-toast-float max-w-[220px]"
           style={{ left: `${toast.left}%`, top: `${toast.top}%`, maxWidth: 'calc(100% - 2rem)' }}
         >
-          <div className="w-7 h-7 rounded-full bg-green-500/15 flex items-center justify-center flex-shrink-0">
-            <Check className="w-3.5 h-3.5 text-green-500" />
+          <div className="w-7 h-7 rounded-full bg-accent-500/15 dark:bg-accent-dark-500/15 flex items-center justify-center flex-shrink-0">
+            <Check className="w-3.5 h-3.5 text-accent-500 dark:text-accent-dark-500" />
           </div>
           <div>
             <div className="font-semibold text-white font-mono text-[0.82rem]">

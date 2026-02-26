@@ -20,7 +20,7 @@ export default function DerivationPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Shield className="w-4 h-4" />
           Privacy
         </div>
@@ -97,7 +97,7 @@ export default function DerivationPage() {
         </p>
 
         <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
-          <code className="text-green-400 font-mono text-lg">m/44'/29223'/0'/0/n</code>
+          <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-lg">m/44'/29223'/0'/0/n</code>
         </div>
 
         <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">
@@ -197,9 +197,9 @@ export default function DerivationPage() {
 
         <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
           <div className="space-y-2 font-mono text-sm">
-            <p className="text-zinc-600 dark:text-zinc-400">Invoice 1 → m/44'/29223'/0'/0/<span className="text-green-500">0</span></p>
-            <p className="text-zinc-600 dark:text-zinc-400">Invoice 2 → m/44'/29223'/0'/0/<span className="text-green-500">1</span></p>
-            <p className="text-zinc-600 dark:text-zinc-400">Invoice 3 → m/44'/29223'/0'/0/<span className="text-green-500">2</span></p>
+            <p className="text-zinc-600 dark:text-zinc-400">Invoice 1 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">0</span></p>
+            <p className="text-zinc-600 dark:text-zinc-400">Invoice 2 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">1</span></p>
+            <p className="text-zinc-600 dark:text-zinc-400">Invoice 3 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">2</span></p>
             <p className="text-zinc-500">... and so on</p>
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function DerivationPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Consider the tradeoffs
         </h3>
@@ -246,7 +246,7 @@ export default function DerivationPage() {
         </p>
         <Link 
           href="/docs/privacy/tradeoffs"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Privacy Tradeoffs
           <ArrowRight className="w-4 h-4" />
@@ -277,7 +277,7 @@ function BIPCard({ number, title, description }: { number: string; title: string
 function ProcessCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center flex-shrink-0">
+      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
         {icon}
       </div>
       <div>
@@ -291,9 +291,9 @@ function ProcessCard({ icon, title, description }: { icon: React.ReactNode; titl
 // Component: Benefit Card
 function BenefitCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-      <h4 className="font-medium text-green-700 dark:text-green-300 mb-1">{title}</h4>
-      <p className="text-sm text-green-800 dark:text-green-300">{description}</p>
+    <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+      <h4 className="font-medium text-accent-700 dark:text-accent-dark-300 mb-1">{title}</h4>
+      <p className="text-sm text-accent-800 dark:text-accent-dark-300">{description}</p>
     </div>
   );
 }

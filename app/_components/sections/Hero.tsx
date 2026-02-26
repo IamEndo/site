@@ -20,8 +20,6 @@ const osConfig: Record<OS, { label: string; prompt: string }> = {
   windows: { label: "Windows", prompt: "PS>" },
 };
 
-const ACCENT_GREEN = "#22c55e";
-
 type LineType =
   | { type: "comment"; text: string; hasPrompt?: boolean }
   | { type: "cmd"; cmd: string; args: string }
@@ -64,7 +62,7 @@ function Terminal() {
           <div className="flex gap-1.5">
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500" />
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500" />
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500" />
+            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-accent-500 dark:bg-accent-dark-500" />
           </div>
           <span className="text-[10px] sm:text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
             Quick Start
@@ -94,9 +92,10 @@ function Terminal() {
           onClick={handleCopy}
           className={cn(
             "absolute top-2 sm:top-3 right-2 sm:right-3 p-1 sm:p-1.5 rounded-sm transition-all z-10",
-            "text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            copied 
+              ? "text-accent-500 dark:text-accent-dark-400"
+              : "text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
           )}
-          style={copied ? { color: ACCENT_GREEN } : undefined}
           aria-label="Copy commands to clipboard"
         >
           {copied ? (
@@ -129,7 +128,7 @@ function Terminal() {
                 {line.type === "cmd" && (
                   <>
                     <span>{"   "}</span>
-                    <span style={{ color: ACCENT_GREEN }}>{line.cmd}</span>
+                    <span className="text-accent-500 dark:text-accent-dark-400">{line.cmd}</span>
                     <span className="text-neutral-700 dark:text-neutral-300">{line.args}</span>
                   </>
                 )}
@@ -148,13 +147,23 @@ export function Hero() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 -z-20" />
 
-      {/* Subtle green radial glow */}
+      {/* Subtle accent radial glow - light mode (green) */}
       <div
-        className="absolute inset-0 -z-[15] pointer-events-none"
+        className="absolute inset-0 -z-[15] pointer-events-none dark:hidden"
         style={{
           background: [
-            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(34,197,94,0.04), transparent)",
-            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(34,197,94,0.025), transparent)",
+            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(115,160,82,0.06), transparent)",
+            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(115,160,82,0.04), transparent)",
+          ].join(", "),
+        }}
+      />
+      {/* Subtle accent radial glow - dark mode (purple) */}
+      <div
+        className="absolute inset-0 -z-[15] pointer-events-none hidden dark:block"
+        style={{
+          background: [
+            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(140,95,173,0.06), transparent)",
+            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(140,95,173,0.04), transparent)",
           ].join(", "),
         }}
       />
@@ -176,8 +185,8 @@ export function Hero() {
           <div className="space-y-5 sm:space-y-6">
             {/* Version badge */}
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-green-500/10 dark:bg-green-500/15 text-green-600 dark:text-green-400 border border-green-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse-dot" />
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-accent-500/10 dark:bg-accent-dark-500/15 text-accent-600 dark:text-accent-dark-400 border border-accent-500/20 dark:border-accent-dark-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-500 dark:bg-accent-dark-500 animate-pulse-dot" />
                 Available &middot; v0.3.0
               </span>
             </div>
@@ -233,8 +242,10 @@ export function Hero() {
             className="h-[260px] sm:h-[320px] md:h-[360px] lg:h-[400px] w-full min-w-0 animate-hero-in opacity-0 relative"
             style={{ animationDelay: "350ms" }}
           >
-            {/* Glow behind terminal */}
-            <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.05),transparent_70%)]" />
+            {/* Glow behind terminal - light mode (green) */}
+            <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in bg-[radial-gradient(ellipse_at_center,rgba(115,160,82,0.08),transparent_70%)] dark:hidden" />
+            {/* Glow behind terminal - dark mode (purple) */}
+            <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in hidden dark:block bg-[radial-gradient(ellipse_at_center,rgba(140,95,173,0.08),transparent_70%)]" />
             <Terminal />
           </div>
         </div>

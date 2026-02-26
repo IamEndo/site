@@ -26,7 +26,7 @@ export default function SeedGenerationPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Wallet
         </div>
@@ -74,27 +74,27 @@ export default function SeedGenerationPage() {
         </p>
 
         <div className="grid sm:grid-cols-2 gap-3 mb-4">
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-            <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+            <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
               <strong>WiFi disabled</strong> during seed creation
             </p>
           </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-            <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+            <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
               <strong>No computer required</strong> - any USB power works
             </p>
           </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-            <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+            <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
               <strong>Seed erased</strong> before network reconnects
             </p>
           </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-            <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-green-800 dark:text-green-300">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+            <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-accent-800 dark:text-accent-dark-300">
               <strong>Watch-only</strong> - no private keys stored
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function SeedGenerationPage() {
                 <p className="text-xs text-zinc-500 mb-1">
                   <strong>Pro tip:</strong> Use dice! Divide screen into 6 zones, roll before each tap, tap in that zone.
                 </p>
-                <Link href="/docs/wallet/entropy" className="text-xs text-green-600 dark:text-green-400 hover:underline">Learn more about entropy and dice method →</Link>
+                <Link href="/docs/wallet/entropy" className="text-xs text-accent-600 dark:text-accent-dark-400 hover:underline">Learn more about entropy and dice method →</Link>
               </div>
             </div>
           </Step>
@@ -215,11 +215,11 @@ export default function SeedGenerationPage() {
             description="Your 12-word seed phrase appears on screen. Write each word carefully, numbered 1-12."
           >
             <div className="mt-3 grid sm:grid-cols-2 gap-3">
-              <div className="p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-                <p className="text-xs font-medium text-green-700 dark:text-green-300 mb-2 flex items-center gap-1">
+              <div className="p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+                <p className="text-xs font-medium text-accent-700 dark:text-accent-dark-300 mb-2 flex items-center gap-1">
                   <CheckCircle2 className="w-3 h-3" /> Do
                 </p>
-                <ul className="space-y-1 text-xs text-green-800 dark:text-green-300">
+                <ul className="space-y-1 text-xs text-accent-800 dark:text-accent-dark-300">
                   <li>• Use pen (not pencil)</li>
                   <li>• Write clearly and legibly</li>
                   <li>• Double-check each word</li>
@@ -257,8 +257,8 @@ export default function SeedGenerationPage() {
             title="Setup Complete"
             description="PayDeck derives your public keys (xPub), then immediately erases the seed from memory. Your device is now ready."
           >
-            <div className="mt-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
-              <p className="text-xs text-green-800 dark:text-green-300">
+            <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
+              <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                 <strong>What's stored:</strong> Only your xPub (public keys for address generation). 
                 Private keys and seed phrase are <strong>never</strong> stored on the device.
               </p>
@@ -336,7 +336,7 @@ export default function SeedGenerationPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Already have a seed phrase?
         </h3>
@@ -346,7 +346,7 @@ export default function SeedGenerationPage() {
         <div className="flex flex-wrap gap-3">
           <Link 
             href="/docs/wallet/import-seed"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Import Seed
             <ArrowRight className="w-4 h-4" />
@@ -367,7 +367,7 @@ export default function SeedGenerationPage() {
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400">
         {icon}
       </div>
       <p className="text-xs text-zinc-500 mb-1">{label}</p>
@@ -393,7 +393,7 @@ function PrepareCard({ icon, title, description }: { icon: React.ReactNode; titl
 function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">
@@ -408,15 +408,15 @@ function Step({ number, title, description, children }: { number: number; title:
 // Component: Storage Card
 function StorageCard({ title, items, good }: { title: string; items: string[]; good: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${good ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
-      <h4 className={`font-medium mb-3 flex items-center gap-2 ${good ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+    <div className={`p-4 rounded-lg border ${good ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
+      <h4 className={`font-medium mb-3 flex items-center gap-2 ${good ? 'text-accent-700 dark:text-accent-dark-300' : 'text-red-700 dark:text-red-300'}`}>
         {good ? <CheckCircle2 className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
         {title}
       </h4>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className={`flex items-start gap-2 text-sm ${good ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
-            <span className={good ? 'text-green-500' : 'text-red-500'}>•</span>
+          <li key={i} className={`flex items-start gap-2 text-sm ${good ? 'text-accent-800 dark:text-accent-dark-300' : 'text-red-800 dark:text-red-300'}`}>
+            <span className={good ? 'text-accent-500 dark:text-accent-dark-500' : 'text-red-500'}>•</span>
             {item}
           </li>
         ))}
@@ -428,7 +428,7 @@ function StorageCard({ title, items, good }: { title: string; items: string[]; g
 // Component: Recovery Option
 function RecoveryOption({ title, description, href }: { title: string; description: string; href: string }) {
   const content = (
-    <div className="flex items-center justify-between gap-4 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-green-300 dark:hover:border-green-700 transition-colors">
+    <div className="flex items-center justify-between gap-4 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <div>
         <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
         <p className="text-sm text-zinc-500">{description}</p>

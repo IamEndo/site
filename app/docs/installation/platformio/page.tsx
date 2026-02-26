@@ -23,7 +23,7 @@ export default function PlatformIOPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Download className="w-4 h-4" />
           Installation
         </div>
@@ -190,12 +190,12 @@ export default function PlatformIOPage() {
           <VerifyStep number={5} text="Confirm 'Espressif 32' appears in the list" />
         </div>
 
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+        <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
           <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-medium text-green-900 dark:text-green-200 mb-1">Success</div>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success</div>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 If Espressif 32 is listed under Installed platforms, PlatformIO is ready for ESP32 development.
               </p>
             </div>
@@ -259,7 +259,7 @@ export default function PlatformIOPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           PlatformIO ready?
         </h3>
@@ -268,7 +268,7 @@ export default function PlatformIOPage() {
         </p>
         <Link 
           href="/docs/installation/usb-drivers"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           USB Drivers
           <ArrowRight className="w-4 h-4" />
@@ -282,7 +282,7 @@ export default function PlatformIOPage() {
 function InstallStep({ number, title, description }: { number: number; title: string; description: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
@@ -297,7 +297,7 @@ function InstallStep({ number, title, description }: { number: number; title: st
 function ReadyIndicator({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+      <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
         {icon}
       </div>
       <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
@@ -309,7 +309,7 @@ function ReadyIndicator({ icon, text }: { icon: React.ReactNode; text: string })
 function VerifyStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-zinc-600 dark:text-zinc-400 pt-0.5">{text}</p>

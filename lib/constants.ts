@@ -6,6 +6,7 @@ export const SITE = {
   url: "https://paydeck.org",
   telegram: "https://t.me/paydeckproject",
   gitlab: "https://gitlab.com/IamEndo/paydeck",
+  x: "https://x.com/PayDeckProject",
   email: "info@paydeck.org",
 } as const;
 

@@ -72,6 +72,17 @@ export function Footer() {
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </li>
+                <li>
+                  <a
+                    href={SITE.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors inline-flex items-center gap-1"
+                  >
+                    X
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

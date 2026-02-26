@@ -21,7 +21,7 @@ export default function ConfirmationPage() {
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
           <Wallet className="w-4 h-4" />
           Usage
         </div>
@@ -40,12 +40,12 @@ export default function ConfirmationPage() {
           Nexa Instant Transactions
         </h2>
         
-        <div className="p-5 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 mb-6">
+        <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800 mb-6">
           <div className="flex gap-3">
-            <Zap className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <Zap className="w-6 h-6 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2">0-conf with Double-Spend Proofs</h4>
-              <p className="text-sm text-green-800 dark:text-green-300">
+              <h4 className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">0-conf with Double-Spend Proofs</h4>
+              <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 Nexa uses double-spend proofs to secure transactions before they're included 
                 in a block. When PayDeck shows "Payment Received", the transaction is protected 
                 against double-spending and safe to accept for most retail transactions.
@@ -194,7 +194,7 @@ export default function ConfirmationPage() {
       </section>
 
       {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border border-green-200 dark:border-green-800">
+      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
           Having issues?
         </h3>
@@ -203,7 +203,7 @@ export default function ConfirmationPage() {
         </p>
         <Link 
           href="/docs/maintenance/troubleshooting"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Troubleshooting
           <ArrowRight className="w-4 h-4" />
@@ -217,7 +217,7 @@ export default function ConfirmationPage() {
 function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="text-green-500 flex-shrink-0">
+      <div className="text-accent-500 dark:text-accent-dark-500 flex-shrink-0">
         {icon}
       </div>
       <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
@@ -240,7 +240,7 @@ function ProcessStep({ number, text }: { number: number; text: string }) {
 // Component: Card
 function Card({ title, items, color }: { title: string; items: string[]; color: 'green' | 'amber' }) {
   const colors = {
-    green: 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20',
+    green: 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20',
     amber: 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20'
   };
 
@@ -263,17 +263,22 @@ function Card({ title, items, color }: { title: string; items: string[]; color: 
 function StateCard({ state, description, color }: { state: string; description: string; color: 'blue' | 'green' }) {
   const colors = {
     blue: 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20',
-    green: 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20'
+    green: 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20'
   };
 
   const iconColors = {
     blue: 'text-blue-600 dark:text-blue-400',
-    green: 'text-green-600 dark:text-green-400'
+    green: 'text-accent-600 dark:text-accent-dark-400'
+  };
+
+  const dotColors = {
+    blue: 'bg-blue-500',
+    green: 'bg-accent-500 dark:bg-accent-dark-500'
   };
 
   return (
     <div className={`flex items-center gap-3 p-4 rounded-lg border ${colors[color]}`}>
-      <div className="w-3 h-3 rounded-full bg-current flex-shrink-0" style={{ color: color === 'blue' ? '#3b82f6' : '#22c55e' }} />
+      <div className={`w-3 h-3 rounded-full flex-shrink-0 ${dotColors[color]}`} />
       <div>
         <span className={`font-medium ${iconColors[color]}`}>{state}</span>
         <span className="text-zinc-500"> - {description}</span>
