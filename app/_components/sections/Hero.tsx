@@ -187,7 +187,7 @@ export function Hero() {
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-accent-500/10 dark:bg-accent-dark-500/15 text-accent-600 dark:text-accent-dark-400 border border-accent-500/20 dark:border-accent-dark-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-500 dark:bg-accent-dark-500 animate-pulse-dot" />
-                Available &middot; v0.3.0
+                Available &middot; v0.4.0
               </span>
             </div>
 

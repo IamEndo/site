@@ -128,7 +128,7 @@ export default function SpecificationsPage() {
               <SpecRow label="Language" value="C/C++17" />
               <SpecRow label="Framework" value="ESP-IDF / Arduino" />
               <SpecRow label="Build System" value="PlatformIO" />
-              <SpecRow label="Graphics" value="LVGL" />
+              <SpecRow label="Graphics" value="TFT_eSPI (custom theme system)" />
               <SpecRow label="Crypto" value="mbedTLS" />
               <SpecRow label="Storage" value="NVS (Non-Volatile Storage)" />
             </tbody>

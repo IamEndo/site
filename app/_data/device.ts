@@ -7,7 +7,7 @@ export const device = {
     { label: "Display", value: '2.8" TFT touchscreen' },
     { label: "Resolution", value: "320×240 pixels" },
     { label: "Connectivity", value: "WiFi + USB-C" },
-    { label: "Graphics", value: "ST7789 / LVGL" },
+    { label: "Graphics", value: "ST7789 / TFT_eSPI" },
   ],
   highlights: [
     "Compact form factor",
