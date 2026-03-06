@@ -292,7 +292,7 @@ export default function HardwarePage() {
             title="3D Print Your Own"
             description="Download STL files from the repository and print at home or use a local print service."
             linkText="Download STL files"
-            linkHref="https://gitlab.com/nicetokno/paydeck/-/tree/main/enclosure"
+            linkHref="https://gitlab.com/IamEndo/paydeck/-/tree/main/enclosure"
             external={true}
           />
           <EnclosureOption 

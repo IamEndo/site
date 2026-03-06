@@ -248,8 +248,8 @@ export default function DocsPage() {
               <p>If you run into issues or have questions:</p>
               <ul className="list-disc list-inside space-y-1 ml-1">
                 <li>Check the <Link href="/docs/maintenance/troubleshooting" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Troubleshooting</Link> guide</li>
-                <li>Open an issue on <a href="https://gitlab.com/nicetokno/paydeck" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">GitLab</a></li>
-                <li>Join the <a href="https://t.me/nicetokno" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Telegram community</a> for real-time help</li>
+                <li>Open an issue on <a href="https://gitlab.com/IamEndo/paydeck" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">GitLab</a></li>
+                <li>Join the <a href="https://t.me/paydeckproject" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Telegram community</a> for real-time help</li>
               </ul>
             </div>
           </div>
