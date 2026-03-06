@@ -262,7 +262,7 @@ export default function DocsPage() {
           Ready to get started?
         </h3>
         <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-          Begin with the hardware requirements to see what you'll need.
+          Begin with the hardware requirements to see what you need.
         </p>
         <Link 
           href="/docs/getting-started/hardware"
