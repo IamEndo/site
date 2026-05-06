@@ -1,25 +1,35 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { device } from "@/app/_data/device";
 import { Button } from "../ui/Button";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { ArrowUpRight, Check } from "lucide-react";
-import Image from "next/image";
+
+const Board3D = dynamic(
+  () => import("../ui/Board3D").then((m) => m.Board3D),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-xs">
+        Loading board…
+      </div>
+    ),
+  }
+);
 
 export function Device() {
   return (
     <section id="device" className="py-24 md:py-32 bg-neutral-50 dark:bg-neutral-900/50">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left - Device image */}
+          {/* Left - Interactive 3D board */}
           <ScrollReveal className="order-2 lg:order-1">
             <div className="relative aspect-video bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 rounded-sm overflow-hidden">
-              <Image
-                src="/images/esp32-device.png"
-                alt={device.name}
-                fill
-                className="object-contain"
-              />
+              <Board3D />
+              <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-500 dark:text-neutral-400 select-none pointer-events-none">
+                drag to rotate
+              </p>
             </div>
           </ScrollReveal>
 

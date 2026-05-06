@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
-const SCALE = 0.013;
+const SCALE = 0.011;
 const mm = (n: number) => n * SCALE;
 
 const COLOR = {
