@@ -214,8 +214,14 @@ export function Hero() {
               <Button asChild size="lg">
                 <a href="#device">View hardware</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <a href="#how">How it works</a>
+              <Button asChild size="lg">
+                <a
+                  href="/docs/install/web-flasher"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Install software
+                </a>
               </Button>
             </div>
 
