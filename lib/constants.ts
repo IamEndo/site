@@ -14,7 +14,7 @@ export const NAV_LINKS = [
   { href: "#features", label: "Features" },
   { href: "#device", label: "Hardware" },
   { href: "/docs/install/web-flasher", label: "Install" },
-  { href: "#how", label: "Install software" },
+  { href: "#how", label: "How it works" },
   { href: "#faq", label: "FAQ" },
   { href: "/docs", label: "Docs" },
 ] as const;
