@@ -1,0 +1,14 @@
+{
+  "name": "PayDeck (Secure - PERMANENT)",
+  "version": "0.4.0",
+  "new_install_prompt_erase": true,
+  "new_install_improv_wait_time": 0,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "paydeck-v0.4.0-secure-prod-merged.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

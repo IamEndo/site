@@ -19,7 +19,13 @@ export const docsNavigation: NavSection[] = [
     ],
   },
   {
-    title: 'Installation',
+    title: 'Install',
+    items: [
+      { title: 'Web Flasher', href: '/docs/install/web-flasher' },
+    ],
+  },
+  {
+    title: 'Manual Guide',
     items: [
       { title: 'Installing VS Code', href: '/docs/installation/vscode' },
       { title: 'Installing PlatformIO', href: '/docs/installation/platformio' },
