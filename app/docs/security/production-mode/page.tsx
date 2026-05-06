@@ -293,13 +293,13 @@ export default function ProductionModePage() {
       <ul>
         <li>Physical side-channel attacks (power analysis, electromagnetic analysis)</li>
         <li>Sophisticated fault injection attacks</li>
-        <li>Attacks on the software itself (bugs in the firmware)</li>
+        <li>Attacks on the firmware itself (logic bugs)</li>
         <li>Social engineering attacks on the user</li>
       </ul>
 
       <p>
-        For most cryptocurrency applications, the greatest risks are user error and software 
-        vulnerabilities, not sophisticated hardware attacks. Evaluate your threat model before 
+        For most cryptocurrency applications, the greatest risks are user error and firmware
+        vulnerabilities, not sophisticated hardware attacks. Evaluate your threat model before
         deciding that production mode is necessary.
       </p>
     </DocsArticle>

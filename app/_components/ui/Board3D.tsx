@@ -332,34 +332,35 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
       );
     }
 
-    // ESP GPIO row → P1, P3, P4 connectors (top edge)
+    // ESP GPIO bottom row → P1/P3/P4 right-edge stack (z=-22)
     for (let i = 0; i < 10; i++) {
       const ox = ESP_X - ESP_W / 2 + 1 + i * 1.7;
+      const targetX = i < 4 ? 16 : i < 8 ? 8 : 1; // land near P1, P3, P4
       trace(
         [
-          [ox, 9],
-          [ox, 11 + i * 0.25],
-          [-20 + i * 1.6, 14 + i * 0.4],
-          [-32 + (i % 4) * 4, 20],
+          [ox, -9],
+          [ox, -11 - i * 0.2],
+          [targetX, -16 - (i % 4) * 0.3],
+          [targetX + (i % 4 - 1.5) * 1.2, -20.5],
         ],
         0.36
       );
     }
-    // ESP → CN1 (I2C)
+    // ESP top row → CN1 (4-pin I2C) at bottom-left
     for (let i = 0; i < 4; i++) {
       const ox = ESP_X - ESP_W / 2 + 4 + i * 2;
       trace(
         [
-          [ox, -9],
-          [ox, -11],
-          [-2 + i * 1.5, -16 - i * 0.3],
-          [-10 - 1.5 + i * 1, -22],
+          [ox, 9],
+          [ox, 12 + i * 0.4],
+          [-15 - i * 2, 16 + i * 0.2],
+          [-34 + (i - 1.5) * 1.2, 20.5],
         ],
         0.4
       );
     }
 
-    // ESP → audio amp → speaker conn P4
+    // ESP → audio amp → speaker conn P4 (now at right edge, x≈+1)
     trace(
       [
         [10, -9],
@@ -371,18 +372,18 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     trace(
       [
         [-22, -8],
-        [-10, -2],
-        [-3, 18],
-        [-1, 20],
+        [-12, -8],
+        [-2, -14],
+        [0, -20],
       ],
       0.5
     );
     trace(
       [
         [-22, -10],
-        [-10, -4],
-        [-3, 18],
-        [1, 20],
+        [-10, -10],
+        [0, -16],
+        [2, -20],
       ],
       0.5
     );
@@ -406,30 +407,6 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
       );
     }
 
-    // Local random short stubs to fill empty space (look "alive")
-    for (let i = 0; i < 80; i++) {
-      const sx = (prng(i + 11) * 2 - 1) * 38;
-      const sz = (prng(i + 33) * 2 - 1) * 22;
-      // skip ESP body
-      if (Math.abs(sx - ESP_X) < ESP_W / 2 - 1 && Math.abs(sz) < ESP_H / 2 - 1)
-        continue;
-      const len = 1 + prng(i + 77) * 4;
-      const angle =
-        prng(i + 55) > 0.5
-          ? prng(i + 99) * Math.PI * 2
-          : Math.round(prng(i + 99) * 4) * (Math.PI / 4);
-      const ex = sx + Math.cos(angle) * len;
-      const ez = sz + Math.sin(angle) * len * 0.7;
-      trace(
-        [
-          [sx, sz],
-          [ex, ez],
-        ],
-        0.3 + prng(i + 7) * 0.15,
-        prng(i + 22) > 0.5 ? COLOR.pcbCopper : COLOR.pcbDeep
-      );
-    }
-
     // ── Layer 4: vias (dark dots with thin gold annulus) ───────────
     const placeVia = (x: number, z: number, r = 0.16) => {
       ctx.fillStyle = COLOR.via;
@@ -446,32 +423,44 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
       ctx.fill();
     };
 
-    // Scattered vias
-    for (let i = 0; i < 280; i++) {
+    // Sparser scattered vias — avoid components and the ESP module
+    const isInsideComponent = (x: number, z: number) => {
+      // ESP module body
+      if (Math.abs(x - ESP_X) < ESP_W / 2 + 0.5 && Math.abs(z) < ESP_H / 2 + 0.5)
+        return true;
+      // CH340
+      if (Math.abs(x - 30) < 6 && Math.abs(z - 18) < 2.6) return true;
+      // AMS1117 #1
+      if (Math.abs(x - 21) < 4 && Math.abs(z - 18) < 2.2) return true;
+      // AMS1117 #2
+      if (Math.abs(x - 17) < 4 && Math.abs(z - 14) < 2.2) return true;
+      // XPT2046
+      if (Math.abs(x - 14) < 3 && Math.abs(z - 14) < 2.7) return true;
+      // MicroSD
+      if (Math.abs(x - 6) < 7.5 && Math.abs(z + 17) < 8) return true;
+      // Audio amp
+      if (Math.abs(x + 22) < 2 && Math.abs(z + 10) < 2) return true;
+      // RGB LED
+      if (Math.abs(x - 8) < 3 && Math.abs(z + 9) < 3) return true;
+      // Mounting holes
+      if (Math.abs(Math.abs(x) - 39) < 3 && Math.abs(Math.abs(z) - 21.25) < 3)
+        return true;
+      return false;
+    };
+
+    for (let i = 0; i < 130; i++) {
       const r1 = prng(i + 5);
       const r2 = prng(i + 137);
       const x = (r1 * 2 - 1) * (PCB_W / 2 - 4);
       const z = (r2 * 2 - 1) * (PCB_H / 2 - 4);
-      if (Math.abs(x - ESP_X) < ESP_W / 2 - 0.5 && Math.abs(z) < ESP_H / 2 - 0.5)
-        continue;
-      // skip near mounting holes
-      if (
-        (Math.abs(x) > 35 && Math.abs(z) > 18) ||
-        Math.abs(x - 39) < 2 ||
-        Math.abs(x + 39) < 2
-      )
-        continue;
-      placeVia(x, z, 0.1 + r1 * 0.07);
+      if (isInsideComponent(x, z)) continue;
+      placeVia(x, z, 0.1 + r1 * 0.05);
     }
 
-    // GND stitching vias along board perimeter
-    for (let xi = -38; xi <= 38; xi += 3) {
-      placeVia(xi, 23, 0.13);
-      placeVia(xi, -23, 0.13);
-    }
-    for (let zi = -22; zi <= 22; zi += 3) {
-      placeVia(-41, zi, 0.13);
-      placeVia(41, zi, 0.13);
+    // GND stitching vias along board perimeter (thinner band)
+    for (let xi = -36; xi <= 36; xi += 4) {
+      placeVia(xi, 23.5, 0.12);
+      placeVia(xi, -23.5, 0.12);
     }
 
     // ── Layer 5: gold pads at component pin positions ──────────────
@@ -729,10 +718,11 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     desig("BOOT", 33, 19.5, 0.5);
     desig("RST", 33, 11, 0.5);
 
-    desig("P1", -34, 19, 0.55);
-    desig("P3", -25, 19, 0.55);
-    desig("P4", 0, 19, 0.5);
-    desig("CN1", -10, -19, 0.55);
+    // 3 stacked on right (-Z) edge per photo, 1 on bottom-left
+    desig("P1", 16, -18.5, 0.55);
+    desig("P3", 8, -18.5, 0.55);
+    desig("P4", 1, -18.5, 0.45);
+    desig("CN1", -34, 18.5, 0.55);
 
     [3, 0, -3, -6, -10].forEach((z, i) => desig(`S${i + 1}`, -32, z + 0.9, 0.42));
     [12, 9, 6].forEach((z, i) => desig(`RT${i + 1}`, 12.5, z + 0.7, 0.42));
@@ -789,19 +779,23 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     ctx.font = `${PX * 0.42}px ui-monospace, monospace`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    // P1 (UART) — right-edge stack, top
     ["GND", "RX", "TX", "VIN"].forEach((l, i) =>
+      ctx.fillText(l, cx(16 + (i - 1.5) * 1.25), cy(-20.5))
+    );
+    // P3 (Extension) — right-edge stack, middle
+    ["3V3", "IO21", "IO22", "GND"].forEach((l, i) =>
+      ctx.fillText(l, cx(8 + (i - 1.5) * 1.25), cy(-20.5))
+    );
+    // P4 (Speaker, 2-pin) — right-edge stack, bottom
+    ["SPK+", "SPK−"].forEach((l, i) =>
+      ctx.fillText(l, cx(1 + (i - 0.5) * 1.25), cy(-20.5))
+    );
+    // CN1 (I2C) — bottom-left near USB
+    ["GND", "IO22", "IO27", "3V3"].forEach((l, i) =>
       ctx.fillText(l, cx(-34 + (i - 1.5) * 1.25), cy(20.5))
     );
-    ["3V3", "IO21", "IO22", "GND"].forEach((l, i) =>
-      ctx.fillText(l, cx(-25 + (i - 1.5) * 1.25), cy(20.5))
-    );
-    ["GND", "IO22", "IO27", "3V3"].forEach((l, i) =>
-      ctx.fillText(l, cx(-10 + (i - 1.5) * 1.25), cy(-20.5))
-    );
-    ["SPK+", "SPK−"].forEach((l, i) =>
-      ctx.fillText(l, cx((i - 0.5) * 1.25), cy(20.5))
-    );
-    desig("SPEAK", 0, 17.5, 0.4);
+    desig("SPEAK", 1, -17, 0.4);
 
     // Polarity dot near ESP pin 1
     ctx.fillStyle = COLOR.silk;
@@ -1134,20 +1128,6 @@ function Board() {
           metalness={0}
         />
       </mesh>
-      {/* very faint reflection sheen across the top of the dark screen */}
-      <mesh
-        position={[0, mm(TFT_TOP_Y + 0.06), mm(SCR_H * 0.25)]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        <planeGeometry args={[mm(SCR_W * 0.9), mm(SCR_H * 0.18)]} />
-        <meshStandardMaterial
-          color="#ffffff"
-          transparent
-          opacity={0.04}
-          roughness={0.2}
-        />
-      </mesh>
-
       {/* TFT FFC ribbon — exits −X edge of display, folds onto PCB */}
       <mesh
         position={[
@@ -1360,11 +1340,12 @@ function Board() {
         <meshStandardMaterial color={COLOR.ic} roughness={0.85} />
       </mesh>
 
-      {/* JST-PH 1.25 mm connectors */}
-      <JstConnector x={-34} z={22} pins={4} facing="z+" />
-      <JstConnector x={-25} z={22} pins={4} facing="z+" />
-      <JstConnector x={-10} z={-22} pins={4} facing="z-" />
-      <JstConnector x={0} z={22} pins={2} facing="z+" />
+      {/* JST-PH 1.25 mm connectors — 3 stacked on -Z right edge per photo,
+          1 on +Z bottom-left near USB */}
+      <JstConnector x={16} z={-22} pins={4} facing="z-" /> {/* P1 UART */}
+      <JstConnector x={8} z={-22} pins={4} facing="z-" />  {/* P3 GPIO */}
+      <JstConnector x={1} z={-22} pins={2} facing="z-" />  {/* P4 Speaker */}
+      <JstConnector x={-34} z={22} pins={4} facing="z+" /> {/* CN1 I2C */}
 
       {/* JP0/JP3 solder jumper pad pairs (small bumps over canvas pads) */}
       {[

@@ -12,7 +12,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Technical Specifications',
-  description: 'Hardware and software specifications for PayDeck.',
+  description: 'Hardware and firmware specifications for PayDeck.',
 };
 
 export default function SpecificationsPage() {
@@ -28,7 +28,7 @@ export default function SpecificationsPage() {
           Technical Specifications
         </h1>
         <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          Hardware and software specifications for PayDeck.
+          Hardware and firmware specifications for PayDeck.
         </p>
       </div>
 
@@ -115,11 +115,11 @@ export default function SpecificationsPage() {
         </div>
       </section>
 
-      {/* Software */}
+      {/* Firmware */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
           <Code className="w-6 h-6 text-zinc-400" />
-          Software
+          Firmware
         </h2>
         
         <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">

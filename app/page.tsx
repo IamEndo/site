@@ -53,7 +53,7 @@ const webPageJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "PayDeck - Open Source Cryptocurrency Point of Sale",
-  description: "Accept Nexa cryptocurrency payments instantly with open source, non-custodial POS software.",
+  description: "Accept Nexa cryptocurrency payments instantly with open source, non-custodial POS firmware.",
   url: "https://paydeck.org",
   mainEntity: {
     "@type": "SoftwareApplication",

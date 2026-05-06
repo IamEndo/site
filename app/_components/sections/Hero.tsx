@@ -100,7 +100,7 @@ export function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Install software
+                  Install firmware
                 </a>
               </Button>
             </div>
