@@ -22,7 +22,7 @@ export function RotatingText() {
   const phraseIdx = useRef(0);
   const charIdx = useRef(0);
   const deleting = useRef(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     function tick() {

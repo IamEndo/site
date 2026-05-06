@@ -1,140 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Button } from "../ui/Button";
 import { RotatingText } from "../ui/RotatingText";
 import { PaymentToasts } from "../ui/PaymentToasts";
-import { ArrowDown, Check, Copy, CheckCheck } from "lucide-react";
-import { cn } from "@/lib/cn";
+import { ArrowDown, Check } from "lucide-react";
 
-type OS = "linux" | "macos" | "windows";
+const Device3D = dynamic(
+  () => import("../ui/Device3D").then((m) => m.Device3D),
+  { ssr: false, loading: () => <DeviceFallback /> }
+);
 
-const commandsOnly = "https://paydeck.org/docs/install/web-flasher";
-
-const osConfig: Record<OS, { label: string; prompt: string }> = {
-  linux: { label: "Linux", prompt: "~$" },
-  macos: { label: "macOS", prompt: "~%" },
-  windows: { label: "Windows", prompt: "PS>" },
-};
-
-type LineType =
-  | { type: "comment"; text: string; hasPrompt?: boolean }
-  | { type: "cmd"; cmd: string; args: string }
-  | { type: "blank" };
-
-const terminalLines: LineType[] = [
-  { type: "comment", text: "## What you need", hasPrompt: true },
-  { type: "comment", text: "## ESP32 CYD board ($10)" },
-  { type: "comment", text: "## USB-C data cable" },
-  { type: "comment", text: "## Chrome or Edge browser" },
-  { type: "blank" },
-  { type: "comment", text: "## Open in your browser" },
-  { type: "blank" },
-  { type: "cmd", cmd: "→", args: " paydeck.org/docs/install/web-flasher" },
-  { type: "blank" },
-  { type: "comment", text: "## Then" },
-  { type: "blank" },
-  { type: "comment", text: "## 1. Plug in via USB" },
-  { type: "comment", text: "## 2. Hold BOOT, click Connect" },
-  { type: "comment", text: "## 3. Pick the USB port" },
-  { type: "comment", text: "## 4. Wait ~2 minutes" },
-  { type: "blank" },
-  { type: "comment", text: "## Done. No CLI, no IDE." },
-];
-
-function Terminal() {
-  const [activeOS, setActiveOS] = useState<OS>("linux");
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(commandsOnly);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+function DeviceFallback() {
   return (
-    <div className="w-full h-full flex flex-col overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-800 shadow-2xl shadow-black/20 dark:shadow-black/50">
-      {/* Header */}
-      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-neutral-100 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800 flex-shrink-0">
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          <div className="flex gap-1.5">
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500" />
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500" />
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-accent-500 dark:bg-accent-dark-500" />
-          </div>
-          <span className="text-[10px] sm:text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
-            Quick Start
-          </span>
-        </div>
-        <div className="flex gap-0.5">
-          {(["linux", "macos", "windows"] as OS[]).map((os) => (
-            <button
-              key={os}
-              onClick={() => setActiveOS(os)}
-              className={cn(
-                "px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-medium rounded-sm transition-colors",
-                activeOS === os
-                  ? "bg-neutral-300 dark:bg-neutral-700 text-neutral-900 dark:text-white"
-                  : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300"
-              )}
-            >
-              {osConfig[os].label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="relative bg-white dark:bg-neutral-950 rounded-b-sm flex-1 min-h-0">
-        <button
-          onClick={handleCopy}
-          className={cn(
-            "absolute top-2 sm:top-3 right-2 sm:right-3 p-1 sm:p-1.5 rounded-sm transition-all z-10",
-            copied 
-              ? "text-accent-500 dark:text-accent-dark-400"
-              : "text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-          )}
-          aria-label="Copy commands to clipboard"
-        >
-          {copied ? (
-            <CheckCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          ) : (
-            <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          )}
-        </button>
-
-        <div className="overflow-auto h-full">
-          <div className="p-3 sm:p-4 sm:pt-5 pr-8 sm:pr-10 font-mono text-[10px] sm:text-xs leading-relaxed">
-            {terminalLines.map((line, i) => (
-              <div
-                key={i}
-                className="animate-line-in opacity-0"
-                style={{ animationDelay: `${600 + i * 80}ms` }}
-              >
-                {line.type === "blank" && <br />}
-                {line.type === "comment" && (
-                  <span className="text-neutral-400 dark:text-neutral-600">
-                    {line.hasPrompt && (
-                      <span className="text-neutral-500 dark:text-neutral-500">
-                        {osConfig[activeOS].prompt}{" "}
-                      </span>
-                    )}
-                    {!line.hasPrompt && "   "}
-                    {line.text}
-                  </span>
-                )}
-                {line.type === "cmd" && (
-                  <>
-                    <span>{"   "}</span>
-                    <span className="text-accent-500 dark:text-accent-dark-400">{line.cmd}</span>
-                    <span className="text-neutral-700 dark:text-neutral-300">{line.args}</span>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="w-full h-full flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-xs">
+      Loading device…
     </div>
   );
 }
@@ -241,16 +121,19 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right column — terminal */}
+          {/* Right column — interactive 3D device */}
           <div
-            className="h-[260px] sm:h-[320px] md:h-[360px] lg:h-[400px] w-full min-w-0 animate-hero-in opacity-0 relative"
+            className="h-[300px] sm:h-[360px] md:h-[420px] lg:h-[460px] w-full min-w-0 animate-hero-in opacity-0 relative"
             style={{ animationDelay: "350ms" }}
           >
-            {/* Glow behind terminal - light mode (green) */}
+            {/* Glow behind device - light mode (green) */}
             <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in bg-[radial-gradient(ellipse_at_center,rgba(115,160,82,0.08),transparent_70%)] dark:hidden" />
-            {/* Glow behind terminal - dark mode (purple) */}
+            {/* Glow behind device - dark mode (purple) */}
             <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in hidden dark:block bg-[radial-gradient(ellipse_at_center,rgba(140,95,173,0.08),transparent_70%)]" />
-            <Terminal />
+            <Device3D />
+            <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-400 dark:text-neutral-600 select-none pointer-events-none">
+              drag to rotate
+            </p>
           </div>
         </div>
 
