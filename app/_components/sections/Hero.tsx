@@ -9,10 +9,7 @@ import { cn } from "@/lib/cn";
 
 type OS = "linux" | "macos" | "windows";
 
-const commandsOnly = `git clone https://gitlab.com/IamEndo/paydeck.git
-cd paydeck
-pio run -t upload -e esp32dev-hspi-st7789-2v8
-pio device monitor -b 115200`;
+const commandsOnly = "https://paydeck.org/docs/install/web-flasher";
 
 const osConfig: Record<OS, { label: string; prompt: string }> = {
   linux: { label: "Linux", prompt: "~$" },
@@ -26,22 +23,23 @@ type LineType =
   | { type: "blank" };
 
 const terminalLines: LineType[] = [
-  { type: "comment", text: "## Requirements", hasPrompt: true },
-  { type: "comment", text: "## VSC and PlatformIO or Arduino IDE" },
-  { type: "comment", text: "## USB cable and drivers (CP210x/CH340)" },
+  { type: "comment", text: "## What you need", hasPrompt: true },
+  { type: "comment", text: "## ESP32 CYD board ($10)" },
+  { type: "comment", text: "## USB-C data cable" },
+  { type: "comment", text: "## Chrome or Edge browser" },
   { type: "blank" },
-  { type: "comment", text: "## Clone repository" },
+  { type: "comment", text: "## Open in your browser" },
   { type: "blank" },
-  { type: "cmd", cmd: "git", args: " clone https://gitlab.com/IamEndo/paydeck.git" },
-  { type: "cmd", cmd: "cd", args: " paydeck" },
+  { type: "cmd", cmd: "→", args: " paydeck.org/docs/install/web-flasher" },
   { type: "blank" },
-  { type: "comment", text: "## Build and upload" },
+  { type: "comment", text: "## Then" },
   { type: "blank" },
-  { type: "cmd", cmd: "pio", args: " run -t upload -e esp32dev-hspi-st7789-2v8" },
+  { type: "comment", text: "## 1. Plug in via USB" },
+  { type: "comment", text: "## 2. Hold BOOT, click Connect" },
+  { type: "comment", text: "## 3. Pick the USB port" },
+  { type: "comment", text: "## 4. Wait ~2 minutes" },
   { type: "blank" },
-  { type: "comment", text: "## Monitor serial output" },
-  { type: "blank" },
-  { type: "cmd", cmd: "pio", args: " device monitor -b 115200" },
+  { type: "comment", text: "## Done. No CLI, no IDE." },
 ];
 
 function Terminal() {
@@ -217,7 +215,7 @@ export function Hero() {
                 <a href="#device">View hardware</a>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="#how">How it works</a>
+                <a href="#how">Install software</a>
               </Button>
             </div>
 

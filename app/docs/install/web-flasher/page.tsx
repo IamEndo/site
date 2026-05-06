@@ -48,7 +48,7 @@ export default function WebFlasherPage() {
         </h1>
         <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
           Plug in your ESP32 via USB, click a button, and the latest PayDeck
-          firmware will install in about a minute.
+          firmware will install in about two minutes.
         </p>
       </div>
 
@@ -106,7 +106,7 @@ export default function WebFlasherPage() {
           />
           <Step
             n={5}
-            title="Wait roughly 60 seconds"
+            title="Wait roughly two minutes"
             body="The flasher writes the bootloader, partition table, and application image, then verifies. Don't unplug the device or close the tab."
           />
           <Step
