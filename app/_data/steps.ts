@@ -7,7 +7,7 @@ export const steps = [
   {
     number: "02",
     title: "Flash the firmware",
-    description: "Plug in via USB and click Install in your browser. The web flasher writes the latest firmware in about two minutes — no IDE required.",
+    description: "Plug in via USB and click Install in your browser.",
   },
   {
     number: "03",

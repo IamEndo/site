@@ -214,7 +214,7 @@ export function Hero() {
               <Button asChild size="lg">
                 <a href="#device">View hardware</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild size="lg">
                 <a href="#how">Install software</a>
               </Button>
             </div>
