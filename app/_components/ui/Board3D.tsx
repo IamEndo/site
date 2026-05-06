@@ -1545,8 +1545,10 @@ export function Board3D() {
       <pointLight position={[2, 4, 4]} intensity={0.3} />
 
       <AutoOrbit enabled={!interacted}>
-        <group rotation={[-0.35, 0.4, 0]}>
-          <Board />
+        <group rotation={[0.18, 0, 0]}>
+          <group rotation={[0, 0, Math.PI / 2]}>
+            <Board />
+          </group>
         </group>
       </AutoOrbit>
 
