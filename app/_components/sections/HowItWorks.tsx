@@ -30,7 +30,7 @@ export function HowItWorks() {
                 )}
 
                 {/* Step number */}
-                <div className="text-5xl md:text-6xl font-bold text-neutral-100 dark:text-neutral-900 mb-4 group-hover:text-neutral-200 dark:group-hover:text-neutral-800 transition-colors">
+                <div className="text-5xl md:text-6xl font-bold text-neutral-100 dark:text-neutral-900 mb-4 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
                   {step.number}
                 </div>
 
