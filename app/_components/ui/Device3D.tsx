@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
-const SCALE = 0.011;
+const SCALE = 0.009;
 const mm = (n: number) => n * SCALE;
 
 const COLOR = {
@@ -486,7 +486,7 @@ export function Device3D() {
 
   return (
     <Canvas
-      camera={{ position: [0.7, 0.25, 1.7], fov: 32 }}
+      camera={{ position: [0.85, 0.3, 2.0], fov: 32 }}
       gl={{
         antialias: true,
         alpha: true,
