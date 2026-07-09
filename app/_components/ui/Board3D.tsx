@@ -118,9 +118,9 @@ const COLOR = {
   pcbCopperGnd: "#a8801c",
   // Traces: the core reads only slightly darker than the mask; the EDGE
   // is what stands out (dark outline) on the real board
-  pcbCopperTrace: "#b8901a",
-  pcbCopperPwr: "#a9820f",
-  pcbTraceEdge: "rgba(60, 48, 6, 0.4)",
+  pcbCopperTrace: "#b28c14",
+  pcbCopperPwr: "#a68110",
+  pcbTraceEdge: "rgba(95, 72, 8, 0.45)",
   pcbVia: "#3a280a",
   pcbGndShade: "rgba(140, 100, 12, 0.17)",
   pcbHighShade: "rgba(245, 218, 110, 0.08)",
@@ -165,7 +165,7 @@ const COLOR = {
   foam: "#dccfba",
   silk: "#f7f2e2",
   silkSoft: "rgba(244, 236, 214, 0.85)",
-  silkDark: "rgba(82, 70, 34, 0.9)", // etched-dark silk (board name, front label)
+  silkDark: "rgba(68, 58, 24, 1)", // etched-dark silk (board name, front label)
   rubber: "#0f0f12",
   ldrBody: "#2a2a30",
   smdYellow: "#b09265",
@@ -186,7 +186,7 @@ const COLOR = {
 //   4. gold pads at component pin positions
 //   5. silkscreen (outlines + designators + labels)
 // ─────────────────────────────────────────────────────────────────────
-function usePcbBackComposite(): THREE.CanvasTexture | null {
+export function usePcbBackComposite(): THREE.CanvasTexture | null {
   return React.useMemo(() => {
     if (typeof document === "undefined") return null;
 
@@ -212,25 +212,28 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     // ── Layer 0: solder mask base ────────────────────────────────────
     const baseGrad = ctx.createLinearGradient(0, 0, W, H);
     baseGrad.addColorStop(0, COLOR.pcb);
-    baseGrad.addColorStop(0.55, COLOR.pcb);
-    baseGrad.addColorStop(1, COLOR.pcbDeep);
+    baseGrad.addColorStop(0.6, COLOR.pcb);
+    baseGrad.addColorStop(1, "#c8930f");
     ctx.fillStyle = baseGrad;
     ctx.fillRect(0, 0, W, H);
 
-    ctx.fillStyle = COLOR.pcbGndShade;
-    ctx.fillRect(0, 0, W, H);
-
-    // ── Layer 1: organic copper pour (GND fill) ──────────────────────
+    // ── Layer 1: very subtle tonal variation ─────────────────────────
+    // The real mask is an EVEN bright yellow; only faint copper-density
+    // shading shows through. (An earlier heavy blotch pass darkened the
+    // mask below the trace colour and inverted the trace contrast.)
     ctx.save();
-    for (let i = 0; i < 240; i++) {
+    for (let i = 0; i < 70; i++) {
       const r = prng(i + 13);
       const r2 = prng(i + 97);
       const r3 = prng(i + 211);
       const x = (r * 2 - 1) * (PCB_W / 2 - 2);
       const z = (r2 * 2 - 1) * (PCB_H / 2 - 2);
-      const rad = PX * (3 + r3 * 7);
+      const rad = PX * (4 + r3 * 8);
       const grad = ctx.createRadialGradient(cx(x), cy(z), 0, cx(x), cy(z), rad);
-      const shade = i % 3 === 0 ? COLOR.pcbHighShade : COLOR.pcbGndShade;
+      const shade =
+        i % 3 === 0
+          ? "rgba(245, 218, 110, 0.045)"
+          : "rgba(150, 108, 14, 0.05)";
       grad.addColorStop(0, shade);
       grad.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = grad;
@@ -290,7 +293,7 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.strokeStyle = COLOR.pcbTraceEdge;
-      ctx.lineWidth = PX * (width + 0.22);
+      ctx.lineWidth = PX * (width + 0.14);
       path();
       ctx.stroke();
       ctx.strokeStyle = color;
@@ -333,242 +336,137 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
       [-42, 22], [-32, 22], [-32, 17], [-36, 12], [-42, 12],
     ]);
 
-    // 5V: USB-C + micro-USB → LDO pair (U7/U1) near the USB edge
-    trace(
-      [
-        [-42, POS.usbc.z],
-        [-32, 3],
-        [POS.u1.x - 3, POS.u1.z],
-      ],
-      1.1,
-      COLOR.pcbCopperPwr
-    );
-    trace(
-      [
-        [-42, POS.musb.z],
-        [-34, -4],
-        [-32, 3],
-      ],
-      0.9,
-      COLOR.pcbCopperPwr
-    );
-    trace(
-      [
-        [POS.p1.x + 2, POS.p1.z],
-        [-34, 10],
-        [-32, 3],
-      ],
-      0.8,
-      COLOR.pcbCopperPwr
-    );
-    // 3V3 out of the LDOs → ESP module + CH340
-    trace(
-      [
-        [POS.u7.x + 3, POS.u7.z],
-        [-6, 8],
-        [10, 6],
-        [ESP.x - ESP.w / 2, 2],
-      ],
-      1.3,
-      COLOR.pcbCopperTrace
-    );
-    trace(
-      [
-        [POS.u1.x + 3, POS.u1.z],
-        [-8, -2],
-        [POS.u6.x + 3, POS.u6.z + 3],
-      ],
-      0.9,
-      COLOR.pcbCopperTrace
-    );
-    trace(
-      [
-        [-6, 8],
-        [8, 14],
-        [POS.ch340.x - 2, POS.ch340.z - 2],
-      ],
-      0.9,
-      COLOR.pcbCopperTrace
-    );
-    // GND rail along the board
-    trace(
-      [
-        [-40, -3],
-        [-15, -3],
-        [-15, -8],
-        [20, -8],
-      ],
-      1.0,
-      COLOR.pcbCopperPwr
-    );
+    // 45°-constrained polyline walker. Every real trace on this board
+    // runs at 0°/45°/90° — moves are [sx, sz, len] with sx/sz ∈ {-1,0,1};
+    // a diagonal move advances BOTH axes by len (so it renders at 45°).
+    const walk = (
+      x0: number,
+      z0: number,
+      moves: [number, number, number][],
+      w = 0.3,
+      color = COLOR.pcbCopperTrace
+    ) => {
+      const pts: [number, number][] = [[x0, z0]];
+      let x = x0;
+      let z = z0;
+      for (const [sx, sz, len] of moves) {
+        x += sx * len;
+        z += sz * len;
+        pts.push([x, z]);
+      }
+      trace(pts, w, color);
+    };
+    const espL = ESP.x - ESP.w / 2; // module inner (left) edge, x ≈ 18.5
 
-    // USB D+/D- → CH340 (the long run up the board's left side)
-    trace(
-      [
-        [-42, POS.usbc.z + 1],
-        [-30, 12],
-        [POS.ch340.x - 6, POS.ch340.z - 1],
-      ],
-      0.45
-    );
-    trace(
-      [
-        [-42, POS.usbc.z - 1],
-        [-29, 10.5],
-        [POS.ch340.x - 6, POS.ch340.z - 2],
-      ],
-      0.45
-    );
-    trace(
-      [
-        [-42, POS.musb.z + 1],
-        [-31, 8],
-        [-29, 10.5],
-      ],
-      0.4
-    );
+    // 5V: USB-C → LDO pair (U7/U1); micro-USB and P1 join the same rail
+    walk(-41.5, POS.usbc.z, [[1, 0, 5], [1, 1, 6], [1, 0, 1.9]], 1.0, COLOR.pcbCopperPwr);
+    walk(-30.5, 4.6, [[0, 1, 6.4], [1, 1, 2.1]], 0.9, COLOR.pcbCopperPwr);
+    walk(-41, POS.musb.z, [[1, 0, 3], [1, 1, 9.8]], 0.9, COLOR.pcbCopperPwr);
+    walk(POS.p1.x + 1.5, POS.p1.z, [[1, 0, 5], [1, -1, 4.2], [1, 0, 2]], 0.8, COLOR.pcbCopperPwr);
 
-    // CH340 TX/RX → ESP UART (short hop at the top-left)
-    trace(
-      [
-        [POS.ch340.x + 3, POS.ch340.z - 2.5],
-        [ESP.x - ESP.w / 2 - 2, 10],
-        [ESP.x - ESP.w / 2, 8],
-      ],
-      0.45
-    );
-    trace(
-      [
-        [POS.ch340.x + 1, POS.ch340.z - 2.5],
-        [ESP.x - ESP.w / 2 - 3, 8.5],
-        [ESP.x - ESP.w / 2, 6],
-      ],
-      0.45
-    );
+    // 3V3 out of U7 → ESP module (the widest run on the board)
+    walk(POS.u7.x + 2.9, POS.u7.z, [[1, -1, 5], [1, 0, 25], [1, -1, 3], [1, 0, 8]], 1.2, COLOR.pcbCopperPwr);
+    // 3V3 branch down to U6 (squeezes between the S1/S5 through-holes)
+    walk(POS.u1.x + 2.9, POS.u1.z, [[0, -1, 9.1], [1, -1, 1]], 0.8);
+    // 3V3 branch up to CH340
+    walk(10.5, 5.1, [[0, 1, 8], [1, 1, 3.5], [1, 0, 5], [0, 1, 2.3]], 0.7);
 
-    // ESP IO0 → BOOT, EN → RESET (inset top-left)
-    trace(
-      [
-        [ESP.x - 3, ESP.z + ESP.l / 2 - 2],
-        [POS.boot.x + 2, 16],
-        [POS.boot.x, POS.boot.z - 2],
-      ],
-      0.42
-    );
-    trace(
-      [
-        [ESP.x - 5, ESP.z + ESP.l / 2 - 3],
-        [POS.reset.x - 1, 15],
-        [POS.reset.x, POS.reset.z - 2],
-      ],
-      0.42
-    );
+    // GND rail along the board centre
+    walk(-40, -3, [[1, 0, 25], [0, -1, 5], [1, 0, 35]], 0.95, COLOR.pcbCopperPwr);
 
-    // ESP GPIO → TF card lanes
-    for (let i = 0; i < 6; i++) {
-      const oz = -4 - i * 1.4;
-      trace(
+    // USB D+/D− → CH340: the long differential pair up the left side
+    for (let i = 0; i < 2; i++) {
+      walk(
+        -41.5,
+        -0.6 - i * 0.7,
         [
-          [ESP.x - ESP.w / 2, oz],
-          [8 - i, oz - 2],
-          [POS.sd.x + 6 - i * 1.6, -8],
-          [POS.sd.x + 6 - i * 1.6, -11],
+          [1, 0, 8 + i * 0.7],
+          [1, 1, 14],
+          [1, 0, 30 - i * 1.4],
+          [1, 1, 3],
+          [1, 0, 6.3 - i * 1.3],
         ],
         0.4
       );
     }
+    // micro-USB D pair joins the same corridor
+    walk(-41, POS.musb.z + 0.9, [[1, 0, 2], [1, 1, 9.8]], 0.35);
+    walk(-41, POS.musb.z + 1.6, [[1, 0, 2.7], [1, 1, 9.8]], 0.35);
 
-    // ESP GPIO → LCD pads fan-out (long run down the board center —
-    // the display flex solders on the front, traces feed through)
-    for (let i = 0; i < 8; i++) {
-      const oz = 6 - i * 1.0;
-      trace(
-        [
-          [ESP.x - ESP.w / 2, oz],
-          [4 - i * 0.4, oz + 1],
-          [-22, (i - 4) * 0.7],
-          [-34, (i - 4) * 0.5],
-        ],
-        0.28
-      );
-    }
+    // CH340 TX/RX → ESP UART (straight drop onto the module edge)
+    walk(POS.ch340.x - 0.6, POS.ch340.z - 2.5, [[0, -1, 6.3]], 0.38);
+    walk(POS.ch340.x + 0.6, POS.ch340.z - 2.5, [[0, -1, 6.3]], 0.38);
 
-    // ESP → P3 / CN1 (Extended IO + I2C on the -Z edge)
-    for (let i = 0; i < 4; i++) {
-      trace(
-        [
-          [ESP.x - 2 - i * 1.6, ESP.z - ESP.l / 2],
-          [POS.p3.x + (i - 1.5) * 1.9, -17],
-          [POS.p3.x + (i - 1.5) * 1.9, -20],
-        ],
-        0.3
-      );
-      trace(
-        [
-          [ESP.x - ESP.w / 2, -8 - i * 0.8],
-          [POS.cn1.x + (i - 1.5) * 1.9, -16],
-          [POS.cn1.x + (i - 1.5) * 1.9, -20],
-        ],
-        0.28
-      );
-    }
+    // ESP IO0 → BOOT, EN → RESET (straight drops from the module edge)
+    walk(POS.boot.x, ESP.z + ESP.l / 2, [[0, 1, 7.6]], 0.38);
+    walk(POS.reset.x, ESP.z + ESP.l / 2, [[0, 1, 7.6]], 0.38);
 
-    // U6 → touch lanes + ESP
-    for (let i = 0; i < 4; i++) {
-      trace(
+    // ESP GPIO → TF card lanes (parallel bus with a 45° jog)
+    for (let i = 0; i < 6; i++) {
+      walk(
+        espL,
+        -1.8 - i * 0.9,
         [
-          [POS.u6.x + (i - 1.5) * 0.8, POS.u6.z - 2],
-          [POS.u6.x + (i - 1.5) * 2, -18],
-          [-38, -12 - i * 0.6],
-        ],
-        0.32
-      );
-      trace(
-        [
-          [POS.u6.x + 2, POS.u6.z + (i - 1.5) * 0.8],
-          [-8, -6 + i],
-          [ESP.x - ESP.w / 2, -4 - i],
+          [-1, 0, 10],
+          [-1, -1, 4],
+          [-1, 0, 6 - i * 0.9],
+          [0, -1, 3.5 - i * 0.25],
         ],
         0.34
       );
     }
 
-    // Amp → Speak connector
-    trace(
-      [
-        [POS.amp.x - 2.5, POS.amp.z + 1],
-        [POS.spk.x + 4, 20],
-        [POS.spk.x + 0.6, 22.5],
-      ],
-      0.5
-    );
-    trace(
-      [
-        [POS.amp.x - 2.5, POS.amp.z - 1],
-        [POS.spk.x + 5, 18.5],
-        [POS.spk.x - 0.6, 22.5],
-      ],
-      0.5
-    );
-    // ESP DAC → amp
-    trace(
-      [
-        [ESP.x - ESP.w / 2, 8],
-        [POS.amp.x + 4, 14],
-        [POS.amp.x + 2, POS.amp.z],
-      ],
-      0.45
-    );
-
-    // RGB LED lines from ESP
-    for (let i = 0; i < 3; i++) {
-      trace(
+    // ESP GPIO → LCD fan-out: a tidy parallel bus that runs down the
+    // board centre and dives into vias (feeds the front-side flex)
+    for (let i = 0; i < 8; i++) {
+      walk(
+        espL,
+        6.5 - i * 0.9,
         [
-          [ESP.x + 2 + i * 1.5, ESP.z - ESP.l / 2],
-          [POS.rgb.x + 4, POS.rgb.z + 1 - i * 1.2],
-          [POS.rgb.x + 2.8, POS.rgb.z + 1 - i * 1.2],
+          [-1, 0, 18 + i * 0.9],
+          [-1, -1, 5],
+          [-1, 0, 5 + i * 0.4],
         ],
-        0.36
+        0.3
+      );
+    }
+
+    // ESP → P3 (Extended IO, straight drops to the -Z edge)
+    for (let i = 0; i < 4; i++) {
+      const tx = POS.p3.x + (i - 1.5) * 1.9;
+      walk(tx, ESP.z - ESP.l / 2, [[0, -1, 10.4]], 0.32);
+    }
+    // ESP → CN1 (I2C — 45° drop from the module's lower-left corner)
+    for (let i = 0; i < 4; i++) {
+      const tx = POS.cn1.x + (i - 1.5) * 1.9;
+      const dxi = espL - tx;
+      walk(espL, -4.2 - i * 0.8, [[-1, -1, dxi], [0, -1, 15.8 - 4.2 - i * 0.8 - dxi + 4.2]], 0.3);
+    }
+
+    // U6 (touch) ↔ ESP + front-flex lanes
+    for (let i = 0; i < 4; i++) {
+      const zi = -9.3 + i * 1.2;
+      walk(POS.u6.x + 2.5, zi, [[1, 0, 8], [1, 1, 4], [1, 0, espL - (POS.u6.x + 2.5) - 12]], 0.3);
+      walk(POS.u6.x - 2.5, zi, [[-1, -1, 3], [-1, 0, 5], [-1, -1, 2 + i * 0.5]], 0.3);
+    }
+
+    // Amp → Speak connector (parallel pair along the +Z edge)
+    walk(POS.amp.x - 2.6, POS.amp.z + 0.8, [[-1, 0, 10], [-1, 1, 2], [-1, 0, 9]], 0.5);
+    walk(POS.amp.x - 2.6, POS.amp.z - 0.8, [[-1, 0, 9], [-1, 1, 3], [-1, 0, 10]], 0.5);
+    // ESP DAC → amp
+    walk(espL, 8.7, [[-1, 0, 3], [-1, 1, 4], [0, 1, 3.5]], 0.4);
+
+    // RGB LED lines from the ESP's bottom edge
+    for (let i = 0; i < 3; i++) {
+      walk(
+        19.5 + i * 1.5,
+        ESP.z - ESP.l / 2,
+        [
+          [0, -1, 1.5 + i * 0.7],
+          [-1, -1, 1.2],
+          [-1, 0, 4.2 + i * 1.5],
+        ],
+        0.34
       );
     }
 
@@ -632,17 +530,18 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     ];
     NET.forEach(([a, b, c2, d]) => route45(a, b, c2, d));
 
-    // A few short fan-out stubs for visual density
+    // A few short fan-out stubs for visual density — 45°-constrained
+    // like everything else on the board
     for (let i = 0; i < 8; i++) {
       const r = prng(i + 503);
       const r2 = prng(i + 829);
       const x = (r * 2 - 1) * 36;
       const z = (r2 * 2 - 1) * 20;
       const len = 1 + prng(i + 1101) * 2.5;
-      const angle = prng(i + 1303) * Math.PI;
-      const ex = x + Math.cos(angle) * len;
-      const ez = z + Math.sin(angle) * len;
-      trace([[x, z], [ex, ez]], 0.2 + prng(i + 91) * 0.08);
+      const dir = Math.floor(prng(i + 1303) * 8);
+      const sx = [1, 1, 0, -1, -1, -1, 0, 1][dir];
+      const sz = [0, 1, 1, 1, 0, -1, -1, -1][dir];
+      walk(x, z, [[sx, sz, len]], 0.2 + prng(i + 91) * 0.08);
     }
 
     // ── Layer 3: vias ────────────────────────────────────────────────
@@ -746,9 +645,9 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
         cx(xMm) + (w * PX) / 2,
         cy(zMm) + (h * PX) / 2
       );
-      grad.addColorStop(0, "#eceef0");
-      grad.addColorStop(0.5, "#c9ccd2");
-      grad.addColorStop(1, "#9fa3aa");
+      grad.addColorStop(0, "#dfe2e6");
+      grad.addColorStop(0.5, "#b8bcc2");
+      grad.addColorStop(1, "#8e9298");
       ctx.fillStyle = grad;
       ctx.fillRect(
         cx(xMm) - (w * PX) / 2,
@@ -825,13 +724,14 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
         PX * 3.2,
         PX * 3.2
       );
-      ctx.fillStyle = COLOR.tin;
+      // dull tinned annulus (photo: subdued ring, big dark hole)
+      ctx.fillStyle = "#a8abb0";
       ctx.beginPath();
       ctx.arc(cx(sx), cy(POS.s135.z), PX * 1.25, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = COLOR.hole;
       ctx.beginPath();
-      ctx.arc(cx(sx), cy(POS.s135.z), PX * 0.8, 0, Math.PI * 2);
+      ctx.arc(cx(sx), cy(POS.s135.z), PX * 0.9, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -1054,7 +954,7 @@ function usePcbBackComposite(): THREE.CanvasTexture | null {
     outline(POS.u7.x, POS.u7.z, 5.2, 4.0);
     outline(POS.u1.x, POS.u1.z, 5.2, 4.0);
     outline(POS.u4.x, POS.u4.z, 6.4, 5.2);
-    outline(POS.sd.x, POS.sd.z, 16, 16);
+    outline(POS.sd.x, POS.sd.z, 15.6, 15.2);
     outline(POS.rgb.x, POS.rgb.z, 5.8, 5.8);
     outline(POS.boot.x, POS.boot.z, 4.2, 6.6);
     outline(POS.reset.x, POS.reset.z, 4.2, 6.6);
@@ -1103,10 +1003,10 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
     // BRIGHT brushed-steel base with DARK laser-etched markings — the
     // photo shows a light metal can with dark text, not the inverse.
     const g = ctx.createLinearGradient(0, 0, W * 0.3, H);
-    g.addColorStop(0, "#b3b6bc");
-    g.addColorStop(0.45, "#a0a3a9");
-    g.addColorStop(0.75, "#aaadb3");
-    g.addColorStop(1, "#8e9197");
+    g.addColorStop(0, "#83868c");
+    g.addColorStop(0.35, "#a4a7ad");
+    g.addColorStop(0.6, "#8d9096");
+    g.addColorStop(1, "#6e7177");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
     // brushed streaks
@@ -1118,14 +1018,14 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
     }
     ctx.globalAlpha = 1;
     // stamped rim — subtle darker inset border + inner highlight
-    ctx.strokeStyle = "rgba(70, 73, 80, 0.5)";
-    ctx.lineWidth = W * 0.012;
+    ctx.strokeStyle = "rgba(70, 73, 80, 0.3)";
+    ctx.lineWidth = W * 0.01;
     ctx.strokeRect(W * 0.035, H * 0.035, W * 0.93, H * 0.93);
-    ctx.strokeStyle = "rgba(235, 238, 242, 0.5)";
-    ctx.lineWidth = W * 0.006;
+    ctx.strokeStyle = "rgba(225, 228, 232, 0.28)";
+    ctx.lineWidth = W * 0.005;
     ctx.strokeRect(W * 0.052, H * 0.052, W * 0.896, H * 0.896);
 
-    const etch = "#43464c";
+    const etch = "#54575e";
     ctx.fillStyle = etch;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -1146,12 +1046,12 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
     ctx.font = `700 ${W * 0.165}px ui-sans-serif, system-ui, sans-serif`;
     ctx.fillText("ESP-32", W * 0.56, H * 0.22);
 
-    // Small cert / FCC lines
-    ctx.font = `${W * 0.045}px ui-sans-serif, sans-serif`;
+    // Small cert / FCC lines — tiny on the real can, don't let them shout
+    ctx.font = `${W * 0.034}px ui-sans-serif, sans-serif`;
     ctx.fillText("FCC ID:2AC7Z-ESPWROOM32", W * 0.5, H * 0.40);
-    ctx.font = `${W * 0.04}px ui-sans-serif, sans-serif`;
-    ctx.fillText("IC:21098-ESPWROOM32", W * 0.5, H * 0.48);
-    ctx.fillText("CMIIT ID:2016DP5670", W * 0.5, H * 0.55);
+    ctx.font = `${W * 0.03}px ui-sans-serif, sans-serif`;
+    ctx.fillText("IC:21098-ESPWROOM32", W * 0.5, H * 0.465);
+    ctx.fillText("CMIIT ID:2016DP5670", W * 0.5, H * 0.525);
 
     // QR patch (bottom-RIGHT in the photo) — dark modules etched
     // straight into the metal (no white label behind the code)
@@ -1373,6 +1273,8 @@ function ICBlock({
   thick = 1.0,
   color = COLOR.ic,
   pinDot = true,
+  pins = 0,
+  pinAxis = "z",
 }: {
   x: number;
   z: number;
@@ -1381,9 +1283,46 @@ function ICBlock({
   thick?: number;
   color?: string;
   pinDot?: boolean;
+  /** gull-wing legs per side (0 = none); protrude off ±pinAxis */
+  pins?: number;
+  pinAxis?: "x" | "z";
 }) {
+  const legs: React.ReactNode[] = [];
+  if (pins > 0) {
+    const along = pinAxis === "z" ? w : h; // body extent the row runs along
+    const across = pinAxis === "z" ? h : w; // extent the legs stick out of
+    const rowSpan = along - 1.2;
+    for (let i = 0; i < pins; i++) {
+      const t = pins === 1 ? 0 : -rowSpan / 2 + (i * rowSpan) / (pins - 1);
+      for (const s of [-1, 1]) {
+        const off = s * (across / 2 + 0.35);
+        const lx = pinAxis === "z" ? x + t : x + off;
+        const lz = pinAxis === "z" ? z + off : z + t;
+        legs.push(
+          <mesh
+            key={`icleg-${pinAxis}-${i}-${s}`}
+            position={[mm(lx), mm(-(PCB_T / 2) - 0.22), mm(lz)]}
+          >
+            <boxGeometry
+              args={[
+                mm(pinAxis === "z" ? 0.38 : 0.7),
+                mm(0.3),
+                mm(pinAxis === "z" ? 0.7 : 0.38),
+              ]}
+            />
+            <meshStandardMaterial
+              color="#d4d7db"
+              roughness={0.32}
+              metalness={0.8}
+            />
+          </mesh>
+        );
+      }
+    }
+  }
   return (
     <group>
+      {legs}
       <mesh
         position={[mm(x), mm(-(PCB_T / 2) - thick / 2), mm(z)]}
         castShadow
@@ -1823,10 +1762,10 @@ function TactButton({ x, z }: { x: number; z: number }) {
       <mesh position={[0, mm(-(PCB_T / 2) - BH - 0.4), 0]} castShadow>
         <boxGeometry args={[mm(2.0), mm(0.8), mm(4.0)]} />
         <meshPhysicalMaterial
-          color="#e2e4e6"
-          roughness={0.32}
-          metalness={0.55}
-          envMapIntensity={0.8}
+          color="#d4d7db"
+          roughness={0.26}
+          metalness={0.8}
+          envMapIntensity={1.0}
           clearcoat={0.3}
         />
       </mesh>
@@ -1990,10 +1929,10 @@ function MicroSd({ x, z }: { x: number; z: number }) {
   const T = 1.9;
   const shellMat = (
     <meshPhysicalMaterial
-      color="#4e5157"
-      roughness={0.6}
-      metalness={0.6}
-      envMapIntensity={0.35}
+      color="#b6b9bd"
+      roughness={0.38}
+      metalness={0.85}
+      envMapIntensity={0.75}
     />
   );
   const brightMat = (
@@ -2006,8 +1945,8 @@ function MicroSd({ x, z }: { x: number; z: number }) {
   );
   return (
     <group>
-      {/* Shell — DARK gunmetal brushed steel (photo: mid-dark, nothing
-          like the near-white slab it was) */}
+      {/* Shell — light brushed stainless (macro photo re-check: the slot
+          reads clearly SILVER with warm reflections, not gunmetal) */}
       <mesh
         position={[mm(x), mm(-(PCB_T / 2) - T / 2), mm(z)]}
         castShadow
@@ -2027,10 +1966,10 @@ function MicroSd({ x, z }: { x: number; z: number }) {
       <mesh position={[mm(x), mm(-(PCB_T / 2) - T - 0.01), mm(z + 0.4)]}>
         <boxGeometry args={[mm(W - 0.4), mm(0.04), mm(D - 1.6)]} />
         <meshPhysicalMaterial
-          color="#585b61"
-          roughness={0.55}
-          metalness={0.65}
-          envMapIntensity={0.4}
+          color="#c2c5c9"
+          roughness={0.33}
+          metalness={0.85}
+          envMapIntensity={0.8}
         />
       </mesh>
       {/* Card-detect notch — stepped dark cutout at the mouth end of the
@@ -2144,8 +2083,8 @@ function EspWroom32() {
       >
         <boxGeometry args={[mm(ESP_ANT_LEN), mm(subT), mm(l)]} />
         <meshPhysicalMaterial
-          color="#0c0d10"
-          roughness={0.7}
+          color="#181a1e"
+          roughness={0.62}
           metalness={0.05}
           clearcoat={0}
         />
@@ -2161,13 +2100,13 @@ function EspWroom32() {
             position={[mm(cxp), mm(subY), mm(z + s * (l / 2 - 0.1))]}
           >
             <cylinderGeometry
-              args={[mm(0.32), mm(0.32), mm(subT + 0.06), 10]}
+              args={[mm(0.26), mm(0.26), mm(subT + 0.06), 10]}
             />
             <meshPhysicalMaterial
-              color="#dcdee2"
-              roughness={0.32}
-              metalness={0.8}
-              envMapIntensity={0.9}
+              color="#b9bcc2"
+              roughness={0.42}
+              metalness={0.75}
+              envMapIntensity={0.75}
             />
           </mesh>
         ));
@@ -2182,10 +2121,10 @@ function EspWroom32() {
       >
         <boxGeometry args={[mm(CAN_L), mm(CAN_T), mm(l - 1.6)]} />
         <meshPhysicalMaterial
-          color="#9a9ea6"
-          roughness={0.45}
-          metalness={0.5}
-          envMapIntensity={0.9}
+          color="#84888f"
+          roughness={0.42}
+          metalness={0.55}
+          envMapIntensity={0.85}
         />
       </mesh>
       {/* Can lid — carries the laser-etched markings texture */}
@@ -2200,66 +2139,71 @@ function EspWroom32() {
         <planeGeometry args={[mm(l - 2.0), mm(CAN_L - 0.4)]} />
         <meshPhysicalMaterial
           map={lidTex ?? undefined}
-          color="#ffffff"
-          roughness={0.48}
-          metalness={0.45}
+          color="#e4e4e6"
+          roughness={0.44}
+          metalness={0.5}
           envMapIntensity={0.8}
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* Meander antenna on the overhanging tab — a COMB of thick dark
-          fingers running along X off a spine at the shield end (photo:
-          chunky glossy pattern, clearly structured) */}
+      {/* Meander antenna on the overhanging tab — the classic WROOM
+          snake: fingers along X (the overhang direction) joined by
+          alternating tip/root bars. Slightly glossy metal over the
+          matte tab so the pattern reads at a glance like the photo. */}
       {(() => {
         const traceY = -(PCB_T / 2) - subT - 0.05;
         const antMat = (
           <meshPhysicalMaterial
-            color="#54565c"
-            roughness={0.45}
-            metalness={0.4}
-            envMapIntensity={0.5}
+            color="#4e5056"
+            roughness={0.32}
+            metalness={0.65}
+            envMapIntensity={0.7}
           />
         );
-        const fingerL = ESP_ANT_LEN - 2.2;
+        const FINGERS = 6;
+        const fw = 0.85; // finger width (Z)
+        const span = l - 4.2; // total comb span across the tab
+        const pitch = span / (FINGERS - 1);
+        const fingerL = ESP_ANT_LEN - 2.6;
         const parts: React.ReactNode[] = [];
-        // spine along Z at the shield end of the tab
-        parts.push(
-          <mesh key="ant-spine" position={[mm(antX0 + 0.9), mm(traceY), mm(z)]}>
-            <boxGeometry args={[mm(1.0), mm(0.06), mm(l - 4.5)]} />
-            {antMat}
-          </mesh>
-        );
-        // 4 thick fingers reaching toward the tab tip
-        for (let i = 0; i < 4; i++) {
-          const fz = z - (l - 6) / 2 + (i * (l - 6)) / 3;
+        for (let i = 0; i < FINGERS; i++) {
+          const fz = z - span / 2 + i * pitch;
           parts.push(
             <mesh
               key={`ant-f-${i}`}
-              position={[mm(antX0 + 1.4 + fingerL / 2), mm(traceY), mm(fz)]}
+              position={[mm(antX0 + 1.2 + fingerL / 2), mm(traceY), mm(fz)]}
             >
-              <boxGeometry args={[mm(fingerL), mm(0.06), mm(1.1)]} />
+              <boxGeometry args={[mm(fingerL), mm(0.07), mm(fw)]} />
               {antMat}
             </mesh>
           );
         }
-        // tip bar joining fingers 1-2 and 3-4 (meander closure)
-        for (let i = 0; i < 2; i++) {
-          const fz0 = z - (l - 6) / 2 + (i * 2 * (l - 6)) / 3;
+        // alternating joins: tip end for even pairs, root end for odd —
+        // this is what makes it read as a meander instead of a comb
+        for (let i = 0; i < FINGERS - 1; i++) {
+          const fz = z - span / 2 + i * pitch + pitch / 2;
+          const atTip = i % 2 === 0;
+          const jx = atTip
+            ? antX0 + 1.2 + fingerL - fw / 2
+            : antX0 + 1.2 + fw / 2;
           parts.push(
-            <mesh
-              key={`ant-t-${i}`}
-              position={[
-                mm(antX0 + 1.4 + fingerL - 0.55),
-                mm(traceY),
-                mm(fz0 + (l - 6) / 6),
-              ]}
-            >
-              <boxGeometry args={[mm(1.1), mm(0.06), mm((l - 6) / 3)]} />
+            <mesh key={`ant-j-${i}`} position={[mm(jx), mm(traceY), mm(fz)]}>
+              <boxGeometry args={[mm(fw), mm(0.07), mm(pitch + fw)]} />
               {antMat}
             </mesh>
           );
         }
+        // feed stub from the shield end into the first finger
+        parts.push(
+          <mesh
+            key="ant-feed"
+            position={[mm(antX0 + 0.5), mm(traceY), mm(z - span / 2)]}
+          >
+            <boxGeometry args={[mm(1.6), mm(0.07), mm(fw)]} />
+            {antMat}
+          </mesh>
+        );
         return parts;
       })()}
     </group>
@@ -2445,10 +2389,10 @@ export function Board() {
       >
         <boxGeometry args={[mm(TFT_W), mm(TFT_T), mm(TFT_H)]} />
         <meshPhysicalMaterial
-          color="#cdd1d6"
-          roughness={0.32}
+          color="#b2b6bc"
+          roughness={0.4}
           metalness={0.65}
-          envMapIntensity={1.05}
+          envMapIntensity={0.8}
         />
       </mesh>
 
@@ -2464,22 +2408,25 @@ export function Board() {
         />
       </mesh>
 
-      {/* Black border around active area */}
-      <mesh position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.06), 0]}>
+      {/* Black border around active area.
+          NOTE on the stack-up: every layer here gets ≥0.04mm of air above
+          the one below — coplanar faces z-fight (the film rim's top used
+          to sit exactly at the LCD plane's height → stripe flicker). */}
+      <mesh position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.05), 0]}>
         <boxGeometry args={[mm(SCR_W + 4), mm(0.04), mm(SCR_H + 4)]} />
         <meshStandardMaterial color={COLOR.bezel} roughness={0.6} metalness={0.05} />
       </mesh>
 
       {/* Resistive-film rim — the lighter grey border visible between
           the black bezel and the glass on the real module */}
-      <mesh position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.075), 0]}>
-        <boxGeometry args={[mm(SCR_W + 1.8), mm(0.03), mm(SCR_H + 1.8)]} />
-        <meshStandardMaterial color="#3f434b" roughness={0.45} metalness={0.15} />
+      <mesh position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.1), 0]}>
+        <boxGeometry args={[mm(SCR_W + 3.2), mm(0.04), mm(SCR_H + 3.2)]} />
+        <meshStandardMaterial color="#84888f" roughness={0.42} metalness={0.2} />
       </mesh>
 
       {/* Active LCD surface — powered-off grey-mirror, not pure black */}
       <mesh
-        position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.09), 0]}
+        position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.16), 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <planeGeometry args={[mm(SCR_W), mm(SCR_H)]} />
@@ -2495,7 +2442,7 @@ export function Board() {
       {/* Glass overlay — soft grey-mirror sheen like the resistive
           touch surface in the photo */}
       <mesh
-        position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.2), 0]}
+        position={[mm(TFT_CX), mm(TFT_TOP_Y + 0.24), 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <planeGeometry args={[mm(SCR_W + 1.4), mm(SCR_H + 1.4)]} />
@@ -2598,7 +2545,7 @@ export function Board() {
 
       {/* U3 — CH340 USB-to-UART SSOP-16: small body, long axis along X,
           pin rows off the ±Z sides (photo-verified orientation) */}
-      <ICBlock x={POS.ch340.x} z={POS.ch340.z} w={4.4} h={3.2} thick={1.2} />
+      <ICBlock x={POS.ch340.x} z={POS.ch340.z} w={4.4} h={3.2} thick={1.2} pins={8} pinAxis="z" />
       <SopPins x={POS.ch340.x} z={POS.ch340.z} count={8} span={4.4} offset={2.15} axis="x" />
 
       {/* U7 + U1 — SOT-223 LDO pair above the USB edge */}
@@ -2607,11 +2554,11 @@ export function Board() {
 
       {/* U6 — touch controller SOP-16 below the TF slot (photo: ~4×7mm
           body, noticeably smaller than the old 4×10) */}
-      <ICBlock x={POS.u6.x} z={POS.u6.z} w={4} h={7} thick={1.3} />
+      <ICBlock x={POS.u6.x} z={POS.u6.z} w={4} h={7} thick={1.3} pins={8} pinAxis="x" />
       <SopPins x={POS.u6.x} z={POS.u6.z} count={8} span={7} offset={2.55} axis="z" />
 
       {/* U5 — speaker amp SOP-8 */}
-      <ICBlock x={POS.amp.x} z={POS.amp.z} w={4.2} h={3.4} thick={1.2} />
+      <ICBlock x={POS.amp.x} z={POS.amp.z} w={4.2} h={3.4} thick={1.2} pins={4} pinAxis="z" />
       <SopPins x={POS.amp.x} z={POS.amp.z} count={4} span={4.2} offset={2.2} axis="x" />
 
       {/* MicroSD (TF) slot — flush with the -Z edge */}
@@ -2645,14 +2592,15 @@ export function Board() {
             side={THREE.DoubleSide}
           />
         </mesh>
-        {/* Dark clover — two crossing bars reading as 4 lobes */}
+        {/* Dark clover — two crossing bars reading as 4 lobes (photo:
+            olive-tinted through the phosphor, thinner than the window) */}
         <mesh position={[0, mm(-(PCB_T / 2) - 1.56), 0]}>
-          <boxGeometry args={[mm(0.85), mm(0.04), mm(2.9)]} />
-          <meshStandardMaterial color="#55565a" roughness={0.45} />
+          <boxGeometry args={[mm(0.7), mm(0.04), mm(2.7)]} />
+          <meshStandardMaterial color="#5f6459" roughness={0.5} />
         </mesh>
         <mesh position={[0, mm(-(PCB_T / 2) - 1.56), 0]}>
-          <boxGeometry args={[mm(2.9), mm(0.04), mm(0.85)]} />
-          <meshStandardMaterial color="#55565a" roughness={0.45} />
+          <boxGeometry args={[mm(2.7), mm(0.04), mm(0.7)]} />
+          <meshStandardMaterial color="#5f6459" roughness={0.5} />
         </mesh>
         {/* Three dark pads along each ±Z flank */}
         {[-1, 1].flatMap((s) =>
