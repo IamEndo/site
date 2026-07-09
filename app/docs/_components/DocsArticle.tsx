@@ -30,7 +30,7 @@ export function DocsArticle({ children }: DocsArticleProps) {
       )}
 
       {/* Content */}
-      <div className="prose prose-zinc dark:prose-invert max-w-none">
+      <div>
         {children}
       </div>
 

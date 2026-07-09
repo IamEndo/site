@@ -1,4 +1,4 @@
-import Script from "next/script";
+import type { Metadata } from "next";
 import { Header } from "./_components/layout/Header";
 import { Footer } from "./_components/layout/Footer";
 import { Hero } from "./_components/sections/Hero";
@@ -10,6 +10,12 @@ import { FAQ } from "./_components/sections/FAQ";
 import { faqs } from "./_data/faqs";
 import { device } from "./_data/device";
 import { steps } from "./_data/steps";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://paydeck.org",
+  },
+};
 
 // FAQ structured data for SEO
 const faqJsonLd = {
@@ -28,7 +34,7 @@ const productJsonLd = {
   "@type": "Product",
   name: device.name,
   description: `ESP32 based cryptocurrency payment terminal. ${device.specs.map((s) => `${s.label}: ${s.value}`).join(". ")}`,
-  brand: { "@type": "Brand", name: "ESP32" },
+  brand: { "@type": "Brand", name: "PayDeck" },
   url: "https://paydeck.org/#device",
   image: "https://paydeck.org/images/esp32-device.png",
 };
@@ -66,29 +72,21 @@ const webPageJsonLd = {
 export default function HomePage() {
   return (
     <>
-      {/* Structured data */}
-      <Script
-        id="faq-jsonld"
+      {/* Structured data — server-rendered so crawlers see it without JS */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <Script
-        id="product-jsonld"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      <Script
-        id="howto-jsonld"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
-      <Script
-        id="webpage-jsonld"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
 

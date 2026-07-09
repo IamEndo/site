@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 export default function ProductionModePage() {
   return (
     <DocsArticle>
+      <div className="prose prose-zinc dark:prose-invert max-w-none">
       <h1>Production Mode</h1>
       
       <div className="my-6 p-4 rounded-sm border-l-4 border-red-500 bg-red-50 dark:bg-red-950/30">
@@ -249,8 +250,8 @@ export default function ProductionModePage() {
           </p>
         </li>
         <li>
-          <strong>Build production firmware</strong>
-          <pre className="text-sm mt-2">pio run -e esp32dev-secure-prod</pre>
+          <strong>Build and flash production firmware</strong>
+          <pre className="text-sm mt-2">pio run -e esp32dev-secure-prod -t upload</pre>
         </li>
         <li>
           <strong>Flash with fresh device</strong>
@@ -302,6 +303,7 @@ export default function ProductionModePage() {
         vulnerabilities, not sophisticated hardware attacks. Evaluate your threat model before
         deciding that production mode is necessary.
       </p>
+      </div>
     </DocsArticle>
   );
 }

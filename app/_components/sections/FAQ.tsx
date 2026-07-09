@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { faqs } from "@/app/_data/faqs";
 import { Accordion } from "../ui/Accordion";
 import { Button } from "../ui/Button";
@@ -34,15 +35,10 @@ export function FAQ() {
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild variant="outline">
-                    <a
-                      href="/docs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="gap-2"
-                    >
+                    <Link href="/docs" className="gap-2">
                       Read the docs
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
+                      <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
                   </Button>
                   <Button asChild variant="outline">
                     <a

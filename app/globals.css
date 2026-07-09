@@ -1,5 +1,6 @@
 @config "../tailwind.config.ts";
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Theme color schemes */
 html.dark {
@@ -18,9 +19,11 @@ html:not(.dark) {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Smooth scrolling (only when motion is OK) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Selection styling */
@@ -134,6 +137,31 @@ button {
 /* Custom transition duration */
 .duration-600 {
   transition-duration: 600ms;
+}
+
+/* ========== Motion & no-JS fallbacks ========== */
+
+/* Reduced motion: show everything immediately, no movement */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-in,
+  .animate-glow-in,
+  .animate-line-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .animate-toast-float {
+    display: none;
+  }
+  .animate-bounce,
+  .animate-pulse-dot {
+    animation: none;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Scrollbar styling (optional, subtle) */

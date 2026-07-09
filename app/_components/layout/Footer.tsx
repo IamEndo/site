@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import Link from "next/link";
 import { SITE, NAV_LINKS } from "@/lib/constants";
 import { ArrowUpRight, Origami } from "lucide-react";
 
@@ -31,18 +31,23 @@ export function Footer() {
                 Navigation
               </h4>
               <ul className="space-y-3">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      target={link.href.startsWith('/docs') ? '_blank' : undefined}
-                      rel={link.href.startsWith('/docs') ? 'noopener noreferrer' : undefined}
-                      className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const cls =
+                    "text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors";
+                  return (
+                    <li key={link.href}>
+                      {link.href.startsWith("/") ? (
+                        <Link href={link.href} className={cls}>
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a href={link.href} className={cls}>
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div>

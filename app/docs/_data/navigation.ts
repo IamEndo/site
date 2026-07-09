@@ -77,14 +77,14 @@ export const docsNavigation: NavSection[] = [
     title: 'Usage',
     items: [
       { title: 'Receiving Payments', href: '/docs/usage/receiving' },
-      { title: 'Invoice Creation', href: '/docs/usage/invoices' },
+      { title: 'Payment Requests', href: '/docs/usage/invoices' },
       { title: 'Payment Confirmation', href: '/docs/usage/confirmation' },
     ],
   },
   {
     title: 'Maintenance',
     items: [
-      { title: 'Settings', href: '/docs/maintenance/settings' },
+      { title: 'Device Settings', href: '/docs/maintenance/settings' },
       { title: 'Factory Reset', href: '/docs/maintenance/factory-reset' },
       { title: 'Troubleshooting', href: '/docs/maintenance/troubleshooting' },
     ],

@@ -12,7 +12,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", asChild, children, ...props }, ref) => {
     const baseStyles = [
-      "inline-flex items-center justify-center gap-2 font-medium transition-all",
+      "inline-flex items-center justify-center gap-2 font-medium whitespace-nowrap transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
       "disabled:opacity-50 disabled:pointer-events-none",
       "rounded-sm", // Squared corners

@@ -1,7 +1,6 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
 
 const sansFont = Space_Grotesk({
   subsets: ["latin"],
@@ -53,9 +52,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://paydeck.org",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -93,6 +89,13 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -125,7 +128,7 @@ const softwareJsonLd = {
   description: "Open source point-of-sale firmware for accepting Nexa cryptocurrency payments",
   url: "https://paydeck.org",
   downloadUrl: "https://gitlab.com/IamEndo/paydeck",
-  softwareVersion: "1.0",
+  softwareVersion: "0.4.0",
   author: {
     "@type": "Organization",
     name: "PayDeck",
@@ -145,8 +148,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${sansFont.variable} ${monoFont.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: initTheme }} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <noscript>
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
       </head>
       <body
         suppressHydrationWarning
@@ -159,16 +163,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Script
-          id="org-jsonld"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script
-          id="software-jsonld"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
         />
         {children}

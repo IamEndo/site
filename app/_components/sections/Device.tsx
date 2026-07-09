@@ -80,7 +80,7 @@ export function Device() {
 
             {/* CTA */}
             <ScrollReveal delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-4">
                 <Button asChild size="lg">
                   <a
                     href={device.purchaseUrl}

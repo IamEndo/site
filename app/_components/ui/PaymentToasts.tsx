@@ -35,6 +35,9 @@ export function PaymentToasts() {
   }, []);
 
   useEffect(() => {
+    // Decorative only — skip entirely for users who prefer reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     // First toast after 3s
     const initial = setTimeout(createToast, 4500);
 

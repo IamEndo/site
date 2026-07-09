@@ -42,7 +42,7 @@ export default function DocsPage() {
       {/* Quick Info Cards */}
       <div className="grid sm:grid-cols-3 gap-4 mb-12">
         <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-          <div className="text-2xl font-bold text-zinc-900 dark:text-white">&lt;$15</div>
+          <div className="text-2xl font-bold text-zinc-900 dark:text-white">around $10</div>
           <div className="text-sm text-zinc-500">Hardware cost</div>
         </div>
         <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
@@ -339,7 +339,7 @@ function DocSection({ icon, title, description, href }: { icon: React.ReactNode;
         <h3 className="font-semibold text-zinc-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors">
           {title}
         </h3>
-        <ArrowRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-accent-500 dark:text-accent-dark-500 ml-auto transition-colors" />
+        <ArrowRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-accent-500 dark:group-hover:text-accent-dark-400 ml-auto transition-colors" />
       </div>
       <p className="text-sm text-zinc-500 dark:text-zinc-500">{description}</p>
     </Link>

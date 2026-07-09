@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 import { RotatingText } from "../ui/RotatingText";
 import { PaymentToasts } from "../ui/PaymentToasts";
@@ -94,14 +95,8 @@ export function Hero() {
               <Button asChild size="lg">
                 <a href="#device">View hardware</a>
               </Button>
-              <Button asChild size="lg">
-                <a
-                  href="/docs/install/web-flasher"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Install firmware
-                </a>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/docs/install/web-flasher">Install firmware</Link>
               </Button>
             </div>
 

@@ -5,13 +5,15 @@ import { cn } from "@/lib/cn";
 import { Plus, Minus } from "lucide-react";
 
 interface AccordionItemProps {
+  id: string;
   question: string;
   answer: string;
   isOpen?: boolean;
   onToggle?: () => void;
 }
 
-export function AccordionItem({ question, answer, isOpen = false, onToggle }: AccordionItemProps) {
+export function AccordionItem({ id, question, answer, isOpen = false, onToggle }: AccordionItemProps) {
+  const panelId = `faq-panel-${id}`;
   return (
     <div className="border-b border-neutral-200 dark:border-neutral-800">
       <button
@@ -23,15 +25,18 @@ export function AccordionItem({ question, answer, isOpen = false, onToggle }: Ac
           "transition-colors"
         )}
         aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className="font-medium pr-4">{question}</span>
-        <span className="flex-shrink-0 text-neutral-400">
+        <span className="flex-shrink-0 text-neutral-400" aria-hidden="true">
           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </span>
       </button>
       <div
+        id={panelId}
+        role="region"
         className={cn(
-          "overflow-hidden transition-all duration-200",
+          "overflow-hidden transition-all duration-200 motion-reduce:transition-none",
           isOpen ? "max-h-96 pb-5" : "max-h-0"
         )}
       >
@@ -56,6 +61,7 @@ export function Accordion({ items, className }: AccordionProps) {
       {items.map((item) => (
         <AccordionItem
           key={item.id}
+          id={item.id}
           question={item.question}
           answer={item.answer}
           isOpen={openId === item.id}

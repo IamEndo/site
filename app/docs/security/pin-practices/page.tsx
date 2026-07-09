@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
   Shield,
@@ -17,198 +18,200 @@ export const metadata: Metadata = {
 
 export default function PinPracticesPage() {
   return (
-    <div className="max-w-4xl">
-      {/* Hero Section */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
-          <Shield className="w-4 h-4" />
-          Security
+    <DocsArticle>
+      <div className="max-w-4xl">
+        {/* Hero Section */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+            <Shield className="w-4 h-4" />
+            Security
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+            PIN Best Practices
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Guidelines for choosing a secure PIN that's easy for you to remember 
+            but difficult for others to guess.
+          </p>
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
-          PIN Best Practices
-        </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          Guidelines for choosing a secure PIN that's easy for you to remember 
-          but difficult for others to guess.
-        </p>
-      </div>
 
-      {/* Good vs Bad PINs */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Choosing a Strong PIN
-        </h2>
+        {/* Good vs Bad PINs */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Choosing a Strong PIN
+          </h2>
         
-        <div className="grid sm:grid-cols-2 gap-4">
-          <PinCard 
-            title="Avoid These"
-            pins={[
-              { pin: "123456", reason: "Sequential numbers" },
-              { pin: "000000", reason: "Repeated digits" },
-              { pin: "111111", reason: "Repeated digits" },
-              { pin: "199019", reason: "Birth year pattern" },
-              { pin: "258025", reason: "Vertical keypad line" },
-              { pin: "121212", reason: "Simple pattern" }
-            ]}
-            good={false}
-          />
-          <PinCard 
-            title="Better Choices"
-            pins={[
-              { pin: "739248", reason: "Random, no pattern" },
-              { pin: "482619", reason: "No obvious meaning" },
-              { pin: "384759", reason: "Mixed, unpredictable" },
-              { pin: "926158", reason: "Unique combination" }
-            ]}
-            good={true}
-          />
-        </div>
-      </section>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <PinCard 
+              title="Avoid These"
+              pins={[
+                { pin: "123456", reason: "Sequential numbers" },
+                { pin: "000000", reason: "Repeated digits" },
+                { pin: "111111", reason: "Repeated digits" },
+                { pin: "199019", reason: "Birth year pattern" },
+                { pin: "258025", reason: "Vertical keypad line" },
+                { pin: "121212", reason: "Simple pattern" }
+              ]}
+              good={false}
+            />
+            <PinCard
+              title="Better Choices"
+              pins={[
+                { pin: "••••••", reason: "Six truly random digits" },
+                { pin: "••••••", reason: "From a dice roll or a password manager's generator" },
+                { pin: "••••••", reason: "No dates, patterns, or personal meaning" },
+                { pin: "••••••", reason: "Not reused from any other device" }
+              ]}
+              good={true}
+            />
+          </div>
+        </section>
 
-      {/* Common Mistakes */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Common Mistakes
-        </h2>
+        {/* Common Mistakes */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Common Mistakes
+          </h2>
         
-        <div className="space-y-3">
-          <MistakeItem 
-            mistake="Using your birth date"
-            why="Easily discovered from social media or documents"
-          />
-          <MistakeItem 
-            mistake="Using your phone number (or part of it)"
-            why="Often publicly available or known to others"
-          />
-          <MistakeItem 
-            mistake="Using keyboard patterns"
-            why="1234, 7890, 2580 are among the most common PINs"
-          />
-          <MistakeItem 
-            mistake="Using the same PIN everywhere"
-            why="One breach exposes all your devices"
-          />
-          <MistakeItem 
-            mistake="Writing it on the device"
-            why="Defeats the purpose entirely"
-          />
-        </div>
-      </section>
+          <div className="space-y-3">
+            <MistakeItem 
+              mistake="Using your birth date"
+              why="Easily discovered from social media or documents"
+            />
+            <MistakeItem 
+              mistake="Using your phone number (or part of it)"
+              why="Often publicly available or known to others"
+            />
+            <MistakeItem 
+              mistake="Using keyboard patterns"
+              why="1234, 7890, 2580 are among the most common PINs"
+            />
+            <MistakeItem 
+              mistake="Using the same PIN everywhere"
+              why="One breach exposes all your devices"
+            />
+            <MistakeItem 
+              mistake="Writing it on the device"
+              why="Defeats the purpose entirely"
+            />
+          </div>
+        </section>
 
-      {/* Tips */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Tips for a Memorable PIN
-        </h2>
+        {/* Tips */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Tips for a Memorable PIN
+          </h2>
         
-        <div className="space-y-4">
-          <TipCard 
-            title="Use a meaningful number"
-            description="A number significant to you but not publicly known. Not your birthday or anniversary, but perhaps your childhood house number combined with your first locker number."
-          />
-          <TipCard 
-            title="Make it truly random"
-            description="A 6-digit PIN has 1,000,000 possible combinations, but only if you avoid common patterns. Random-looking numbers are much harder to guess than dates or sequences."
-          />
-          <TipCard 
-            title="Create a mental story"
-            description="Associate each digit with something. '384759' could be '3 pets, 8 legs spider, 4 seasons, 7 days, 5 fingers, 9 lives cat'. Silly associations are memorable."
-          />
-          <TipCard 
-            title="Avoid starting with 0 or 1"
-            description="Most people start with low numbers. Starting with 5-9 makes your PIN less common."
-          />
-        </div>
-      </section>
+          <div className="space-y-4">
+            <TipCard 
+              title="Use a meaningful number"
+              description="A number significant to you but not publicly known. Not your birthday or anniversary, but perhaps your childhood house number combined with your first locker number."
+            />
+            <TipCard 
+              title="Make it truly random"
+              description="A 6-digit PIN has 1,000,000 possible combinations, but only if you avoid common patterns. Random-looking numbers are much harder to guess than dates or sequences."
+            />
+            <TipCard 
+              title="Create a mental story"
+              description="Associate each digit with something. '384759' could be '3 pets, 8 legs spider, 4 seasons, 7 days, 5 fingers, 9 lives cat'. Silly associations are memorable."
+            />
+            <TipCard
+              title="Any truly random combination is fine"
+              description="Don't exclude digits or avoid certain starting numbers — every restriction shrinks the keyspace. All 1,000,000 combinations are equally strong when chosen randomly."
+            />
+          </div>
+        </section>
 
-      {/* Physical Security */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Physical Security
-        </h2>
+        {/* Physical Security */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Physical Security
+          </h2>
         
-        <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
-          <ul className="space-y-2">
-            <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-              Shield the screen when entering your PIN
-            </li>
-            <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-              Be aware of people standing nearby
-            </li>
-            <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-              Don't share your PIN with staff unless necessary
-            </li>
-            <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-              Change your PIN if you suspect it's compromised
-            </li>
-          </ul>
-        </div>
-      </section>
+          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
+                Shield the screen when entering your PIN
+              </li>
+              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
+                Be aware of people standing nearby
+              </li>
+              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
+                Don't share your PIN with staff unless necessary
+              </li>
+              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
+                Change your PIN if you suspect it's compromised
+              </li>
+            </ul>
+          </div>
+        </section>
 
-      {/* Context Matters */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Context Matters
-        </h2>
+        {/* Context Matters */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Context Matters
+          </h2>
         
-        <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-          Consider your threat model when choosing PIN complexity:
-        </p>
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            Consider your threat model when choosing PIN complexity:
+          </p>
 
-        <div className="space-y-4">
-          <ContextCard 
-            scenario="Personal device at home"
-            recommendation="6-digit PIN, keep it simple but not obvious"
-          />
-          <ContextCard 
-            scenario="Retail environment with staff"
-            recommendation="6-digit PIN, change periodically"
-          />
-          <ContextCard 
-            scenario="High-traffic public location"
-            recommendation="6-digit PIN, limit who knows it"
-          />
-        </div>
-      </section>
+          <div className="space-y-4">
+            <ContextCard 
+              scenario="Personal device at home"
+              recommendation="6-digit PIN, keep it simple but not obvious"
+            />
+            <ContextCard 
+              scenario="Retail environment with staff"
+              recommendation="6-digit PIN, change periodically"
+            />
+            <ContextCard 
+              scenario="High-traffic public location"
+              recommendation="6-digit PIN, limit who knows it"
+            />
+          </div>
+        </section>
 
-      {/* Remember */}
-      <section className="mb-12">
-        <div className="p-5 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
-          <div className="flex gap-3">
-            <Info className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <div className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Remember</div>
-              <p className="text-sm text-blue-800 dark:text-blue-300">
-                The PIN protects device settings, not your funds. PayDeck is watch-only and cannot 
-                spend cryptocurrency regardless of PIN status. However, someone with settings access 
-                could change the receiving address to their own, so the PIN still matters.
-              </p>
+        {/* Remember */}
+        <section className="mb-12">
+          <div className="p-5 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
+            <div className="flex gap-3">
+              <Info className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <div className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Remember</div>
+                <p className="text-sm text-blue-800 dark:text-blue-300">
+                  The PIN protects device settings, not your funds. PayDeck is watch-only and cannot 
+                  spend cryptocurrency regardless of PIN status. However, someone with settings access 
+                  could change the receiving address to their own, so the PIN still matters.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
-          Learn about security model
-        </h3>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-          Understand PayDeck's overall security architecture.
-        </p>
-        <Link 
-          href="/docs/security/model"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
-        >
-          Security Model
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </section>
-    </div>
+        {/* CTA */}
+        <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+            Learn about security model
+          </h3>
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            Understand PayDeck's overall security architecture.
+          </p>
+          <Link 
+            href="/docs/security/model"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+          >
+            Security Model
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </section>
+      </div>
+    </DocsArticle>
   );
 }
 

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
   Wallet,
@@ -19,212 +20,214 @@ export const metadata: Metadata = {
 
 export default function InvoicesPage() {
   return (
-    <div className="max-w-4xl">
-      {/* Hero Section */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
-          <Wallet className="w-4 h-4" />
-          Usage
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
-          Creating Payment Requests
-        </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          Create payment requests with specific NEX amounts and understand how 
-          PayDeck verifies payments.
-        </p>
-      </div>
-
-      {/* Online vs Offline Mode */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Online vs Offline Mode
-        </h2>
-        
-        <div className="grid sm:grid-cols-2 gap-4">
-          <ModeCard 
-            icon={<Wifi className="w-5 h-5" />}
-            title="Online Mode"
-            description="Connected to Rostrum server"
-            features={[
-              "Automatic payment verification",
-              "Instant confirmation via 0-conf",
-              "Double-spend proof protection",
-              "No manual verification needed"
-            ]}
-            recommended
-          />
-          <ModeCard 
-            icon={<WifiOff className="w-5 h-5" />}
-            title="Offline Mode"
-            description="No Rostrum connection"
-            features={[
-              "QR code still displays",
-              "Manual payment verification required",
-              "Check payment in wallet app",
-              "Use when network unavailable"
-            ]}
-          />
-        </div>
-      </section>
-
-      {/* Creating a Payment Request */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Creating a Payment Request
-        </h2>
-        
-        <div className="space-y-4">
-          <Step 
-            number={1}
-            title="Enter the amount"
-            description="Use the on-screen keypad to enter the NEX amount"
-          />
-          <Step 
-            number={2}
-            title="Confirm"
-            description="Tap confirm to generate the payment QR code"
-          />
-          <Step 
-            number={3}
-            title="Show to customer"
-            description="The QR code includes both address and the exact amount"
-          />
-          <Step 
-            number={4}
-            title="Customer scans and confirms"
-            description="Amount is pre-filled in their wallet, they just confirm"
-          />
-          <Step 
-            number={5}
-            title="Payment confirmed"
-            description="In online mode, PayDeck confirms automatically when amount is received"
-          />
-        </div>
-      </section>
-
-      {/* QR Code Format */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          How It Works
-        </h2>
-        
-        <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-          PayDeck generates a payment URI that includes both the address and amount:
-        </p>
-
-        <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
-          <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm break-all">
-            nexa:nexa1qr...address...?amount=25.50
-          </code>
+    <DocsArticle>
+      <div className="max-w-4xl">
+        {/* Hero Section */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+            <Wallet className="w-4 h-4" />
+            Usage
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+            Creating Payment Requests
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Create payment requests with specific NEX amounts and understand how 
+            PayDeck verifies payments.
+          </p>
         </div>
 
-        <p className="text-sm text-zinc-500">
-          Compatible wallets automatically populate the amount field when scanning. 
-          The customer simply confirms the pre-filled amount.
-        </p>
-      </section>
-
-      {/* Amount Requirements */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Amount Requirements
-        </h2>
+        {/* Online vs Offline Mode */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Online vs Offline Mode
+          </h2>
         
-        <div className="p-5 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 mb-6">
-          <div className="flex gap-3">
-            <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <h4 className="font-semibold text-amber-900 dark:text-amber-200 mb-2">Exact Amount Required</h4>
-              <p className="text-sm text-amber-800 dark:text-amber-300">
-                PayDeck confirms payment only when the exact amount (or more) is received. 
-                If the customer sends less than requested, the payment will not confirm.
+          <div className="grid sm:grid-cols-2 gap-4">
+            <ModeCard 
+              icon={<Wifi className="w-5 h-5" />}
+              title="Online Mode"
+              description="Connected to Rostrum server"
+              features={[
+                "Automatic payment verification",
+                "Instant confirmation via 0-conf",
+                "Double-spend proof protection",
+                "No manual verification needed"
+              ]}
+              recommended
+            />
+            <ModeCard 
+              icon={<WifiOff className="w-5 h-5" />}
+              title="Offline Mode"
+              description="No Rostrum connection"
+              features={[
+                "QR code still displays",
+                "Manual payment verification required",
+                "Check payment in wallet app",
+                "Use when network unavailable"
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* Creating a Payment Request */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Creating a Payment Request
+          </h2>
+        
+          <div className="space-y-4">
+            <Step 
+              number={1}
+              title="Enter the amount"
+              description="Use the on-screen keypad to enter the NEX amount"
+            />
+            <Step 
+              number={2}
+              title="Confirm"
+              description="Tap confirm to generate the payment QR code"
+            />
+            <Step 
+              number={3}
+              title="Show to customer"
+              description="The QR code includes both address and the exact amount"
+            />
+            <Step 
+              number={4}
+              title="Customer scans and confirms"
+              description="Amount is pre-filled in their wallet, they just confirm"
+            />
+            <Step 
+              number={5}
+              title="Payment confirmed"
+              description="In online mode, PayDeck confirms automatically when amount is received"
+            />
+          </div>
+        </section>
+
+        {/* QR Code Format */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            How It Works
+          </h2>
+        
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            PayDeck generates a payment URI that includes both the address and amount:
+          </p>
+
+          <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
+            <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm break-all">
+              nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz?amount=25.50
+            </code>
+          </div>
+
+          <p className="text-sm text-zinc-500">
+            Compatible wallets automatically populate the amount field when scanning. 
+            The customer simply confirms the pre-filled amount.
+          </p>
+        </section>
+
+        {/* Amount Requirements */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Amount Requirements
+          </h2>
+        
+          <div className="p-5 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 mb-6">
+            <div className="flex gap-3">
+              <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-semibold text-amber-900 dark:text-amber-200 mb-2">Exact Amount Required</h4>
+                <p className="text-sm text-amber-800 dark:text-amber-300">
+                  PayDeck confirms payment only when the exact amount (or more) is received. 
+                  If the customer sends less than requested, the payment will not confirm.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <AmountItem 
+              scenario="Exact amount sent"
+              result="Payment confirmed"
+              success
+            />
+            <AmountItem 
+              scenario="More than requested"
+              result="Payment confirmed (overpayment accepted)"
+              success
+            />
+            <AmountItem 
+              scenario="Less than requested"
+              result="Payment NOT confirmed"
+              success={false}
+            />
+          </div>
+
+          <div className="mt-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
+            <div className="flex gap-3">
+              <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-blue-800 dark:text-blue-300">
+                <strong>Multiple transactions:</strong> Customers can pay in multiple transactions 
+                (e.g., two payments that add up to the total). PayDeck will confirm once the 
+                combined amount reaches the requested total.
               </p>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="space-y-3">
-          <AmountItem 
-            scenario="Exact amount sent"
-            result="Payment confirmed"
-            success
-          />
-          <AmountItem 
-            scenario="More than requested"
-            result="Payment confirmed (overpayment accepted)"
-            success
-          />
-          <AmountItem 
-            scenario="Less than requested"
-            result="Payment NOT confirmed"
-            success={false}
-          />
-        </div>
-
-        <div className="mt-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
-          <div className="flex gap-3">
-            <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Multiple transactions:</strong> Customers can pay in multiple transactions 
-              (e.g., two payments that add up to the total). PayDeck will confirm once the 
-              combined amount reaches the requested total.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Amount Entry */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-          Entering Amounts
-        </h2>
+        {/* Amount Entry */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Entering Amounts
+          </h2>
         
-        <div className="space-y-4">
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-start gap-3">
-              <Calculator className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-medium text-zinc-900 dark:text-white mb-1">On-Screen Keypad</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  Tap digits to enter the amount. Use the decimal point for fractional NEX.
-                </p>
+          <div className="space-y-4">
+            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+              <div className="flex items-start gap-3">
+                <Calculator className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-medium text-zinc-900 dark:text-white mb-1">On-Screen Keypad</h4>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    Tap digits to enter the amount. Use the decimal point for fractional NEX.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
           
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-start gap-3">
-              <Receipt className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-medium text-zinc-900 dark:text-white mb-1">NEX Amounts</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  All amounts are in NEX (Nexa's native token). The amount is displayed 
-                  clearly before generating the QR code.
-                </p>
+            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+              <div className="flex items-start gap-3">
+                <Receipt className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-medium text-zinc-900 dark:text-white mb-1">NEX Amounts</h4>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    All amounts are in NEX (Nexa's native token). The amount is displayed 
+                    clearly before generating the QR code.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
-          Understanding confirmations
-        </h3>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-          Learn about Nexa's instant transactions and when to wait for block confirmations.
-        </p>
-        <Link 
-          href="/docs/usage/confirmation"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
-        >
-          Payment Confirmation
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </section>
-    </div>
+        {/* CTA */}
+        <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+            Understanding confirmations
+          </h3>
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            Learn about Nexa's instant transactions and when to wait for block confirmations.
+          </p>
+          <Link 
+            href="/docs/usage/confirmation"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+          >
+            Payment Confirmation
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </section>
+      </div>
+    </DocsArticle>
   );
 }
 

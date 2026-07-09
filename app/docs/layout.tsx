@@ -20,8 +20,8 @@ export default function DocsLayout({
       <DocsHeader />
       <div className="flex max-w-[1400px] mx-auto pt-16 md:pt-20">
         <DocsSidebar />
-        <main className="flex-1 min-w-0 px-6 py-8 lg:px-12 lg:py-12">
-          <div className="max-w-3xl">
+        <main id="main-content" className="flex-1 min-w-0 px-6 py-8 lg:px-12 lg:py-12">
+          <div className="max-w-4xl">
             {children}
           </div>
         </main>

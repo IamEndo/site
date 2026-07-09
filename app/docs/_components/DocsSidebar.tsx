@@ -48,8 +48,8 @@ function NavSectionComponent({
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-200 ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-200 motion-reduce:transition-none ${
+          isOpen ? 'max-h-[40rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="space-y-0.5 pb-2">

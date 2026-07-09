@@ -24,11 +24,6 @@ export function HowItWorks() {
           {steps.map((step, index) => (
             <ScrollReveal key={step.number} delay={index * 120}>
               <div className="relative group">
-                {/* Connector line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-5 left-full w-full h-px bg-neutral-200 dark:bg-neutral-800 -translate-x-4" />
-                )}
-
                 {/* Step number */}
                 <div className="text-5xl md:text-6xl font-bold text-neutral-100 dark:text-neutral-900 mb-4 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
                   {step.number}

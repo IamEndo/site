@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Usb,
   CircleAlert,
@@ -134,12 +135,12 @@ export function Flasher() {
                 Chrome and Microsoft Edge on desktop, or Chrome on Android.
                 Firefox, Safari, and iOS browsers cannot flash devices over
                 USB. Open this page in a supported browser, or follow the{" "}
-                <a
+                <Link
                   href="/docs/installation/building"
                   className="underline font-medium"
                 >
                   manual PlatformIO instructions
-                </a>
+                </Link>
                 .
               </p>
             </div>

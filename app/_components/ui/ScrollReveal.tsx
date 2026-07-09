@@ -23,6 +23,16 @@ export function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    // Respect reduced motion and environments without IntersectionObserver:
+    // reveal immediately instead of animating.
+    if (
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -40,6 +50,7 @@ export function ScrollReveal({
   return (
     <div
       ref={ref}
+      data-reveal=""
       className={cn(
         "opacity-0 translate-y-4 transition-all duration-600 ease-out",
         visible && "opacity-100 translate-y-0",
