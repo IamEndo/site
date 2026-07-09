@@ -77,8 +77,6 @@ const PASSIVES: [number, number][] = [
   [36, 18], [36, 15], [33, 16.5],
   // R1/C6 beside CH340
   [22, 21.5], [22, 19],
-  // C7/C8 between CH340 and the amp
-  [14.5, 18.5], [14.5, 12],
   // R9 R8 C10 C11 R4 R7 C12 — long column down the left edge
   [12, 21.5], [10, 21.5], [8, 21.5], [6, 21.5], [4, 21.5], [2, 21.5],
   [0, 21.5], [-2, 21.5], [-4, 21.5], [-6, 21.5], [-8, 21.5],
@@ -87,10 +85,6 @@ const PASSIVES: [number, number][] = [
   [30.3, -15.4], [28.5, -15.4], [26.7, -15.4], [24.9, -15.4], [23.1, -15.4], [21.3, -15.4],
   // R16/R18 under the RGB LED
   [8.6, -12.6], [8.6, -14.6],
-  // regulator in/out caps: C17 C16 above U7, C3 C2 above U1
-  [-21, 15.8], [-23.3, 15.8], [-21, 7.3], [-23.3, 7.3],
-  // C15 / C1 left of the LDO pair
-  [-28.6, 15.8], [-28.6, 7.3],
   // around Q1/Q2 at the left edge
   [-22, 21.3], [-27.5, 21.3], [-33, 21.3],
   // R14 between Q4/Q3, R12 beside them
@@ -105,6 +99,22 @@ const PASSIVES: [number, number][] = [
   [-31, 6.5], [-28.3, 4],
   // R11/C4 right of the S-holes + the small column left of them
   [-20, 1], [-23.5, 1], [-21, 3.9], [-24, 3.9],
+  // extra LDO-field parts (photo: the regulator area is BUSY)
+  [-21.5, 11.3], [-28.5, 11.5], [-34, 16.5], [-29, -1],
+  [-36, -8], [-28, -1.5],
+];
+
+// Larger 0805 MLCC caps — brown ceramic bodies, clearly bigger than the
+// 0603 field parts in the photo (regulator in/out caps + C7/C8)
+const PASSIVES_BIG: [number, number][] = [
+  // regulator in/out caps: C17 C16 above U7, C3 C2 above U1
+  [-21, 15.8], [-23.3, 15.8], [-21, 7.3], [-23.3, 7.3],
+  // C15 / C1 left of the LDO pair
+  [-28.6, 15.8], [-28.6, 7.3],
+  // between the two LDOs
+  [-25.5, 17.4], [-25.5, 9.0],
+  // C7/C8 between CH340 and the amp
+  [14.5, 18.5], [14.5, 12],
 ];
 
 // ─────────────────────────────────────────────────────────────────────
@@ -112,15 +122,15 @@ const PASSIVES: [number, number][] = [
 // ─────────────────────────────────────────────────────────────────────
 const COLOR = {
   // PCB soldermask — saturated orange-yellow CYD mask (matched to photos)
-  pcb: "#d69e12",
+  pcb: "#d39912",
   pcbDeep: "#a87d0a",
   pcbHi: "#e9b82e",
   pcbCopperGnd: "#a8801c",
-  // Traces: the core reads only slightly darker than the mask; the EDGE
-  // is what stands out (dark outline) on the real board
-  pcbCopperTrace: "#b28c14",
-  pcbCopperPwr: "#a68110",
-  pcbTraceEdge: "rgba(95, 72, 8, 0.45)",
+  // Traces: clearly darker olive-green than the mask (photo-matched —
+  // mask ≈ #d2961e, trace core ≈ #968228) with a dark edge outline
+  pcbCopperTrace: "#8e7c20",
+  pcbCopperPwr: "#807014",
+  pcbTraceEdge: "rgba(95, 72, 8, 0.58)",
   pcbVia: "#3a280a",
   pcbGndShade: "rgba(140, 100, 12, 0.17)",
   pcbHighShade: "rgba(245, 218, 110, 0.08)",
@@ -168,7 +178,7 @@ const COLOR = {
   silkDark: "rgba(68, 58, 24, 1)", // etched-dark silk (board name, front label)
   rubber: "#0f0f12",
   ldrBody: "#2a2a30",
-  smdYellow: "#b09265",
+  smdYellow: "#a1794b",
   smdBlack: "#26262a",
   smdEnd: "#d8dade", // tinned passive end caps
   tin: "#d0d3d8", // HASL tinned pads — this board has NO gold finish
@@ -292,12 +302,14 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
       };
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
+      // Photo traces read chunkier than nominal — scale all widths up
+      const w2 = width * 1.3;
       ctx.strokeStyle = COLOR.pcbTraceEdge;
-      ctx.lineWidth = PX * (width + 0.14);
+      ctx.lineWidth = PX * (w2 + 0.14);
       path();
       ctx.stroke();
       ctx.strokeStyle = color;
-      ctx.lineWidth = PX * width;
+      ctx.lineWidth = PX * w2;
       path();
       ctx.stroke();
     };
@@ -319,9 +331,9 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
       for (let i = 1; i < pts.length; i++)
         ctx.lineTo(cx(pts[i][0]), cy(pts[i][1]));
       ctx.closePath();
-      ctx.fillStyle = "rgba(120, 90, 12, 0.10)";
+      ctx.fillStyle = "rgba(110, 95, 20, 0.13)";
       ctx.fill();
-      ctx.strokeStyle = "rgba(80, 62, 8, 0.35)";
+      ctx.strokeStyle = "rgba(80, 66, 12, 0.45)";
       ctx.lineWidth = PX * 0.3;
       ctx.stroke();
       ctx.restore();
@@ -402,32 +414,33 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
     walk(POS.reset.x, ESP.z + ESP.l / 2, [[0, 1, 7.6]], 0.38);
 
     // ESP GPIO → TF card lanes (parallel bus with a 45° jog)
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
       walk(
         espL,
-        -1.8 - i * 0.9,
+        -1.8 - i * 1.1,
         [
           [-1, 0, 10],
           [-1, -1, 4],
-          [-1, 0, 6 - i * 0.9],
-          [0, -1, 3.5 - i * 0.25],
+          [-1, 0, 6 - i * 1.1],
+          [0, -1, 3.5 - i * 0.3],
         ],
-        0.34
+        0.44
       );
     }
 
     // ESP GPIO → LCD fan-out: a tidy parallel bus that runs down the
-    // board centre and dives into vias (feeds the front-side flex)
-    for (let i = 0; i < 8; i++) {
+    // board centre and dives into vias (feeds the front-side flex).
+    // Photo: FEWER, BOLDER, well-spaced runs — not a dense thin bus.
+    for (let i = 0; i < 6; i++) {
       walk(
         espL,
-        6.5 - i * 0.9,
+        6.5 - i * 1.3,
         [
-          [-1, 0, 18 + i * 0.9],
+          [-1, 0, 18 + i * 1.3],
           [-1, -1, 5],
-          [-1, 0, 5 + i * 0.4],
+          [-1, 0, 5 + i * 0.5],
         ],
-        0.3
+        0.42
       );
     }
 
@@ -476,7 +489,7 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
       z0: number,
       x1: number,
       z1: number,
-      w = 0.26
+      w = 0.38
     ) => {
       const dx = x1 - x0;
       const dz = z1 - z0;
@@ -707,11 +720,11 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
     }
 
     // U4 — unpopulated SOP-8 footprint: 4 bare tinned pads per row off
-    // the ±X sides (photo: bright pads, no part)
+    // the ±X sides (photo: pads sit mostly INSIDE the silk outline)
     for (let i = 0; i < 4; i++) {
       const z = POS.u4.z - 1.9 + i * 1.27;
-      goldPad(POS.u4.x + 3.75, z, 1.5, 0.6);
-      goldPad(POS.u4.x - 3.75, z, 1.5, 0.6);
+      goldPad(POS.u4.x + 2.7, z, 1.3, 0.55);
+      goldPad(POS.u4.x - 2.7, z, 1.3, 0.55);
     }
 
     // S3/S1/S5 — plated through-holes (dark pad square + gold annulus +
@@ -719,28 +732,30 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
     for (const sx of POS.s135.xs) {
       ctx.fillStyle = "rgba(60, 45, 8, 0.25)";
       ctx.fillRect(
-        cx(sx) - PX * 1.6,
-        cy(POS.s135.z) - PX * 1.6,
-        PX * 3.2,
-        PX * 3.2
+        cx(sx) - PX * 1.3,
+        cy(POS.s135.z) - PX * 1.3,
+        PX * 2.6,
+        PX * 2.6
       );
-      // dull tinned annulus (photo: subdued ring, big dark hole)
+      // dull tinned annulus (photo: subdued ring, modest dark hole —
+      // the earlier big-donut version read twice the real size)
       ctx.fillStyle = "#a8abb0";
       ctx.beginPath();
-      ctx.arc(cx(sx), cy(POS.s135.z), PX * 1.25, 0, Math.PI * 2);
+      ctx.arc(cx(sx), cy(POS.s135.z), PX * 1.0, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = COLOR.hole;
       ctx.beginPath();
-      ctx.arc(cx(sx), cy(POS.s135.z), PX * 0.9, 0, Math.PI * 2);
+      ctx.arc(cx(sx), cy(POS.s135.z), PX * 0.68, 0, Math.PI * 2);
       ctx.fill();
     }
 
     // Tiny pad-pairs under SMD passives
-    const padPair = (x: number, z: number) => {
-      goldPad(x - 0.6, z, 0.5, 0.7);
-      goldPad(x + 0.6, z, 0.5, 0.7);
+    const padPair = (x: number, z: number, s = 1) => {
+      goldPad(x - 0.6 * s, z, 0.5 * s, 0.7 * s);
+      goldPad(x + 0.6 * s, z, 0.5 * s, 0.7 * s);
     };
     PASSIVES.forEach(([x, z]) => padPair(x, z));
+    PASSIVES_BIG.forEach(([x, z]) => padPair(x, z, 1.3));
 
     // Two white testpoint rounds near the antenna (top-left on the photo)
     const round = (x: number, z: number, r: number, color = COLOR.silk) => {
@@ -758,17 +773,16 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
     ctx.lineCap = "round";
 
     // Board name — "ESP32-2432S028" (hyphen, photo-verified), printed in
-    // DARK etched silk with a thin condensed face, running along the
-    // board's long axis near the left edge. Canvas x maps to board +x
-    // directly — no rotation (the previous rotate(π) read 180° wrong
-    // against the photo).
+    // WHITE silk (photo re-check: it reads the same cream-white as the
+    // designators, NOT dark), running along the board's long axis near
+    // the left edge. Canvas x maps to board +x directly — no rotation.
     ctx.save();
     ctx.translate(cx(-13), cy(16.2));
     ctx.scale(0.78, 1);
-    ctx.font = `400 ${PX * 3.1}px ui-monospace, monospace`;
+    ctx.font = `500 ${PX * 3.1}px ui-monospace, monospace`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = COLOR.silkDark;
+    ctx.fillStyle = COLOR.silk;
     ctx.fillText("ESP32-2432S028", 0, 0);
     ctx.restore();
     ctx.fillStyle = COLOR.silk;
@@ -854,7 +868,7 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
       ctx.save();
       ctx.translate(cx(xMm), cy(zMm));
       if (rot) ctx.rotate(rot);
-      ctx.font = `${PX * sz}px ui-monospace, monospace`;
+      ctx.font = `600 ${PX * sz}px ui-monospace, monospace`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(text, 0, 0);
@@ -953,7 +967,7 @@ export function usePcbBackComposite(): THREE.CanvasTexture | null {
     outline(POS.u6.x, POS.u6.z, 5.8, 8.2);
     outline(POS.u7.x, POS.u7.z, 5.2, 4.0);
     outline(POS.u1.x, POS.u1.z, 5.2, 4.0);
-    outline(POS.u4.x, POS.u4.z, 6.4, 5.2);
+    outline(POS.u4.x, POS.u4.z, 6.0, 4.8);
     outline(POS.sd.x, POS.sd.z, 15.6, 15.2);
     outline(POS.rgb.x, POS.rgb.z, 5.8, 5.8);
     outline(POS.boot.x, POS.boot.z, 4.2, 6.6);
@@ -1003,10 +1017,10 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
     // BRIGHT brushed-steel base with DARK laser-etched markings — the
     // photo shows a light metal can with dark text, not the inverse.
     const g = ctx.createLinearGradient(0, 0, W * 0.3, H);
-    g.addColorStop(0, "#83868c");
-    g.addColorStop(0.35, "#a4a7ad");
-    g.addColorStop(0.6, "#8d9096");
-    g.addColorStop(1, "#6e7177");
+    g.addColorStop(0, "#94979d");
+    g.addColorStop(0.35, "#b7bac0");
+    g.addColorStop(0.6, "#9ea1a7");
+    g.addColorStop(1, "#7e8187");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
     // brushed streaks
@@ -1053,10 +1067,11 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
     ctx.fillText("IC:21098-ESPWROOM32", W * 0.5, H * 0.465);
     ctx.fillText("CMIIT ID:2016DP5670", W * 0.5, H * 0.525);
 
-    // QR patch (bottom-RIGHT in the photo) — dark modules etched
-    // straight into the metal (no white label behind the code)
+    // QR patch — sits just under the cert lines, right-of-centre
+    // (photo: ~55-65% height, NOT hugging the bottom edge). Dark modules
+    // etched straight into the metal (no white label behind the code)
     const qx = W * 0.6;
-    const qy = H * 0.64;
+    const qy = H * 0.55;
     const qs = W * 0.28;
     const N = 17;
     const m = qs / (N + 2);
@@ -1072,10 +1087,17 @@ function useEspShieldTexture(): THREE.CanvasTexture | null {
       }
     }
 
-    // Batch code bottom-LEFT (photo)
+    // Batch code left of the QR, ~70% height (photo)
     ctx.fillStyle = etch;
     ctx.font = `600 ${W * 0.055}px ui-monospace, monospace`;
-    ctx.fillText("XX8R69", W * 0.26, H * 0.88);
+    ctx.fillText("XX8R69", W * 0.26, H * 0.72);
+
+    // Pin-1 dimple — small dark punched dot near the bottom-left corner
+    // of the can (clearly visible in the photo)
+    ctx.fillStyle = "#2e3036";
+    ctx.beginPath();
+    ctx.arc(W * 0.12, H * 0.9, W * 0.022, 0, Math.PI * 2);
+    ctx.fill();
 
     const tex = new THREE.CanvasTexture(c);
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -1273,6 +1295,7 @@ function ICBlock({
   thick = 1.0,
   color = COLOR.ic,
   pinDot = true,
+  pinDotZ = -1,
   pins = 0,
   pinAxis = "z",
 }: {
@@ -1283,6 +1306,8 @@ function ICBlock({
   thick?: number;
   color?: string;
   pinDot?: boolean;
+  /** which ±Z corner carries the pin-1 dot (photo-checked per package) */
+  pinDotZ?: -1 | 1;
   /** gull-wing legs per side (0 = none); protrude off ±pinAxis */
   pins?: number;
   pinAxis?: "x" | "z";
@@ -1311,9 +1336,9 @@ function ICBlock({
               ]}
             />
             <meshStandardMaterial
-              color="#d4d7db"
-              roughness={0.32}
-              metalness={0.8}
+              color="#e0e3e7"
+              roughness={0.26}
+              metalness={0.85}
             />
           </mesh>
         );
@@ -1346,12 +1371,39 @@ function ICBlock({
           metalness={0.1}
         />
       </mesh>
+      {/* Faint laser-marking lines — the photo ICs all carry pale part
+          numbers; two low-contrast streaks along the body's long axis
+          sell that at site zoom */}
+      {w >= 3 &&
+        [-0.35, 0.45].map((off, i) => {
+          const alongX = w >= h; // text runs along the longer extent
+          const len = (alongX ? w : h) * 0.55;
+          return (
+            <mesh
+              key={`ictext-${i}`}
+              position={[
+                mm(x + (alongX ? 0 : off)),
+                mm(-(PCB_T / 2) - thick - 0.055),
+                mm(z + (alongX ? off : 0)),
+              ]}
+            >
+              <boxGeometry
+                args={[
+                  mm(alongX ? len : 0.3),
+                  mm(0.012),
+                  mm(alongX ? 0.3 : len),
+                ]}
+              />
+              <meshStandardMaterial color="#393b42" roughness={0.55} />
+            </mesh>
+          );
+        })}
       {pinDot && (
         <mesh
           position={[
             mm(x - w / 2 + 0.6),
             mm(-(PCB_T / 2) - thick - 0.04),
-            mm(z - h / 2 + 0.6),
+            mm(z + pinDotZ * (h / 2 - 0.6)),
           ]}
         >
           <cylinderGeometry args={[mm(0.25), mm(0.25), mm(0.05), 14]} />
@@ -1443,10 +1495,10 @@ function JstConnector({
 
   const legMat = (
     <meshPhysicalMaterial
-      color="#d5d7da"
-      roughness={0.3}
-      metalness={0.85}
-      envMapIntensity={0.8}
+      color="#e4e6ea"
+      roughness={0.24}
+      metalness={0.9}
+      envMapIntensity={1.05}
     />
   );
 
@@ -1498,18 +1550,19 @@ function JstConnector({
           />
         </mesh>
       ))}
-      {/* Bent through-hole legs — horizontal run out the back of the
-          housing, then a solder joint at the board */}
+      {/* Bent through-hole legs — thick bright pins out the back of the
+          housing, then a solder joint at the board (very prominent in
+          the photo: the legs read almost as big as the housing details) */}
       {Array.from({ length: pins }).map((_, k) => {
         const lx = -((pins - 1) / 2) * pitch + k * pitch;
         return (
           <group key={`leg-${k}`}>
-            <mesh position={[mm(lx), mm(H / 2 - 0.35), mm(-D / 2 - 0.5)]}>
-              <boxGeometry args={[mm(0.32), mm(0.32), mm(1.2)]} />
+            <mesh position={[mm(lx), mm(H / 2 - 0.35), mm(-D / 2 - 0.6)]}>
+              <boxGeometry args={[mm(0.44), mm(0.44), mm(1.5)]} />
               {legMat}
             </mesh>
-            <mesh position={[mm(lx), mm(H / 2 - 0.16), mm(-D / 2 - 1.0)]}>
-              <cylinderGeometry args={[mm(0.42), mm(0.3), mm(0.32), 10]} />
+            <mesh position={[mm(lx), mm(H / 2 - 0.1), mm(-D / 2 - 1.2)]}>
+              <cylinderGeometry args={[mm(0.52), mm(0.34), mm(0.4), 10]} />
               {legMat}
             </mesh>
           </group>
@@ -1549,10 +1602,10 @@ function MicroUsb({ x, z }: { x: number; z: number }) {
     <group position={[mm(x), mm(-(PCB_T / 2) - T / 2 - 0.2), mm(z)]} castShadow>
       <mesh geometry={shellGeom} castShadow receiveShadow>
         <meshPhysicalMaterial
-          color="#8a8e95"
-          roughness={0.42}
+          color="#a2a6ad"
+          roughness={0.38}
           metalness={0.78}
-          envMapIntensity={0.65}
+          envMapIntensity={0.75}
         />
       </mesh>
       {/* Gull-wing solder pin row on the board-centre side — clearly
@@ -1612,6 +1665,23 @@ function MicroUsb({ x, z }: { x: number; z: number }) {
         <boxGeometry args={[mm(W - 2), mm(0.02), mm(0.4)]} />
         <meshStandardMaterial color={COLOR.steelDeep} roughness={0.4} metalness={0.9} />
       </mesh>
+      {/* Two stamped retention dimples on the shell face near the mouth
+          (the signature micro-B detail in the photo) */}
+      {[-1.6, 1.6].map((dz) => (
+        <mesh
+          key={`mu-dimple-${dz}`}
+          position={[mm(-W / 2 + 1.6), mm(-T / 2 - 0.02), mm(dz)]}
+          rotation={[Math.PI / 2, 0, 0]}
+        >
+          <cylinderGeometry args={[mm(0.55), mm(0.55), mm(0.04), 14]} />
+          <meshPhysicalMaterial
+            color="#5f6268"
+            roughness={0.3}
+            metalness={0.9}
+            envMapIntensity={0.7}
+          />
+        </mesh>
+      ))}
     </group>
   );
 }
@@ -1758,20 +1828,21 @@ function TactButton({ x, z }: { x: number; z: number }) {
         />
       </mesh>
       {/* Raised plunger — a LARGE bright metal rounded bar spanning most
-          of the body (photo: a big silver cap, not a small square) */}
-      <mesh position={[0, mm(-(PCB_T / 2) - BH - 0.4), 0]} castShadow>
-        <boxGeometry args={[mm(2.0), mm(0.8), mm(4.0)]} />
+          of the body (photo: a big silver cap standing tall off the
+          base, with strong highlights) */}
+      <mesh position={[0, mm(-(PCB_T / 2) - BH - 0.5), 0]} castShadow>
+        <boxGeometry args={[mm(2.3), mm(1.0), mm(4.3)]} />
         <meshPhysicalMaterial
-          color="#d4d7db"
-          roughness={0.26}
-          metalness={0.8}
-          envMapIntensity={1.0}
+          color="#dde0e4"
+          roughness={0.22}
+          metalness={0.85}
+          envMapIntensity={1.1}
           clearcoat={0.3}
         />
       </mesh>
-      <mesh position={[0, mm(-(PCB_T / 2) - BH - 0.82), 0]}>
-        <boxGeometry args={[mm(1.5), mm(0.06), mm(3.4)]} />
-        <meshStandardMaterial color="#f2f3f5" roughness={0.3} metalness={0.5} />
+      <mesh position={[0, mm(-(PCB_T / 2) - BH - 1.02), 0]}>
+        <boxGeometry args={[mm(1.7), mm(0.06), mm(3.6)]} />
+        <meshStandardMaterial color="#f4f5f7" roughness={0.28} metalness={0.5} />
       </mesh>
       {/* Through-hole legs at the ±Z ends (image left/right) */}
       {[-1, 1].flatMap((s) =>
@@ -1843,14 +1914,15 @@ function Sot223({ x, z }: { x: number; z: number }) {
           clearcoat={0.4}
         />
       </mesh>
-      {/* Tab */}
+      {/* Tab — big bright tinned pad, one of the shiniest things in the
+          photo's LDO region */}
       <mesh position={[mm(3.4 / 2 + 0.5), mm(-(PCB_T / 2) - 0.25), 0]}>
         <boxGeometry args={[mm(1.2), mm(0.4), mm(3.0)]} />
         <meshPhysicalMaterial
-          color={COLOR.icSilver}
-          roughness={0.4}
-          metalness={1.0}
-          envMapIntensity={0.9}
+          color="#c9ccd2"
+          roughness={0.3}
+          metalness={0.85}
+          envMapIntensity={1.0}
         />
       </mesh>
       {/* 3 pins */}
@@ -1908,8 +1980,8 @@ function SopPins({
                 }
               />
               <meshStandardMaterial
-                color="#d4d6da"
-                roughness={0.35}
+                color="#e0e3e7"
+                roughness={0.28}
                 metalness={0.85}
               />
             </mesh>
@@ -1923,13 +1995,57 @@ function SopPins({
 // ─────────────────────────────────────────────────────────────────────
 // MicroSD slot — metal shell, card mouth flush with the -Z board edge
 // ─────────────────────────────────────────────────────────────────────
+// The photo shows a HIGH-CONTRAST steel lid: gunmetal base with one wide
+// bright specular band sweeping across it. The studio env is too weak to
+// produce that, so the band is baked into a lid texture.
+function useSdLidTexture(): THREE.CanvasTexture | null {
+  return React.useMemo(() => {
+    if (typeof document === "undefined") return null;
+    const S = 256;
+    const c = document.createElement("canvas");
+    c.width = S;
+    c.height = S;
+    const ctx = c.getContext("2d");
+    if (!ctx) return null;
+    const g = ctx.createLinearGradient(0, 0, S, S);
+    g.addColorStop(0, "#6d7076");
+    g.addColorStop(0.38, "#9fa2a8");
+    g.addColorStop(0.55, "#dfe2e6");
+    g.addColorStop(0.72, "#94979d");
+    g.addColorStop(1, "#5f6268");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, S, S);
+    // faint brushed streaks along the draw direction
+    for (let i = 0; i < S; i += 3) {
+      ctx.globalAlpha = 0.05;
+      ctx.fillStyle = i % 6 === 0 ? "#eceef1" : "#54575c";
+      ctx.fillRect(0, i, S, 1);
+    }
+    ctx.globalAlpha = 1;
+    // stamped fold seams near the two side edges
+    ctx.strokeStyle = "rgba(50, 53, 58, 0.5)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(S * 0.08, 0);
+    ctx.lineTo(S * 0.08, S);
+    ctx.moveTo(S * 0.92, 0);
+    ctx.lineTo(S * 0.92, S);
+    ctx.stroke();
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.needsUpdate = true;
+    return tex;
+  }, []);
+}
+
 function MicroSd({ x, z }: { x: number; z: number }) {
   const W = 15.5;
   const D = 15.5;
   const T = 1.9;
+  const lidTex = useSdLidTexture();
   const shellMat = (
     <meshPhysicalMaterial
-      color="#b6b9bd"
+      color="#9b9ea3"
       roughness={0.38}
       metalness={0.85}
       envMapIntensity={0.75}
@@ -1962,14 +2078,16 @@ function MicroSd({ x, z }: { x: number; z: number }) {
         <boxGeometry args={[mm(W - 1), mm(T - 0.4), mm(0.4)]} />
         <meshStandardMaterial color="#040406" roughness={0.95} />
       </mesh>
-      {/* Slightly lighter lid sheet with a soft two-tone */}
+      {/* Lid sheet — baked specular-band texture (photo: gunmetal with
+          one wide bright reflection sweep) */}
       <mesh position={[mm(x), mm(-(PCB_T / 2) - T - 0.01), mm(z + 0.4)]}>
         <boxGeometry args={[mm(W - 0.4), mm(0.04), mm(D - 1.6)]} />
         <meshPhysicalMaterial
-          color="#c2c5c9"
-          roughness={0.33}
-          metalness={0.85}
-          envMapIntensity={0.8}
+          map={lidTex ?? undefined}
+          color="#ffffff"
+          roughness={0.34}
+          metalness={0.6}
+          envMapIntensity={0.7}
         />
       </mesh>
       {/* Card-detect notch — stepped dark cutout at the mouth end of the
@@ -2001,11 +2119,11 @@ function MicroSd({ x, z }: { x: number; z: number }) {
           key={`sd-foot-${k}`}
           position={[
             mm(x + W / 2 - 2.6 - k * 1.15),
-            mm(-(PCB_T / 2) - 0.12),
-            mm(z + D / 2 + 0.45),
+            mm(-(PCB_T / 2) - 0.16),
+            mm(z + D / 2 + 0.55),
           ]}
         >
-          <boxGeometry args={[mm(0.55), mm(0.24), mm(1.0)]} />
+          <boxGeometry args={[mm(0.7), mm(0.32), mm(1.3)]} />
           {brightMat}
         </mesh>
       ))}
@@ -2121,8 +2239,8 @@ function EspWroom32() {
       >
         <boxGeometry args={[mm(CAN_L), mm(CAN_T), mm(l - 1.6)]} />
         <meshPhysicalMaterial
-          color="#84888f"
-          roughness={0.42}
+          color="#989ca3"
+          roughness={0.4}
           metalness={0.55}
           envMapIntensity={0.85}
         />
@@ -2153,16 +2271,18 @@ function EspWroom32() {
           matte tab so the pattern reads at a glance like the photo. */}
       {(() => {
         const traceY = -(PCB_T / 2) - subT - 0.05;
+        // Photo: the meander reads GOLD/bronze (exposed plated copper on
+        // the black tab), bright and unmistakable — not grey metal
         const antMat = (
           <meshPhysicalMaterial
-            color="#4e5056"
-            roughness={0.32}
-            metalness={0.65}
-            envMapIntensity={0.7}
+            color="#c49a30"
+            roughness={0.3}
+            metalness={0.75}
+            envMapIntensity={0.9}
           />
         );
         const FINGERS = 6;
-        const fw = 0.85; // finger width (Z)
+        const fw = 1.0; // finger width (Z)
         const span = l - 4.2; // total comb span across the tab
         const pitch = span / (FINGERS - 1);
         const fingerL = ESP_ANT_LEN - 2.6;
@@ -2344,13 +2464,13 @@ export function Board() {
           position={[mm(x), mm(-(PCB_T / 2) - 0.02), mm(z)]}
           rotation={[Math.PI / 2, 0, 0]}
         >
-          <ringGeometry args={[mm(1.5), mm(2.3), 32]} />
+          <ringGeometry args={[mm(1.5), mm(2.1), 32]} />
           <meshPhysicalMaterial
-            color="#c9ccd1"
+            color="#c2c5ca"
             roughness={0.35}
             metalness={0.9}
             side={THREE.DoubleSide}
-            envMapIntensity={0.85}
+            envMapIntensity={0.75}
           />
         </mesh>
       ))}
@@ -2360,13 +2480,13 @@ export function Board() {
           position={[mm(x), mm(PCB_T / 2 + 0.02), mm(z)]}
           rotation={[Math.PI / 2, 0, 0]}
         >
-          <ringGeometry args={[mm(1.5), mm(2.2), 32]} />
+          <ringGeometry args={[mm(1.5), mm(2.1), 32]} />
           <meshPhysicalMaterial
-            color="#c9ccd1"
+            color="#c2c5ca"
             roughness={0.35}
             metalness={0.9}
             side={THREE.DoubleSide}
-            envMapIntensity={0.85}
+            envMapIntensity={0.75}
           />
         </mesh>
       ))}
@@ -2459,30 +2579,9 @@ export function Board() {
         />
       </mesh>
 
-      {/* Touch-panel flex — teal film folding over the display's +Z edge
-          just BELOW the vertical middle (photo), not near the top */}
-      <mesh
-        position={[mm(TFT_CX - 7), mm(TFT_TOP_Y - 0.6), mm(TFT_H / 2 + 0.12)]}
-      >
-        <boxGeometry args={[mm(11), mm(TFT_T + 0.9), mm(0.22)]} />
-        <meshPhysicalMaterial
-          color="#46686e"
-          roughness={0.5}
-          metalness={0.08}
-          clearcoat={0.2}
-        />
-      </mesh>
-      <mesh
-        position={[mm(TFT_CX - 7), mm(TFT_TOP_Y + 0.16), mm(TFT_H / 2 - 1.4)]}
-      >
-        <boxGeometry args={[mm(11), mm(0.06), mm(3.0)]} />
-        <meshPhysicalMaterial
-          color="#527478"
-          roughness={0.48}
-          metalness={0.08}
-          clearcoat={0.2}
-        />
-      </mesh>
+      {/* (The teal tab that used to fold over the +Z edge here was a
+          screen-protector pull tab visible in the reference photo — not
+          part of the device. Removed.) */}
 
       {/* Display flex ribbon folded over the USB-end edge (photo:
           a pale layered ribbon at the bottom-left of the front) */}
@@ -2554,7 +2653,7 @@ export function Board() {
 
       {/* U6 — touch controller SOP-16 below the TF slot (photo: ~4×7mm
           body, noticeably smaller than the old 4×10) */}
-      <ICBlock x={POS.u6.x} z={POS.u6.z} w={4} h={7} thick={1.3} pins={8} pinAxis="x" />
+      <ICBlock x={POS.u6.x} z={POS.u6.z} w={4} h={7} thick={1.3} pins={8} pinAxis="x" pinDotZ={1} />
       <SopPins x={POS.u6.x} z={POS.u6.z} count={8} span={7} offset={2.55} axis="z" />
 
       {/* U5 — speaker amp SOP-8 */}
@@ -2585,23 +2684,35 @@ export function Board() {
         >
           <circleGeometry args={[mm(1.7), 24]} />
           <meshPhysicalMaterial
-            color="#cfd2c8"
+            color="#dee1d6"
             roughness={0.25}
             metalness={0.05}
             clearcoat={0.8}
             side={THREE.DoubleSide}
           />
         </mesh>
-        {/* Dark clover — two crossing bars reading as 4 lobes (photo:
-            olive-tinted through the phosphor, thinner than the window) */}
+        {/* Quadrant seams — SUBTLE pale-olive dividers (photo: the cross
+            barely reads; the mask tint shows through the translucent
+            package, it is NOT a bold dark cross) */}
         <mesh position={[0, mm(-(PCB_T / 2) - 1.56), 0]}>
-          <boxGeometry args={[mm(0.7), mm(0.04), mm(2.7)]} />
-          <meshStandardMaterial color="#5f6459" roughness={0.5} />
+          <boxGeometry args={[mm(0.45), mm(0.04), mm(2.9)]} />
+          <meshStandardMaterial color="#b4b8a8" roughness={0.45} />
         </mesh>
         <mesh position={[0, mm(-(PCB_T / 2) - 1.56), 0]}>
-          <boxGeometry args={[mm(2.7), mm(0.04), mm(0.7)]} />
-          <meshStandardMaterial color="#5f6459" roughness={0.5} />
+          <boxGeometry args={[mm(2.9), mm(0.04), mm(0.45)]} />
+          <meshStandardMaterial color="#b4b8a8" roughness={0.45} />
         </mesh>
+        {/* LED dies — three tiny dark specks + bond dots at the centre
+            (what actually draws the eye in the macro photo) */}
+        {[-0.55, 0, 0.55].map((dx) => (
+          <mesh
+            key={`die-${dx}`}
+            position={[mm(dx), mm(-(PCB_T / 2) - 1.58), mm(0.1)]}
+          >
+            <boxGeometry args={[mm(0.34), mm(0.03), mm(0.34)]} />
+            <meshStandardMaterial color="#3a3d42" roughness={0.4} />
+          </mesh>
+        ))}
         {/* Three dark pads along each ±Z flank */}
         {[-1, 1].flatMap((s) =>
           [-1.5, 0, 1.5].map((dx) => (
@@ -2650,7 +2761,8 @@ export function Board() {
         />
       </mesh>
 
-      {/* SOD-123 schottky diode (D1) */}
+      {/* SOD-123 schottky diode (D1) — black body with the white cathode
+          band clearly visible in the photo */}
       <mesh
         position={[mm(POS.d1.x), mm(-(PCB_T / 2) - 0.55), mm(POS.d1.z)]}
         castShadow
@@ -2663,6 +2775,21 @@ export function Board() {
           clearcoat={0.3}
         />
       </mesh>
+      <mesh
+        position={[mm(POS.d1.x), mm(-(PCB_T / 2) - 1.11), mm(POS.d1.z - 0.85)]}
+      >
+        <boxGeometry args={[mm(1.4), mm(0.03), mm(0.5)]} />
+        <meshStandardMaterial color="#e8e9ec" roughness={0.5} />
+      </mesh>
+      {[-1, 1].map((s) => (
+        <mesh
+          key={`d1-end-${s}`}
+          position={[mm(POS.d1.x), mm(-(PCB_T / 2) - 0.25), mm(POS.d1.z + s * 1.55)]}
+        >
+          <boxGeometry args={[mm(1.0), mm(0.4), mm(0.6)]} />
+          <meshStandardMaterial color="#dcdee2" roughness={0.32} metalness={0.8} />
+        </mesh>
+      ))}
 
       {/* ──────────────  SMD passives (positions match texture pads) ── */}
       {PASSIVES.map(([x, z], i) => (
@@ -2670,7 +2797,24 @@ export function Board() {
           key={`pv-${i}`}
           x={x}
           z={z}
-          color={i % 2 === 0 ? COLOR.smdBlack : COLOR.smdYellow}
+          color={
+            // the twin resistor columns beside P3 are ALL black (photo)
+            x > 20 && z < -10
+              ? COLOR.smdBlack
+              : i % 3 === 0
+              ? COLOR.smdYellow
+              : COLOR.smdBlack
+          }
+        />
+      ))}
+      {/* 0805 brown MLCC caps around the regulators / CH340 */}
+      {PASSIVES_BIG.map(([x, z], i) => (
+        <SmdPassive
+          key={`pvb-${i}`}
+          x={x}
+          z={z}
+          color={COLOR.smdYellow}
+          size="0805"
         />
       ))}
     </group>
