@@ -90,7 +90,7 @@ export default function FactoryResetPage() {
           </h2>
         
           <div className="space-y-3">
-            <ReasonItem text="Forgot your PIN and can't access settings" />
+            <ReasonItem text="Forgot your PIN (settings are locked — use the USB reflash method below)" />
             <ReasonItem text="Selling or giving away the device" />
             <ReasonItem text="Switching to a completely different wallet" />
             <ReasonItem text="Troubleshooting persistent issues" />
@@ -109,7 +109,7 @@ export default function FactoryResetPage() {
           </h3>
         
           <div className="space-y-3 mb-6">
-            <Step number={1} text="Open Settings (requires PIN if set)" />
+            <Step number={1} text="Open Settings and enter your PIN (the menu is PIN-locked)" />
             <Step number={2} text="Navigate to System" />
             <Step number={3} text="Select 'Factory Reset'" />
             <Step number={4} text="Confirm the reset" />

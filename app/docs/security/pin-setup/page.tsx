@@ -196,17 +196,19 @@ export default function PinSetupPage() {
             <div className="flex gap-3">
               <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">Factory Reset Required</div>
+                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">USB Erase &amp; Reflash Required</div>
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  If you forget your PIN, the only recovery option is a factory reset. 
-                  This erases all device settings including WiFi configuration and wallet setup.
+                  The settings menu — including factory reset — is locked behind the PIN, so a
+                  forgotten PIN cannot be recovered on the device itself. The only way back is to
+                  erase and reflash the firmware over USB. This wipes all device settings including
+                  WiFi configuration and wallet setup.
                 </p>
               </div>
             </div>
           </div>
 
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            After a factory reset:
+            After erasing and reflashing:
           </p>
 
           <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">

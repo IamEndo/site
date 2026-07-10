@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "../ui/Button";
 import { RotatingText } from "../ui/RotatingText";
-import { PaymentToasts } from "../ui/PaymentToasts";
 import { ArrowDown, Check } from "lucide-react";
 
 const Device3D = dynamic(
@@ -55,18 +54,14 @@ export function Hero() {
         }}
       />
 
-      {/* Floating payment toasts */}
-      <PaymentToasts />
-
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-24">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left column */}
           <div className="space-y-5 sm:space-y-6">
             {/* Version badge */}
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-accent-500/10 dark:bg-accent-dark-500/15 text-accent-600 dark:text-accent-dark-400 border border-accent-500/20 dark:border-accent-dark-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-500 dark:bg-accent-dark-500 animate-pulse-dot" />
-                Available &middot; v0.4.0
+              <span className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500">
+                Latest version available &middot; v0.4.0
               </span>
             </div>
 

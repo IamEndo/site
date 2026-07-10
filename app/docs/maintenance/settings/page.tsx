@@ -67,7 +67,8 @@ export default function SettingsPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                If you forget your PIN, you'll need to perform a factory reset to access settings.
+                If you forget your PIN, settings — including factory reset — remain locked.
+                Recovery requires erasing and reflashing the firmware over USB.
               </p>
             </div>
           </div>

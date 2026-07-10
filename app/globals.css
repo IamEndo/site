@@ -111,29 +111,6 @@ button {
   animation: glow-in 1.5s ease 0.8s forwards;
 }
 
-/* Floating payment toast */
-@keyframes toast-float {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  8% {
-    opacity: 0.45;
-    transform: translateY(0) scale(1);
-  }
-  85% {
-    opacity: 0.45;
-    transform: translateY(-30px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50px) scale(0.95);
-  }
-}
-.animate-toast-float {
-  animation: toast-float 8s ease-in-out forwards;
-}
-
 /* Custom transition duration */
 .duration-600 {
   transition-duration: 600ms;
@@ -149,9 +126,6 @@ button {
     animation: none;
     opacity: 1;
     transform: none;
-  }
-  .animate-toast-float {
-    display: none;
   }
   .animate-bounce,
   .animate-pulse-dot {

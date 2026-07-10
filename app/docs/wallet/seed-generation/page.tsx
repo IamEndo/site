@@ -245,7 +245,7 @@ export default function SeedGenerationPage() {
             <Step 
               number={4} 
               title="Verify Your Seed"
-              description="PayDeck asks you to confirm 3 words (e.g., words 3, 6, and 9). Select the correct word from the options shown."
+              description="PayDeck asks you to re-enter all 12 words, one at a time, to confirm your backup is correct."
             >
               <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
                 <p className="text-xs text-amber-800 dark:text-amber-300">
