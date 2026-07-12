@@ -162,15 +162,21 @@ export default function SpecificationsPage() {
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">Yes</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-dev</td>
-                  <td className="px-4 py-3 text-zinc-500">Yes</td>
-                  <td className="px-4 py-3 text-zinc-500">Yes</td>
-                  <td className="px-4 py-3 text-amber-600 dark:text-amber-400">With keys</td>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf</td>
+                  <td className="px-4 py-3 text-zinc-500">No</td>
+                  <td className="px-4 py-3 text-zinc-500">No</td>
+                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">Yes</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-prod</td>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-secure</td>
+                  <td className="px-4 py-3 text-zinc-500">Yes (flash + NVS)</td>
+                  <td className="px-4 py-3 text-zinc-500">No</td>
+                  <td className="px-4 py-3 text-amber-600 dark:text-amber-400">Limited</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-release</td>
                   <td className="px-4 py-3 text-zinc-500">Yes (permanent)</td>
-                  <td className="px-4 py-3 text-zinc-500">Yes (permanent)</td>
+                  <td className="px-4 py-3 text-zinc-500">V2, RSA (permanent)</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400">Never</td>
                 </tr>
               </tbody>
@@ -197,9 +203,9 @@ export default function SpecificationsPage() {
               title="TLS Server Authentication"
               description="Pinned root of trust (ISRG Root X1 CA)"
             />
-            <FeatureCard 
+            <FeatureCard
               title="PIN Protection"
-              description="6-digit PIN with hash storage"
+              description="6-digit PIN wraps the master key (AES-256-GCM), 15-strike wipe"
             />
             <FeatureCard 
               title="Secure Memory"

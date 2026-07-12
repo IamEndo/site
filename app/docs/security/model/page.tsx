@@ -122,21 +122,23 @@ export default function SecurityModelPage() {
           </h2>
         
           <div className="space-y-4">
-            <SecurityCard 
+            <SecurityCard
               icon={<Lock className="w-5 h-5" />}
-              title="PIN Protection"
-              description="An optional 6-digit PIN protects access to the settings menu"
+              title="PIN-Derived Key Wrapping"
+              description="A 6-digit PIN unlocks the vault that holds the device's secrets"
               features={[
-                "PIN is hashed before storage (not stored in plaintext)",
-                "Protects against unauthorized configuration changes",
-                "Does not protect displayed payment addresses (public data)"
+                "The master key is AES-256-GCM encrypted under a key derived from your PIN (PBKDF2)",
+                "The PIN is never stored — not even as a hash. It is verified by successfully decrypting the master key",
+                "There is no separate, weaker PIN check for an attacker to target"
               ]}
             />
             <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-              <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Weak PIN Detection</h4>
+              <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Brute-Force Self-Wipe</h4>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                PayDeck rejects obviously weak PINs like 123456, 000000, or repeating digits. 
-                Choose a PIN that isn't easily guessable.
+                After 15 wrong PIN attempts the device factory-wipes itself (it warns from the 10th).
+                The failed-attempt count is committed to storage <em>before</em> each attempt is
+                checked, so power-cycling mid-guess cannot reset it. Weak PINs like 123456 or 000000
+                are rejected at setup.
               </p>
             </div>
           </div>
@@ -157,7 +159,7 @@ export default function SecurityModelPage() {
                 "WiFi credentials (SSID and password)",
                 "Rostrum server configuration",
                 "Wallet xPub or manual address",
-                "PIN hash",
+                "The AES-256-GCM-wrapped master key (no plaintext key, no PIN hash)",
                 "Display preferences"
               ]}
             />
@@ -165,8 +167,12 @@ export default function SecurityModelPage() {
               <div className="flex gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  In production mode, NVS is encrypted. In development mode, NVS data could 
-                  theoretically be extracted with physical access.
+                  On the Standard build, the master key in NVS is always AES-256-GCM-wrapped under
+                  your PIN, so a physical flash dump never exposes it directly. However, a 6-digit
+                  PIN can still be brute-forced offline from such a dump. The{" "}
+                  <Link href="/docs/security/production-mode" className="underline font-medium">secure
+                  builds</Link> encrypt the entire flash (including NVS), which stops the dump itself —
+                  the only complete fix for at-rest attacks.
                 </p>
               </div>
             </div>

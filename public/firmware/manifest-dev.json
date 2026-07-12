@@ -1,13 +1,13 @@
 {
   "name": "PayDeck (Standard)",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "new_install_prompt_erase": true,
   "new_install_improv_wait_time": 0,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "paydeck-v0.4.0-dev-merged.bin", "offset": 0 }
+        { "path": "paydeck-v0.4.1-dev-merged.bin", "offset": 0 }
       ]
     }
   ]

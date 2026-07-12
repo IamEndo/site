@@ -112,8 +112,10 @@ export default function BuildingPage() {
           </h2>
         
           <p className="text-zinc-600 dark:text-zinc-400 mb-6">
-            PayDeck includes three build environments with different security levels. 
-            For most users, the development environment is recommended.
+            PayDeck includes several build environments with different security levels.
+            For most users, the Standard environment is recommended. The two secure
+            environments are built with Arduino as an ESP-IDF component and enable
+            real, hardware-enforced protection.
           </p>
 
           <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">
@@ -132,13 +134,18 @@ export default function BuildingPage() {
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended for most users</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-dev</td>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">None (IDF reference)</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs">Base for the secure builds</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-secure</td>
                   <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Secure Development</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Encrypted, but reflashable</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs">Flash + NVS encrypted, still reflashable</td>
                 </tr>
                 <tr className="bg-red-50/50 dark:bg-red-950/20">
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-secure-prod</td>
-                  <td className="px-4 py-3 text-red-600 dark:text-red-400 font-medium">Production</td>
+                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-release</td>
+                  <td className="px-4 py-3 text-red-600 dark:text-red-400 font-medium">Production (Secure Boot V2)</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400 text-xs font-medium">PERMANENT - Cannot reflash</td>
                 </tr>
               </tbody>
@@ -151,10 +158,12 @@ export default function BuildingPage() {
               <div>
                 <div className="font-medium text-red-900 dark:text-red-200 mb-1">⚠️ Production Mode Warning</div>
                 <p className="text-sm text-red-800 dark:text-red-300">
-                  <code className="px-1 py-0.5 rounded bg-red-100 dark:bg-red-900 text-xs">esp32dev-secure-prod</code> is 
-                  a <strong>point of no return</strong>. After flashing, the device is PERMANENTLY LOCKED. 
-                  eFuses are burned and the device cannot be reflashed. Only use this for final deployment 
-                  after thorough testing.
+                  <code className="px-1 py-0.5 rounded bg-red-100 dark:bg-red-900 text-xs">esp32dev-idf-release</code> is
+                  a <strong>point of no return</strong>. After first boot, the device is PERMANENTLY LOCKED —
+                  eFuses are burned, JTAG is disabled, and it can never be reflashed. It also requires ESP32
+                  chip revision ≥ 3.0 (ECO3) and your own signing key. Follow the full{" "}
+                  <a href="/docs/security/production-mode" className="underline font-medium">secure build guide</a>{" "}
+                  before attempting it.
                 </p>
               </div>
             </div>
@@ -188,16 +197,21 @@ export default function BuildingPage() {
           </div>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Secure development (encrypted, reflashable):</p>
-            <CodeBlock code="pio run -t upload -e esp32dev-secure-dev" />
+            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Secure development (real flash + NVS encryption, still reflashable):</p>
+            <CodeBlock code="pio run -t upload -e esp32dev-idf-secure" />
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2">
+              First boot encrypts the flash and burns dev-mode eFuses. Use a board you can dedicate.
+            </p>
           </div>
 
           <div className="p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 mb-6">
-            <p className="text-sm font-medium text-red-900 dark:text-red-200 mb-2">⚠️ Production mode (POINT OF NO RETURN):</p>
-            <CodeBlock code="# After this, device is PERMANENTLY LOCKED
-pio run -e esp32dev-secure-prod -t upload" />
+            <p className="text-sm font-medium text-red-900 dark:text-red-200 mb-2">⚠️ Production seal (POINT OF NO RETURN):</p>
+            <CodeBlock code="# After first boot, device is PERMANENTLY LOCKED
+pio run -e esp32dev-idf-release -t upload" />
             <p className="text-xs text-red-700 dark:text-red-300 mt-2">
-              Only run this after thorough testing. The device cannot be reflashed after production mode.
+              Requires chip rev ≥ 3.0 (ECO3) and your own RSA signing key. Do not run this until you have
+              read the <a href="/docs/security/production-mode" className="underline">secure build guide</a> and
+              tested thoroughly. The device cannot be reflashed afterward.
             </p>
           </div>
 

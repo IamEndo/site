@@ -70,7 +70,7 @@ export const docsNavigation: NavSection[] = [
       { title: 'PIN Setup', href: '/docs/security/pin-setup' },
       { title: 'PIN Best Practices', href: '/docs/security/pin-practices' },
       { title: 'Security Model', href: '/docs/security/model' },
-      { title: 'Production Mode', href: '/docs/security/production-mode' },
+      { title: 'Secure & Production Builds', href: '/docs/security/production-mode' },
     ],
   },
   {

@@ -590,7 +590,7 @@ function useBackPanelTexture() {
     ctx.fillStyle = "rgba(180,180,190,0.18)";
     ctx.font = "20px ui-monospace, monospace";
     ctx.textAlign = "center";
-    ctx.fillText("MODEL  PD-01     v0.4.0     CE  FCC", W / 2, H - 84);
+    ctx.fillText("MODEL  PD-01     v0.4.1     CE  FCC", W / 2, H - 84);
 
     const tex = new THREE.CanvasTexture(c);
     tex.colorSpace = THREE.SRGBColorSpace;

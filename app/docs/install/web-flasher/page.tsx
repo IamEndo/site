@@ -16,19 +16,9 @@ const RELEASES: {
   hash: string;
 }[] = [
   {
-    file: "paydeck-v0.4.0-dev-merged.bin",
-    size: 1271968,
-    hash: "6165dd40d9f7072b832f806125ced0dc9e05d792b4f6da5ca3b89c2067aa6da6",
-  },
-  {
-    file: "paydeck-v0.4.0-secure-dev-merged.bin",
-    size: 1337504,
-    hash: "4718b0e2aa1244429e606f685788618d41509f3acd080d1f4ca2723042b8622a",
-  },
-  {
-    file: "paydeck-v0.4.0-secure-prod-merged.bin",
-    size: 1337504,
-    hash: "1262eaed31537d753c368b267a827ca894cc2641920706f3047a2fb706b95f97",
+    file: "paydeck-v0.4.1-dev-merged.bin",
+    size: 1276576,
+    hash: "ceab9ae0d821e35c469c96b09e9827f085f6c0b5c7e947ec2770bbbc1871218d",
   },
 ];
 
@@ -164,8 +154,23 @@ export default function WebFlasherPage() {
               body="A previous attempt left the serial port locked. Close any other tabs or programs that might be using it (Arduino Serial Monitor, PlatformIO, screen, minicom), unplug and replug the device, then retry."
             />
             <Trouble
-              title="I flashed Secure — Production by mistake"
-              body="If the device has not yet powered on after flashing, you can reflash the Standard image immediately — eFuses are only burned at first boot. Once the device boots and the bootloader runs once, the lock is permanent and the unit cannot be recovered."
+              title="Can I flash a secure or production build from here?"
+              body={
+                <>
+                  No — and that&apos;s deliberate. The web flasher only installs
+                  the reflashable Standard build. Flash encryption and Secure
+                  Boot burn one-time eFuses and require your own signing key, so
+                  they can&apos;t be delivered as a shared browser download.
+                  Follow the{" "}
+                  <Link
+                    href="/docs/security/production-mode"
+                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                  >
+                    secure build guide
+                  </Link>{" "}
+                  to do it yourself from source.
+                </>
+              }
             />
           </div>
         </section>
@@ -176,14 +181,14 @@ export default function WebFlasherPage() {
             Verify the firmware
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-            All three images are built from the{" "}
+            This image is built from the{" "}
             <a
-              href="https://gitlab.com/IamEndo/paydeck/-/tree/v0.4.0"
+              href="https://gitlab.com/IamEndo/paydeck/-/tree/v0.4.1"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent-600 dark:text-accent-dark-400 underline"
             >
-              v0.4.0 source tree
+              v0.4.1 source tree
             </a>
             . To confirm that the bytes flashed onto your device match what is
             published here, download the file, hash it locally, and compare
@@ -201,7 +206,7 @@ export default function WebFlasherPage() {
               Verify locally
             </div>
             <pre className="p-4 rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 text-xs text-zinc-100 font-mono overflow-x-auto">
-              <code>{`sha256sum paydeck-v0.4.0-dev-merged.bin`}</code>
+              <code>{`sha256sum paydeck-v0.4.1-dev-merged.bin`}</code>
             </pre>
           </div>
         </section>

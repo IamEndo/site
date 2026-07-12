@@ -157,15 +157,15 @@ export default function DocsPage() {
             color="blue"
             description="For testing and experimentation. No security features enabled. Fully reflashable."
           />
-          <SecurityMode 
+          <SecurityMode
             level="Secure Development"
             color="yellow"
-            description="Flash encryption and secure boot enabled. Can still be reflashed with the correct signing keys."
+            description="Real flash encryption and NVS encryption. Still reflashable (dev-mode eFuses), for testing the secure stack."
           />
-          <SecurityMode 
+          <SecurityMode
             level="Production"
             color="red"
-            description="Permanent. Flash encryption and secure boot are locked via eFuses. Device cannot be reflashed. Irreversible."
+            description="Permanent. Release-mode flash encryption plus Secure Boot V2, locked via eFuses. Cannot be reflashed. Irreversible."
           />
         </div>
 

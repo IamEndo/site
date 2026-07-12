@@ -128,7 +128,7 @@ const softwareJsonLd = {
   description: "Open source point-of-sale firmware for accepting Nexa cryptocurrency payments",
   url: "https://paydeck.org",
   downloadUrl: "https://gitlab.com/IamEndo/paydeck",
-  softwareVersion: "0.4.0",
+  softwareVersion: "0.4.1",
   author: {
     "@type": "Organization",
     name: "PayDeck",
