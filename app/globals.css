@@ -116,6 +116,44 @@ button {
   transition-duration: 600ms;
 }
 
+/* ========== Hero atmosphere ========== */
+
+/*
+ * Registration-mark grid ("+" crosshairs, like PCB fiducials).
+ * The colour lives in the SVG so each theme gets a mark that actually contrasts
+ * with its background; the vignette mask keeps the marks strongest behind the
+ * content and fades them at the edges and towards the next section.
+ */
+.hero-plus-grid {
+  --plus-pitch: 32px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16.5 11.5v10M11.5 16.5h10' stroke='%23171717' stroke-width='1' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-size: var(--plus-pitch) var(--plus-pitch);
+  background-position: 0 0;
+  opacity: 0.13;
+  mask-image: radial-gradient(ellipse 110% 95% at 50% 30%, #000 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 110% 95% at 50% 30%, #000 25%, transparent 100%);
+  animation: plus-drift 48s linear infinite;
+}
+.dark .hero-plus-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16.5 11.5v10M11.5 16.5h10' stroke='%23ffffff' stroke-width='1' stroke-linecap='square'/%3E%3C/svg%3E");
+  opacity: 0.13;
+}
+
+/* Seamless diagonal drift: one full tile per loop, so the loop point is invisible */
+@keyframes plus-drift {
+  from { background-position: 0 0; }
+  to   { background-position: var(--plus-pitch) var(--plus-pitch); }
+}
+
+/* Slow breathing of the accent glows */
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+.animate-hero-breathe {
+  animation: hero-breathe 11s ease-in-out infinite;
+}
+
 /* ========== Motion & no-JS fallbacks ========== */
 
 /* Reduced motion: show everything immediately, no movement */
@@ -128,8 +166,13 @@ button {
     transform: none;
   }
   .animate-bounce,
-  .animate-pulse-dot {
+  .animate-pulse-dot,
+  .animate-hero-breathe,
+  .hero-plus-grid {
     animation: none;
+  }
+  .animate-hero-breathe {
+    opacity: 1;
   }
   [data-reveal] {
     opacity: 1 !important;

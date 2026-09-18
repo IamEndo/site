@@ -22,37 +22,39 @@ function DeviceFallback() {
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 -z-20" />
+      {/* ── Background stack (back to front) ── */}
 
-      {/* Subtle accent radial glow - light mode (green) */}
+      {/* 1. Base tone: a soft top-lit gradient so the hero has depth, not a flat fill */}
+      <div className="absolute inset-0 -z-20 pointer-events-none bg-gradient-to-b from-neutral-100 via-white to-white dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-950" />
+
+      {/* 2. Accent glows - light mode (green): a wide wash behind the copy, a second behind the device */}
       <div
-        className="absolute inset-0 -z-[15] pointer-events-none dark:hidden"
+        className="absolute inset-0 -z-[15] pointer-events-none dark:hidden animate-hero-breathe"
         style={{
           background: [
-            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(115,160,82,0.06), transparent)",
-            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(115,160,82,0.04), transparent)",
+            "radial-gradient(ellipse 55% 60% at 18% 45%, rgba(115,160,82,0.14), transparent 70%)",
+            "radial-gradient(ellipse 45% 55% at 78% 40%, rgba(115,160,82,0.10), transparent 70%)",
+            "radial-gradient(ellipse 80% 40% at 50% 0%, rgba(23,23,23,0.05), transparent 70%)",
           ].join(", "),
         }}
       />
-      {/* Subtle accent radial glow - dark mode (purple) */}
+      {/* 2. Accent glows - dark mode (purple) plus a faint top light-leak */}
       <div
-        className="absolute inset-0 -z-[15] pointer-events-none hidden dark:block"
+        className="absolute inset-0 -z-[15] pointer-events-none hidden dark:block animate-hero-breathe"
         style={{
           background: [
-            "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(140,95,173,0.06), transparent)",
-            "radial-gradient(ellipse 40% 60% at 80% 30%, rgba(140,95,173,0.04), transparent)",
+            "radial-gradient(ellipse 55% 60% at 18% 45%, rgba(140,95,173,0.16), transparent 70%)",
+            "radial-gradient(ellipse 45% 55% at 78% 40%, rgba(140,95,173,0.12), transparent 70%)",
+            "radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.05), transparent 70%)",
           ].join(", "),
         }}
       />
 
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 -z-10 opacity-[0.015] dark:opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
+      {/* 3. Registration-mark grid (theme-aware "+" crosshairs, vignetted; see globals.css) */}
+      <div className="hero-plus-grid absolute inset-0 -z-10 pointer-events-none" aria-hidden="true" />
+
+      {/* 4. Blend into the next section so the grid and glows dissolve instead of ending on a hard edge */}
+      <div className="absolute inset-x-0 bottom-0 h-40 -z-[5] pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-neutral-950" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-24">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -90,7 +92,12 @@ export function Hero() {
               <Button asChild size="lg">
                 <a href="#device">View hardware</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="bg-white/70 backdrop-blur-sm dark:bg-neutral-950/60"
+              >
                 <Link href="/docs/install/web-flasher">Install firmware</Link>
               </Button>
             </div>
