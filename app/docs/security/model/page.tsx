@@ -124,21 +124,32 @@ export default function SecurityModelPage() {
           <div className="space-y-4">
             <SecurityCard
               icon={<Lock className="w-5 h-5" />}
-              title="PIN-Derived Key Wrapping"
-              description="A 6-digit PIN unlocks the vault that holds the device's secrets"
+              title="Password-Derived Key Wrapping"
+              description="An access password of 8 to 128 characters unlocks the vault that holds the device's secrets"
               features={[
-                "The master key is AES-256-GCM encrypted under a key derived from your PIN (PBKDF2)",
-                "The PIN is never stored — not even as a hash. It is verified by successfully decrypting the master key",
-                "There is no separate, weaker PIN check for an attacker to target"
+                "The master key is AES-256-GCM encrypted under a key derived from your password (PBKDF2)",
+                "The password is never stored, not even as a hash. It is verified by successfully decrypting the master key",
+                "There is no separate, weaker password check for an attacker to target",
+                "The device locks every time it returns to the home screen; taking payments never needs the password"
+              ]}
+            />
+            <SecurityCard
+              icon={<Key className="w-5 h-5" />}
+              title="First-Run Setup Wizard"
+              description="A fresh device cannot be used until it is set up"
+              features={[
+                "Wallet mode (Receive only or Watch only) is chosen once and becomes immutable; only a factory reset clears it",
+                "The password is mandatory and set before any wallet or setting exists, so there is no default code",
+                "Nothing outside the wizard is reachable until mode, password and wallet all exist"
               ]}
             />
             <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
               <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Brute-Force Self-Wipe</h4>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                After 15 wrong PIN attempts the device factory-wipes itself (it warns from the 10th).
+                After 15 wrong password attempts the device factory-wipes itself (it warns from the 10th).
                 The failed-attempt count is committed to storage <em>before</em> each attempt is
-                checked, so power-cycling mid-guess cannot reset it. Weak PINs like 123456 or 000000
-                are rejected at setup.
+                checked, so power-cycling mid-guess cannot reset it. Straight runs, repeated blocks and
+                common passwords are rejected when the password is set.
               </p>
             </div>
           </div>
@@ -159,7 +170,8 @@ export default function SecurityModelPage() {
                 "WiFi credentials (SSID and password)",
                 "Rostrum server configuration",
                 "Wallet xPub or manual address",
-                "The AES-256-GCM-wrapped master key (no plaintext key, no PIN hash)",
+                "The AES-256-GCM-wrapped master key (no plaintext key, no password hash)",
+                "The wallet mode and the setup-complete flag",
                 "Display preferences"
               ]}
             />
@@ -168,8 +180,9 @@ export default function SecurityModelPage() {
                 <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-amber-800 dark:text-amber-300">
                   On the Standard build, the master key in NVS is always AES-256-GCM-wrapped under
-                  your PIN, so a physical flash dump never exposes it directly. However, a 6-digit
-                  PIN can still be brute-forced offline from such a dump. The{" "}
+                  your password, so a physical flash dump never exposes it directly. An attacker holding
+                  such a dump can still guess passwords offline without any attempt limit, which is why
+                  the password has a minimum of 8 characters and why a long passphrase is recommended. The{" "}
                   <Link href="/docs/security/production-mode" className="underline font-medium">secure
                   builds</Link> encrypt the entire flash (including NVS), which stops the dump itself —
                   the only complete fix for at-rest attacks.
@@ -206,7 +219,7 @@ export default function SecurityModelPage() {
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 <tr>
                   <td className="px-4 py-3 text-zinc-900 dark:text-white">Device theft</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Watch-only mode, PIN protection</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs">Watch-only design, password lock, 15-strike wipe</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-zinc-900 dark:text-white">Network eavesdropping</td>
@@ -230,7 +243,7 @@ export default function SecurityModelPage() {
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-zinc-900 dark:text-white">Weak randomness</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Multi-source entropy pool</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs">Human tap entropy only, NIST SP 800-90B measured, fail-closed</td>
                 </tr>
               </tbody>
             </table>
@@ -262,7 +275,7 @@ export default function SecurityModelPage() {
             />
             <LimitationItem 
               title="User error"
-              description="Lost seed phrases, weak PINs, public seed display"
+              description="Lost seed phrases, weak or shared passwords, public seed display"
             />
             <LimitationItem 
               title="Sophisticated hardware attacks"
@@ -279,7 +292,7 @@ export default function SecurityModelPage() {
         
           <div className="space-y-2">
             <RecommendationItem number={1} text="Use privacy mode (seed phrase or xPub, not manual address)" />
-            <RecommendationItem number={2} text="Set a strong 6-digit PIN" />
+            <RecommendationItem number={2} text="Choose a long passphrase as the access password and keep it private" />
             <RecommendationItem number={3} text="Connect to trusted WiFi networks" />
             <RecommendationItem number={4} text="Keep seed phrase backup secure and private" />
             <RecommendationItem number={5} text="Update firmware when security patches are released" />

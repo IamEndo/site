@@ -1,21 +1,20 @@
 import { Metadata } from 'next';
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
+import {
   Wrench,
   ArrowRight,
-  Settings,
   Wifi,
-  Server,
   Wallet,
   Lock,
   Monitor,
+  History,
   Info
 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Device Settings',
-  description: 'Configure PayDeck settings and preferences.',
+  description: 'The PayDeck menu: network, wallet, device and security settings, and the transaction history.',
 };
 
 export default function SettingsPage() {
@@ -32,33 +31,29 @@ export default function SettingsPage() {
             Device Settings
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Configure WiFi, server, wallet, and display settings.
+            Everything behind the Menu button: network, wallet, device, password, factory reset and the transaction history.
           </p>
         </div>
 
         {/* Accessing Settings */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Accessing Settings
+            Opening the Menu
           </h2>
-        
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            To access the settings menu:
-          </p>
 
           <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
             <ol className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                 <span className="text-zinc-400 font-medium">1.</span>
-                From the main screen, tap the settings icon (gear)
+                Tap the Menu button in the corner of the home screen
               </li>
               <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                 <span className="text-zinc-400 font-medium">2.</span>
-                Enter your PIN if one is set
+                Enter your access password on the keypad and tap Unlock
               </li>
               <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                 <span className="text-zinc-400 font-medium">3.</span>
-                Navigate through settings categories
+                Pick a category. Back returns to the Menu, and the Menu's Back returns home and locks the device again
               </li>
             </ol>
           </div>
@@ -67,8 +62,9 @@ export default function SettingsPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                If you forget your PIN, settings — including factory reset — remain locked.
-                Recovery requires erasing and reflashing the firmware over USB.
+                The password is mandatory and set during{" "}
+                <Link href="/docs/installation/first-boot" className="underline font-medium">first-run setup</Link>.
+                If you forget it, the menu, including factory reset, stays locked. Recovery is a USB erase and reflash.
               </p>
             </div>
           </div>
@@ -77,82 +73,71 @@ export default function SettingsPage() {
         {/* Settings Categories */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Settings Categories
+            Menu Categories
           </h2>
-        
+
           <div className="space-y-4">
-            <SettingCategory 
+            <SettingCategory
               icon={<Wifi className="w-5 h-5" />}
-              title="WiFi"
-              description="Network connection settings"
+              title="Network settings"
+              description="Wi-Fi and node"
               items={[
-                "Select WiFi network (SSID)",
-                "Enter network password",
-                "View connection status",
-                "Disconnect/reconnect"
+                "Wi-Fi settings: network name (SSID) and password",
+                "Node settings: Rostrum server host and port",
+                "Network: switch between online (payments verified automatically) and offline (QR payments only)",
+                "On a board without Wi-Fi this screen only states that the device is offline"
               ]}
               href="/docs/setup/wifi"
             />
-          
-            <SettingCategory 
-              icon={<Server className="w-5 h-5" />}
-              title="Rostrum Server"
-              description="Blockchain server configuration"
-              items={[
-                "Server address",
-                "Port number",
-                "Connection status",
-                "Switch to different server"
-              ]}
-              href="/docs/setup/rostrum"
-            />
-          
-            <SettingCategory 
+
+            <SettingCategory
               icon={<Wallet className="w-5 h-5" />}
-              title="Wallet"
-              description="Payment address configuration"
+              title="Wallet settings"
+              description="Seed, keys, privacy"
               items={[
-                "View current address/xPub",
-                "Change wallet setup",
-                "Privacy mode toggle",
-                "Address index (privacy mode)"
+                "Create wallet: new seed phrase from tap entropy (boards with a certified entropy source)",
+                "Restore wallet: enter an existing 12 to 24 word seed phrase, with optional passphrase",
+                "Import xPub key: watch-only wallet from an extended public key",
+                "Privacy: rotate addresses per payment, or reuse one address",
+                "Enter address: one fixed receiving address"
               ]}
               href="/docs/wallet/options"
             />
-          
-            <SettingCategory 
-              icon={<Lock className="w-5 h-5" />}
-              title="Security"
-              description="PIN and security settings"
+
+            <SettingCategory
+              icon={<Monitor className="w-5 h-5" />}
+              title="Device settings"
+              description="Time, display, name"
               items={[
-                "Set/change PIN",
-                "Disable PIN",
-                "View security status"
+                "Time settings: time zone and Sync clock over the network",
+                "Display name: the shop name shown on the home screen",
+                "Home logo: choose the brand mark on the home screen",
+                "Display settings: brightness and auto sleep",
+                "Invert display: dark-on-light colours"
+              ]}
+            />
+
+            <SettingCategory
+              icon={<Lock className="w-5 h-5" />}
+              title="More settings"
+              description="Password and factory reset"
+              items={[
+                "Change password: set a new access password",
+                "Device info: firmware version, hardware, wallet mode",
+                "Factory reset: erase everything and run setup again"
               ]}
               href="/docs/security/pin-setup"
             />
-          
-            <SettingCategory 
-              icon={<Monitor className="w-5 h-5" />}
-              title="Display"
-              description="Screen preferences"
+
+            <SettingCategory
+              icon={<History className="w-5 h-5" />}
+              title="Transactions"
+              description="Recent payments"
               items={[
-                "Brightness",
-                "Screen timeout",
-                "Theme preferences"
+                "Payment history with amount, time and status",
+                "Transaction detail with an explorer QR code"
               ]}
-            />
-          
-            <SettingCategory 
-              icon={<Settings className="w-5 h-5" />}
-              title="System"
-              description="Device information and reset"
-              items={[
-                "Firmware version",
-                "Device information",
-                "Factory reset"
-              ]}
-              href="/docs/maintenance/factory-reset"
+              href="/docs/usage/confirmation"
             />
           </div>
         </section>
@@ -160,29 +145,25 @@ export default function SettingsPage() {
         {/* Changing Settings */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Changing Settings
+            Things to Know
           </h2>
-        
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            Most settings take effect immediately after saving. Some notes:
-          </p>
 
           <div className="space-y-3">
-            <NoteItem 
-              title="WiFi changes"
-              description="Device will disconnect and reconnect to the new network"
+            <NoteItem
+              title="Wallet mode is not a setting"
+              description="Receive only or Watch only is chosen once in the setup wizard and shown read-only in Device info. Changing it means a factory reset."
             />
-            <NoteItem 
-              title="Server changes"
-              description="May take a few seconds to establish new connection"
+            <NoteItem
+              title="Replacing the wallet"
+              description="Create, Restore, Import xPub and Enter address each replace the current wallet configuration. Have your backup at hand first."
             />
-            <NoteItem 
-              title="Wallet changes"
-              description="Requires re-entering seed or xPub for security"
+            <NoteItem
+              title="Network changes"
+              description="A new Wi-Fi network or node takes effect when the device reconnects; a seed derivation restarts the device."
             />
-            <NoteItem 
-              title="PIN changes"
-              description="Requires current PIN to confirm identity"
+            <NoteItem
+              title="Password changes"
+              description="Require the current password, because the menu itself is behind it. The device locks again after the change."
             />
           </div>
         </section>
@@ -192,7 +173,7 @@ export default function SettingsPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
             Settings Storage
           </h2>
-        
+
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
             Settings are stored in the ESP32's non-volatile storage (NVS):
           </p>
@@ -204,15 +185,19 @@ export default function SettingsPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              Factory reset clears all stored settings
+              Secrets (xPub, address, Wi-Fi password) are encrypted under the master key, which is wrapped by your password
             </li>
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              In production mode, NVS is encrypted
+              Factory reset, and the fifteen-strike wipe, erase all of it
             </li>
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              Reflashing firmware does not erase settings (unless full erase)
+              Secure builds encrypt the whole NVS partition as well
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zinc-400">•</span>
+              Reflashing the firmware keeps the settings unless you erase the flash first
             </li>
           </ul>
         </section>
@@ -223,9 +208,9 @@ export default function SettingsPage() {
             Need to reset everything?
           </h3>
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            Factory reset clears all settings and returns device to initial state.
+            Factory reset erases every setting and runs the setup wizard again.
           </p>
-          <Link 
+          <Link
             href="/docs/maintenance/factory-reset"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >

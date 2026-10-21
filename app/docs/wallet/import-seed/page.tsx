@@ -33,7 +33,7 @@ export default function ImportSeedPage() {
             Importing a Seed
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Use an existing 12-word seed phrase with PayDeck. Ideal for consolidating 
+            Use an existing seed phrase of 12 to 24 words with PayDeck. Ideal for consolidating 
             payments to an existing wallet.
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function ImportSeedPage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-3 gap-4 mb-12">
           <StatCard icon={<Clock className="w-5 h-5" />} label="Setup Time" value="2-3 min" />
-          <StatCard icon={<FileText className="w-5 h-5" />} label="Input" value="12 words" />
+          <StatCard icon={<FileText className="w-5 h-5" />} label="Input" value="12-24 words" />
           <StatCard icon={<Shield className="w-5 h-5" />} label="Privacy" value="Full" />
         </div>
 
@@ -53,7 +53,7 @@ export default function ImportSeedPage() {
               <div>
                 <div className="font-medium text-blue-900 dark:text-blue-200 mb-1">How It Works</div>
                 <p className="text-sm text-blue-800 dark:text-blue-300">
-                  You enter your 12-word seed phrase. PayDeck derives the public keys (xPub) needed 
+                  You enter your seed phrase (12, 15, 18, 21 or 24 words) and, if it has one, the passphrase. PayDeck derives the public keys (xPub) needed 
                   for address generation, then <strong>immediately erases the seed from memory</strong>. 
                   Your private keys are never stored on the device. PayDeck operates as a watch-only wallet.
                 </p>
@@ -148,8 +148,8 @@ export default function ImportSeedPage() {
           
             <Step 
               number={2} 
-              title="Enter Your 12 Words"
-              description="Use the on-screen keyboard to type each word of your seed phrase in order."
+              title="Enter Your Seed Words"
+              description="Use the on-screen keyboard to type each word of your seed phrase in order. The length is detected automatically."
             >
               <div className="mt-3 p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800">
                 <p className="text-sm font-medium text-zinc-900 dark:text-white mb-2">Tips for entering words:</p>
@@ -173,7 +173,7 @@ export default function ImportSeedPage() {
             <Step 
               number={3} 
               title="Confirm Import"
-              description="Review that all 12 words are correct, then confirm to proceed."
+              description="Review that every word is correct, then confirm. The device then asks whether the seed has a passphrase."
             />
           
             <Step 
@@ -213,7 +213,7 @@ export default function ImportSeedPage() {
             <StoredCard 
               title="Never Stored"
               items={[
-                "Your 12-word seed phrase",
+                "Your seed phrase and passphrase",
                 "Private keys",
                 "Ability to spend funds"
               ]}
@@ -275,9 +275,9 @@ export default function ImportSeedPage() {
             <TroubleshootItem 
               problem="Import fails"
               solutions={[
-                "Ensure all 12 words are entered",
+                "Enter 12, 15, 18, 21 or 24 words",
                 "Check for extra spaces before/after words",
-                "Verify checksum (last word depends on previous 11)"
+                "Verify the checksum (the last word depends on all the others)"
               ]}
             />
           </div>

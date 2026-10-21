@@ -133,8 +133,18 @@ export default function GlossaryPage() {
           />
         
           <Term 
-            term="PIN"
-            definition="Personal Identification Number. A 6-digit code that protects access to PayDeck settings."
+            term="Password (access password)"
+            definition="The 8 to 128 character secret set during first-run setup. It wraps the device's master key and unlocks the menu, settings and wallet. Fifteen wrong attempts wipe the device."
+          />
+        
+          <Term 
+            term="Setup Wizard"
+            definition="The three-step flow a fresh or factory-reset PayDeck boots into: choose the wallet mode, set the access password, set up the wallet. Nothing else is reachable until it completes."
+          />
+        
+          <Term 
+            term="Wallet Mode"
+            definition="Receive only (point-of-sale terminal) or Watch only (personal wallet monitor). Chosen once in the setup wizard and immutable afterwards; a factory reset is the only way to change it."
           />
         
           <Term 

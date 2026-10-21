@@ -105,7 +105,7 @@ export default function NetworkSecurityPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-                  PIN protection recommended but optional
+                  The access password set during setup locks the menu
                 </li>
               </ul>
             </DeploymentCard>
@@ -123,7 +123,7 @@ export default function NetworkSecurityPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-                  Enable PIN protection to prevent unauthorized access
+                  Share the access password only with people allowed to change settings
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
@@ -291,7 +291,7 @@ export default function NetworkSecurityPage() {
           <div className="space-y-3">
             <SecurityTip tip="Position device where staff can see it at all times" />
             <SecurityTip tip="Use the enclosure to prevent access to USB ports" />
-            <SecurityTip tip="Enable PIN protection to lock menu access" />
+            <SecurityTip tip="Keep the access password private; it locks the whole menu" />
             <SecurityTip tip="Use production firmware to prevent reflashing" />
             <SecurityTip tip="Consider tamper-evident stickers on enclosure seams" />
             <SecurityTip tip="Train staff to recognize suspicious behavior around the device" />
@@ -328,7 +328,7 @@ export default function NetworkSecurityPage() {
               <ChecklistItem text="Use WPA2/WPA3 WiFi encryption" />
               <ChecklistItem text="Connect to 2.4 GHz network (required)" />
               <ChecklistItem text="Use port 20004 (WSS) for encrypted connections" />
-              <ChecklistItem text="Enable PIN protection on the device" />
+              <ChecklistItem text="Use a long passphrase as the access password" />
               <ChecklistItem text="Consider a dedicated network for payment devices" />
               <ChecklistItem text="Run your own Rostrum server for maximum privacy" />
               <ChecklistItem text="Use production firmware for high-security deployments" />

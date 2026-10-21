@@ -1,8 +1,8 @@
-import { Metadata } from "next";
-import { DocsArticle } from "../../_components/DocsArticle";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Chrome, CircleHelp } from "lucide-react";
-import { Flasher } from "./_components/Flasher";
+import { DocsArticle } from "../../_components/DocsArticle";
+import { Flasher, FIRMWARE_VERSION } from "./_components/Flasher";
 
 export const metadata: Metadata = {
   title: "Web Flasher",
@@ -12,13 +12,21 @@ export const metadata: Metadata = {
 
 const RELEASES: {
   file: string;
+  variant: string;
   size: number;
   hash: string;
 }[] = [
   {
-    file: "paydeck-v0.4.1-dev-merged.bin",
-    size: 1276576,
-    hash: "ceab9ae0d821e35c469c96b09e9827f085f6c0b5c7e947ec2770bbbc1871218d",
+    file: "paydeck-v0.5.0-st7789-merged.bin",
+    variant: "ST7789, dual USB board",
+    size: 1289088,
+    hash: "18274a8e6ba212eaf762819f556d7417c12490c0c248a2d1b545009772daea01",
+  },
+  {
+    file: "paydeck-v0.5.0-ili9341-merged.bin",
+    variant: "ILI9341, single USB board",
+    size: 1289184,
+    hash: "62503389ed6b4058ab04a9a1c8a4f3e2744681e6350115bcff3452dbfe5c77af",
   },
 ];
 
@@ -40,8 +48,9 @@ export default function WebFlasherPage() {
             Flash from your browser
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Plug in your ESP32 via USB, click a button, and the latest PayDeck
-            firmware will install in about two minutes.
+            Plug in your ESP32 via USB, pick your board&apos;s display driver,
+            click a button, and PayDeck v{FIRMWARE_VERSION} installs in about two
+            minutes.
           </p>
         </div>
 
@@ -79,43 +88,62 @@ export default function WebFlasherPage() {
           <ol className="space-y-4">
             <Step
               n={1}
+              title="Pick the display driver"
+              body={
+                <>
+                  Dual USB board (USB-C next to micro-USB) = ST7789. Single
+                  micro-USB board = ILI9341. See{" "}
+                  <Link
+                    href="/docs/getting-started/hardware"
+                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                  >
+                    Hardware Requirements
+                  </Link>{" "}
+                  for photos and the full table. Both images are the same
+                  firmware; only the panel driver differs.
+                </>
+              }
+            />
+            <Step
+              n={2}
               title="Plug the ESP32 into a USB port"
               body="Use a data-capable cable. Some cheap cables only carry power and won't show up in the browser's port picker."
             />
             <Step
-              n={2}
+              n={3}
               title="Press and hold the BOOT button"
               body="Small tact switch on the back of the CYD, next to the USB connector. Holding it pulls GPIO0 low so the chip enters ROM download mode at the next reset. Required on every flash — auto-reset alone is unreliable on most CYD clones."
             />
             <Step
-              n={3}
+              n={4}
               title="Click Connect & flash, then pick the port"
               body="With BOOT still held, click the install button above. The browser shows a USB device picker and grants the page access only to the port you select."
             />
             <Step
-              n={4}
+              n={5}
               title="Release BOOT once the chip is detected"
               body="About 2 seconds after the picker closes, the flasher reports the chip and begins writing. From this point you can release BOOT and let it run."
             />
             <Step
-              n={5}
+              n={6}
               title="Wait roughly two minutes"
-              body="The flasher writes the bootloader, partition table, and application image, then verifies. Don't unplug the device or close the tab."
+              body="The flasher erases the chip, writes the bootloader, partition table, and application image, then verifies. Don't unplug the device or close the tab."
             />
             <Step
-              n={6}
+              n={7}
               title="Continue setup on the device"
               body={
                 <>
-                  When the flasher reports success, the device reboots
-                  automatically. Continue with the{" "}
+                  When the flasher reports success, the device reboots into the
+                  setup wizard. Continue with the{" "}
                   <Link
                     href="/docs/installation/first-boot"
                     className="text-accent-600 dark:text-accent-dark-400 underline"
                   >
                     first-boot guide
                   </Link>{" "}
-                  to configure WiFi, your wallet, and a PIN.
+                  to choose the mode, set your password, set up the wallet and
+                  connect to Wi-Fi.
                 </>
               }
             />
@@ -132,8 +160,8 @@ export default function WebFlasherPage() {
               title="The port picker is empty or doesn't show the CYD"
               body={
                 <>
-                  The OS doesn't see the USB-to-serial chip. CYD boards use either
-                  CH340 or CP210x — install the{" "}
+                  The OS doesn&apos;t see the USB-to-serial chip. CYD boards use
+                  either CH340 or CP210x &mdash; install the{" "}
                   <Link
                     href="/docs/installation/usb-drivers"
                     className="text-accent-600 dark:text-accent-dark-400 underline"
@@ -154,14 +182,18 @@ export default function WebFlasherPage() {
               body="A previous attempt left the serial port locked. Close any other tabs or programs that might be using it (Arduino Serial Monitor, PlatformIO, screen, minicom), unplug and replug the device, then retry."
             />
             <Trouble
+              title="The screen stays white, or the colours are inverted or garbled"
+              body="The firmware is running but the wrong panel driver was chosen. Flash the other variant: ST7789 for the dual-USB board, ILI9341 for the single-USB board. Nothing is damaged by trying the wrong one."
+            />
+            <Trouble
               title="Can I flash a secure or production build from here?"
               body={
                 <>
-                  No — and that&apos;s deliberate. The web flasher only installs
-                  the reflashable Standard build. Flash encryption and Secure
-                  Boot burn one-time eFuses and require your own signing key, so
-                  they can&apos;t be delivered as a shared browser download.
-                  Follow the{" "}
+                  No &mdash; and that&apos;s deliberate. The web flasher only
+                  installs the reflashable Standard build. Flash encryption and
+                  Secure Boot burn one-time eFuses and require your own signing
+                  key, so they can&apos;t be delivered as a shared browser
+                  download. Follow the{" "}
                   <Link
                     href="/docs/security/production-mode"
                     className="text-accent-600 dark:text-accent-dark-400 underline"
@@ -181,18 +213,30 @@ export default function WebFlasherPage() {
             Verify the firmware
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-            This image is built from the{" "}
+            Both images are built from the{" "}
             <a
-              href="https://gitlab.com/IamEndo/paydeck/-/tree/v0.4.1"
+              href={`https://gitlab.com/IamEndo/paydeck/-/tree/v${FIRMWARE_VERSION}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent-600 dark:text-accent-dark-400 underline"
             >
-              v0.4.1 source tree
+              v{FIRMWARE_VERSION} source tree
             </a>
-            . To confirm that the bytes flashed onto your device match what is
+            . Each one is the bootloader, partition table and application
+            merged into a single image that the flasher writes from address 0.
+            To confirm that the bytes flashed onto your device match what is
             published here, download the file, hash it locally, and compare
-            against the value below.
+            against the value below. The application images alone, with
+            SHA-256 sums and GPG signatures, are on the{" "}
+            <a
+              href="https://gitlab.com/IamEndo/paydeck/-/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-600 dark:text-accent-dark-400 underline"
+            >
+              GitLab releases page
+            </a>
+            .
           </p>
 
           <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden">
@@ -206,7 +250,7 @@ export default function WebFlasherPage() {
               Verify locally
             </div>
             <pre className="p-4 rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 text-xs text-zinc-100 font-mono overflow-x-auto">
-              <code>{`sha256sum paydeck-v0.4.1-dev-merged.bin`}</code>
+              <code>{`sha256sum paydeck-v${FIRMWARE_VERSION}-*-merged.bin`}</code>
             </pre>
           </div>
         </section>
@@ -267,23 +311,30 @@ function Trouble({
 
 function ReleaseRow({
   file,
+  variant,
   size,
   hash,
 }: {
   file: string;
+  variant: string;
   size: number;
   hash: string;
 }) {
   return (
     <div className="p-4 space-y-2">
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
-        <a
-          href={`/firmware/${file}`}
-          download
-          className="text-sm font-medium text-zinc-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors break-all"
-        >
-          {file}
-        </a>
+        <div className="min-w-0">
+          <a
+            href={`/firmware/${file}`}
+            download
+            className="text-sm font-medium text-zinc-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors break-all"
+          >
+            {file}
+          </a>
+          <div className="text-xs text-zinc-500 dark:text-zinc-500">
+            {variant}
+          </div>
+        </div>
         <span className="text-xs font-mono text-zinc-500 dark:text-zinc-500 flex-shrink-0">
           {formatBytes(size)}
         </span>

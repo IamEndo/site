@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
+import {
   Wrench,
   ArrowRight,
   AlertTriangle,
-  Info,
   CheckCircle2,
   XCircle,
   RefreshCw,
@@ -14,7 +13,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Factory Reset',
-  description: 'Reset PayDeck to factory defaults and erase all settings.',
+  description: 'Erase every setting, the wallet configuration and the password, and run the PayDeck setup wizard again.',
 };
 
 export default function FactoryResetPage() {
@@ -31,7 +30,7 @@ export default function FactoryResetPage() {
             Factory Reset
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Erase all settings and return PayDeck to its initial state.
+            Erase all settings and return PayDeck to its initial state. The device restarts into the setup wizard.
           </p>
         </div>
 
@@ -43,8 +42,8 @@ export default function FactoryResetPage() {
               <div>
                 <h3 className="font-semibold text-red-900 dark:text-red-200 mb-2">This action cannot be undone</h3>
                 <p className="text-sm text-red-800 dark:text-red-300">
-                  Factory reset permanently erases all device settings. You will need to 
-                  reconfigure WiFi, Rostrum server, wallet, and PIN after reset.
+                  Factory reset permanently erases all device settings. Afterwards you choose the wallet mode again,
+                  set a new password, set up the wallet and reconnect to the network.
                 </p>
               </div>
             </div>
@@ -56,27 +55,28 @@ export default function FactoryResetPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
             What Gets Erased
           </h2>
-        
+
           <div className="grid sm:grid-cols-2 gap-4">
-            <EraseCard 
+            <EraseCard
               title="Erased"
               items={[
-                "WiFi credentials",
-                "Rostrum server settings",
-                "Wallet configuration (xPub/address)",
-                "PIN",
-                "Privacy mode settings",
-                "Display preferences",
-                "Address index counter"
+                "Wallet mode (Receive only / Watch only) and the setup state",
+                "Access password and the wrapped master key",
+                "Wallet configuration (xPub or address)",
+                "Privacy mode and the address index",
+                "Wi-Fi credentials",
+                "Node (Rostrum server) settings",
+                "Display name, logo, display and time preferences",
+                "Transaction history"
               ]}
               erased={true}
             />
-            <EraseCard 
+            <EraseCard
               title="Not Erased"
               items={[
                 "Firmware (stays installed)",
                 "Production mode eFuses (permanent)",
-                "Your cryptocurrency (on blockchain)"
+                "Your cryptocurrency (on the blockchain)"
               ]}
               erased={false}
             />
@@ -88,13 +88,14 @@ export default function FactoryResetPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
             When to Factory Reset
           </h2>
-        
+
           <div className="space-y-3">
-            <ReasonItem text="Forgot your PIN (settings are locked — use the USB reflash method below)" />
+            <ReasonItem text="Changing the wallet mode: it is chosen once in the wizard and cannot be edited in settings" />
             <ReasonItem text="Selling or giving away the device" />
             <ReasonItem text="Switching to a completely different wallet" />
             <ReasonItem text="Troubleshooting persistent issues" />
             <ReasonItem text="Starting fresh after testing" />
+            <ReasonItem text="Forgot the password: the menu is locked, so use the USB method below" />
           </div>
         </section>
 
@@ -103,25 +104,29 @@ export default function FactoryResetPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
             How to Factory Reset
           </h2>
-        
-          <h3 className="text-lg font-medium text-zinc-900 dark:text-white mb-4">
-            Method 1: From Settings Menu
-          </h3>
-        
-          <div className="space-y-3 mb-6">
-            <Step number={1} text="Open Settings and enter your PIN (the menu is PIN-locked)" />
-            <Step number={2} text="Navigate to System" />
-            <Step number={3} text="Select 'Factory Reset'" />
-            <Step number={4} text="Confirm the reset" />
-            <Step number={5} text="Device will restart and show initial setup" />
-          </div>
 
           <h3 className="text-lg font-medium text-zinc-900 dark:text-white mb-4">
-            Method 2: Reflash with Erase
+            Method 1: From the Menu
           </h3>
-        
+
+          <div className="space-y-3 mb-6">
+            <Step number={1} text="Tap Menu on the home screen and enter your password" />
+            <Step number={2} text="Open More settings and tap Factory reset" />
+            <Step number={3} text="Confirm the 'Factory reset?' prompt with Continue" />
+            <Step number={4} text="On the Erase data screen type erase data on the keypad and tap Erase" />
+            <Step number={5} text="The device erases its storage, restarts and shows the setup wizard" />
+          </div>
+
+          <p className="text-sm text-zinc-500 mb-8">
+            Fifteen consecutive wrong passwords on the unlock screen trigger the same wipe automatically.
+          </p>
+
+          <h3 className="text-lg font-medium text-zinc-900 dark:text-white mb-4">
+            Method 2: Erase and Reflash over USB
+          </h3>
+
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            If you can't access settings (forgot PIN, device issues):
+            If you cannot open the menu (forgotten password, device issues), erase the flash from a computer:
           </p>
 
           <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
@@ -131,16 +136,17 @@ export default function FactoryResetPage() {
           </div>
 
           <p className="text-sm text-zinc-500 mb-4">
-            Then reflash the firmware normally. This erases all flash memory including settings.
+            Then flash the firmware again, either with PlatformIO or the{" "}
+            <Link href="/docs/install/web-flasher" className="text-accent-600 dark:text-accent-dark-400 hover:underline">web flasher</Link>,
+            which erases the chip before installing. Use the ILI9341 environment name on a single-USB board.
           </p>
 
           <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-amber-800 dark:text-amber-300">
-                <strong>Production mode devices:</strong> Cannot be reflashed. Factory reset 
-                from settings menu is the only option. If settings are inaccessible (forgot PIN), 
-                the device cannot be recovered.
+                <strong>Production mode devices:</strong> cannot be reflashed. Factory reset from the menu
+                is the only option, so a forgotten password on a sealed device cannot be recovered.
               </p>
             </div>
           </div>
@@ -151,31 +157,31 @@ export default function FactoryResetPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
             After Factory Reset
           </h2>
-        
+
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            After reset, you'll need to reconfigure:
+            The device boots into the setup wizard and nothing else is reachable until it completes:
           </p>
 
           <div className="space-y-3">
-            <SetupItem 
-              step="WiFi"
-              description="Connect to your network"
-              href="/docs/setup/wifi"
+            <SetupItem
+              step="Mode"
+              description="Receive only or Watch only, chosen once"
+              href="/docs/installation/first-boot"
             />
-            <SetupItem 
-              step="Rostrum Server"
-              description="Configure blockchain server (or use default)"
-              href="/docs/setup/rostrum"
+            <SetupItem
+              step="Password"
+              description="A new access password, 8 to 128 characters"
+              href="/docs/security/pin-setup"
             />
-            <SetupItem 
+            <SetupItem
               step="Wallet"
-              description="Import your seed phrase or xPub again"
+              description="Create or restore a seed, import an xPub, or enter an address"
               href="/docs/wallet/options"
             />
-            <SetupItem 
-              step="PIN"
-              description="Set a new PIN if desired"
-              href="/docs/security/pin-setup"
+            <SetupItem
+              step="Network"
+              description="Then, from the Menu: Wi-Fi and node settings"
+              href="/docs/setup/wifi"
             />
           </div>
         </section>
@@ -188,10 +194,9 @@ export default function FactoryResetPage() {
               <div>
                 <h3 className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">Your Funds Are Safe</h3>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
-                  Factory reset only erases device settings. Your cryptocurrency is stored on the 
-                  blockchain, not on the device. As long as you have your seed phrase backed up, 
-                  you can always recover access to your funds by importing the seed into PayDeck 
-                  or any compatible wallet.
+                  Factory reset only erases device settings. Your cryptocurrency is on the
+                  blockchain, not on the device. As long as you have your seed phrase backed up,
+                  you can restore access by entering the seed into PayDeck or any compatible wallet.
                 </p>
               </div>
             </div>
@@ -204,9 +209,9 @@ export default function FactoryResetPage() {
             Ready to set up again?
           </h3>
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            Follow the initial setup guide after factory reset.
+            The first-boot guide walks through the wizard step by step.
           </p>
-          <Link 
+          <Link
             href="/docs/installation/first-boot"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
@@ -237,9 +242,9 @@ function EraseCard({ title, items, erased }: { title: string; items: string[]; e
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
             {erased ? (
-              <XCircle className="w-3 h-3 text-red-500" />
+              <XCircle className="w-3 h-3 text-red-500 flex-shrink-0" />
             ) : (
-              <CheckCircle2 className="w-3 h-3 text-accent-500 dark:text-accent-dark-500" />
+              <CheckCircle2 className="w-3 h-3 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
             )}
             {item}
           </li>

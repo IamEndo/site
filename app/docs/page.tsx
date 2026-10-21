@@ -211,7 +211,7 @@ export default function DocsPage() {
           <DocSection 
             icon={<Lock className="w-5 h-5" />}
             title="Security"
-            description="PIN protection, security model, and production mode"
+            description="Access password, security model, and production mode"
             href="/docs/security/model"
           />
         </div>

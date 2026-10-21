@@ -107,7 +107,7 @@ export default function SpecificationsPage() {
             <table className="w-full text-sm">
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 <SpecRow label="Type" value="Watch-only (no private keys)" />
-                <SpecRow label="Seed Format" value="BIP39 (12-word mnemonic)" />
+                <SpecRow label="Seed Format" value="BIP39, 12 or 24 words generated, 12 to 24 restored, optional passphrase" />
                 <SpecRow label="Key Derivation" value="BIP32 / BIP44" />
                 <SpecRow label="Derivation Path" value="m/44'/29223'/0'/0/n" />
                 <SpecRow label="Coin Type" value="29223 (Nexa)" />
@@ -204,8 +204,8 @@ export default function SpecificationsPage() {
               description="Pinned root of trust (ISRG Root X1 CA)"
             />
             <FeatureCard
-              title="PIN Protection"
-              description="6-digit PIN wraps the master key (AES-256-GCM), 15-strike wipe"
+              title="Access Password"
+              description="8 to 128 characters, PBKDF2-derived key wraps the master key (AES-256-GCM), 15-strike wipe"
             />
             <FeatureCard 
               title="Secure Memory"

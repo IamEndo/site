@@ -216,7 +216,7 @@ export default function ImportXpubPage() {
             <Step 
               number={1} 
               title="Select Import xPub"
-              description="From the wallet setup menu, choose 'Import xPub' or 'Extended Public Key'"
+              description="From the Set up wallet screen (or Wallet settings later), choose 'Import xPub key'"
             />
           
             <Step 

@@ -16,7 +16,7 @@ export default function ProductionModePage() {
       <p>
         The <a href="/docs/install/web-flasher">web flasher</a> installs the
         Standard build only. That build is fully functional and protects your
-        PIN and settings in software, but it does <strong>not</strong> encrypt
+        password and settings in software, but it does <strong>not</strong> encrypt
         the flash or lock the device to signed firmware.
       </p>
 
@@ -258,7 +258,7 @@ pio run -e esp32dev-idf-release -t upload  # POINT OF NO RETURN`}</pre>
 
       <p>A sealed device, verified by attacking real hardware, protects against:</p>
       <ul>
-        <li>Firmware and settings extraction — a full flash dump is ciphertext with no recoverable master key, PIN, WiFi credentials, or addresses.</li>
+        <li>Firmware and settings extraction — a full flash dump is ciphertext with no recoverable master key, password, WiFi credentials, or addresses.</li>
         <li>Firmware tampering — the boot ROM refuses any unsigned or modified image; it boot-loops instead of running attacker code.</li>
         <li>JTAG and UART-download attacks — disabled at the fuse level.</li>
       </ul>

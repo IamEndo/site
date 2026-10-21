@@ -76,8 +76,8 @@ export default function EntropyPage() {
               description="Most computer 'random' numbers are calculated from a seed value using mathematical formulas. If someone knows the seed, they can predict all future numbers."
             />
             <ProblemCard 
-              title="Hardware RNG Limitations"
-              description="The ESP32's hardware random number generator only produces quality entropy when WiFi or Bluetooth radios are active. With radios off, output becomes predictable."
+              title="Hardware RNG Not Trusted"
+              description="The ESP32's hardware random number generator is not a certified true random source and its quality depends on the radios being active. PayDeck therefore does not use it for seeds at all, not even as a mixed-in extra."
             />
             <ProblemCard 
               title="Predictable System State"
@@ -89,8 +89,10 @@ export default function EntropyPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                <strong>The solution:</strong> Add entropy that computers cannot predict or simulate: 
-                human behavior. Your taps provide randomness that no algorithm can reproduce.
+                <strong>The solution:</strong> Use a physical noise source that no algorithm can reproduce. 
+                Every tap on the touch panel is read by an analog-to-digital converter whose lowest bits are 
+                genuine electrical noise, different on every read even when your finger does not move. 
+                That noise, and nothing else, becomes your seed.
               </p>
             </div>
           </div>
@@ -130,15 +132,19 @@ export default function EntropyPage() {
           </div>
         </section>
 
-        {/* The 128-Tap Requirement */}
+        {/* How much tapping is enough */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            The 128-Tap Requirement
+            How Much Tapping Is Enough
           </h2>
         
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            PayDeck requires 128 taps to generate a seed phrase. A BIP39 12-word seed needs 
-            128 bits of entropy, so we collect at least one tap per bit.
+            PayDeck does not count taps. It counts <strong>proven bits</strong>. The seed screen first shows 
+            "Calibrating sensor..." while the start-up health tests run, then a progress ring labelled 
+            "X / N bits". A 12-word seed needs 128 bits of entropy plus a 64-bit safety margin, so the ring 
+            fills at 192 proven bits; a 24-word seed fills at 320. On a CYD this takes a minute or two of 
+            tapping. The device refuses to release a seed until the ring is full, the start-up window has 
+            passed and no health test has tripped.
           </p>
 
           <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-6">
@@ -146,28 +152,31 @@ export default function EntropyPage() {
             <div className="grid sm:grid-cols-2 gap-2 text-sm">
               <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                X position (2 bytes)
+                Up to seven raw 12-bit X readings from the touch ADC
               </div>
               <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Y position (2 bytes)
-              </div>
-              <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Time delta in microseconds (4 bytes)
-              </div>
-              <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Hardware RNG sample (4 bytes)
-              </div>
-              <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Tap index (2 bytes)
+                Up to seven raw 12-bit Y readings from the touch ADC
               </div>
             </div>
             <p className="text-xs text-zinc-500 mt-3">
-              Total: 14 bytes per tap × 128 taps = 1,792 bytes (14,336 bits) of raw entropy material
+              Nothing else enters the seed: not the tap position on screen, not the timing, not the pressure, 
+              not the hardware RNG, not the clock, not the device MAC. Each credited reading counts for a 
+              fixed fraction of a bit, set at half the min-entropy measured for this board with the NIST 
+              SP 800-90B tool, so the firmware deliberately under-counts what it collects.
             </p>
+          </div>
+
+          <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
+            <div className="flex gap-3">
+              <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-blue-800 dark:text-blue-300">
+                Because the entropy lives in sub-pixel sensor noise, someone filming every tap and copying 
+                your exact tap positions still cannot reproduce the seed. The guarantee is scoped to a 
+                passive observer on trusted hardware: a probe on the touch header or a tampered touch 
+                controller is a different attack, as it would be on any device.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -190,7 +199,7 @@ export default function EntropyPage() {
                   <BadPattern text="Tapping fast in one spot" />
                   <BadPattern text="Tapping in a regular rhythm" />
                   <BadPattern text="Following a predictable path (circles, zigzags)" />
-                  <BadPattern text="Rushing through all 128 taps in seconds" />
+                  <BadPattern text="Holding one spot instead of tapping: the health tests stop crediting it" />
                 </div>
               </div>
             </div>
@@ -205,7 +214,7 @@ export default function EntropyPage() {
                   <GoodPattern text="Use the entire screen area" />
                   <GoodPattern text="Vary your timing: some fast, some slow" />
                   <GoodPattern text="Be creative and unpredictable" />
-                  <GoodPattern text="Take 30-60 seconds for all 128 taps" />
+                  <GoodPattern text="Keep tapping until the progress ring is full" />
                 </div>
               </div>
             </div>
@@ -248,8 +257,9 @@ export default function EntropyPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                Dice add physical randomness that is completely independent of any electronic source. 
-                Even a sophisticated hardware attack cannot predict dice rolls.
+                The device credits only the sensor noise, not where you tap, so dice are optional. 
+                They are a good way to spread your taps over the whole panel and to keep yourself from 
+                settling into one spot or one rhythm.
               </p>
             </div>
           </div>
@@ -262,25 +272,26 @@ export default function EntropyPage() {
           </h2>
         
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            All collected entropy is combined using SHA-512, a cryptographic hash function. 
-            Even if some inputs have patterns, SHA-512 produces uniformly distributed output.
+            All credited readings are mixed into a SHA-512 pool. Even if some readings carry patterns, 
+            the conditioned output is uniformly distributed, and the fail-closed accounting makes sure 
+            enough genuine noise went in before anything comes out.
           </p>
 
           <div className="space-y-3">
             <ProcessStep 
               number={1}
               title="Initialization"
-              description="Pool seeded with device MAC address, hardware RNG samples, and system time"
+              description="The pool starts from a fixed label only. No MAC address, no hardware RNG, no system time"
             />
             <ProcessStep 
               number={2}
               title="Collection"
-              description="Each tap's position, timing, and RNG data is fed into SHA-512 state"
+              description="Each tap's raw X and Y ADC readings are hashed into the pool and credited only if they pass the repetition, proportion, autocorrelation and monotonic health tests"
             />
             <ProcessStep 
               number={3}
               title="Finalization"
-              description="After 128 taps, SHA-512 produces 64 bytes. First 16 bytes become seed entropy."
+              description="Once the proven floor reaches the target (192 bits for 12 words, 320 for 24), the pool is conditioned into the 16 or 32 bytes of BIP39 entropy"
             />
             <ProcessStep 
               number={4}
@@ -306,8 +317,8 @@ export default function EntropyPage() {
               description="After seed generation/import, only the xPub (public keys) is stored. The seed is erased immediately, before WiFi reconnects or any further operation."
             />
             <SecurityPoint 
-              title="Human Entropy Requirement"
-              description="By requiring 128 human taps, PayDeck adds user-supplied randomness on top of the hardware RNG, so seed generation does not depend on any single entropy source."
+              title="Human Input Only"
+              description="The seed is derived from raw touch-sensor noise alone. The credit per reading is a compile-time constant from a NIST SP 800-90B measurement campaign on this board; a build without a measurement credits nothing and cannot mint a seed at all."
             />
           </div>
         </section>
@@ -345,8 +356,8 @@ export default function EntropyPage() {
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                   <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">PayDeck</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Multi-source + human taps</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">User patterns (avoidable)</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Raw touch-sensor noise from human taps, NIST-measured</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs">Physical probing of the touch bus</td>
                 </tr>
               </tbody>
             </table>

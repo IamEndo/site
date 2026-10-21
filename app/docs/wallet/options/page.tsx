@@ -132,7 +132,7 @@ export default function WalletOptionsPage() {
           <WalletOptionCard 
             icon={<Key className="w-6 h-6" />}
             title="Generate Seed"
-            description="Create a new 12-word BIP39 seed phrase on the device. This enables HD (hierarchical deterministic) address derivation for privacy mode."
+            description="Create a new 12- or 24-word BIP39 seed phrase on the device from tap entropy, with an optional passphrase. This enables HD (hierarchical deterministic) address derivation for privacy mode."
             privacy="high"
             recommended={true}
             href="/docs/wallet/seed-generation"
@@ -144,7 +144,7 @@ export default function WalletOptionsPage() {
             cons={[
               "Must securely back up seed phrase",
               "Seed shown only once: if lost, cannot recover",
-              "Requires 128 taps for entropy collection"
+              "Takes a minute or two of tapping to collect entropy"
             ]}
           />
         </section>
@@ -154,7 +154,7 @@ export default function WalletOptionsPage() {
           <WalletOptionCard 
             icon={<FileText className="w-6 h-6" />}
             title="Import Seed"
-            description="Enter an existing 12-word seed phrase. PayDeck derives the xPub and discards the seed immediately after. The device never stores private keys."
+            description="Enter an existing seed phrase of 12 to 24 words, with its passphrase if it has one. PayDeck derives the xPub and discards the seed immediately after. The device never stores private keys."
             privacy="high"
             recommended={false}
             href="/docs/wallet/import-seed"

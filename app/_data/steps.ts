@@ -12,7 +12,7 @@ export const steps = [
   {
     number: "03",
     title: "Configure your wallet",
-    description: "Import your Nexa wallet address and set a security PIN.",
+    description: "Pick a mode, set your password and import or create your wallet in the on-device wizard.",
   },
   {
     number: "04",

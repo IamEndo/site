@@ -168,7 +168,7 @@ export default function VerificationPage() {
           
             <Step 
               number={3} 
-              title="Enter Your 12 Words"
+              title="Enter Your Seed Words"
               description="Carefully enter the seed phrase you wrote down during PayDeck setup"
             >
               <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">

@@ -1,24 +1,23 @@
 import { Metadata } from 'next';
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
+import {
   Shield,
   ArrowRight,
   AlertTriangle,
   Info,
   Lock,
   Key,
-  Settings,
   CheckCircle2,
   XCircle
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'PIN Setup',
-  description: 'Configure a PIN to protect device access and prevent unauthorized use of your PayDeck.',
+  title: 'Access Password',
+  description: 'How the PayDeck access password protects the device, how it is set during first-run setup, and how to change it.',
 };
 
-export default function PinSetupPage() {
+export default function PasswordSetupPage() {
   return (
     <DocsArticle>
       <div className="max-w-4xl">
@@ -29,43 +28,42 @@ export default function PinSetupPage() {
             Security
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
-            PIN Setup
+            Access Password
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Protect your PayDeck with a PIN code to prevent unauthorized access 
-            and configuration changes.
+            Every PayDeck is protected by an access password of 8 to 128 characters.
+            It is set during first-run setup and unlocks the menu, the settings and the wallet.
           </p>
         </div>
 
-        {/* What PIN Protects */}
+        {/* What the password protects */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            What the PIN Protects
+            What the Password Protects
           </h2>
-        
+
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            The PIN prevents unauthorized users from accessing device settings and configuration:
+            Taking payments never needs the password. Everything behind the Menu button does:
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
-            <ProtectionCard 
-              title="Protected by PIN"
+            <ProtectionCard
+              title="Locked behind the password"
               items={[
-                "Settings menu access",
-                "WiFi configuration",
-                "Wallet configuration",
-                "Server settings",
-                "Factory reset"
+                "The Menu and every settings screen",
+                "Network, Wi-Fi and node configuration",
+                "Wallet settings (seed, xPub, address, privacy)",
+                "Transaction history",
+                "Changing the password and factory reset"
               ]}
               protected={true}
             />
-            <ProtectionCard 
-              title="Always Accessible"
+            <ProtectionCard
+              title="Always accessible"
               items={[
-                "Viewing payment screen",
-                "Displaying QR codes",
-                "Receiving payments",
-                "Viewing transaction status"
+                "The home screen",
+                "Entering an amount and showing the QR code",
+                "Receiving payments and the payment status"
               ]}
               protected={false}
             />
@@ -75,211 +73,189 @@ export default function PinSetupPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                <strong>Watch-only reminder:</strong> Even without a PIN, PayDeck cannot spend funds. 
-                The PIN protects device configuration, not your cryptocurrency.
+                <strong>Watch-only reminder:</strong> PayDeck cannot spend funds, with or without the password.
+                The password protects the device configuration. Someone with menu access could point
+                the device at their own address, which is why it matters.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Setting Up PIN */}
+        {/* How it works */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Setting Up Your PIN
+            How It Works
           </h2>
-        
+
+          <div className="space-y-3">
+            <FactItem
+              title="The password wraps the master key"
+              text="The device's master key is encrypted (AES-256-GCM) under a key derived from your password with PBKDF2. The password itself is never stored, not even as a hash: it is verified by successfully unwrapping the master key."
+            />
+            <FactItem
+              title="The device locks when you return home"
+              text="Going back to the home screen locks the vault. Opening the Menu asks for the password again. Taking payments keeps working while locked."
+            />
+            <FactItem
+              title="Fifteen wrong attempts wipe the device"
+              text="From the tenth wrong attempt the device shows how many attempts remain. On the fifteenth it erases itself to factory state. The attempt counter is saved before each check, so cutting power mid-guess does not reset it."
+            />
+            <FactItem
+              title="Entry is masked"
+              text="Each character is shown as an asterisk. The last character you typed stays visible for about a second so you can catch typos, and a confirmation step guards the initial entry."
+            />
+          </div>
+        </section>
+
+        {/* Setting the password */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Setting the Password
+          </h2>
+
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            The password is step 2 of the{" "}
+            <Link href="/docs/installation/first-boot" className="text-accent-600 dark:text-accent-dark-400 hover:underline">first-run setup wizard</Link>.
+            A fresh device cannot reach the wallet, the settings or the payment screen until a password exists,
+            so there is no default code and no unprotected window.
+          </p>
+
           <div className="space-y-4">
-            <Step 
-              number={1} 
-              title="Open Settings"
-              description="From the main screen, tap the settings icon to access the settings menu"
+            <Step
+              number={1}
+              title="New password"
+              description="Type 8 to 128 characters on the T9 keyboard. Tap a key repeatedly to cycle its letters; a tap on the text field, or a short pause, commits the pending letter. The symbol and caps keys give the full printable range, including space."
             />
-          
-            <Step 
-              number={2} 
-              title="Select Security"
-              description="Navigate to the Security or PIN section in settings"
+
+            <Step
+              number={2}
+              title="Next"
+              description="The device checks the password against the rules below. A rejected password shows a short message and lets you try again."
             />
-          
-            <Step 
-              number={3} 
-              title="Set PIN"
-              description="Enter a 6-digit PIN using the on-screen keypad"
+
+            <Step
+              number={3}
+              title="Confirm password"
+              description="Type the same password once more and tap Save. A mismatch clears the confirmation field and asks again."
+            />
+
+            <Step
+              number={4}
+              title="Unlock"
+              description="The device shows 'Password saved' and immediately locks. Enter the new password once to continue with the wallet step."
             >
               <div className="mt-3 p-3 rounded-lg bg-zinc-100 dark:bg-zinc-800">
                 <p className="text-xs text-zinc-600 dark:text-zinc-400">
-                  Choose a PIN you can remember but others cannot guess. 
-                  See <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">PIN best practices</Link>.
+                  Choose something you can type on a phone-style keypad without looking it up.
+                  See <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">password best practices</Link>.
                 </p>
               </div>
             </Step>
-          
-            <Step 
-              number={4} 
-              title="Confirm PIN"
-              description="Re-enter the same PIN to confirm. The PIN is now active."
-            />
           </div>
         </section>
 
-        {/* PIN Requirements */}
+        {/* Requirements */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            PIN Requirements
+            Password Rules
           </h2>
-        
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
-                Enter a 6-digit PIN
-              </li>
-              <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
-                Numbers only (0-9)
-              </li>
-              <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
-                Can be changed anytime in settings
-              </li>
-              <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
-                Can be disabled if not needed
-              </li>
-            </ul>
-          </div>
-        </section>
 
-        {/* Changing PIN */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Changing Your PIN
-          </h2>
-        
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            To change an existing PIN:
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+              <h4 className="font-medium text-zinc-900 dark:text-white mb-3">Accepted</h4>
+              <ul className="space-y-2">
+                <RuleItem ok text="8 to 128 characters" />
+                <RuleItem ok text="Letters, digits, symbols and spaces (printable ASCII)" />
+                <RuleItem ok text="Passphrase style, for example several words with spaces" />
+                <RuleItem ok text="Changed at any time from More settings" />
+              </ul>
+            </div>
+            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+              <h4 className="font-medium text-zinc-900 dark:text-white mb-3">Rejected when set</h4>
+              <ul className="space-y-2">
+                <RuleItem text="Shorter than 8 characters ('At least 8 characters')" />
+                <RuleItem text="A repeated block such as abababab or 12341234" />
+                <RuleItem text="A straight run such as 12345678 or abcdefgh" />
+                <RuleItem text="Common passwords such as password1, qwertyuiop or paydeck123" />
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-sm text-zinc-500 mt-4">
+            The rules apply when a password is set or changed. On the unlock screen the device simply tries what you typed.
           </p>
+        </section>
+
+        {/* Changing */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+            Changing the Password
+          </h2>
 
           <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
             <ol className="space-y-2">
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">1.</span>
-                Enter current PIN to access settings
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">2.</span>
-                Go to Security settings
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">3.</span>
-                Select "Change PIN"
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">4.</span>
-                Enter current PIN to confirm identity
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">5.</span>
-                Enter and confirm new PIN
-              </li>
+              <OrderedItem n={1} text="Open the Menu from the home screen and enter the current password" />
+              <OrderedItem n={2} text="Choose More settings, then Change password" />
+              <OrderedItem n={3} text="Confirm the prompt, then enter and confirm the new password" />
+              <OrderedItem n={4} text="The device shows 'Password saved' and returns home, locked" />
             </ol>
           </div>
+
+          <p className="text-sm text-zinc-500 mt-4">
+            There is no option to remove the password. A financial device without a lock is not a configuration PayDeck offers.
+          </p>
         </section>
 
-        {/* Forgot PIN */}
+        {/* Forgot */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Forgot Your PIN?
+            Forgot the Password?
           </h2>
-        
+
           <div className="p-5 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 mb-4">
             <div className="flex gap-3">
               <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">USB Erase &amp; Reflash Required</div>
+                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">USB erase and reflash required</div>
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  The settings menu — including factory reset — is locked behind the PIN, so a
-                  forgotten PIN cannot be recovered on the device itself. The only way back is to
-                  erase and reflash the firmware over USB. This wipes all device settings including
-                  WiFi configuration and wallet setup.
+                  The menu, including factory reset, is locked behind the password, so a forgotten password
+                  cannot be recovered on the device. The only way back is to erase and reflash the firmware
+                  over USB, which wipes every setting, the wallet configuration and the password.
+                  See <Link href="/docs/maintenance/factory-reset" className="underline font-medium">Factory Reset</Link>.
                 </p>
               </div>
             </div>
           </div>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            After erasing and reflashing:
-          </p>
-
           <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              You'll need to reconfigure WiFi
+              Your funds are safe. They live on the blockchain, not on the device.
             </li>
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              You'll need to set up your wallet again (import seed or xPub)
+              After the reflash the setup wizard runs again: mode, new password, wallet.
             </li>
             <li className="flex items-start gap-2">
               <span className="text-zinc-400">•</span>
-              Your funds are safe (they're on the blockchain, not the device)
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
-              You can set a new PIN during setup
+              Production (sealed) devices cannot be reflashed. A forgotten password on a sealed device means the device is finished.
             </li>
           </ul>
-        </section>
-
-        {/* Disabling PIN */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-            Disabling the PIN
-          </h2>
-        
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            If you decide a PIN isn't necessary for your setup:
-          </p>
-
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
-            <ol className="space-y-2">
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">1.</span>
-                Enter current PIN to access settings
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">2.</span>
-                Go to Security settings
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">3.</span>
-                Select "Disable PIN" or toggle off
-              </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">4.</span>
-                Confirm with current PIN
-              </li>
-            </ol>
-          </div>
-
-          <p className="text-sm text-zinc-500">
-            Without a PIN, anyone with physical access can change device settings.
-          </p>
         </section>
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
-            Choose a strong PIN
+            Choose a strong password
           </h3>
           <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-            Learn best practices for selecting a secure PIN.
+            What makes a password strong on a device that is typed on a keypad.
           </p>
-          <Link 
+          <Link
             href="/docs/security/pin-practices"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
-            PIN Best Practices
+            Password Best Practices
             <ArrowRight className="w-4 h-4" />
           </Link>
         </section>
@@ -301,6 +277,40 @@ function Step({ number, title, description, children }: { number: number; title:
         {children}
       </div>
     </div>
+  );
+}
+
+// Component: Fact Item
+function FactItem({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
+    </div>
+  );
+}
+
+// Component: Rule Item
+function RuleItem({ text, ok = false }: { text: string; ok?: boolean }) {
+  return (
+    <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+      {ok ? (
+        <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
+      ) : (
+        <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+      )}
+      {text}
+    </li>
+  );
+}
+
+// Component: Ordered Item
+function OrderedItem({ n, text }: { n: number; text: string }) {
+  return (
+    <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+      <span className="text-zinc-400 font-medium">{n}.</span>
+      {text}
+    </li>
   );
 }
 

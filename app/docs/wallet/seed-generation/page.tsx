@@ -19,7 +19,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Generating a Seed',
-  description: 'Create a new 12-word BIP39 seed phrase on PayDeck using the tap-based entropy collection system.',
+  description: 'Create a new 12- or 24-word BIP39 seed phrase on PayDeck from human tap entropy.',
 };
 
 export default function SeedGenerationPage() {
@@ -36,7 +36,7 @@ export default function SeedGenerationPage() {
             Generating a Seed
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Generate a new 12-word BIP39 seed phrase for privacy-preserving payments. 
+            Generate a new 12- or 24-word BIP39 seed phrase for privacy-preserving payments. 
             This is the recommended setup for most users.
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function SeedGenerationPage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-3 gap-4 mb-12">
           <StatCard icon={<Clock className="w-5 h-5" />} label="Setup Time" value="3-5 min" />
-          <StatCard icon={<Fingerprint className="w-5 h-5" />} label="Entropy" value="128 taps" />
+          <StatCard icon={<Fingerprint className="w-5 h-5" />} label="Entropy" value="Tap until full" />
           <StatCard icon={<ShieldCheck className="w-5 h-5" />} label="Privacy" value="Full" />
         </div>
 
@@ -122,7 +122,7 @@ export default function SeedGenerationPage() {
             <PrepareCard 
               icon={<PenLine className="w-5 h-5" />}
               title="Paper & Pen"
-              description="To write down your 12-word seed phrase"
+              description="To write down your 12 or 24 seed words"
             />
             <PrepareCard 
               icon={<EyeOff className="w-5 h-5" />}
@@ -173,14 +173,14 @@ export default function SeedGenerationPage() {
           <div className="space-y-4">
             <Step 
               number={1} 
-              title="Select Generate Seed"
-              description="From the wallet setup menu, choose 'Generate new seed'. Read the instructions carefully."
+              title="Select Create Wallet"
+              description="From the Set up wallet screen (or Wallet settings later), choose 'Create wallet', then pick 12 words (easier to back up) or 24 words (maximum margin) and confirm."
             />
           
             <Step 
               number={2} 
-              title="Collect Entropy (128 Taps)"
-              description="Tap the screen 128 times to provide randomness for secure seed generation."
+              title="Collect Entropy (tap until the ring is full)"
+              description="The screen first calibrates the touch sensor, then shows a progress ring labelled in proven bits. Tap all over the screen until it is full, then tap Done."
             >
               <div className="mt-3 p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800">
                 <p className="text-sm font-medium text-zinc-900 dark:text-white mb-2">For best randomness:</p>
@@ -195,7 +195,7 @@ export default function SeedGenerationPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-zinc-400">•</span>
-                    Take 30-60 seconds (don't rush)
+                    Expect a minute or two; the ring tells you when enough noise is collected
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-zinc-400">•</span>
@@ -214,7 +214,7 @@ export default function SeedGenerationPage() {
             <Step 
               number={3} 
               title="Write Down Your Seed"
-              description="Your 12-word seed phrase appears on screen. Write each word carefully, numbered 1-12."
+              description="Your seed words appear on screen. Write each word carefully, in order and numbered."
             >
               <div className="mt-3 grid sm:grid-cols-2 gap-3">
                 <div className="p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
@@ -225,7 +225,7 @@ export default function SeedGenerationPage() {
                     <li>• Use pen (not pencil)</li>
                     <li>• Write clearly and legibly</li>
                     <li>• Double-check each word</li>
-                    <li>• Number words 1-12</li>
+                    <li>• Number the words</li>
                   </ul>
                 </div>
                 <div className="p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800">
@@ -245,7 +245,7 @@ export default function SeedGenerationPage() {
             <Step 
               number={4} 
               title="Verify Your Seed"
-              description="PayDeck asks you to re-enter all 12 words, one at a time, to confirm your backup is correct."
+              description="PayDeck asks you to re-enter every word, one at a time, to confirm your backup is correct."
             >
               <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
                 <p className="text-xs text-amber-800 dark:text-amber-300">
@@ -257,7 +257,7 @@ export default function SeedGenerationPage() {
             <Step 
               number={5} 
               title="Setup Complete"
-              description="PayDeck derives your public keys (xPub), then immediately erases the seed from memory. Your device is now ready."
+              description="After the last word PayDeck offers an optional passphrase (Skip for a standard wallet, Add for a hidden wallet), derives your public keys (xPub), erases the seed from memory and restarts."
             >
               <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
                 <p className="text-xs text-accent-800 dark:text-accent-dark-300">

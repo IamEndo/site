@@ -48,7 +48,7 @@ export default function DerivationPage() {
 
           <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-6">
             <div className="font-mono text-sm text-center text-zinc-600 dark:text-zinc-400">
-              <p className="mb-2">Seed Phrase (12 words)</p>
+              <p className="mb-2">Seed Phrase (12 or 24 words)</p>
               <p className="text-zinc-400 mb-2">↓</p>
               <p className="mb-2">Master Key</p>
               <p className="text-zinc-400 mb-2">↓</p>
@@ -73,7 +73,7 @@ export default function DerivationPage() {
             <BIPCard 
               number="BIP39"
               title="Mnemonic Seed"
-              description="Converts your 12-word phrase into a 512-bit seed. This is the standard used by most cryptocurrency wallets."
+              description="Converts your 12- or 24-word phrase (plus the optional passphrase) into a 512-bit seed. This is the standard used by most cryptocurrency wallets."
             />
             <BIPCard 
               number="BIP32"

@@ -88,7 +88,7 @@ export default function EnablingPrivacyPage() {
             <Step 
               number={1} 
               title="Open Settings"
-              description="From the main screen, tap the settings icon or navigate to Settings menu"
+              description="Tap Menu on the home screen, enter your password, then open Wallet settings"
             />
           
             <Step 

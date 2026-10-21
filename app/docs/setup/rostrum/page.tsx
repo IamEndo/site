@@ -234,7 +234,7 @@ export default function RostrumPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-accent-500 dark:text-accent-dark-500">•</span>
-                    Your device PIN or settings
+                    Your device password or settings
                   </li>
                 </ul>
               </div>

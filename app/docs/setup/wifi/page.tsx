@@ -187,7 +187,7 @@ export default function WiFiPage() {
             <Step 
               number={1} 
               title="Access Menu"
-              description="Enter your PIN if configured, then navigate to WiFi settings"
+              description="Tap Menu, enter your password, then open Network settings and Wi-Fi settings"
             />
             <Step 
               number={2} 
