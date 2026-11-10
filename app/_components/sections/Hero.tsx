@@ -63,7 +63,7 @@ export function Hero() {
             {/* Version badge */}
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
               <span className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500">
-                Latest version available &middot; v0.5.0
+                Latest version available &middot; v0.5.1
               </span>
             </div>
 

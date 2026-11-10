@@ -17,16 +17,16 @@ const RELEASES: {
   hash: string;
 }[] = [
   {
-    file: "paydeck-v0.5.0-st7789-merged.bin",
+    file: "paydeck-v0.5.1-st7789-merged.bin",
     variant: "ST7789, dual USB board",
-    size: 1289088,
-    hash: "18274a8e6ba212eaf762819f556d7417c12490c0c248a2d1b545009772daea01",
+    size: 1294464,
+    hash: "de2c868ac2a4a8bb6c60681467abc34c9744ced8c8b160488931de7ca8d6a539",
   },
   {
-    file: "paydeck-v0.5.0-ili9341-merged.bin",
+    file: "paydeck-v0.5.1-ili9341-merged.bin",
     variant: "ILI9341, single USB board",
-    size: 1289184,
-    hash: "62503389ed6b4058ab04a9a1c8a4f3e2744681e6350115bcff3452dbfe5c77af",
+    size: 1294560,
+    hash: "e3c93efde018b44e96bf72f5b8a35ec7aba6db86e604c67006db6c2e12e8d0a7",
   },
 ];
 

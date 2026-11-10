@@ -1,13 +1,13 @@
 {
   "name": "PayDeck (Standard, ILI9341)",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "new_install_prompt_erase": true,
   "new_install_improv_wait_time": 0,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "paydeck-v0.5.0-ili9341-merged.bin", "offset": 0 }
+        { "path": "paydeck-v0.5.1-ili9341-merged.bin", "offset": 0 }
       ]
     }
   ]

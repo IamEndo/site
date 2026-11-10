@@ -15,7 +15,7 @@ import {
 const ESP_WEB_TOOLS_SRC =
   "https://unpkg.com/esp-web-tools@10.2.1/dist/web/install-button.js";
 
-export const FIRMWARE_VERSION = "0.5.0";
+export const FIRMWARE_VERSION = "0.5.1";
 
 export type Variant = "st7789" | "ili9341";
 
