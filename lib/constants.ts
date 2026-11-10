@@ -39,3 +39,7 @@ export const container = {
   narrow: "max-w-4xl mx-auto px-6 md:px-8",
   wide: "max-w-7xl mx-auto px-6 md:px-8",
 } as const;
+
+// Firmware release served by the web flasher. Lives here (not in a "use client"
+// file) so server components can use it in strings and links.
+export const FIRMWARE_VERSION = "0.5.1";

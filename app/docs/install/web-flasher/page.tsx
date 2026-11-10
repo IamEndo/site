@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Chrome, CircleHelp } from "lucide-react";
 import { DocsArticle } from "../../_components/DocsArticle";
-import { Flasher, FIRMWARE_VERSION } from "./_components/Flasher";
+import { Flasher } from "./_components/Flasher";
+import { FIRMWARE_VERSION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Web Flasher",
