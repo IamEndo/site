@@ -16,14 +16,12 @@ export default function DocsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
+    <div className="min-h-screen bg-white dark:bg-neutral-950">
       <DocsHeader />
-      <div className="flex max-w-[1400px] mx-auto pt-16 md:pt-20">
+      <div className="flex max-w-[1536px] mx-auto pt-16 md:pt-20">
         <DocsSidebar />
         <main id="main-content" className="flex-1 min-w-0 px-6 py-8 lg:px-12 lg:py-12">
-          <div className="max-w-4xl">
-            {children}
-          </div>
+          {children}
         </main>
       </div>
     </div>

@@ -71,7 +71,7 @@ export function Device() {
                     key={highlight}
                     className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400"
                   >
-                    <Check className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+                    <Check className="w-4 h-4 text-neutral-400 flex-shrink-0" aria-hidden="true" />
                     {highlight}
                   </div>
                 ))}
@@ -89,7 +89,7 @@ export function Device() {
                     className="gap-2"
                   >
                     Get the board
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg">
@@ -100,7 +100,7 @@ export function Device() {
                     className="gap-2"
                   >
                     3D print enclosure
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg">
@@ -111,7 +111,7 @@ export function Device() {
                     className="gap-2"
                   >
                     Buy enclosure
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                 </Button>
               </div>

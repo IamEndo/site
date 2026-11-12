@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -17,10 +18,10 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/entropy", {
   title: 'Understanding Entropy',
   description: 'Deep dive into how PayDeck generates cryptographically secure random numbers for seed phrase generation using human-provided entropy.',
-};
+});
 
 export default function EntropyPage() {
   return (
@@ -32,10 +33,10 @@ export default function EntropyPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Understanding Entropy
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             How PayDeck generates cryptographically secure seed phrases using human-provided 
             randomness. This is how you truly "create your own" seed phrase.
           </p>
@@ -61,11 +62,11 @@ export default function EntropyPage() {
 
         {/* The Computer Randomness Problem */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Why Computers Are Bad at Randomness
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Computers are deterministic machines. Given the same inputs, they produce the same outputs. 
             This is great for reliability, but terrible for generating random numbers.
           </p>
@@ -100,11 +101,11 @@ export default function EntropyPage() {
 
         {/* Isolated Environment */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Isolated Seed Generation
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             During seed generation, PayDeck creates an isolated environment to protect your entropy:
           </p>
 
@@ -134,11 +135,11 @@ export default function EntropyPage() {
 
         {/* How much tapping is enough */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How Much Tapping Is Enough
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck does not count taps. It counts <strong>proven bits</strong>. The seed screen first shows 
             "Calibrating sensor..." while the start-up health tests run, then a progress ring labelled 
             "X / N bits". A 12-word seed needs 128 bits of entropy plus a 64-bit safety margin, so the ring 
@@ -147,19 +148,19 @@ export default function EntropyPage() {
             passed and no health test has tripped.
           </p>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-6">
-            <h4 className="font-medium text-zinc-900 dark:text-white mb-3">What Each Tap Contributes</h4>
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
+            <h4 className="font-medium text-neutral-900 dark:text-white mb-3">What Each Tap Contributes</h4>
             <div className="grid sm:grid-cols-2 gap-2 text-sm">
-              <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
+              <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
                 Up to seven raw 12-bit X readings from the touch ADC
               </div>
-              <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
+              <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
                 Up to seven raw 12-bit Y readings from the touch ADC
               </div>
             </div>
-            <p className="text-xs text-zinc-500 mt-3">
+            <p className="text-xs text-neutral-500 mt-3">
               Nothing else enters the seed: not the tap position on screen, not the timing, not the pressure, 
               not the hardware RNG, not the clock, not the device MAC. Each credited reading counts for a 
               fixed fraction of a bit, set at half the min-entropy measured for this board with the NIST 
@@ -182,7 +183,7 @@ export default function EntropyPage() {
 
         {/* Critical: Avoiding Patterns */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Critical: Avoid Patterns
           </h2>
         
@@ -223,19 +224,19 @@ export default function EntropyPage() {
 
         {/* Using Dice for Extra Randomness */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
             <Dice5 className="w-6 h-6" />
             Using Dice for Extra Randomness
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             For maximum security, you can incorporate physical dice to add non-electronic 
             randomness that is completely independent of any computer system.
           </p>
 
-          <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-6">
-            <h4 className="font-medium text-zinc-900 dark:text-white mb-4">Divide the Screen into 6 Zones</h4>
-            <div className="font-mono text-xs bg-zinc-900 dark:bg-zinc-950 text-accent-400 dark:text-accent-dark-400 p-4 rounded-lg mb-4 overflow-x-auto">
+          <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
+            <h4 className="font-medium text-neutral-900 dark:text-white mb-4">Divide the Screen into 6 Zones</h4>
+            <div className="font-mono text-xs bg-neutral-900 dark:bg-neutral-950 text-accent-400 dark:text-accent-dark-400 p-4 rounded-lg mb-4 overflow-x-auto">
               <pre>{`┌───────────┬───────────┬───────────┐
 │           │           │           │
 │     1     │     2     │     3     │
@@ -246,7 +247,7 @@ export default function EntropyPage() {
 │           │           │           │
 └───────────┴───────────┴───────────┘`}</pre>
             </div>
-            <div className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <p><strong>Method:</strong> Roll a die before each tap. Tap in the zone matching the number.</p>
               <p><strong>Variation:</strong> Use two dice for a 12-zone grid (2×6 or 3×4 layout).</p>
               <p><strong>Timing:</strong> Vary your timing based on the roll (odd = quick tap, even = slow tap).</p>
@@ -267,11 +268,11 @@ export default function EntropyPage() {
 
         {/* Cryptographic Mixing */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Cryptographic Mixing
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             All credited readings are mixed into a SHA-512 pool. Even if some readings carry patterns, 
             the conditioned output is uniformly distributed, and the fail-closed accounting makes sure 
             enough genuine noise went in before anything comes out.
@@ -303,7 +304,7 @@ export default function EntropyPage() {
 
         {/* Security Model */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             PayDeck Security Model
           </h2>
         
@@ -325,39 +326,39 @@ export default function EntropyPage() {
 
         {/* Comparison Table */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Comparison to Other Methods
           </h2>
         
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Method</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Entropy Sources</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Risks</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Method</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Entropy Sources</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Risks</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Hardware wallet</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Dedicated TRNG chip</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Supply chain attacks</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Hardware wallet</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Dedicated TRNG chip</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Supply chain attacks</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Software wallet</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">OS random (/dev/urandom)</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Compromised OS, malware</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Software wallet</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">OS random (/dev/urandom)</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Compromised OS, malware</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Dice rolls only</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Physical randomness</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">User error, calculation mistakes</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Dice rolls only</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Physical randomness</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">User error, calculation mistakes</td>
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">PayDeck</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Raw touch-sensor noise from human taps, NIST-measured</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Physical probing of the touch bus</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">PayDeck</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Raw touch-sensor noise from human taps, NIST-measured</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Physical probing of the touch bus</td>
                 </tr>
               </tbody>
             </table>
@@ -366,10 +367,10 @@ export default function EntropyPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to generate your seed?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Follow the seed generation guide with these entropy principles in mind.
           </p>
           <Link 
@@ -388,9 +389,9 @@ export default function EntropyPage() {
 // Component: Problem Card
 function ProblemCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
     </div>
   );
 }
@@ -398,14 +399,14 @@ function ProblemCard({ title, description }: { title: string; description: strin
 // Component: Isolation Card
 function IsolationCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>
@@ -435,13 +436,13 @@ function GoodPattern({ text }: { text: string }) {
 // Component: Process Step
 function ProcessStep({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <div className="flex gap-4 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-6 h-6 rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center font-semibold text-xs flex-shrink-0">
+    <div className="flex gap-4 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center font-semibold text-xs flex-shrink-0">
         {number}
       </div>
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white text-sm">{title}</h4>
-        <p className="text-xs text-zinc-500">{description}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white text-sm">{title}</h4>
+        <p className="text-xs text-neutral-500">{description}</p>
       </div>
     </div>
   );
@@ -450,12 +451,12 @@ function ProcessStep({ number, title, description }: { number: number; title: st
 // Component: Security Point
 function SecurityPoint({ title, description }: { title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1 flex items-center gap-2">
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1 flex items-center gap-2">
         <Shield className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />
         {title}
       </h4>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
     </div>
   );
 }

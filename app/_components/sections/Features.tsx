@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/cn";
 import { features } from "@/app/_data/features";
 import { ScrollReveal } from "../ui/ScrollReveal";

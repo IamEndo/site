@@ -1,23 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
-  Shield,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  Settings,
-  ToggleRight,
-  RefreshCw,
-  Eye,
-  EyeOff
-} from 'lucide-react';
+import { Shield, ArrowRight, CheckCircle2, AlertTriangle, Info, Settings, ToggleRight, Eye, EyeOff } from "lucide-react";
+import { Step } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/privacy/enabling", {
   title: 'Enabling Privacy Mode',
   description: 'How to enable and configure privacy mode in PayDeck for fresh address generation.',
-};
+});
 
 export default function EnablingPrivacyPage() {
   return (
@@ -29,21 +20,21 @@ export default function EnablingPrivacyPage() {
             <Shield className="w-4 h-4" />
             Privacy
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Enabling Privacy Mode
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Generate a fresh address for each payment to prevent transaction linking.
           </p>
         </div>
 
         {/* Requirements */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Requirements
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Privacy mode requires an HD wallet setup (seed phrase or xPub). It does not work 
             with manual address mode.
           </p>
@@ -80,7 +71,7 @@ export default function EnablingPrivacyPage() {
 
         {/* How to Enable */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How to Enable
           </h2>
         
@@ -112,7 +103,7 @@ export default function EnablingPrivacyPage() {
 
         {/* What Changes */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What Changes
           </h2>
         
@@ -142,11 +133,11 @@ export default function EnablingPrivacyPage() {
 
         {/* After Enabling */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             After Enabling
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Once privacy mode is active:
           </p>
 
@@ -172,30 +163,30 @@ export default function EnablingPrivacyPage() {
 
         {/* Verifying It Works */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Verifying It Works
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             To confirm privacy mode is working:
           </p>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
             <ol className="space-y-2">
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">1.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">1.</span>
                 Create a new invoice
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">2.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">2.</span>
                 Note the address shown
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">3.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">3.</span>
                 Cancel and create another invoice
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">4.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">4.</span>
                 The address should be different
               </li>
             </ol>
@@ -204,26 +195,26 @@ export default function EnablingPrivacyPage() {
 
         {/* Toggling Off */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Turning Privacy Off
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             You can disable privacy mode at any time:
           </p>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
-            <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-4">
+            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400">•</span>
+                <span className="text-neutral-400">•</span>
                 Toggle off in Settings
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400">•</span>
+                <span className="text-neutral-400">•</span>
                 PayDeck will use a consistent address for new invoices
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400">•</span>
+                <span className="text-neutral-400">•</span>
                 Previously used addresses remain valid
               </li>
             </ul>
@@ -243,10 +234,10 @@ export default function EnablingPrivacyPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Want to understand how it works?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn about HD key derivation and how PayDeck generates addresses.
           </p>
           <Link 
@@ -262,33 +253,17 @@ export default function EnablingPrivacyPage() {
   );
 }
 
-// Component: Step
-function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-        {number}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
-        {children}
-      </div>
-    </div>
-  );
-}
-
 // Component: Requirement Card
 function RequirementCard({ title, items, works }: { title: string; items: string[]; works: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${works ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
-      <h4 className={`font-medium mb-3 ${works ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
+    <div className={`p-4 rounded-lg border ${works ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900'}`}>
+      <h4 className={`font-medium mb-3 ${works ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-700 dark:text-neutral-300'}`}>
         {title}
       </h4>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 ${works ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
+          <li key={i} className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <CheckCircle2 className={`w-4 h-4 ${works ? 'text-accent-500 dark:text-accent-dark-500' : 'text-neutral-400'}`} />
             {item}
           </li>
         ))}
@@ -300,19 +275,19 @@ function RequirementCard({ title, items, works }: { title: string; items: string
 // Component: Mode Card
 function ModeCard({ icon, title, items, enabled }: { icon: React.ReactNode; title: string; items: string[]; enabled: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${enabled ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${enabled ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-2 mb-3">
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${enabled ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${enabled ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
           {icon}
         </div>
-        <h4 className={`font-medium ${enabled ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
+        <h4 className={`font-medium ${enabled ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-700 dark:text-neutral-300'}`}>
           {title}
         </h4>
       </div>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="text-neutral-400 mt-1">•</span>
             {item}
           </li>
         ))}
@@ -324,11 +299,11 @@ function ModeCard({ icon, title, items, enabled }: { icon: React.ReactNode; titl
 // Component: Info Item
 function InfoItem({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex items-start gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{title}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
     </div>
   );

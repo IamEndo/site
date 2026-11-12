@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Search index is up to date
+        run: git diff --exit-code app/docs/_data/search-index.json
+      - name: Vendored flasher files are unmodified
+        run: cd public/vendor/esp-web-tools-10.2.1 && sha256sum -c SHA256SUMS

@@ -45,6 +45,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
   return (
     <header
       className={cn(
@@ -57,12 +66,12 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo - Left */}
-          <a href="#" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group" aria-label={`${SITE.name} home`}>
             <Origami className="w-6 h-6 text-neutral-900 dark:text-white" aria-hidden="true" />
             <span className="font-semibold text-neutral-900 dark:text-white tracking-tight">
               {SITE.name}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav - Center */}
           <nav className="hidden md:flex items-center gap-1" aria-label="Primary">

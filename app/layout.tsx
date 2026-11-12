@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { FIRMWARE_VERSION } from "@/lib/constants";
 
 const sansFont = Space_Grotesk({
   subsets: ["latin"],
@@ -62,11 +63,11 @@ export const metadata: Metadata = {
       "Accept Nexa payments instantly. Open source, non-custodial POS on affordable hardware. No contracts, no fees.",
     images: [
       {
-        url: "/og.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "PayDeck - Open Source Nexa Point of Sale Terminal",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   },
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     title: "PayDeck | Open Source Crypto POS",
     description:
       "Accept Nexa payments instantly. Non-custodial, open source, runs on affordable hardware.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
     creator: "@paydeckproject",
   },
   icons: {
@@ -106,6 +107,7 @@ const jsonLd = {
   sameAs: [
     "https://t.me/paydeckproject",
     "https://gitlab.com/IamEndo/paydeck",
+    "https://x.com/PayDeckProject",
   ],
   contactPoint: {
     "@type": "ContactPoint",
@@ -128,7 +130,7 @@ const softwareJsonLd = {
   description: "Open source point-of-sale firmware for accepting Nexa cryptocurrency payments",
   url: "https://paydeck.org",
   downloadUrl: "https://gitlab.com/IamEndo/paydeck",
-  softwareVersion: "0.5.1",
+  softwareVersion: FIRMWARE_VERSION,
   author: {
     "@type": "Organization",
     name: "PayDeck",

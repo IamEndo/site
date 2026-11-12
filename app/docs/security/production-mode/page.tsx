@@ -1,16 +1,17 @@
 import { DocsArticle } from '../../_components/DocsArticle';
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/security/production-mode", {
   title: 'Secure & Production Builds',
   description:
     'A complete, honest step-by-step guide to building a hardware-secured PayDeck: real flash encryption, NVS encryption, and Secure Boot V2. This burns one-time eFuses and is irreversible.',
-};
+});
 
 export default function ProductionModePage() {
   return (
     <DocsArticle>
-      <div className="prose prose-zinc dark:prose-invert max-w-none">
+      <div className="prose prose-neutral dark:prose-invert max-w-none">
       <h1>Secure &amp; Production Builds</h1>
 
       <p>

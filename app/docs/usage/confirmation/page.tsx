@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -12,10 +13,10 @@ import {
   Zap
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/usage/confirmation", {
   title: 'Payment Confirmation',
   description: 'Understanding Nexa instant transactions and when to wait for additional confirmations.',
-};
+});
 
 export default function ConfirmationPage() {
   return (
@@ -27,10 +28,10 @@ export default function ConfirmationPage() {
             <Wallet className="w-4 h-4" />
             Usage
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Payment Confirmation
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Nexa features instant transactions with double-spend protection, 
             making payments secure within seconds.
           </p>
@@ -38,7 +39,7 @@ export default function ConfirmationPage() {
 
         {/* Instant Transactions */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Nexa Instant Transactions
           </h2>
         
@@ -76,11 +77,11 @@ export default function ConfirmationPage() {
 
         {/* How It Works */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How Double-Spend Proofs Work
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             When a customer sends a payment:
           </p>
 
@@ -122,11 +123,11 @@ export default function ConfirmationPage() {
 
         {/* When to Wait for Blocks */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             When to Wait for Block Confirmations
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             For most transactions, instant confirmation is sufficient. However, for high-value 
             payments, you may want additional security:
           </p>
@@ -154,12 +155,12 @@ export default function ConfirmationPage() {
             />
           </div>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Block Confirmation Times</h4>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Block Confirmation Times</h4>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
               Nexa blocks are mined approximately every 2 minutes:
             </p>
-            <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
               <li>• 1 confirmation: ~2 minutes</li>
               <li>• 3 confirmations: ~6 minutes</li>
               <li>• 6 confirmations: ~12 minutes</li>
@@ -169,7 +170,7 @@ export default function ConfirmationPage() {
 
         {/* What PayDeck Shows */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What PayDeck Shows
           </h2>
         
@@ -200,10 +201,10 @@ export default function ConfirmationPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Having issues?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Check common troubleshooting steps for payment detection problems.
           </p>
           <Link 
@@ -222,11 +223,11 @@ export default function ConfirmationPage() {
 // Component: Feature Item
 function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="text-accent-500 dark:text-accent-dark-500 flex-shrink-0">
         {icon}
       </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }
@@ -235,10 +236,10 @@ function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
 function ProcessStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="w-6 h-6 rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center font-medium text-xs flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center font-medium text-xs flex-shrink-0">
         {number}
       </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }
@@ -252,11 +253,11 @@ function Card({ title, items, color }: { title: string; items: string[]; color: 
 
   return (
     <div className={`p-4 rounded-lg border ${colors[color]}`}>
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-3">{title}</h4>
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-3">{title}</h4>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400">•</span>
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="text-neutral-400">•</span>
             {item}
           </li>
         ))}
@@ -287,7 +288,7 @@ function StateCard({ state, description, color }: { state: string; description: 
       <div className={`w-3 h-3 rounded-full flex-shrink-0 ${dotColors[color]}`} />
       <div>
         <span className={`font-medium ${iconColors[color]}`}>{state}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
     </div>
   );

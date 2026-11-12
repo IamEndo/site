@@ -1,23 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
-  Download,
-  Terminal,
-  ArrowRight,
-  CheckCircle2,
-  Clock,
-  AlertTriangle,
-  Info,
-  Package,
-  Home,
-  Cpu
-} from 'lucide-react';
+import { Download, Terminal, ArrowRight, CheckCircle2, Clock, AlertTriangle, Info, Home } from "lucide-react";
+import { TroubleshootItem, VerifyStep } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/installation/platformio", {
   title: 'Installing PlatformIO',
   description: 'Install the PlatformIO IDE extension in VS Code for ESP32 development.',
-};
+});
 
 export default function PlatformIOPage() {
   return (
@@ -29,27 +20,27 @@ export default function PlatformIOPage() {
             <Download className="w-4 h-4" />
             Installation
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Installing PlatformIO
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             PlatformIO is an embedded development platform that manages toolchains, libraries, 
             and board configurations. It runs as a VS Code extension.
           </p>
         </div>
 
         {/* Time Estimate */}
-        <div className="flex items-center gap-3 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-12">
-          <Clock className="w-5 h-5 text-zinc-400" />
+        <div className="flex items-center gap-3 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-12">
+          <Clock className="w-5 h-5 text-neutral-400" />
           <div>
-            <span className="font-medium text-zinc-900 dark:text-white">Estimated time: </span>
-            <span className="text-zinc-600 dark:text-zinc-400">10-15 minutes (includes toolchain download)</span>
+            <span className="font-medium text-neutral-900 dark:text-white">Estimated time: </span>
+            <span className="text-neutral-600 dark:text-neutral-400">10-15 minutes (includes toolchain download)</span>
           </div>
         </div>
 
         {/* Install Extension */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Install the Extension
           </h2>
         
@@ -65,9 +56,9 @@ export default function PlatformIOPage() {
               description={
                 <>
                   Click the Extensions icon in the sidebar, or press 
-                  <code className="mx-1 px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-xs">Ctrl+Shift+X</code>
+                  <code className="mx-1 px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-xs">Ctrl+Shift+X</code>
                   (Windows/Linux) or
-                  <code className="mx-1 px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-xs">Cmd+Shift+X</code>
+                  <code className="mx-1 px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-xs">Cmd+Shift+X</code>
                   (macOS)
                 </>
               }
@@ -97,7 +88,7 @@ export default function PlatformIOPage() {
 
         {/* First Run */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             First Run Setup
           </h2>
         
@@ -114,7 +105,7 @@ export default function PlatformIOPage() {
             </div>
           </div>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             After VS Code reloads, PlatformIO will initialize. You'll know it's ready when:
           </p>
 
@@ -136,11 +127,11 @@ export default function PlatformIOPage() {
 
         {/* Install ESP32 Platform */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Install ESP32 Platform
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             PlatformIO needs the Espressif 32 platform to compile code for ESP32 devices:
           </p>
 
@@ -180,7 +171,7 @@ export default function PlatformIOPage() {
 
         {/* Verify Installation */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Verify Installation
           </h2>
         
@@ -207,7 +198,7 @@ export default function PlatformIOPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
         
@@ -239,22 +230,22 @@ export default function PlatformIOPage() {
             />
           </div>
 
-          <div className="mt-6 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Reset PlatformIO</h4>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+          <div className="mt-6 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Reset PlatformIO</h4>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
               If PlatformIO is completely broken, you can reset it by deleting the cache folder:
             </p>
             <div className="space-y-2">
               <div>
-                <span className="text-xs text-zinc-500">Windows:</span>
+                <span className="text-xs text-neutral-500">Windows:</span>
                 <CodeBlock code="rmdir /s %USERPROFILE%\.platformio" />
               </div>
               <div>
-                <span className="text-xs text-zinc-500">macOS / Linux:</span>
+                <span className="text-xs text-neutral-500">macOS / Linux:</span>
                 <CodeBlock code="rm -rf ~/.platformio" />
               </div>
             </div>
-            <p className="text-xs text-zinc-500 mt-3">
+            <p className="text-xs text-neutral-500 mt-3">
               After deleting, restart VS Code. PlatformIO will re-download everything.
             </p>
           </div>
@@ -262,10 +253,10 @@ export default function PlatformIOPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             PlatformIO ready?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Next, install USB drivers so your computer can communicate with the ESP32.
           </p>
           <Link 
@@ -284,13 +275,13 @@ export default function PlatformIOPage() {
 // Component: Install Step
 function InstallStep({ number, title, description }: { number: number; title: string; description: React.ReactNode }) {
   return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+        <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );
@@ -299,23 +290,11 @@ function InstallStep({ number, title, description }: { number: number; title: st
 // Component: Ready Indicator
 function ReadyIndicator({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
         {icon}
       </div>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
-    </div>
-  );
-}
-
-// Component: Verify Step
-function VerifyStep({ number, text }: { number: number; text: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
-        {number}
-      </div>
-      <p className="text-zinc-600 dark:text-zinc-400 pt-0.5">{text}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{text}</p>
     </div>
   );
 }
@@ -323,26 +302,9 @@ function VerifyStep({ number, text }: { number: number; text: string }) {
 // Component: Code Block
 function CodeBlock({ code }: { code: string }) {
   return (
-    <pre className="p-2 rounded bg-zinc-900 dark:bg-zinc-950 text-zinc-100 text-xs font-mono overflow-x-auto">
+    <pre className="p-2 rounded bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-xs font-mono overflow-x-auto">
       <code>{code}</code>
     </pre>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 

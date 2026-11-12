@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import {
@@ -12,10 +13,10 @@ import {
   Info
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/maintenance/settings", {
   title: 'Device Settings',
   description: 'The PayDeck menu: network, wallet, device and security settings, and the transaction history.',
-};
+});
 
 export default function SettingsPage() {
   return (
@@ -27,32 +28,32 @@ export default function SettingsPage() {
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Device Settings
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Everything behind the Menu button: network, wallet, device, password, factory reset and the transaction history.
           </p>
         </div>
 
         {/* Accessing Settings */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Opening the Menu
           </h2>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-4">
             <ol className="space-y-2">
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">1.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">1.</span>
                 Tap the Menu button in the corner of the home screen
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">2.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">2.</span>
                 Enter your access password on the keypad and tap Unlock
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-zinc-400 font-medium">3.</span>
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <span className="text-neutral-400 font-medium">3.</span>
                 Pick a category. Back returns to the Menu, and the Menu's Back returns home and locks the device again
               </li>
             </ol>
@@ -72,7 +73,7 @@ export default function SettingsPage() {
 
         {/* Settings Categories */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Menu Categories
           </h2>
 
@@ -144,7 +145,7 @@ export default function SettingsPage() {
 
         {/* Changing Settings */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Things to Know
           </h2>
 
@@ -170,33 +171,33 @@ export default function SettingsPage() {
 
         {/* Settings Persistence */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Settings Storage
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Settings are stored in the ESP32's non-volatile storage (NVS):
           </p>
 
-          <ul className="space-y-2 text-zinc-600 dark:text-zinc-400">
+          <ul className="space-y-2 text-neutral-600 dark:text-neutral-400">
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Settings persist across restarts and power cycles
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Secrets (xPub, address, Wi-Fi password) are encrypted under the master key, which is wrapped by your password
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Factory reset, and the fifteen-strike wipe, erase all of it
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Secure builds encrypt the whole NVS partition as well
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Reflashing the firmware keeps the settings unless you erase the flash first
             </li>
           </ul>
@@ -204,10 +205,10 @@ export default function SettingsPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Need to reset everything?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Factory reset erases every setting and runs the setup wizard again.
           </p>
           <Link
@@ -226,20 +227,20 @@ export default function SettingsPage() {
 // Component: Setting Category
 function SettingCategory({ icon, title, description, items, href }: { icon: React.ReactNode; title: string; description: string; items: string[]; href?: string }) {
   const content = (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
       <div className="flex items-start gap-3 mb-3">
-        <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
       <ul className="space-y-1 ml-13">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400">•</span>
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="text-neutral-400">•</span>
             {item}
           </li>
         ))}
@@ -256,11 +257,11 @@ function SettingCategory({ icon, title, description, items, href }: { icon: Reac
 // Component: Note Item
 function NoteItem({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex items-start gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <Info className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{title}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
     </div>
   );

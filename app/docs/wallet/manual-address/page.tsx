@@ -1,22 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
-  Wallet,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  Hash,
-  Eye,
-  Clock,
-  Zap
-} from 'lucide-react';
+import { Wallet, ArrowRight, CheckCircle2, AlertTriangle, Info, Eye, Clock, Zap } from "lucide-react";
+import { Step } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/manual-address", {
   title: 'Manual Address',
   description: 'Configure PayDeck with a single receiving address for simple payment acceptance.',
-};
+});
 
 export default function ManualAddressPage() {
   return (
@@ -28,10 +20,10 @@ export default function ManualAddressPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Manual Address
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             The simplest way to configure PayDeck. Enter a single Nexa address and start 
             accepting payments immediately.
           </p>
@@ -46,7 +38,7 @@ export default function ManualAddressPage() {
 
         {/* When to Use */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             When to Use Manual Mode
           </h2>
         
@@ -110,7 +102,7 @@ export default function ManualAddressPage() {
 
         {/* Setup Steps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Setup Steps
           </h2>
         
@@ -125,9 +117,9 @@ export default function ManualAddressPage() {
               title="Enter Your Address"
               description="Use the on-screen keyboard to enter your Nexa receiving address"
             >
-              <div className="mt-3 p-3 rounded bg-zinc-100 dark:bg-zinc-800">
-                <p className="text-xs text-zinc-500 mb-1">Example Nexa address:</p>
-                <code className="text-xs text-zinc-900 dark:text-white break-all">nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz</code>
+              <div className="mt-3 p-3 rounded bg-neutral-100 dark:bg-neutral-800">
+                <p className="text-xs text-neutral-500 mb-1">Example Nexa address:</p>
+                <code className="text-xs text-neutral-900 dark:text-white break-all">nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz</code>
               </div>
             </Step>
             <Step 
@@ -145,7 +137,7 @@ export default function ManualAddressPage() {
 
         {/* Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Tips
           </h2>
         
@@ -159,11 +151,11 @@ export default function ManualAddressPage() {
 
         {/* Getting Your Address */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Getting a Nexa Address
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             If you don't have a Nexa address yet, you can get one from:
           </p>
 
@@ -188,11 +180,11 @@ export default function ManualAddressPage() {
 
         {/* Changing Address */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Changing Your Address
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             To use a different address later:
           </p>
 
@@ -222,10 +214,10 @@ export default function ManualAddressPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Want better privacy?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Generate a seed phrase to enable unique addresses for every payment.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -238,7 +230,7 @@ export default function ManualAddressPage() {
             </Link>
             <Link 
               href="/docs/wallet/import-seed"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium transition-colors"
             >
               Import Existing Seed
             </Link>
@@ -252,12 +244,12 @@ export default function ManualAddressPage() {
 // Component: Stat Card
 function StatCard({ icon, label, value, warning }: { icon: React.ReactNode; label: string; value: string; warning?: boolean }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className={`w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center ${warning ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-500'}`}>
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
+      <div className={`w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center ${warning ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-500'}`}>
         {icon}
       </div>
-      <p className="text-xs text-zinc-500 mb-1">{label}</p>
-      <p className={`font-semibold ${warning ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-white'}`}>{value}</p>
+      <p className="text-xs text-neutral-500 mb-1">{label}</p>
+      <p className={`font-semibold ${warning ? 'text-amber-600 dark:text-amber-400' : 'text-neutral-900 dark:text-white'}`}>{value}</p>
     </div>
   );
 }
@@ -265,27 +257,11 @@ function StatCard({ icon, label, value, warning }: { icon: React.ReactNode; labe
 // Component: Use Case
 function UseCase({ title, description, good }: { title: string; description: string; good: boolean }) {
   return (
-    <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${good ? 'text-accent-500 dark:text-accent-dark-500' : 'text-red-500'}`} />
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-zinc-500">{description}</p>
-      </div>
-    </div>
-  );
-}
-
-// Component: Step
-function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-        {number}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
-        {children}
+        <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
+        <p className="text-sm text-neutral-500">{description}</p>
       </div>
     </div>
   );
@@ -294,9 +270,9 @@ function Step({ number, title, description, children }: { number: number; title:
 // Component: Tip
 function Tip({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{text}</p>
     </div>
   );
 }
@@ -304,9 +280,9 @@ function Tip({ text }: { text: string }) {
 // Component: Address Source
 function AddressSource({ title, description, url }: { title: string; description: string; url: string }) {
   const content = (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-zinc-500">{description}</p>
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-sm text-neutral-500">{description}</p>
     </div>
   );
 

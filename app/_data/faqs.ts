@@ -27,7 +27,7 @@ export const faqs = [
   {
     id: "compliance",
     question: "Is this compliant for my store?",
-    answer: "As a watch-only display, PayDeck generally falls outside card-network certification requirements. Verify local regulations for selling assembled devices.",
+    answer: "PayDeck is not a card terminal: it never touches card data, so card-network rules such as PCI DSS do not apply to it. It is open-source firmware for an uncertified development board, provided as-is. Whether and how you may accept cryptocurrency, and how to report it for tax, depends on your country, so check your local rules.",
   },
 ] as const;
 

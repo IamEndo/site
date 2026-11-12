@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -14,11 +15,12 @@ import {
   History,
   RefreshCw
 } from 'lucide-react';
+import { Step } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/verification", {
   title: 'Seed Verification',
   description: 'Verify your seed phrase was recorded correctly using Wally Wallet.',
-};
+});
 
 export default function VerificationPage() {
   return (
@@ -30,10 +32,10 @@ export default function VerificationPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Seed Verification
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Verify your seed phrase is correctly recorded by recovering it in a companion wallet. 
             This also gives you full wallet functionality when needed.
           </p>
@@ -41,11 +43,11 @@ export default function VerificationPage() {
 
         {/* Why Verify */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Why Verify Your Seed?
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck erases your seed phrase immediately after setup. If you wrote it down incorrectly, 
             you won't discover the mistake until you try to recover your funds, potentially years later. 
             By then, it's too late.
@@ -81,11 +83,11 @@ export default function VerificationPage() {
 
         {/* Recommended: Wally Wallet */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Recommended: Wally Wallet
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             We recommend using <strong>Wally Wallet</strong> to verify your seed phrase. By recovering 
             your seed in Wally, you verify it works correctly AND gain access to full wallet functionality.
           </p>
@@ -96,8 +98,8 @@ export default function VerificationPage() {
                 <Smartphone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">Wally Wallet</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Wally Wallet</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                   A full-featured Nexa wallet for iOS and Android. Same wallet as PayDeck, 
                   with complete functionality for managing your funds.
                 </p>
@@ -114,7 +116,7 @@ export default function VerificationPage() {
             </div>
           </div>
 
-          <h3 className="font-semibold text-zinc-900 dark:text-white mb-4">
+          <h3 className="font-semibold text-neutral-900 dark:text-white mb-4">
             PayDeck + Wally: The Complete Setup
           </h3>
 
@@ -149,7 +151,7 @@ export default function VerificationPage() {
 
         {/* Verification Steps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Verification Steps
           </h2>
         
@@ -199,11 +201,11 @@ export default function VerificationPage() {
 
         {/* What You Gain */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What You Gain with Wally
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Once recovered in Wally, you have the same wallet on two devices with complementary features:
           </p>
 
@@ -250,22 +252,22 @@ export default function VerificationPage() {
 
         {/* Alternative Verification */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Other Compatible Wallets
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Your seed also works with other BIP39-compatible wallets:
           </p>
 
-          <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                <Wallet className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+              <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                <Wallet className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
               </div>
               <div>
-                <h4 className="font-medium text-zinc-900 dark:text-white mb-1">Otoplo</h4>
-                <p className="text-sm text-zinc-500 mb-2">Multi-platform wallet with social features</p>
+                <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Otoplo</h4>
+                <p className="text-sm text-neutral-500 mb-2">Multi-platform wallet with social features</p>
                 <a 
                   href="https://otoplo.com" 
                   target="_blank" 
@@ -281,10 +283,10 @@ export default function VerificationPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Seed verified?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             If you imported an xPub instead of generating a seed, learn about that option.
           </p>
           <Link 
@@ -297,22 +299,6 @@ export default function VerificationPage() {
         </section>
       </div>
     </DocsArticle>
-  );
-}
-
-// Component: Step
-function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-        {number}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
-        {children}
-      </div>
-    </div>
   );
 }
 
@@ -331,20 +317,20 @@ function ComparisonCard({
   highlighted?: boolean;
 }) {
   return (
-    <div className={`p-5 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-5 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-3 mb-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
           {icon}
         </div>
         <div>
-          <h4 className="font-semibold text-zinc-900 dark:text-white">{title}</h4>
-          <p className="text-xs text-zinc-500">{subtitle}</p>
+          <h4 className="font-semibold text-neutral-900 dark:text-white">{title}</h4>
+          <p className="text-xs text-neutral-500">{subtitle}</p>
         </div>
       </div>
       <ul className="space-y-1">
         {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${highlighted ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${highlighted ? 'text-accent-500 dark:text-accent-dark-500' : 'text-neutral-400'}`} />
             {feature}
           </li>
         ))}
@@ -356,14 +342,14 @@ function ComparisonCard({
 // Component: Feature Card
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>

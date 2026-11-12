@@ -1,26 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import {
-  Power,
-  Wifi,
-  Wallet,
-  Lock,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  Smartphone,
-  QrCode,
-  Settings,
-  SlidersHorizontal,
-  Zap
-} from 'lucide-react';
+import { Power, Wifi, Wallet, Lock, ArrowRight, CheckCircle2, AlertTriangle, Smartphone, QrCode, Settings, SlidersHorizontal, Zap } from "lucide-react";
+import { TroubleshootItem } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/installation/first-boot", {
   title: 'First Boot',
   description: 'The PayDeck first-run setup wizard: choose the wallet mode, set the access password and set up the wallet, then connect to the network.',
-};
+});
 
 export default function FirstBootPage() {
   return (
@@ -32,10 +20,10 @@ export default function FirstBootPage() {
             <Power className="w-4 h-4" />
             Installation
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             First Boot
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             A freshly flashed PayDeck boots straight into a three-step setup wizard: mode, password, wallet.
             Nothing else is reachable until it completes. This guide walks through each step.
           </p>
@@ -43,11 +31,11 @@ export default function FirstBootPage() {
 
         {/* What to Expect */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What to Expect
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             When the device powers on for the first time you see:
           </p>
 
@@ -73,7 +61,7 @@ export default function FirstBootPage() {
 
         {/* Setup Wizard */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Setup Wizard
           </h2>
 
@@ -95,11 +83,11 @@ export default function FirstBootPage() {
                   description="Personal wallet monitor"
                 />
               </div>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
                 Tap a row and confirm with Continue. The prompt says it plainly: chosen once, cannot be changed,
                 factory reset to start over. The mode is shown read-only under Device info afterwards.
               </p>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-neutral-500">
                 In this release both modes behave identically. The choice is recorded so that future,
                 mode-specific features (such as a balance view for personal monitors) apply to the right devices.
               </p>
@@ -112,25 +100,25 @@ export default function FirstBootPage() {
               title="Set the Access Password"
               description="8 to 128 characters, mandatory"
             >
-              <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Type the password on the phone-style keypad (tap a key to cycle its letters; a tap on the text field commits the pending letter), then Next
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Runs, repeated blocks and common passwords are refused with a short message; see <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">password best practices</Link>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Type it again and Save. The device shows "Password saved" and locks
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Enter the new password once on the unlock screen to reach the wallet step
                 </li>
               </ul>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-neutral-500">
                 There is no default code and no way to skip this step. Back returns to the mode picker.
                 Details in <Link href="/docs/security/pin-setup" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Access Password</Link>.
               </p>
@@ -143,7 +131,7 @@ export default function FirstBootPage() {
               title="Set Up the Wallet"
               description="Choose how the device gets its receiving addresses"
             >
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
                 The "Set up wallet" screen offers the same options as Wallet settings later on:
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
@@ -168,7 +156,7 @@ export default function FirstBootPage() {
                   best="Quickest setup, no privacy"
                 />
               </div>
-              <p className="text-xs text-zinc-500 mt-3">
+              <p className="text-xs text-neutral-500 mt-3">
                 Create wallet appears only on boards with a certified tap-entropy source (the CYD has one).
                 Compare the options in <Link href="/docs/wallet/options" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Wallet Options</Link>.
               </p>
@@ -192,11 +180,11 @@ export default function FirstBootPage() {
 
         {/* Network */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Then: Connect to the Network
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             PayDeck starts offline: QR codes work immediately, but payments are not verified until the device is online.
             Open the Menu, enter your password and go to Network settings.
           </p>
@@ -208,17 +196,17 @@ export default function FirstBootPage() {
               title="Wi-Fi settings"
               description="Connect to your wireless network"
             >
-              <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Enter the network name (SSID) and the Wi-Fi password on the keypad
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-zinc-400">•</span>
+                  <span className="text-neutral-400">•</span>
                   Flip the Network row to online. The device connects and starts watching the blockchain
                 </li>
               </ul>
-              <p className="text-xs text-zinc-500 mt-3">
+              <p className="text-xs text-neutral-500 mt-3">
                 Only 2.4 GHz networks are supported. 5 GHz networks do not appear.
               </p>
             </SetupStepCard>
@@ -229,14 +217,14 @@ export default function FirstBootPage() {
               title="Node settings"
               description="Where the device watches the blockchain"
             >
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                 PayDeck talks to a Rostrum server (Nexa's Electrum implementation) over TLS.
               </p>
-              <div className="p-3 rounded bg-zinc-100 dark:bg-zinc-800 mb-3">
-                <p className="text-xs text-zinc-500 mb-1">Default server:</p>
-                <code className="text-sm text-zinc-900 dark:text-white">electrum.nexa.org:20004</code>
+              <div className="p-3 rounded bg-neutral-100 dark:bg-neutral-800 mb-3">
+                <p className="text-xs text-neutral-500 mb-1">Default server:</p>
+                <code className="text-sm text-neutral-900 dark:text-white">electrum.nexa.org:20004</code>
               </div>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-neutral-500">
                 The default works for most users. Change the host and port here if you{" "}
                 <Link href="/docs/setup/own-server" className="text-accent-600 dark:text-accent-dark-400 hover:underline">run your own server</Link>.
               </p>
@@ -246,7 +234,7 @@ export default function FirstBootPage() {
 
         {/* Verify Setup */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Verify Your Setup
           </h2>
 
@@ -276,7 +264,7 @@ export default function FirstBootPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
 
@@ -333,7 +321,7 @@ export default function FirstBootPage() {
 
         {/* Next Steps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Next Steps
           </h2>
 
@@ -358,10 +346,10 @@ export default function FirstBootPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to configure WiFi?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn about advanced WiFi settings and network configuration.
           </p>
           <Link
@@ -380,11 +368,11 @@ export default function FirstBootPage() {
 // Component: Boot Step
 function BootStep({ number, text }: { number: number; text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
-      <p className="text-zinc-600 dark:text-zinc-400">{text}</p>
+      <p className="text-neutral-600 dark:text-neutral-400">{text}</p>
     </div>
   );
 }
@@ -404,17 +392,17 @@ function SetupStepCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-4 mb-4">
         <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs text-zinc-400 font-medium">Step {number}</span>
+            <span className="text-xs text-neutral-400 font-medium">Step {number}</span>
           </div>
-          <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h3 className="font-semibold text-neutral-900 dark:text-white">{title}</h3>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
       <div className="pl-14">
@@ -427,9 +415,9 @@ function SetupStepCard({
 // Component: Mode Option
 function ModeOption({ title, description }: { title: string; description: string }) {
   return (
-    <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white text-sm mb-1">{title}</h4>
-      <p className="text-xs text-zinc-500">{description}</p>
+    <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
+      <p className="text-xs text-neutral-500">{description}</p>
     </div>
   );
 }
@@ -437,9 +425,9 @@ function ModeOption({ title, description }: { title: string; description: string
 // Component: Wallet Option
 function WalletOption({ title, description, best }: { title: string; description: string; best: string }) {
   return (
-    <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white text-sm mb-1">{title}</h4>
-      <p className="text-xs text-zinc-500 mb-2">{description}</p>
+    <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
+      <p className="text-xs text-neutral-500 mb-2">{description}</p>
       <p className="text-xs text-accent-600 dark:text-accent-dark-400">{best}</p>
     </div>
   );
@@ -448,13 +436,13 @@ function WalletOption({ title, description, best }: { title: string; description
 // Component: Verify Card
 function VerifyCard({ icon, title, check }: { icon: React.ReactNode; title: string; check: string }) {
   return (
-    <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 flex items-center justify-center flex-shrink-0">
+    <div className="flex items-start gap-3 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+      <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 flex items-center justify-center flex-shrink-0">
         {icon}
       </div>
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white text-sm mb-1">{title}</h4>
-        <p className="text-xs text-zinc-500">{check}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
+        <p className="text-xs text-neutral-500">{check}</p>
       </div>
     </div>
   );
@@ -465,32 +453,15 @@ function NextStepCard({ href, title, description }: { href: string; title: strin
   return (
     <Link
       href={href}
-      className="group p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
+      className="group p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
     >
-      <h4 className="font-medium text-zinc-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors mb-1">
+      <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors mb-1">
         {title}
       </h4>
-      <p className="text-xs text-zinc-500">{description}</p>
+      <p className="text-xs text-neutral-500">{description}</p>
       <span className="inline-flex items-center gap-1 text-xs text-accent-600 dark:text-accent-dark-400 mt-2">
         Learn more <ArrowRight className="w-3 h-3" />
       </span>
     </Link>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

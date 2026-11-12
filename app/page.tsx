@@ -6,6 +6,7 @@ import { Features } from "./_components/sections/Features";
 import { Device } from "./_components/sections/Device";
 import { HowItWorks } from "./_components/sections/HowItWorks";
 import { Comparison } from "./_components/sections/Comparison";
+import { Security } from "./_components/sections/Security";
 import { FAQ } from "./_components/sections/FAQ";
 import { faqs } from "./_data/faqs";
 import { device } from "./_data/device";
@@ -36,7 +37,7 @@ const productJsonLd = {
   description: `ESP32 based cryptocurrency payment terminal. ${device.specs.map((s) => `${s.label}: ${s.value}`).join(". ")}`,
   brand: { "@type": "Brand", name: "PayDeck" },
   url: "https://paydeck.org/#device",
-  image: "https://paydeck.org/images/esp32-device.png",
+  image: "https://paydeck.org/images/esp32-device.jpg",
 };
 
 // HowTo structured data for SEO
@@ -98,6 +99,7 @@ export default function HomePage() {
         <Device />
         <HowItWorks />
         <Comparison />
+        <Security />
         <FAQ />
       </main>
 

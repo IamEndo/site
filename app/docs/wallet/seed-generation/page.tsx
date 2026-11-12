@@ -1,26 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
-  Wallet,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  Key,
-  Fingerprint,
-  PenLine,
-  ShieldCheck,
-  Clock,
-  Eye,
-  EyeOff,
-  XCircle
-} from 'lucide-react';
+import { Wallet, ArrowRight, CheckCircle2, AlertTriangle, Info, Fingerprint, PenLine, ShieldCheck, Clock, EyeOff, XCircle } from "lucide-react";
+import { StatCard, Step } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/seed-generation", {
   title: 'Generating a Seed',
   description: 'Create a new 12- or 24-word BIP39 seed phrase on PayDeck from human tap entropy.',
-};
+});
 
 export default function SeedGenerationPage() {
   return (
@@ -32,10 +20,10 @@ export default function SeedGenerationPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Generating a Seed
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Generate a new 12- or 24-word BIP39 seed phrase for privacy-preserving payments. 
             This is the recommended setup for most users.
           </p>
@@ -67,11 +55,11 @@ export default function SeedGenerationPage() {
 
         {/* Isolated Environment */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Isolated Environment
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             During seed generation, PayDeck creates a secure, isolated environment:
           </p>
 
@@ -102,7 +90,7 @@ export default function SeedGenerationPage() {
             </div>
           </div>
 
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-neutral-500">
             PayDeck has no security chip because it doesn't need one - it never stores secrets. 
             Only your xPub (public keys) remains after setup.
           </p>
@@ -110,11 +98,11 @@ export default function SeedGenerationPage() {
 
         {/* Before You Begin */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Before You Begin
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Prepare the following before starting:
           </p>
 
@@ -166,7 +154,7 @@ export default function SeedGenerationPage() {
 
         {/* Setup Steps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Setup Steps
           </h2>
         
@@ -182,28 +170,28 @@ export default function SeedGenerationPage() {
               title="Collect Entropy (tap until the ring is full)"
               description="The screen first calibrates the touch sensor, then shows a progress ring labelled in proven bits. Tap all over the screen until it is full, then tap Done."
             >
-              <div className="mt-3 p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <p className="text-sm font-medium text-zinc-900 dark:text-white mb-2">For best randomness:</p>
-                <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <div className="mt-3 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                <p className="text-sm font-medium text-neutral-900 dark:text-white mb-2">For best randomness:</p>
+                <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Tap across the entire screen, not just one area
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Vary your timing: some fast, some slow
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Expect a minute or two; the ring tells you when enough noise is collected
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     <strong>Avoid patterns</strong>: don't tap fast in one spot
                   </li>
                 </ul>
-                <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-700">
-                  <p className="text-xs text-zinc-500 mb-1">
+                <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">
+                  <p className="text-xs text-neutral-500 mb-1">
                     <strong>Pro tip:</strong> Use dice! Divide screen into 6 zones, roll before each tap, tap in that zone.
                   </p>
                   <Link href="/docs/wallet/entropy" className="text-xs text-accent-600 dark:text-accent-dark-400 hover:underline">Learn more about entropy and dice method →</Link>
@@ -271,7 +259,7 @@ export default function SeedGenerationPage() {
 
         {/* Seed Storage */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Storing Your Seed Safely
           </h2>
         
@@ -301,11 +289,11 @@ export default function SeedGenerationPage() {
 
         {/* Recovery */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Recovery
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Your seed phrase is the master key to your funds. If your PayDeck is lost, stolen, or damaged:
           </p>
 
@@ -338,10 +326,10 @@ export default function SeedGenerationPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Already have a seed phrase?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Import an existing seed or use an xPub from your hardware wallet.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -354,7 +342,7 @@ export default function SeedGenerationPage() {
             </Link>
             <Link 
               href="/docs/wallet/import-xpub"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium transition-colors"
             >
               Import xPub
             </Link>
@@ -365,44 +353,15 @@ export default function SeedGenerationPage() {
   );
 }
 
-// Component: Stat Card
-function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400">
-        {icon}
-      </div>
-      <p className="text-xs text-zinc-500 mb-1">{label}</p>
-      <p className="font-semibold text-zinc-900 dark:text-white">{value}</p>
-    </div>
-  );
-}
-
 // Component: Prepare Card
 function PrepareCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 text-center">
+      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
         {icon}
       </div>
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-xs text-zinc-500">{description}</p>
-    </div>
-  );
-}
-
-// Component: Step
-function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-        {number}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
-        {children}
-      </div>
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-xs text-neutral-500">{description}</p>
     </div>
   );
 }
@@ -430,12 +389,12 @@ function StorageCard({ title, items, good }: { title: string; items: string[]; g
 // Component: Recovery Option
 function RecoveryOption({ title, description, href }: { title: string; description: string; href?: string }) {
   const content = (
-    <div className="flex items-center justify-between gap-4 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
+    <div className="flex items-center justify-between gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-zinc-500">{description}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
+        <p className="text-sm text-neutral-500">{description}</p>
       </div>
-      {href && <ArrowRight className="w-4 h-4 text-zinc-400" />}
+      {href && <ArrowRight className="w-4 h-4 text-neutral-400" />}
     </div>
   );
 

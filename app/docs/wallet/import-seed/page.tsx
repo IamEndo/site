@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -13,11 +14,12 @@ import {
   Key,
   Trash2
 } from 'lucide-react';
+import { StatCard, Step, TroubleshootItem, UseCase } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/import-seed", {
   title: 'Importing a Seed',
   description: 'Import an existing BIP39 seed phrase into PayDeck for watch-only address generation.',
-};
+});
 
 export default function ImportSeedPage() {
   return (
@@ -29,10 +31,10 @@ export default function ImportSeedPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Importing a Seed
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Use an existing seed phrase of 12 to 24 words with PayDeck. Ideal for consolidating 
             payments to an existing wallet.
           </p>
@@ -79,7 +81,7 @@ export default function ImportSeedPage() {
 
         {/* When to Use */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             When to Use Import Seed
           </h2>
         
@@ -135,7 +137,7 @@ export default function ImportSeedPage() {
 
         {/* Setup Steps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Import Steps
           </h2>
         
@@ -151,19 +153,19 @@ export default function ImportSeedPage() {
               title="Enter Your Seed Words"
               description="Use the on-screen keyboard to type each word of your seed phrase in order. The length is detected automatically."
             >
-              <div className="mt-3 p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <p className="text-sm font-medium text-zinc-900 dark:text-white mb-2">Tips for entering words:</p>
-                <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <div className="mt-3 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                <p className="text-sm font-medium text-neutral-900 dark:text-white mb-2">Tips for entering words:</p>
+                <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Type the first few letters and select from suggestions
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Words are from the BIP39 wordlist (2048 possible words)
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-zinc-400">•</span>
+                    <span className="text-neutral-400">•</span>
                     Double-check spelling before confirming each word
                   </li>
                 </ul>
@@ -196,7 +198,7 @@ export default function ImportSeedPage() {
 
         {/* What Gets Derived */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What PayDeck Stores
           </h2>
         
@@ -224,11 +226,11 @@ export default function ImportSeedPage() {
 
         {/* Compatibility */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Seed Compatibility
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck accepts standard BIP39 seed phrases. Compatible seeds can be created by:
           </p>
 
@@ -251,7 +253,7 @@ export default function ImportSeedPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
         
@@ -285,10 +287,10 @@ export default function ImportSeedPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Want maximum security?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Import an xPub directly so your seed never touches the device.
           </p>
           <Link 
@@ -304,60 +306,18 @@ export default function ImportSeedPage() {
   );
 }
 
-// Component: Stat Card
-function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400">
-        {icon}
-      </div>
-      <p className="text-xs text-zinc-500 mb-1">{label}</p>
-      <p className="font-semibold text-zinc-900 dark:text-white">{value}</p>
-    </div>
-  );
-}
-
-// Component: Use Case
-function UseCase({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <CheckCircle2 className="w-5 h-5 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
-      <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-zinc-500">{description}</p>
-      </div>
-    </div>
-  );
-}
-
-// Component: Step
-function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-        {number}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
-        {children}
-      </div>
-    </div>
-  );
-}
-
 // Component: Stored Card
 function StoredCard({ title, items, stored }: { title: string; items: string[]; stored: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${stored ? 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20' : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900'}`}>
-      <h4 className={`font-medium mb-3 flex items-center gap-2 ${stored ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>
+    <div className={`p-4 rounded-lg border ${stored ? 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20' : 'border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900'}`}>
+      <h4 className={`font-medium mb-3 flex items-center gap-2 ${stored ? 'text-blue-700 dark:text-blue-300' : 'text-neutral-700 dark:text-neutral-300'}`}>
         {stored ? <Key className="w-4 h-4" /> : <Trash2 className="w-4 h-4" />}
         {title}
       </h4>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className={stored ? 'text-blue-500' : 'text-zinc-400'}>•</span>
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className={stored ? 'text-blue-500' : 'text-neutral-400'}>•</span>
             {item}
           </li>
         ))}
@@ -369,26 +329,9 @@ function StoredCard({ title, items, stored }: { title: string; items: string[]; 
 // Component: Compat Card
 function CompatCard({ title }: { title: string }) {
   return (
-    <div className="flex items-center gap-2 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-2 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <span className="text-sm text-zinc-600 dark:text-zinc-400">{title}</span>
-    </div>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
+      <span className="text-sm text-neutral-600 dark:text-neutral-400">{title}</span>
     </div>
   );
 }

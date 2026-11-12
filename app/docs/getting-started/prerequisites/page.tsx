@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -17,10 +18,10 @@ import {
   FolderGit2
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/getting-started/prerequisites", {
   title: 'Software Setup',
   description: 'Software requirements for building and flashing PayDeck firmware including VS Code, PlatformIO, and USB drivers.',
-};
+});
 
 export default function SoftwareSetupPage() {
   return (
@@ -32,27 +33,27 @@ export default function SoftwareSetupPage() {
             <Download className="w-4 h-4" />
             Getting Started
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Software Setup
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Set up your development environment to build and flash PayDeck firmware. 
             First-time setup takes about 30-45 minutes.
           </p>
         </div>
 
         {/* Time Estimate */}
-        <div className="flex items-center gap-3 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-12">
-          <Clock className="w-5 h-5 text-zinc-400" />
+        <div className="flex items-center gap-3 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-12">
+          <Clock className="w-5 h-5 text-neutral-400" />
           <div>
-            <span className="font-medium text-zinc-900 dark:text-white">Estimated time: </span>
-            <span className="text-zinc-600 dark:text-zinc-400">30-45 minutes for first-time setup</span>
+            <span className="font-medium text-neutral-900 dark:text-white">Estimated time: </span>
+            <span className="text-neutral-600 dark:text-neutral-400">30-45 minutes for first-time setup</span>
           </div>
         </div>
 
         {/* Required Software */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Required Software
           </h2>
           <div className="space-y-4">
@@ -87,17 +88,17 @@ export default function SoftwareSetupPage() {
 
         {/* Optional Software */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Optional Software
           </h2>
-          <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 flex items-center justify-center">
                 <FolderGit2 className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-zinc-900 dark:text-white mb-1">Git</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
+                <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">Git</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
                   Version control system for cloning the PayDeck repository and staying updated with new releases. 
                   You can also download the source code as a ZIP file if you prefer.
                 </p>
@@ -117,50 +118,50 @@ export default function SoftwareSetupPage() {
 
         {/* System Requirements */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             System Requirements
           </h2>
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Requirement</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Minimum</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Recommended</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Requirement</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Minimum</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Recommended</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400 flex items-center gap-2">
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
                     <Laptop className="w-4 h-4" />
                     Operating System
                   </td>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Windows 10, macOS 10.15, Linux</td>
-                  <td className="px-4 py-3 text-zinc-500 dark:text-zinc-500">Latest version</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Windows 10, macOS 10.15, Linux</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">Latest version</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400 flex items-center gap-2">
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
                     <Cpu className="w-4 h-4" />
                     RAM
                   </td>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">4 GB</td>
-                  <td className="px-4 py-3 text-zinc-500 dark:text-zinc-500">8 GB</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">4 GB</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">8 GB</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400 flex items-center gap-2">
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
                     <HardDrive className="w-4 h-4" />
                     Disk Space
                   </td>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">2 GB free</td>
-                  <td className="px-4 py-3 text-zinc-500 dark:text-zinc-500">5 GB free</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">2 GB free</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">5 GB free</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400 flex items-center gap-2">
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
                     <Usb className="w-4 h-4" />
                     USB Port
                   </td>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">USB 2.0</td>
-                  <td className="px-4 py-3 text-zinc-500 dark:text-zinc-500">USB 3.0</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">USB 2.0</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">USB 3.0</td>
                 </tr>
               </tbody>
             </table>
@@ -179,7 +180,7 @@ export default function SoftwareSetupPage() {
 
         {/* Quick Start Checklist */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Installation Checklist
           </h2>
           <div className="space-y-0">
@@ -221,7 +222,7 @@ export default function SoftwareSetupPage() {
 
         {/* Time Breakdown */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Time Breakdown
           </h2>
           <div className="space-y-2">
@@ -232,17 +233,17 @@ export default function SoftwareSetupPage() {
             <TimeItem task="Building firmware (first build)" time="5-10 min" />
             <TimeItem task="Flashing to device" time="1-2 min" />
           </div>
-          <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-4">
             After initial setup, rebuilding and flashing takes under 2 minutes.
           </p>
         </section>
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to install?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Start with VS Code installation, then follow each step in order.
           </p>
           <Link 
@@ -279,21 +280,21 @@ function SoftwareCard({
   isInternal?: boolean;
 }) {
   return (
-    <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex gap-4">
         <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
           {icon}
         </div>
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-            <h3 className="font-semibold text-zinc-900 dark:text-white">{name}</h3>
-            <span className="px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400 text-xs">
+            <h3 className="font-semibold text-neutral-900 dark:text-white">{name}</h3>
+            <span className="px-2 py-0.5 rounded bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 text-xs">
               {installTime}
             </span>
           </div>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">{description}</p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{description}</p>
           {note && (
-            <p className="text-xs text-zinc-500 dark:text-zinc-500 mb-3 italic">{note}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 mb-3 italic">{note}</p>
           )}
           {isInternal ? (
             <Link 
@@ -340,11 +341,11 @@ function ChecklistItem({
         <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
           {number}
         </div>
-        {!isLast && <div className="w-px h-full bg-zinc-200 dark:bg-zinc-800 my-2" />}
+        {!isLast && <div className="w-px h-full bg-neutral-200 dark:bg-neutral-800 my-2" />}
       </div>
       <div className="pb-6 flex-1">
-        <h3 className="font-semibold text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">{title}</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {description}
           {link && (
             <>
@@ -363,9 +364,9 @@ function ChecklistItem({
 // Component: Time Item
 function TimeItem({ task, time }: { task: string; time: string }) {
   return (
-    <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
-      <span className="text-zinc-600 dark:text-zinc-400">{task}</span>
-      <span className="text-zinc-900 dark:text-white font-medium">{time}</span>
+    <div className="flex items-center justify-between py-2 border-b border-neutral-100 dark:border-neutral-800 last:border-0">
+      <span className="text-neutral-600 dark:text-neutral-400">{task}</span>
+      <span className="text-neutral-900 dark:text-white font-medium">{time}</span>
     </div>
   );
 }

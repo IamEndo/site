@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -18,10 +19,10 @@ import {
   Globe
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/setup/network-security", {
   title: 'Network Security',
   description: 'Network security best practices for PayDeck deployments.',
-};
+});
 
 export default function NetworkSecurityPage() {
   return (
@@ -33,10 +34,10 @@ export default function NetworkSecurityPage() {
             <Settings className="w-4 h-4" />
             Setup
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Network Security
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Best practices for securing your PayDeck network connection, from home setups 
             to retail and enterprise deployments.
           </p>
@@ -44,11 +45,11 @@ export default function NetworkSecurityPage() {
 
         {/* Security Overview */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Security Overview
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             PayDeck is designed with security in mind. Understanding the network architecture 
             helps you make informed decisions about your deployment.
           </p>
@@ -83,7 +84,7 @@ export default function NetworkSecurityPage() {
 
         {/* Deployment Scenarios */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Deployment Scenarios
           </h2>
 
@@ -94,7 +95,7 @@ export default function NetworkSecurityPage() {
               risk="Low"
               description="Using PayDeck on your home network for personal transactions."
             >
-              <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                   Standard home WiFi with WPA2/WPA3 is sufficient
@@ -116,7 +117,7 @@ export default function NetworkSecurityPage() {
               risk="Medium"
               description="Point-of-sale in a shop, restaurant, or small business."
             >
-              <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                   Use a dedicated WiFi network separate from guest WiFi
@@ -142,7 +143,7 @@ export default function NetworkSecurityPage() {
               risk="High"
               description="Deployments requiring maximum security and privacy."
             >
-              <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                   Dedicated VLAN for payment devices
@@ -170,11 +171,11 @@ export default function NetworkSecurityPage() {
 
         {/* Network Isolation */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Network Isolation
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             Isolating payment devices from other network traffic reduces attack surface 
             and prevents lateral movement if another device is compromised.
           </p>
@@ -218,48 +219,48 @@ export default function NetworkSecurityPage() {
 
         {/* Firewall Rules */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Firewall Configuration
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck only needs outbound access to Rostrum servers. A minimal firewall policy 
             would allow:
           </p>
 
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 mb-6">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Direction</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Protocol</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Port</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Purpose</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Direction</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Protocol</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Port</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Purpose</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Outbound</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">TCP/WSS</td>
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">20004</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TCP/WSS</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20004</td>
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Rostrum WSS (required)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Outbound</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">TCP/WS</td>
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">20003</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Rostrum WS (optional, unencrypted)</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TCP/WS</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20003</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Rostrum WS (optional, unencrypted)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Outbound</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">UDP</td>
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">53</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">DNS (if using hostname)</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">UDP</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">53</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">DNS (if using hostname)</td>
                 </tr>
                 <tr className="bg-red-50/50 dark:bg-red-950/20">
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Inbound</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Any</td>
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">All</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Inbound</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Any</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">All</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400 text-xs">Block all inbound</td>
                 </tr>
               </tbody>
@@ -279,11 +280,11 @@ export default function NetworkSecurityPage() {
 
         {/* Physical Security */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Physical Security
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             Network security is only part of the picture. Physical access to the device 
             can bypass many protections.
           </p>
@@ -300,11 +301,11 @@ export default function NetworkSecurityPage() {
 
         {/* Monitoring */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Monitoring & Logging
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             For high-security deployments, consider monitoring network traffic from payment devices:
           </p>
 
@@ -319,11 +320,11 @@ export default function NetworkSecurityPage() {
 
         {/* Checklist */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Security Checklist
           </h2>
         
-          <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+          <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
             <div className="space-y-3">
               <ChecklistItem text="Use WPA2/WPA3 WiFi encryption" />
               <ChecklistItem text="Connect to 2.4 GHz network (required)" />
@@ -339,10 +340,10 @@ export default function NetworkSecurityPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Network secured?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Next, learn about wallet options and how to configure receiving addresses.
           </p>
           <Link 
@@ -367,8 +368,8 @@ function SecurityFact({ icon, title, description, positive }: { icon: React.Reac
           {icon}
         </div>
         <div>
-          <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>
@@ -384,14 +385,14 @@ function DeploymentCard({ title, risk, description, children }: { title: string;
   };
 
   return (
-    <div className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-center gap-3 mb-2">
-        <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
+        <h3 className="font-semibold text-neutral-900 dark:text-white">{title}</h3>
         <span className={`px-2 py-0.5 rounded text-xs font-medium ${riskColors[risk as keyof typeof riskColors]}`}>
           {risk} Risk
         </span>
       </div>
-      <p className="text-sm text-zinc-500 mb-4">{description}</p>
+      <p className="text-sm text-neutral-500 mb-4">{description}</p>
       {children}
     </div>
   );
@@ -406,18 +407,18 @@ function IsolationMethod({ title, difficulty, description, steps }: { title: str
   };
 
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-center gap-3 mb-2">
-        <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
+        <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
         <span className={`px-2 py-0.5 rounded text-xs font-medium ${difficultyColors[difficulty as keyof typeof difficultyColors]}`}>
           {difficulty}
         </span>
       </div>
-      <p className="text-sm text-zinc-500 mb-3">{description}</p>
+      <p className="text-sm text-neutral-500 mb-3">{description}</p>
       <ol className="space-y-1">
         {steps.map((step, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 font-medium">{i + 1}.</span>
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="text-neutral-400 font-medium">{i + 1}.</span>
             {step}
           </li>
         ))}
@@ -429,9 +430,9 @@ function IsolationMethod({ title, difficulty, description, steps }: { title: str
 // Component: Security Tip
 function SecurityTip({ tip }: { tip: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <Shield className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{tip}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{tip}</p>
     </div>
   );
 }
@@ -440,10 +441,10 @@ function SecurityTip({ tip }: { tip: string }) {
 function ChecklistItem({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="w-5 h-5 rounded border-2 border-zinc-300 dark:border-zinc-600 flex items-center justify-center">
+      <div className="w-5 h-5 rounded border-2 border-neutral-300 dark:border-neutral-600 flex items-center justify-center">
         <CheckCircle2 className="w-3 h-3 text-transparent" />
       </div>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{text}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{text}</p>
     </div>
   );
 }

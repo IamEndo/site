@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -16,10 +17,10 @@ import {
   XCircle
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/security/model", {
   title: 'Security Model',
   description: 'Understanding PayDeck security architecture including watch-only operation, TLS verification, and threat mitigation.',
-};
+});
 
 export default function SecurityModelPage() {
   return (
@@ -31,10 +32,10 @@ export default function SecurityModelPage() {
             <Shield className="w-4 h-4" />
             Security
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Security Model
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             PayDeck is designed with security as a primary concern. This page explains 
             the security architecture and how various threats are mitigated.
           </p>
@@ -42,11 +43,11 @@ export default function SecurityModelPage() {
 
         {/* Watch-Only Architecture */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Watch-Only Architecture
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The fundamental security property of PayDeck is that it operates as a 
             <strong> watch-only wallet</strong>. This is the core principle behind all security decisions.
           </p>
@@ -87,7 +88,7 @@ export default function SecurityModelPage() {
 
         {/* Network Security */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Network Security
           </h2>
         
@@ -117,7 +118,7 @@ export default function SecurityModelPage() {
 
         {/* Local Security */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Local Security
           </h2>
         
@@ -143,9 +144,9 @@ export default function SecurityModelPage() {
                 "Nothing outside the wizard is reachable until mode, password and wallet all exist"
               ]}
             />
-            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-              <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Brute-Force Self-Wipe</h4>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+              <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Brute-Force Self-Wipe</h4>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 After 15 wrong password attempts the device factory-wipes itself (it warns from the 10th).
                 The failed-attempt count is committed to storage <em>before</em> each attempt is
                 checked, so power-cycling mid-guess cannot reset it. Straight runs, repeated blocks and
@@ -157,7 +158,7 @@ export default function SecurityModelPage() {
 
         {/* Data Storage */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Data Storage
           </h2>
         
@@ -204,46 +205,46 @@ export default function SecurityModelPage() {
 
         {/* Threat Mitigation Table */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Threat Mitigation
           </h2>
         
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Threat</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Mitigation</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Threat</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Mitigation</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Device theft</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Watch-only design, password lock, 15-strike wipe</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Device theft</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Watch-only design, password lock, 15-strike wipe</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Network eavesdropping</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">TLS encryption</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Network eavesdropping</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">TLS encryption</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Rogue server</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Certificate verification</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Rogue server</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Certificate verification</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Firmware tampering</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Secure boot (production mode)</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Firmware tampering</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Secure boot (production mode)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Flash extraction</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Flash encryption (production mode)</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Flash extraction</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Flash encryption (production mode)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">JTAG debugging</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">JTAG disable (production mode)</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">JTAG debugging</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">JTAG disable (production mode)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Weak randomness</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Human tap entropy only, NIST SP 800-90B measured, fail-closed</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Weak randomness</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Human tap entropy only, NIST SP 800-90B measured, fail-closed</td>
                 </tr>
               </tbody>
             </table>
@@ -252,11 +253,11 @@ export default function SecurityModelPage() {
 
         {/* What PayDeck Does NOT Protect Against */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Limitations
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             No security system is perfect. PayDeck does not protect against:
           </p>
 
@@ -286,7 +287,7 @@ export default function SecurityModelPage() {
 
         {/* Security Recommendations */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Security Recommendations
           </h2>
         
@@ -302,11 +303,11 @@ export default function SecurityModelPage() {
 
         {/* Reporting Vulnerabilities */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Reporting Vulnerabilities
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className="text-neutral-600 dark:text-neutral-400">
             If you discover a security vulnerability in PayDeck, please report it 
             responsibly through the GitLab repository's issue tracker. 
             Do not disclose vulnerabilities publicly before they are fixed.
@@ -315,10 +316,10 @@ export default function SecurityModelPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Maximum hardware security
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn about production mode for permanent flash encryption and secure boot.
           </p>
           <Link 
@@ -342,8 +343,8 @@ function SecurityFeature({ icon, title, description }: { icon: React.ReactNode; 
         {icon}
       </div>
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );
@@ -352,19 +353,19 @@ function SecurityFeature({ icon, title, description }: { icon: React.ReactNode; 
 // Component: Security Card
 function SecurityCard({ icon, title, description, features }: { icon: React.ReactNode; title: string; description: string; features: string[] }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3 mb-3">
-        <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
       <ul className="space-y-1 ml-13 pl-13">
         {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
             <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
             {feature}
           </li>
@@ -377,11 +378,11 @@ function SecurityCard({ icon, title, description, features }: { icon: React.Reac
 // Component: Limitation Item
 function LimitationItem({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex items-start gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{title}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
     </div>
   );
@@ -390,11 +391,11 @@ function LimitationItem({ title, description }: { title: string; description: st
 // Component: Recommendation Item
 function RecommendationItem({ number, text }: { number: number; text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-6 h-6 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
         {number}
       </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }

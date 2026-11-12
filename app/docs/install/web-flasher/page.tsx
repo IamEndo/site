@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { docsMetadata } from "@/lib/docs-metadata";
 import Link from "next/link";
 import { Zap, Chrome, CircleHelp } from "lucide-react";
 import { DocsArticle } from "../../_components/DocsArticle";
 import { Flasher } from "./_components/Flasher";
 import { FIRMWARE_VERSION } from "@/lib/constants";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/install/web-flasher", {
   title: "Web Flasher",
   description:
     "Flash PayDeck firmware onto your ESP32 directly from the browser. No drivers, no IDE. Works in Chrome and Edge.",
-};
+});
 
 const RELEASES: {
   file: string;
@@ -18,13 +19,13 @@ const RELEASES: {
   hash: string;
 }[] = [
   {
-    file: "paydeck-v0.5.1-st7789-merged.bin",
+    file: `paydeck-v${FIRMWARE_VERSION}-st7789-merged.bin`,
     variant: "ST7789, dual USB board",
     size: 1294464,
     hash: "de2c868ac2a4a8bb6c60681467abc34c9744ced8c8b160488931de7ca8d6a539",
   },
   {
-    file: "paydeck-v0.5.1-ili9341-merged.bin",
+    file: `paydeck-v${FIRMWARE_VERSION}-ili9341-merged.bin`,
     variant: "ILI9341, single USB board",
     size: 1294560,
     hash: "e3c93efde018b44e96bf72f5b8a35ec7aba6db86e604c67006db6c2e12e8d0a7",
@@ -45,10 +46,10 @@ export default function WebFlasherPage() {
             <Zap className="w-4 h-4" />
             Install
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Flash from your browser
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Plug in your ESP32 via USB, pick your board&apos;s display driver,
             click a button, and PayDeck v{FIRMWARE_VERSION} installs in about two
             minutes.
@@ -56,13 +57,13 @@ export default function WebFlasherPage() {
         </div>
 
         {/* Browser requirement callout */}
-        <div className="flex items-center gap-3 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-12">
-          <Chrome className="w-5 h-5 text-zinc-400 flex-shrink-0" />
+        <div className="flex items-center gap-3 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-12">
+          <Chrome className="w-5 h-5 text-neutral-400 flex-shrink-0" />
           <div className="text-sm">
-            <span className="font-medium text-zinc-900 dark:text-white">
+            <span className="font-medium text-neutral-900 dark:text-white">
               Requires Chrome or Edge.{" "}
             </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
+            <span className="text-neutral-600 dark:text-neutral-400">
               The Web Serial API is not available in Firefox, Safari, or on iOS.
               On other browsers, use the{" "}
               <Link
@@ -83,7 +84,7 @@ export default function WebFlasherPage() {
 
         {/* What happens */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What happens during install
           </h2>
           <ol className="space-y-4">
@@ -153,7 +154,7 @@ export default function WebFlasherPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             If something goes wrong
           </h2>
           <div className="space-y-4">
@@ -210,10 +211,10 @@ export default function WebFlasherPage() {
 
         {/* Verify */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-4">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
             Verify the firmware
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
             Both images are built from the{" "}
             <a
               href={`https://gitlab.com/IamEndo/paydeck/-/tree/v${FIRMWARE_VERSION}`}
@@ -240,17 +241,17 @@ export default function WebFlasherPage() {
             .
           </p>
 
-          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden">
+          <div className="rounded-lg border border-neutral-200 dark:border-neutral-800 divide-y divide-neutral-200 dark:divide-neutral-800 overflow-hidden">
             {RELEASES.map((r) => (
               <ReleaseRow key={r.file} {...r} />
             ))}
           </div>
 
           <div className="mt-6">
-            <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500 mb-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-500 mb-2">
               Verify locally
             </div>
-            <pre className="p-4 rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 text-xs text-zinc-100 font-mono overflow-x-auto">
+            <pre className="p-4 rounded-lg bg-neutral-900 dark:bg-black border border-neutral-800 text-xs text-neutral-100 font-mono overflow-x-auto">
               <code>{`sha256sum paydeck-v${FIRMWARE_VERSION}-*-merged.bin`}</code>
             </pre>
           </div>
@@ -271,14 +272,14 @@ function Step({
 }) {
   return (
     <li className="flex gap-4">
-      <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+      <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-sm font-semibold text-neutral-700 dark:text-neutral-300">
         {n}
       </div>
       <div>
-        <div className="font-medium text-zinc-900 dark:text-white mb-1">
+        <div className="font-medium text-neutral-900 dark:text-white mb-1">
           {title}
         </div>
-        <div className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <div className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
           {body}
         </div>
       </div>
@@ -294,14 +295,14 @@ function Trouble({
   body: React.ReactNode;
 }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex gap-3">
-        <CircleHelp className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+        <CircleHelp className="w-5 h-5 text-neutral-400 flex-shrink-0 mt-0.5" />
         <div>
-          <div className="font-medium text-zinc-900 dark:text-white mb-1">
+          <div className="font-medium text-neutral-900 dark:text-white mb-1">
             {title}
           </div>
-          <div className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <div className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
             {body}
           </div>
         </div>
@@ -328,19 +329,19 @@ function ReleaseRow({
           <a
             href={`/firmware/${file}`}
             download
-            className="text-sm font-medium text-zinc-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors break-all"
+            className="text-sm font-medium text-neutral-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors break-all"
           >
             {file}
           </a>
-          <div className="text-xs text-zinc-500 dark:text-zinc-500">
+          <div className="text-xs text-neutral-500 dark:text-neutral-500">
             {variant}
           </div>
         </div>
-        <span className="text-xs font-mono text-zinc-500 dark:text-zinc-500 flex-shrink-0">
+        <span className="text-xs font-mono text-neutral-500 dark:text-neutral-500 flex-shrink-0">
           {formatBytes(size)}
         </span>
       </div>
-      <code className="block text-xs font-mono text-zinc-500 dark:text-zinc-500 break-all">
+      <code className="block text-xs font-mono text-neutral-500 dark:text-neutral-500 break-all">
         {hash}
       </code>
     </div>

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -14,11 +15,12 @@ import {
   Globe,
   Router
 } from 'lucide-react';
+import { TroubleshootItem } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/setup/wifi", {
   title: 'WiFi Configuration',
   description: 'Connect PayDeck to your wireless network for blockchain communication.',
-};
+});
 
 export default function WiFiPage() {
   return (
@@ -30,10 +32,10 @@ export default function WiFiPage() {
             <Settings className="w-4 h-4" />
             Setup
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             WiFi Configuration
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             PayDeck requires a WiFi connection to communicate with Rostrum servers 
             and monitor the blockchain for incoming payments.
           </p>
@@ -41,7 +43,7 @@ export default function WiFiPage() {
 
         {/* Network Requirements */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Network Requirements
           </h2>
         
@@ -85,7 +87,7 @@ export default function WiFiPage() {
 
         {/* Connecting to WiFi */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Connecting to WiFi
           </h2>
         
@@ -128,7 +130,7 @@ export default function WiFiPage() {
 
         {/* On-Screen Keyboard Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             On-Screen Keyboard Tips
           </h2>
         
@@ -150,7 +152,7 @@ export default function WiFiPage() {
 
         {/* Security Considerations */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Security Considerations
           </h2>
         
@@ -175,11 +177,11 @@ export default function WiFiPage() {
 
         {/* Changing WiFi Settings */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Changing WiFi Settings
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             To connect to a different network or update credentials:
           </p>
 
@@ -214,7 +216,7 @@ export default function WiFiPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
         
@@ -260,10 +262,10 @@ export default function WiFiPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             WiFi connected?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Next, configure your Rostrum server connection for blockchain monitoring.
           </p>
           <Link 
@@ -292,19 +294,19 @@ function RequirementCard({
   required: boolean;
 }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-medium text-zinc-900 dark:text-white">{title}</h3>
+            <h3 className="font-medium text-neutral-900 dark:text-white">{title}</h3>
             {required && (
               <span className="px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs">Required</span>
             )}
           </div>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>
@@ -314,13 +316,13 @@ function RequirementCard({
 // Component: Step
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+        <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );
@@ -329,9 +331,9 @@ function Step({ number, title, description }: { number: number; title: string; d
 // Component: Tip Item
 function TipItem({ tip }: { tip: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">{tip}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">{tip}</p>
     </div>
   );
 }
@@ -339,33 +341,16 @@ function TipItem({ tip }: { tip: string }) {
 // Component: Security Card
 function SecurityCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
         <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+          <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

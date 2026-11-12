@@ -1,5 +1,3 @@
-"use client";
-
 import { steps } from "@/app/_data/steps";
 import { ScrollReveal } from "../ui/ScrollReveal";
 

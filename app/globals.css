@@ -46,6 +46,18 @@ button {
   cursor: pointer;
 }
 
+/* ========== Docs ========== */
+
+/* Section headings get ids for deep links; keep them clear of the fixed header */
+.docs-article h2[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+/* Search dialog backdrop */
+.docs-search::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 /* ========== Hero Animations ========== */
 
 /* Main entrance animation for hero elements */

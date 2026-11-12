@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/cn";
 import { Check, X } from "lucide-react";
 import { ScrollReveal } from "../ui/ScrollReveal";

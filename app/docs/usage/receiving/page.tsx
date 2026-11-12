@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -12,10 +13,10 @@ import {
   Eye
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/usage/receiving", {
   title: 'Receiving Payments',
   description: 'Accept Nexa cryptocurrency payments with PayDeck.',
-};
+});
 
 export default function ReceivingPaymentsPage() {
   return (
@@ -27,10 +28,10 @@ export default function ReceivingPaymentsPage() {
             <Wallet className="w-4 h-4" />
             Usage
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Receiving Payments
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Accept Nexa payments with PayDeck. Display a QR code, customer scans and pays, 
             you see confirmation in seconds.
           </p>
@@ -38,7 +39,7 @@ export default function ReceivingPaymentsPage() {
 
         {/* Quick Overview */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How It Works
           </h2>
         
@@ -66,7 +67,7 @@ export default function ReceivingPaymentsPage() {
 
         {/* Basic Payment Flow */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Basic Payment Flow
           </h2>
         
@@ -101,7 +102,7 @@ export default function ReceivingPaymentsPage() {
 
         {/* What You See */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Payment States
           </h2>
         
@@ -133,11 +134,11 @@ export default function ReceivingPaymentsPage() {
 
         {/* Payment Detection */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How Payment Detection Works
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck monitors the blockchain via Rostrum servers (online mode):
           </p>
 
@@ -148,9 +149,9 @@ export default function ReceivingPaymentsPage() {
             <FeatureItem text="Suitable for everyday retail; wait for a confirmation on higher-value sales" />
           </div>
 
-          <div className="mt-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <h4 className="font-medium text-zinc-900 dark:text-white mb-2">Offline Mode</h4>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="mt-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Offline Mode</h4>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
               When not connected to a Rostrum server, PayDeck operates in offline mode. 
               In this mode, you'll need to verify payments manually using a block explorer 
               or your wallet app.
@@ -160,7 +161,7 @@ export default function ReceivingPaymentsPage() {
 
         {/* Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Tips for Smooth Payments
           </h2>
         
@@ -186,25 +187,25 @@ export default function ReceivingPaymentsPage() {
 
         {/* After Payment */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             After Payment
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Once payment is confirmed:
           </p>
 
-          <ul className="space-y-2 text-zinc-600 dark:text-zinc-400">
+          <ul className="space-y-2 text-neutral-600 dark:text-neutral-400">
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Funds are in your wallet (accessible via Wally, Otoplo, etc.)
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               Tap to clear the screen and prepare for next payment
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-zinc-400">•</span>
+              <span className="text-neutral-400">•</span>
               If privacy mode is enabled, next payment uses a fresh address
             </li>
           </ul>
@@ -212,10 +213,10 @@ export default function ReceivingPaymentsPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Need specific amounts?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn how to create invoices with preset amounts.
           </p>
           <Link 
@@ -234,15 +235,15 @@ export default function ReceivingPaymentsPage() {
 // Component: Step Card
 function StepCard({ number, icon, title, description }: { number: number; icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center">
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
       <div className="w-10 h-10 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm mx-auto mb-3">
         {number}
       </div>
       <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center mx-auto mb-2">
         {icon}
       </div>
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-zinc-500">{description}</p>
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-sm text-neutral-500">{description}</p>
     </div>
   );
 }
@@ -250,13 +251,13 @@ function StepCard({ number, icon, title, description }: { number: number; icon: 
 // Component: Flow Step
 function FlowStep({ number, title, note }: { number: number; title: string; note: string }) {
   return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
-        <p className="font-medium text-zinc-900 dark:text-white">{title}</p>
-        <p className="text-sm text-zinc-500">{note}</p>
+        <p className="font-medium text-neutral-900 dark:text-white">{title}</p>
+        <p className="text-sm text-neutral-500">{note}</p>
       </div>
     </div>
   );
@@ -284,9 +285,9 @@ function StateCard({ state, description, color }: { state: string; description: 
 // Component: Feature Item
 function FeatureItem({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }
@@ -294,9 +295,9 @@ function FeatureItem({ text }: { text: string }) {
 // Component: Tip Card
 function TipCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-zinc-500">{description}</p>
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+      <p className="text-sm text-neutral-500">{description}</p>
     </div>
   );
 }

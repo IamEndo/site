@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import {
@@ -9,10 +10,10 @@ import {
   XCircle
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/security/pin-practices", {
   title: 'Password Best Practices',
   description: 'Guidelines for choosing a strong PayDeck access password that is practical to type on the on-screen keypad.',
-};
+});
 
 export default function PasswordPracticesPage() {
   return (
@@ -24,10 +25,10 @@ export default function PasswordPracticesPage() {
             <Shield className="w-4 h-4" />
             Security
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Password Best Practices
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             How to choose an access password that is hard to guess, hard to brute-force from a flash dump,
             and still practical to type on a phone-style keypad.
           </p>
@@ -35,11 +36,11 @@ export default function PasswordPracticesPage() {
 
         {/* Why it matters */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Why Length Matters
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             On the device, fifteen wrong guesses wipe everything, so guessing at the screen is hopeless.
             The password also has to hold up if someone copies the flash memory of a Standard build and
             attacks the wrapped master key offline, where nothing limits the number of guesses.
@@ -48,32 +49,32 @@ export default function PasswordPracticesPage() {
             estimate tool, measured against the device's key-derivation cost.
           </p>
 
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-4">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 mb-4">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Password</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Offline search, one CPU</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Password</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Offline search, one CPU</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Six digits (the old PIN)</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">About fifteen minutes</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Six digits (the old PIN)</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">About fifteen minutes</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Eight random printable characters</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Roughly 180,000 years</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Eight random printable characters</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Roughly 180,000 years</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white">Twelve or more random characters, or four random words</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Out of reach of any rig</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Twelve or more random characters, or four random words</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Out of reach of any rig</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-neutral-500">
             A large GPU rig shortens the eight-character case to days for the weakest choices, which is why
             the minimum is a floor, not a target. Secure builds encrypt the flash and stop the dump itself;
             see <Link href="/docs/security/production-mode" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Secure &amp; Production Builds</Link>.
@@ -82,7 +83,7 @@ export default function PasswordPracticesPage() {
 
         {/* Good vs bad */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Choosing a Strong Password
           </h2>
 
@@ -111,7 +112,7 @@ export default function PasswordPracticesPage() {
             />
           </div>
 
-          <p className="text-sm text-zinc-500 mt-4">
+          <p className="text-sm text-neutral-500 mt-4">
             The device rejects the obvious patterns (runs, repeats, a short list of common passwords) when a
             password is set. Everything else is accepted, so a password that passes the check is not
             automatically a good one.
@@ -120,7 +121,7 @@ export default function PasswordPracticesPage() {
 
         {/* Common Mistakes */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Common Mistakes
           </h2>
 
@@ -150,7 +151,7 @@ export default function PasswordPracticesPage() {
 
         {/* Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Tips for the Keypad
           </h2>
 
@@ -176,25 +177,25 @@ export default function PasswordPracticesPage() {
 
         {/* Physical Security */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Physical Security
           </h2>
 
-          <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-4">
+          <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-4">
             <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Shield the screen while typing: the keypad shows which key you press
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Return to the home screen when you leave the device; that locks it
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Give the password only to people who are allowed to change settings
               </li>
-              <li className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
                 Change it from More settings if you suspect it is known
               </li>
@@ -204,11 +205,11 @@ export default function PasswordPracticesPage() {
 
         {/* Context Matters */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Context Matters
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Match the password to where the device lives:
           </p>
 
@@ -247,10 +248,10 @@ export default function PasswordPracticesPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Learn about the security model
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Understand PayDeck's overall security architecture.
           </p>
           <Link
@@ -286,7 +287,7 @@ function ExampleCard({ title, examples, good }: { title: string; examples: { val
             <code className={`font-mono px-2 py-0.5 rounded whitespace-nowrap ${good ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'}`}>
               {item.value}
             </code>
-            <span className="text-zinc-500 text-xs text-right">{item.reason}</span>
+            <span className="text-neutral-500 text-xs text-right">{item.reason}</span>
           </li>
         ))}
       </ul>
@@ -300,8 +301,8 @@ function MistakeItem({ mistake, why }: { mistake: string; why: string }) {
     <div className="flex items-start gap-3 p-3 rounded-lg border border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20">
       <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{mistake}</span>
-        <span className="text-zinc-500"> - {why}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{mistake}</span>
+        <span className="text-neutral-500"> - {why}</span>
       </div>
     </div>
   );
@@ -310,11 +311,11 @@ function MistakeItem({ mistake, why }: { mistake: string; why: string }) {
 // Component: Tip Card
 function TipCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-5 h-5 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );
@@ -323,9 +324,9 @@ function TipCard({ title, description }: { title: string; description: string })
 // Component: Context Card
 function ContextCard({ scenario, recommendation }: { scenario: string; recommendation: string }) {
   return (
-    <div className="flex items-start justify-between gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start justify-between gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white">{scenario}</h4>
+        <h4 className="font-medium text-neutral-900 dark:text-white">{scenario}</h4>
       </div>
       <div className="px-2 py-1 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs text-right">
         {recommendation}

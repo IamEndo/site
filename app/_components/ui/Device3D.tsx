@@ -8,6 +8,8 @@ import {
   Environment,
 } from "@react-three/drei";
 import * as THREE from "three";
+import { useSceneActive, usePrefersReducedMotion } from "./useSceneActive";
+import { FIRMWARE_VERSION } from "@/lib/constants";
 
 // ── World scale ──────────────────────────────────────────────────
 // 1 world unit = 1 mm × SCALE. Tuned so the case fills the canvas nicely.
@@ -586,11 +588,12 @@ function useBackPanelTexture() {
     ctx.fillText("·  N E X A   P O S  ·", 0, 70);
     ctx.restore();
 
-    // Compliance text bottom
+    // Model / firmware line bottom (no certification marks: the board is an
+    // uncertified dev kit)
     ctx.fillStyle = "rgba(180,180,190,0.18)";
     ctx.font = "20px ui-monospace, monospace";
     ctx.textAlign = "center";
-    ctx.fillText("MODEL  PD-01     v0.5.1     CE  FCC", W / 2, H - 84);
+    ctx.fillText(`MODEL  PD-01     v${FIRMWARE_VERSION}`, W / 2, H - 84);
 
     const tex = new THREE.CanvasTexture(c);
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -1920,9 +1923,13 @@ class CanvasErrorBoundary extends React.Component<
 // ─────────────────────────────────────────────────────────────────
 export function Device3D() {
   const [interacted, setInteracted] = React.useState(false);
+  const wrapRef = React.useRef<HTMLDivElement>(null);
+  const active = useSceneActive(wrapRef);
+  const reducedMotion = usePrefersReducedMotion();
 
   return (
     <CanvasErrorBoundary>
+    <div ref={wrapRef} className="w-full h-full" role="img" aria-label="Interactive 3D model of a PayDeck terminal. Drag to rotate.">
     <Canvas
       shadows
       camera={{ position: [0.95, 0.4, 2.05], fov: 30 }}
@@ -1932,13 +1939,15 @@ export function Device3D() {
         powerPreference: "high-performance",
         preserveDrawingBuffer: false,
       }}
-      dpr={[1, 2.25]}
+      // Stop rendering while off screen or in a background tab.
+      frameloop={active ? "always" : "never"}
+      dpr={[1, 2]}
       onPointerDown={() => setInteracted(true)}
     >
       <ToneMappingSetup />
 
       {/* Lights — these alone fully light the scene; the HDRI below only adds
-          reflective sparkle and is wrapped in Suspense so its CDN load
+          reflective sparkle and is wrapped in Suspense so its load
           doesn't block the canvas. */}
       <ambientLight intensity={0.45} />
       <hemisphereLight args={["#a8c0e0", "#15151a", 0.55]} />
@@ -1961,7 +1970,7 @@ export function Device3D() {
       <pointLight position={[-2, -2, 2]} intensity={0.18} color="#9c7ec0" />
 
       <React.Suspense fallback={null}>
-        <Environment preset="city" environmentIntensity={0.5} />
+        <Environment files="/hdri/potsdamer_platz_1k.hdr" environmentIntensity={0.5} />
       </React.Suspense>
 
       {/* Soft contact shadow under the device */}
@@ -1975,7 +1984,7 @@ export function Device3D() {
         color="#000000"
       />
 
-      <AutoOrbit enabled={!interacted}>
+      <AutoOrbit enabled={!interacted && !reducedMotion}>
         <group rotation={[0, 0.28, 0]}>
           <Device />
         </group>
@@ -1990,6 +1999,7 @@ export function Device3D() {
         dampingFactor={0.08}
       />
     </Canvas>
+    </div>
     </CanvasErrorBoundary>
   );
 }

@@ -1,22 +1,14 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
-import { 
-  Wrench,
-  Download,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  FolderGit2,
-  ExternalLink,
-  Clock
-} from 'lucide-react';
+import { Wrench, Download, ArrowRight, CheckCircle2, AlertTriangle, Info, ExternalLink, Clock } from "lucide-react";
+import { CodeBlock, TroubleshootItem } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/installation/building", {
   title: 'Building Firmware',
   description: 'Clone the PayDeck repository and build firmware using PlatformIO.',
-};
+});
 
 export default function BuildingPage() {
   return (
@@ -28,27 +20,27 @@ export default function BuildingPage() {
             <Wrench className="w-4 h-4" />
             Installation
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Building Firmware
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Clone the PayDeck repository, understand the build environments, 
             and flash the firmware to your device.
           </p>
         </div>
 
         {/* Time Estimate */}
-        <div className="flex items-center gap-3 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-12">
-          <Clock className="w-5 h-5 text-zinc-400" />
+        <div className="flex items-center gap-3 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-12">
+          <Clock className="w-5 h-5 text-neutral-400" />
           <div>
-            <span className="font-medium text-zinc-900 dark:text-white">Estimated time: </span>
-            <span className="text-zinc-600 dark:text-zinc-400">5-10 minutes (first build), under 1 minute (subsequent)</span>
+            <span className="font-medium text-neutral-900 dark:text-white">Estimated time: </span>
+            <span className="text-neutral-600 dark:text-neutral-400">5-10 minutes (first build), under 1 minute (subsequent)</span>
           </div>
         </div>
 
         {/* Get Source Code */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Step 1: Get the Source Code
           </h2>
 
@@ -71,19 +63,19 @@ export default function BuildingPage() {
                 href="https://gitlab.com/IamEndo/paydeck/-/archive/main/paydeck-main.zip" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white font-medium transition-colors text-sm mt-2"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium transition-colors text-sm mt-2"
               >
                 Download ZIP
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <p className="text-xs text-zinc-500 mt-2">Extract to a folder on your computer</p>
+              <p className="text-xs text-neutral-500 mt-2">Extract to a folder on your computer</p>
             </OptionCard>
           </div>
         </section>
 
         {/* Open in VS Code */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Step 2: Open in VS Code
           </h2>
         
@@ -107,44 +99,44 @@ export default function BuildingPage() {
 
         {/* Build Environments */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Step 3: Understand Build Environments
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             PayDeck includes several build environments with different security levels.
             For most users, the Standard environment is recommended. The two secure
             environments are built with Arduino as an ESP-IDF component and enable
             real, hardware-enforced protection.
           </p>
 
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 mb-6">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Environment</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Security</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Use Case</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Environment</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Security</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Use Case</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Development</td>
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Development</td>
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended for most users</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">None (IDF reference)</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Base for the secure builds</td>
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">None (IDF reference)</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Base for the secure builds</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-secure</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Secure Development</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Flash + NVS encrypted, still reflashable</td>
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-secure</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Secure Development</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Flash + NVS encrypted, still reflashable</td>
                 </tr>
                 <tr className="bg-red-50/50 dark:bg-red-950/20">
-                  <td className="px-4 py-3 font-mono text-xs text-zinc-900 dark:text-white">esp32dev-idf-release</td>
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-release</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400 font-medium">Production (Secure Boot V2)</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400 text-xs font-medium">PERMANENT - Cannot reflash</td>
                 </tr>
@@ -183,23 +175,23 @@ export default function BuildingPage() {
 
         {/* Build Firmware */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Step 4: Build and Upload
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Use the PlatformIO terminal or command line to build and flash:
           </p>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Development mode (recommended):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Development mode (recommended):</p>
             <CodeBlock code="pio run -t upload -e esp32dev-hspi-st7789-2v8" />
           </div>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Secure development (real flash + NVS encryption, still reflashable):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Secure development (real flash + NVS encryption, still reflashable):</p>
             <CodeBlock code="pio run -t upload -e esp32dev-idf-secure" />
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
               First boot encrypts the flash and burns dev-mode eFuses. Use a board you can dedicate.
             </p>
           </div>
@@ -215,13 +207,13 @@ pio run -e esp32dev-idf-release -t upload" />
             </p>
           </div>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The first build downloads all dependencies and compiles the firmware. This takes 5-10 minutes. 
             Subsequent builds are much faster (under 30 seconds).
           </p>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Successful build output:</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Successful build output:</p>
             <CodeBlock code={`Building .pio/build/esp32dev-hspi-st7789-2v8/firmware.bin
 ========================= [SUCCESS] =========================
 Environment                  Status    Duration
@@ -241,16 +233,16 @@ esp32dev-hspi-st7789-2v8     SUCCESS   00:00:42`} />
 
         {/* Verify Flash */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Step 5: Verify
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             After a successful upload, the device will automatically reset and boot into PayDeck.
           </p>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Successful upload output:</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Successful upload output:</p>
             <CodeBlock code={`Writing at 0x00010000... (100 %)
 Wrote 1234567 bytes at 0x00010000 in 28.4 seconds
 Hard resetting via RTS pin...
@@ -272,7 +264,7 @@ Hard resetting via RTS pin...
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
         
@@ -317,10 +309,10 @@ Hard resetting via RTS pin...
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Firmware flashed successfully?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Continue to First Boot to configure your device.
           </p>
           <Link 
@@ -339,12 +331,12 @@ Hard resetting via RTS pin...
 // Component: Option Card
 function OptionCard({ title, description, recommended, children }: { title: string; description: string; recommended: boolean; children: React.ReactNode }) {
   return (
-    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-2 mb-1">
-        <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
+        <h3 className="font-semibold text-neutral-900 dark:text-white">{title}</h3>
         {recommended && <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs">Recommended</span>}
       </div>
-      <p className="text-sm text-zinc-500 mb-3">{description}</p>
+      <p className="text-sm text-neutral-500 mb-3">{description}</p>
       {children}
     </div>
   );
@@ -357,33 +349,7 @@ function Step({ number, text }: { number: number; text: string }) {
       <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
-      <p className="text-zinc-600 dark:text-zinc-400 pt-0.5">{text}</p>
-    </div>
-  );
-}
-
-// Component: Code Block
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="p-3 rounded-lg bg-zinc-900 dark:bg-zinc-950 text-zinc-100 text-xs font-mono overflow-x-auto">
-      <code>{code}</code>
-    </pre>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
+      <p className="text-neutral-600 dark:text-neutral-400 pt-0.5">{text}</p>
     </div>
   );
 }

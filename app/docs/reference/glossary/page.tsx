@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import { BookOpen } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/reference/glossary", {
   title: 'Glossary',
   description: 'Cryptocurrency and PayDeck terminology explained.',
-};
+});
 
 export default function GlossaryPage() {
   return (
@@ -17,10 +18,10 @@ export default function GlossaryPage() {
             <BookOpen className="w-4 h-4" />
             Reference
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Glossary
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Cryptocurrency and PayDeck terminology explained.
           </p>
         </div>
@@ -215,9 +216,9 @@ export default function GlossaryPage() {
 // Component: Term
 function Term({ term, definition }: { term: string; definition: string }) {
   return (
-    <div className="pb-6 border-b border-zinc-200 dark:border-zinc-800 last:border-0">
-      <dt className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">{term}</dt>
-      <dd className="text-zinc-600 dark:text-zinc-400">{definition}</dd>
+    <div className="pb-6 border-b border-neutral-200 dark:border-neutral-800 last:border-0">
+      <dt className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">{term}</dt>
+      <dd className="text-neutral-600 dark:text-neutral-400">{definition}</dd>
     </div>
   );
 }

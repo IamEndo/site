@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { faqs } from "@/app/_data/faqs";
 import { Accordion } from "../ui/Accordion";
@@ -48,7 +46,7 @@ export function FAQ() {
                       className="gap-2"
                     >
                       Ask on Telegram
-                      <ArrowUpRight className="w-4 h-4" />
+                      <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                   </Button>
                 </div>

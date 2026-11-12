@@ -94,6 +94,7 @@ export const docsNavigation: NavSection[] = [
     items: [
       { title: 'Technical Specifications', href: '/docs/reference/specifications' },
       { title: 'Glossary', href: '/docs/reference/glossary' },
+      { title: 'Release Notes', href: '/docs/reference/releases' },
     ],
   },
 ];
@@ -107,6 +108,11 @@ export function getDocTitle(pathname: string): string {
     }
   }
   return 'Documentation';
+}
+
+export function getDocSection(pathname: string): string | null {
+  const section = docsNavigation.find((s) => s.items.some((i) => i.href === pathname));
+  return section ? section.title : null;
 }
 
 export function getNextDoc(pathname: string): NavItem | null {

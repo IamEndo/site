@@ -8,6 +8,7 @@ import {
   ContactShadows,
 } from "@react-three/drei";
 import * as THREE from "three";
+import { useSceneActive, usePrefersReducedMotion } from "./useSceneActive";
 
 // ─────────────────────────────────────────────────────────────────────
 // World scale & constants
@@ -2896,9 +2897,13 @@ class CanvasErrorBoundary extends React.Component<
 // ─────────────────────────────────────────────────────────────────────
 export function Board3D() {
   const [interacted, setInteracted] = React.useState(false);
+  const wrapRef = React.useRef<HTMLDivElement>(null);
+  const active = useSceneActive(wrapRef);
+  const reducedMotion = usePrefersReducedMotion();
 
   return (
     <CanvasErrorBoundary>
+    <div ref={wrapRef} className="w-full h-full" role="img" aria-label="Interactive 3D model of the ESP32-2432S028R board. Drag to rotate.">
       <Canvas
         shadows
         camera={{ position: [0, 0, 2.6], fov: 32 }}
@@ -2908,7 +2913,9 @@ export function Board3D() {
           powerPreference: "high-performance",
           preserveDrawingBuffer: false,
         }}
-        dpr={[1, 2.25]}
+        // Stop rendering while off screen or in a background tab.
+      frameloop={active ? "always" : "never"}
+      dpr={[1, 2]}
         onPointerDown={() => setInteracted(true)}
       >
         <ToneMappingSetup />
@@ -2948,7 +2955,7 @@ export function Board3D() {
             the old "city" HDRI (which mirrored apartment buildings in
             the display glass). */}
         <React.Suspense fallback={null}>
-          <Environment preset="studio" environmentIntensity={0.26} />
+          <Environment files="/hdri/studio_small_03_1k.hdr" environmentIntensity={0.26} />
         </React.Suspense>
 
         <ContactShadows
@@ -2961,7 +2968,7 @@ export function Board3D() {
           color="#000000"
         />
 
-        <AutoOrbit enabled={!interacted}>
+        <AutoOrbit enabled={!interacted && !reducedMotion}>
           <group rotation={[0, 0, Math.PI / 2]}>
             <Board />
           </group>
@@ -2976,6 +2983,7 @@ export function Board3D() {
           dampingFactor={0.08}
         />
       </Canvas>
+    </div>
     </CanvasErrorBoundary>
   );
 }

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -16,10 +17,10 @@ import {
   Star
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/wallet/options", {
   title: 'Wallet Options',
   description: 'Understanding PayDeck wallet configuration modes: manual address, seed phrase, and xPub import.',
-};
+});
 
 export default function WalletOptionsPage() {
   return (
@@ -31,10 +32,10 @@ export default function WalletOptionsPage() {
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Wallet Options
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             PayDeck supports four wallet configuration modes, each with different tradeoffs 
             between simplicity, privacy, and security.
           </p>
@@ -58,47 +59,47 @@ export default function WalletOptionsPage() {
 
         {/* Comparison Table */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Quick Comparison
           </h2>
         
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Mode</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Privacy</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Complexity</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Best For</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Mode</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Privacy</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Complexity</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Best For</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">Manual Address</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Manual Address</td>
                   <td className="px-4 py-3"><PrivacyBadge level="low" /></td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Simplest</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Quick setup, testing</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Simplest</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Quick setup, testing</td>
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium flex items-center gap-2">
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium flex items-center gap-2">
                     Generate Seed
                     <Star className="w-3 h-3 text-accent-500 dark:text-accent-dark-500" />
                   </td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Medium</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Medium</td>
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">Import Seed</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import Seed</td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Medium</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Existing wallet</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Medium</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Existing wallet</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-zinc-900 dark:text-white font-medium">Import xPub</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import xPub</td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Advanced</td>
-                  <td className="px-4 py-3 text-zinc-500 text-xs">Developers</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Advanced</td>
+                  <td className="px-4 py-3 text-neutral-500 text-xs">Developers</td>
                 </tr>
               </tbody>
             </table>
@@ -194,7 +195,7 @@ export default function WalletOptionsPage() {
 
         {/* Decision Helper */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Which Should I Choose?
           </h2>
         
@@ -229,10 +230,10 @@ export default function WalletOptionsPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to configure your wallet?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             We recommend starting with seed generation for the best balance of security and privacy.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -245,7 +246,7 @@ export default function WalletOptionsPage() {
             </Link>
             <Link 
               href="/docs/wallet/manual-address"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium transition-colors"
             >
               Quick Setup (Manual)
             </Link>
@@ -295,14 +296,14 @@ function WalletOptionCard({
   cons: string[];
 }) {
   return (
-    <div className={`p-6 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/30 dark:bg-accent-dark-950/10' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-6 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/30 dark:bg-accent-dark-950/10' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'}`}>
+        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
           {icon}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
-            <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{title}</h3>
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">{title}</h3>
             {recommended && (
               <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs font-medium">
                 Recommended
@@ -310,7 +311,7 @@ function WalletOptionCard({
             )}
             <PrivacyBadge level={privacy} />
           </div>
-          <p className="text-zinc-600 dark:text-zinc-400">{description}</p>
+          <p className="text-neutral-600 dark:text-neutral-400">{description}</p>
         </div>
       </div>
 
@@ -322,7 +323,7 @@ function WalletOptionCard({
           </h4>
           <ul className="space-y-1">
             {pros.map((pro, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <span className="text-accent-500 dark:text-accent-dark-500 mt-1">+</span>
                 {pro}
               </li>
@@ -336,7 +337,7 @@ function WalletOptionCard({
           </h4>
           <ul className="space-y-1">
             {cons.map((con, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <span className="text-red-500 mt-1">-</span>
                 {con}
               </li>
@@ -371,22 +372,22 @@ function DecisionCard({
   highlighted?: boolean;
 }) {
   return (
-    <div className={`p-4 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-1">{scenario}</p>
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-1">{scenario}</p>
           <div className="flex items-center gap-2">
-            <span className="font-medium text-zinc-900 dark:text-white">{recommendation}</span>
+            <span className="font-medium text-neutral-900 dark:text-white">{recommendation}</span>
             {highlighted && <Star className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />}
           </div>
-          <p className="text-xs text-zinc-500 mt-1">{note}</p>
+          <p className="text-xs text-neutral-500 mt-1">{note}</p>
         </div>
         <Link
           href={href}
           aria-label={`Read more: ${recommendation}`}
-          className="flex-shrink-0 p-2 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          className="flex-shrink-0 p-2 rounded-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
         >
-          <ArrowRight className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+          <ArrowRight className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
         </Link>
       </div>
     </div>

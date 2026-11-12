@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "../ui/Button";
 import { RotatingText } from "../ui/RotatingText";
 import { ArrowDown, Check } from "lucide-react";
+import { FIRMWARE_VERSION } from "@/lib/constants";
 
 const Device3D = dynamic(
   () => import("../ui/Device3D").then((m) => m.Device3D),
@@ -62,9 +63,12 @@ export function Hero() {
           <div className="space-y-5 sm:space-y-6">
             {/* Version badge */}
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
-              <span className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500">
-                Latest version available &middot; v0.5.1
-              </span>
+              <Link
+                href="/docs/reference/releases"
+                className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors"
+              >
+                Latest version available &middot; v{FIRMWARE_VERSION}
+              </Link>
             </div>
 
             <div className="space-y-3 sm:space-y-4">
@@ -111,7 +115,7 @@ export function Hero() {
                   key={item}
                   className="flex items-center gap-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400"
                 >
-                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400" />
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400" aria-hidden="true" />
                   {item}
                 </div>
               ))}
@@ -144,7 +148,7 @@ export function Hero() {
             className="flex flex-col items-center gap-2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
           >
             <span className="text-xs uppercase tracking-wider">Learn more</span>
-            <ArrowDown className="w-4 h-4 animate-bounce" />
+            <ArrowDown className="w-4 h-4 animate-bounce" aria-hidden="true" />
           </a>
         </div>
       </div>

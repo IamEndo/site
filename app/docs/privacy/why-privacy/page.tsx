@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -16,10 +17,10 @@ import {
   User
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/privacy/why-privacy", {
   title: 'Why Privacy Matters',
   description: 'Understanding cryptocurrency transaction privacy and why it matters for your business.',
-};
+});
 
 export default function WhyPrivacyPage() {
   return (
@@ -31,10 +32,10 @@ export default function WhyPrivacyPage() {
             <Shield className="w-4 h-4" />
             Privacy
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Why Privacy Matters
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Blockchain transactions are public by design. Without privacy measures, 
             every payment you receive reveals information about your business.
           </p>
@@ -42,11 +43,11 @@ export default function WhyPrivacyPage() {
 
         {/* The Transparency Problem */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             The Transparency Problem
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Nexa, like most cryptocurrencies, uses a public blockchain. Every transaction 
             is recorded permanently and visible to anyone. This transparency is great for 
             verification and auditability, but it creates privacy challenges.
@@ -85,11 +86,11 @@ export default function WhyPrivacyPage() {
 
         {/* Address Reuse */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             The Problem with Address Reuse
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             Using one address for all payments is like publishing your bank statement online. 
             Here's what happens:
           </p>
@@ -115,7 +116,7 @@ export default function WhyPrivacyPage() {
 
         {/* Real World Implications */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Real World Implications
           </h2>
         
@@ -145,11 +146,11 @@ export default function WhyPrivacyPage() {
 
         {/* The Solution */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             The Solution: Fresh Addresses
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The standard solution is to use a new address for every transaction. This breaks 
             the link between payments:
           </p>
@@ -199,11 +200,11 @@ export default function WhyPrivacyPage() {
 
         {/* How PayDeck Helps */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How PayDeck Helps
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck's privacy mode automatically generates a new address for each payment:
           </p>
 
@@ -218,7 +219,7 @@ export default function WhyPrivacyPage() {
 
         {/* When Privacy Matters Most */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             When Privacy Matters Most
           </h2>
         
@@ -248,11 +249,11 @@ export default function WhyPrivacyPage() {
 
         {/* Tradeoffs Note */}
         <section className="mb-12">
-          <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">
+          <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
               Privacy vs. Simplicity
             </h3>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
               Privacy mode adds complexity. Each address must be monitored, and consolidating 
               funds requires extra transactions. For some use cases, the simplicity of a single 
               address outweighs privacy concerns.
@@ -268,10 +269,10 @@ export default function WhyPrivacyPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to enable privacy?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn how to turn on privacy mode in PayDeck.
           </p>
           <Link 
@@ -290,14 +291,14 @@ export default function WhyPrivacyPage() {
 // Component: Scenario Card
 function ScenarioCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -307,14 +308,14 @@ function ScenarioCard({ icon, title, description }: { icon: React.ReactNode; tit
 // Component: Implication Card
 function ImplicationCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h4 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>
@@ -334,11 +335,11 @@ function FeatureItem({ text }: { text: string }) {
 // Component: Use Case Item
 function UseCaseItem({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex items-start gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-start gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <Shield className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{title}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
     </div>
   );

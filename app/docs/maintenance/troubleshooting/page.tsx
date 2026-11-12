@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -14,10 +15,10 @@ import {
   Server
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/maintenance/troubleshooting", {
   title: 'Troubleshooting',
   description: 'Common issues and solutions for PayDeck.',
-};
+});
 
 export default function TroubleshootingPage() {
   return (
@@ -29,18 +30,18 @@ export default function TroubleshootingPage() {
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Troubleshooting
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Common issues and how to resolve them.
           </p>
         </div>
 
         {/* WiFi Issues */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
-            <WifiOff className="w-6 h-6 text-zinc-400" />
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <WifiOff className="w-6 h-6 text-neutral-400" />
             WiFi Connection Issues
           </h2>
         
@@ -78,8 +79,8 @@ export default function TroubleshootingPage() {
 
         {/* Server Connection */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
-            <Server className="w-6 h-6 text-zinc-400" />
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <Server className="w-6 h-6 text-neutral-400" />
             Rostrum Server Issues
           </h2>
         
@@ -116,8 +117,8 @@ export default function TroubleshootingPage() {
 
         {/* Display Issues */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
-            <Monitor className="w-6 h-6 text-zinc-400" />
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <Monitor className="w-6 h-6 text-neutral-400" />
             Display Issues
           </h2>
         
@@ -152,8 +153,8 @@ export default function TroubleshootingPage() {
 
         {/* Payment Issues */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
-            <Zap className="w-6 h-6 text-zinc-400" />
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <Zap className="w-6 h-6 text-neutral-400" />
             Payment Issues
           </h2>
         
@@ -190,8 +191,8 @@ export default function TroubleshootingPage() {
 
         {/* Boot Issues */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
-            <RefreshCw className="w-6 h-6 text-zinc-400" />
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <RefreshCw className="w-6 h-6 text-neutral-400" />
             Boot Issues
           </h2>
         
@@ -226,7 +227,7 @@ export default function TroubleshootingPage() {
 
         {/* General Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             General Tips
           </h2>
         
@@ -262,10 +263,10 @@ export default function TroubleshootingPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Need to start fresh?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Factory reset erases all settings and lets you start over.
           </p>
           <Link 
@@ -284,11 +285,11 @@ export default function TroubleshootingPage() {
 // Component: Troubleshoot Item
 function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-3">{problem}</h4>
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+      <h4 className="font-medium text-neutral-900 dark:text-white mb-3">{problem}</h4>
       <ul className="space-y-1">
         {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
             <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
             {solution}
           </li>
@@ -301,9 +302,9 @@ function TroubleshootItem({ problem, solutions }: { problem: string; solutions: 
 // Component: Tip Item
 function TipItem({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0" />
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }

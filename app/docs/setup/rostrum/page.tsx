@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -15,11 +16,12 @@ import {
   Eye,
   Radio
 } from 'lucide-react';
+import { TroubleshootItem } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/setup/rostrum", {
   title: 'Rostrum Servers',
   description: 'Understanding and configuring Rostrum servers for PayDeck blockchain communication.',
-};
+});
 
 export default function RostrumPage() {
   return (
@@ -31,10 +33,10 @@ export default function RostrumPage() {
             <Settings className="w-4 h-4" />
             Setup
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Rostrum Servers
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Rostrum is Nexa's implementation of the Electrum protocol. PayDeck uses Rostrum 
             servers to monitor the blockchain for incoming payments without running a full node.
           </p>
@@ -42,11 +44,11 @@ export default function RostrumPage() {
 
         {/* What is Rostrum */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What is Rostrum?
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             Rostrum servers act as intermediaries between lightweight clients (like PayDeck) 
             and the Nexa blockchain. They index the blockchain and respond to queries about 
             addresses, transactions, and balances.
@@ -78,15 +80,15 @@ export default function RostrumPage() {
 
         {/* Default Server */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Default Server
           </h2>
         
-          <div className="p-5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 mb-6">
+          <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
-                <p className="text-sm text-zinc-500 mb-1">Public Rostrum Server</p>
-                <code className="text-lg font-mono text-zinc-900 dark:text-white">electrum.nexa.org:20004</code>
+                <p className="text-sm text-neutral-500 mb-1">Public Rostrum Server</p>
+                <code className="text-lg font-mono text-neutral-900 dark:text-white">electrum.nexa.org:20004</code>
               </div>
               <div className="flex items-center gap-2">
                 <span className="px-2 py-1 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs font-medium">WSS/TLS</span>
@@ -108,31 +110,31 @@ export default function RostrumPage() {
 
         {/* Port Reference */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Port Reference
           </h2>
         
-          <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6">
+          <div className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 mb-6">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-900">
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Port</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Protocol</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Security</th>
-                  <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800">Status</th>
+                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Port</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Protocol</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Security</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">20004</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">WSS (WebSocket Secure)</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">TLS encrypted</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20004</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WSS (WebSocket Secure)</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TLS encrypted</td>
                   <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs font-medium">Recommended</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-mono text-zinc-900 dark:text-white">20003</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">WS (WebSocket)</td>
-                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">Unencrypted</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20003</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WS (WebSocket)</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Unencrypted</td>
                   <td className="px-4 py-3 text-amber-600 dark:text-amber-400 text-xs font-medium">Not recommended</td>
                 </tr>
               </tbody>
@@ -152,11 +154,11 @@ export default function RostrumPage() {
 
         {/* Server Configuration */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Changing the Server
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             To connect to a different Rostrum server:
           </p>
 
@@ -191,7 +193,7 @@ export default function RostrumPage() {
 
         {/* Privacy Considerations */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Privacy Considerations
           </h2>
         
@@ -255,7 +257,7 @@ export default function RostrumPage() {
 
         {/* Troubleshooting */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Troubleshooting
           </h2>
         
@@ -293,10 +295,10 @@ export default function RostrumPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Want maximum privacy?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn how to run your own Rostrum server for complete privacy.
           </p>
           <Link 
@@ -315,14 +317,14 @@ export default function RostrumPage() {
 // Component: Feature Card
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
-          <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-zinc-500">{description}</p>
+          <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+          <p className="text-sm text-neutral-500">{description}</p>
         </div>
       </div>
     </div>
@@ -332,31 +334,14 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 // Component: Step
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
-        <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+        <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
       </div>
-    </div>
-  );
-}
-
-// Component: Troubleshoot Item
-function TroubleshootItem({ problem, solutions }: { problem: string; solutions: string[] }) {
-  return (
-    <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <h4 className="font-medium text-zinc-900 dark:text-white mb-2">{problem}</h4>
-      <ul className="space-y-1">
-        {solutions.map((solution, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="text-zinc-400 mt-1">•</span>
-            {solution}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

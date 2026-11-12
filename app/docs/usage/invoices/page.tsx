@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { 
@@ -13,10 +14,10 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/usage/invoices", {
   title: 'Creating Payment Requests',
   description: 'Create payment requests and understand online vs offline mode in PayDeck.',
-};
+});
 
 export default function InvoicesPage() {
   return (
@@ -28,10 +29,10 @@ export default function InvoicesPage() {
             <Wallet className="w-4 h-4" />
             Usage
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Creating Payment Requests
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Create payment requests with specific NEX amounts and understand how 
             PayDeck verifies payments.
           </p>
@@ -39,7 +40,7 @@ export default function InvoicesPage() {
 
         {/* Online vs Offline Mode */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Online vs Offline Mode
           </h2>
         
@@ -72,7 +73,7 @@ export default function InvoicesPage() {
 
         {/* Creating a Payment Request */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Creating a Payment Request
           </h2>
         
@@ -107,21 +108,21 @@ export default function InvoicesPage() {
 
         {/* QR Code Format */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How It Works
           </h2>
         
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             PayDeck generates a payment URI that includes both the address and amount:
           </p>
 
-          <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
+          <div className="p-4 rounded-lg bg-neutral-900 dark:bg-neutral-950 mb-4">
             <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm break-all">
               nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz?amount=25.50
             </code>
           </div>
 
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-neutral-500">
             Compatible wallets automatically populate the amount field when scanning. 
             The customer simply confirms the pre-filled amount.
           </p>
@@ -129,7 +130,7 @@ export default function InvoicesPage() {
 
         {/* Amount Requirements */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Amount Requirements
           </h2>
         
@@ -178,29 +179,29 @@ export default function InvoicesPage() {
 
         {/* Amount Entry */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             Entering Amounts
           </h2>
         
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
               <div className="flex items-start gap-3">
-                <Calculator className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <Calculator className="w-5 h-5 text-neutral-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-medium text-zinc-900 dark:text-white mb-1">On-Screen Keypad</h4>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  <h4 className="font-medium text-neutral-900 dark:text-white mb-1">On-Screen Keypad</h4>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     Tap digits to enter the amount. Use the decimal point for fractional NEX.
                   </p>
                 </div>
               </div>
             </div>
           
-            <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
               <div className="flex items-start gap-3">
-                <Receipt className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <Receipt className="w-5 h-5 text-neutral-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-medium text-zinc-900 dark:text-white mb-1">NEX Amounts</h4>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  <h4 className="font-medium text-neutral-900 dark:text-white mb-1">NEX Amounts</h4>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     All amounts are in NEX (Nexa's native token). The amount is displayed 
                     clearly before generating the QR code.
                   </p>
@@ -212,10 +213,10 @@ export default function InvoicesPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Understanding confirmations
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Learn about Nexa's instant transactions and when to wait for block confirmations.
           </p>
           <Link 
@@ -234,22 +235,22 @@ export default function InvoicesPage() {
 // Component: Mode Card
 function ModeCard({ icon, title, description, features, recommended }: { icon: React.ReactNode; title: string; description: string; features: string[]; recommended?: boolean }) {
   return (
-    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-zinc-200 dark:border-zinc-800'}`}>
+    <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-2 mb-2">
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
           {icon}
         </div>
         <div>
-          <h4 className={`font-medium ${recommended ? 'text-accent-700 dark:text-accent-dark-300' : 'text-zinc-900 dark:text-white'}`}>
+          <h4 className={`font-medium ${recommended ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-900 dark:text-white'}`}>
             {title}
           </h4>
-          <p className="text-xs text-zinc-500">{description}</p>
+          <p className="text-xs text-neutral-500">{description}</p>
         </div>
       </div>
       <ul className="space-y-1 mt-3">
         {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${recommended ? 'text-accent-500 dark:text-accent-dark-500' : 'text-zinc-400'}`} />
+          <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${recommended ? 'text-accent-500 dark:text-accent-dark-500' : 'text-neutral-400'}`} />
             {feature}
           </li>
         ))}
@@ -261,13 +262,13 @@ function ModeCard({ icon, title, description, features, recommended }: { icon: R
 // Component: Step
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <div className="flex gap-4 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+    <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
-        <h4 className="font-medium text-zinc-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-zinc-500">{description}</p>
+        <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
+        <p className="text-sm text-neutral-500">{description}</p>
       </div>
     </div>
   );
@@ -277,7 +278,7 @@ function Step({ number, title, description }: { number: number; title: string; d
 function AmountItem({ scenario, result, success }: { scenario: string; result: string; success: boolean }) {
   return (
     <div className={`flex items-center justify-between gap-4 p-3 rounded-lg border ${success ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
-      <span className="text-sm text-zinc-700 dark:text-zinc-300">{scenario}</span>
+      <span className="text-sm text-neutral-700 dark:text-neutral-300">{scenario}</span>
       <span className={`text-sm font-medium ${success ? 'text-accent-700 dark:text-accent-dark-300' : 'text-red-700 dark:text-red-300'}`}>{result}</span>
     </div>
   );

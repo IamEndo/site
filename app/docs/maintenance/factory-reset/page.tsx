@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import {
@@ -11,10 +12,10 @@ import {
   Trash2
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsMetadata("/docs/maintenance/factory-reset", {
   title: 'Factory Reset',
   description: 'Erase every setting, the wallet configuration and the password, and run the PayDeck setup wizard again.',
-};
+});
 
 export default function FactoryResetPage() {
   return (
@@ -26,10 +27,10 @@ export default function FactoryResetPage() {
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
             Factory Reset
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Erase all settings and return PayDeck to its initial state. The device restarts into the setup wizard.
           </p>
         </div>
@@ -52,7 +53,7 @@ export default function FactoryResetPage() {
 
         {/* What Gets Erased */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             What Gets Erased
           </h2>
 
@@ -85,7 +86,7 @@ export default function FactoryResetPage() {
 
         {/* When to Reset */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             When to Factory Reset
           </h2>
 
@@ -101,11 +102,11 @@ export default function FactoryResetPage() {
 
         {/* How to Reset */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             How to Factory Reset
           </h2>
 
-          <h3 className="text-lg font-medium text-zinc-900 dark:text-white mb-4">
+          <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-4">
             Method 1: From the Menu
           </h3>
 
@@ -117,25 +118,25 @@ export default function FactoryResetPage() {
             <Step number={5} text="The device erases its storage, restarts and shows the setup wizard" />
           </div>
 
-          <p className="text-sm text-zinc-500 mb-8">
+          <p className="text-sm text-neutral-500 mb-8">
             Fifteen consecutive wrong passwords on the unlock screen trigger the same wipe automatically.
           </p>
 
-          <h3 className="text-lg font-medium text-zinc-900 dark:text-white mb-4">
+          <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-4">
             Method 2: Erase and Reflash over USB
           </h3>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             If you cannot open the menu (forgotten password, device issues), erase the flash from a computer:
           </p>
 
-          <div className="p-4 rounded-lg bg-zinc-900 dark:bg-zinc-950 mb-4">
+          <div className="p-4 rounded-lg bg-neutral-900 dark:bg-neutral-950 mb-4">
             <code className="text-accent-400 dark:text-accent-dark-400 font-mono text-sm">
               pio run -t erase -e esp32dev-hspi-st7789-2v8
             </code>
           </div>
 
-          <p className="text-sm text-zinc-500 mb-4">
+          <p className="text-sm text-neutral-500 mb-4">
             Then flash the firmware again, either with PlatformIO or the{" "}
             <Link href="/docs/install/web-flasher" className="text-accent-600 dark:text-accent-dark-400 hover:underline">web flasher</Link>,
             which erases the chip before installing. Use the ILI9341 environment name on a single-USB board.
@@ -154,11 +155,11 @@ export default function FactoryResetPage() {
 
         {/* After Reset */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
             After Factory Reset
           </h2>
 
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The device boots into the setup wizard and nothing else is reachable until it completes:
           </p>
 
@@ -205,10 +206,10 @@ export default function FactoryResetPage() {
 
         {/* CTA */}
         <section className="p-6 rounded-lg bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-dark-950/30 dark:to-accent-dark-900/30 border border-accent-200 dark:border-accent-dark-800">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             Ready to set up again?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The first-boot guide walks through the wizard step by step.
           </p>
           <Link
@@ -240,7 +241,7 @@ function EraseCard({ title, items, erased }: { title: string; items: string[]; e
       </div>
       <ul className="space-y-1">
         {items.map((item, i) => (
-          <li key={i} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <li key={i} className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
             {erased ? (
               <XCircle className="w-3 h-3 text-red-500 flex-shrink-0" />
             ) : (
@@ -257,9 +258,9 @@ function EraseCard({ title, items, erased }: { title: string; items: string[]; e
 // Component: Reason Item
 function ReasonItem({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-      <RefreshCw className="w-4 h-4 text-zinc-400 flex-shrink-0" />
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+      <RefreshCw className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }
@@ -271,7 +272,7 @@ function Step({ number, text }: { number: number; text: string }) {
       <div className="w-6 h-6 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
         {number}
       </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300">{text}</p>
+      <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
     </div>
   );
 }
@@ -279,12 +280,12 @@ function Step({ number, text }: { number: number; text: string }) {
 // Component: Setup Item
 function SetupItem({ step, description, href }: { step: string; description: string; href: string }) {
   return (
-    <Link href={href} className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+    <Link href={href} className="flex items-center justify-between p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
       <div>
-        <span className="font-medium text-zinc-900 dark:text-white">{step}</span>
-        <span className="text-zinc-500"> - {description}</span>
+        <span className="font-medium text-neutral-900 dark:text-white">{step}</span>
+        <span className="text-neutral-500"> - {description}</span>
       </div>
-      <ArrowRight className="w-4 h-4 text-zinc-400" />
+      <ArrowRight className="w-4 h-4 text-neutral-400" />
     </Link>
   );
 }

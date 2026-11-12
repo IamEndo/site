@@ -1,13 +1,13 @@
 export const device = {
   name: 'ESP32 Display 2.8"',
-  model: "ESP32-2432S028",
+  model: "ESP32-2432S028R",
   price: "~$10",
   purchaseUrl: "https://www.aliexpress.com/w/wholesale-ESP32-Arduino-LVGL-WIFI%26Bluetooth-2.8-TFT-Display.html",
   specs: [
     { label: "Display", value: '2.8" TFT touchscreen' },
     { label: "Resolution", value: "320×240 pixels" },
-    { label: "Connectivity", value: "WiFi + USB-C" },
-    { label: "Graphics", value: "ST7789 / TFT_eSPI" },
+    { label: "Connectivity", value: "WiFi 2.4 GHz + USB" },
+    { label: "Display driver", value: "ST7789 or ILI9341" },
   ],
   highlights: [
     "Compact form factor",
