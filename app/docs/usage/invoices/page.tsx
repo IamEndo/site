@@ -25,7 +25,7 @@ export default function InvoicesPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Usage
           </div>
@@ -48,27 +48,34 @@ export default function InvoicesPage() {
             <ModeCard 
               icon={<Wifi className="w-5 h-5" />}
               title="Online Mode"
-              description="Connected to Rostrum server"
+              description="The device watches a Rostrum server"
               features={[
-                "Automatic payment verification",
-                "Instant confirmation via 0-conf",
-                "Double-spend proof protection",
-                "No manual verification needed"
+                "Payment detected automatically through the server",
+                "Detected at 0-conf, before a block confirmation",
+                "The device trusts its server's view; it does not check double-spend proofs itself",
+                "For a higher-value sale, wait for a confirmation"
               ]}
               recommended
             />
             <ModeCard 
               icon={<WifiOff className="w-5 h-5" />}
               title="Offline Mode"
-              description="No Rostrum connection"
+              description="A setting, and the default on a new device"
               features={[
-                "QR code still displays",
-                "Manual payment verification required",
-                "Check payment in wallet app",
-                "Use when network unavailable"
+                "The QR code is shown at once, with no network use",
+                "You check the payment in a wallet app or block explorer",
+                "You tap Confirm; the device verifies nothing",
+                "Switch under Menu, Network settings, Network"
               ]}
             />
           </div>
+
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed">
+            Online mode does not fall back to offline by itself. If the device is online but
+            cannot reach Wi-Fi or its server within 15 seconds, it shows &ldquo;Connection
+            timeout&rdquo; and returns to the home screen without a QR code. To keep selling
+            during an outage, switch the device to offline mode.
+          </p>
         </section>
 
         {/* Creating a Payment Request */}
@@ -85,8 +92,8 @@ export default function InvoicesPage() {
             />
             <Step 
               number={2}
-              title="Confirm"
-              description="Tap confirm to generate the payment QR code"
+              title="Tap Enter"
+              description="Tap Enter to generate the payment QR code. The amount must be greater than zero and can have up to two decimal places."
             />
             <Step 
               number={3}
@@ -113,7 +120,7 @@ export default function InvoicesPage() {
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            PayDeck generates a payment URI that includes both the address and amount:
+            PayDeck generates a payment URI that includes the address and the amount exactly as you typed it:
           </p>
 
           <div className="p-4 rounded-lg bg-neutral-900 dark:bg-neutral-950 mb-4">
@@ -122,7 +129,11 @@ export default function InvoicesPage() {
             </code>
           </div>
 
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+            In online mode the device appends a per-invoice id
+            (<code className="font-mono">&amp;pid=...</code>) to the URI; in offline mode it is left out.
+          </p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Compatible wallets automatically populate the amount field when scanning. 
             The customer simply confirms the pre-filled amount.
           </p>
@@ -221,7 +232,7 @@ export default function InvoicesPage() {
           </p>
           <Link 
             href="/docs/usage/confirmation"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Payment Confirmation
             <ArrowRight className="w-4 h-4" />
@@ -237,14 +248,14 @@ function ModeCard({ icon, title, description, features, recommended }: { icon: R
   return (
     <div className={`p-4 rounded-lg border ${recommended ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-2 mb-2">
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
           {icon}
         </div>
         <div>
           <h4 className={`font-medium ${recommended ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-900 dark:text-white'}`}>
             {title}
           </h4>
-          <p className="text-xs text-neutral-500">{description}</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
       <ul className="space-y-1 mt-3">
@@ -263,12 +274,12 @@ function ModeCard({ icon, title, description, features, recommended }: { icon: R
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-neutral-500">{description}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );

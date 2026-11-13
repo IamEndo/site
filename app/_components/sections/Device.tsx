@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import dynamic from "next/dynamic";
 import { device } from "@/app/_data/device";
 import { Button } from "../ui/Button";
@@ -11,12 +12,48 @@ const Board3D = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-xs">
+      <div className="w-full h-full flex items-center justify-center text-neutral-500 dark:text-neutral-400 text-xs">
         Loading board…
       </div>
     ),
   }
 );
+
+/**
+ * The board scene is a separate ~300 KB chunk plus a WebGL context. It is
+ * mounted only once the section comes within one screen of the viewport, so
+ * visitors who never scroll this far do not pay for it.
+ */
+function LazyBoard() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [near, setNear] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setNear(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="absolute inset-0">
+      {near && <Board3D />}
+    </div>
+  );
+}
 
 export function Device() {
   return (
@@ -26,9 +63,9 @@ export function Device() {
           {/* Left - Interactive 3D board */}
           <ScrollReveal className="order-2 lg:order-1">
             <div className="relative aspect-video bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 rounded-sm overflow-hidden">
-              <Board3D />
-              <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-500 dark:text-neutral-400 select-none pointer-events-none">
-                drag to rotate
+              <LazyBoard />
+              <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-600 dark:text-neutral-300 select-none pointer-events-none">
+                drag or use ← → to rotate
               </p>
             </div>
           </ScrollReveal>
@@ -37,7 +74,7 @@ export function Device() {
           <div className="space-y-8 order-1 lg:order-2">
             <ScrollReveal>
               <div className="space-y-4">
-                <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+                <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   The Hardware
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
@@ -54,7 +91,7 @@ export function Device() {
               <div className="border border-neutral-200 dark:border-neutral-800 rounded-sm divide-y divide-neutral-200 dark:divide-neutral-800">
                 {device.specs.map((spec) => (
                   <div key={spec.label} className="flex justify-between px-4 py-3">
-                    <span className="text-sm text-neutral-500">{spec.label}</span>
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400">{spec.label}</span>
                     <span className="text-sm font-medium text-neutral-900 dark:text-white">
                       {spec.value}
                     </span>
@@ -115,7 +152,7 @@ export function Device() {
                   </a>
                 </Button>
               </div>
-              <p className="text-xs text-neutral-500 mt-4">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
                 Board available from multiple vendors. Link is for reference only.
               </p>
             </ScrollReveal>

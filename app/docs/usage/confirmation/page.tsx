@@ -24,7 +24,7 @@ export default function ConfirmationPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Usage
           </div>
@@ -45,15 +45,15 @@ export default function ConfirmationPage() {
         
           <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800 mb-6">
             <div className="flex gap-3">
-              <Zap className="w-6 h-6 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <Zap className="w-6 h-6 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">0-conf with Double-Spend Proofs</h4>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                   Nexa nodes generate double-spend proofs when conflicting spends are detected.
                   When PayDeck shows "Payment Received", the transaction has been seen by its
                   Rostrum server — instant detection that is suitable for low-value retail.
-                  Confirmations (Tailstorm subblocks in seconds, blocks about every 2 minutes)
-                  provide progressively stronger finality.
+                  Block confirmations (a block about every 2 minutes) provide progressively
+                  stronger finality.
                 </p>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function ConfirmationPage() {
           <div className="space-y-3">
             <FeatureItem 
               icon={<Zap className="w-4 h-4" />}
-              text="Transactions confirm instantly (within seconds)"
+              text="Transactions are seen by the network within seconds (0-conf), before any block confirmation"
             />
             <FeatureItem 
               icon={<Shield className="w-4 h-4" />}
@@ -114,8 +114,9 @@ export default function ConfirmationPage() {
               <p className="text-sm text-blue-800 dark:text-blue-300">
                 Double-spend proofs make it cryptographically provable if someone tries to spend
                 the same coins twice. PayDeck does not verify these proofs itself — it relies on
-                its Rostrum server's view of the network. For stronger finality, wait for a
-                Tailstorm subblock (seconds) or block confirmations (about 2 minutes each).
+                its Rostrum server's view of the network. For stronger finality, wait for block
+                confirmations (about 2 minutes each). Sub-block confirmations about every 3 seconds
+                (Tailstorm) are an upcoming Nexa upgrade and are not active on the network yet.
               </p>
             </div>
           </div>
@@ -139,14 +140,14 @@ export default function ConfirmationPage() {
                 "Retail purchases",
                 "Everyday transactions",
                 "In-person payments",
-                "Amounts under $500"
+                "Low-value sales"
               ]}
               color="green"
             />
             <Card 
               title="Consider Waiting for Blocks"
               items={[
-                "Large purchases ($500+)",
+                "Large purchases",
                 "High-value goods/services",
                 "Remote transactions",
                 "Unknown customers"
@@ -176,7 +177,7 @@ export default function ConfirmationPage() {
         
           <div className="space-y-4">
             <StateCard 
-              state="Waiting for Payment"
+              state="Awaiting payment"
               description="QR code displayed, waiting for customer to send"
               color="blue"
             />
@@ -209,7 +210,7 @@ export default function ConfirmationPage() {
           </p>
           <Link 
             href="/docs/maintenance/troubleshooting"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Troubleshooting
             <ArrowRight className="w-4 h-4" />
@@ -275,7 +276,7 @@ function StateCard({ state, description, color }: { state: string; description: 
 
   const iconColors = {
     blue: 'text-blue-600 dark:text-blue-400',
-    green: 'text-accent-600 dark:text-accent-dark-400'
+    green: 'text-accent-700 dark:text-accent-dark-400'
   };
 
   const dotColors = {
@@ -288,7 +289,7 @@ function StateCard({ state, description, color }: { state: string; description: 
       <div className={`w-3 h-3 rounded-full flex-shrink-0 ${dotColors[color]}`} />
       <div>
         <span className={`font-medium ${iconColors[color]}`}>{state}</span>
-        <span className="text-neutral-500"> - {description}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {description}</span>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export default function FirstBootPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Power className="w-4 h-4" />
             Installation
           </div>
@@ -87,8 +87,10 @@ export default function FirstBootPage() {
                 Tap a row and confirm with Continue. The prompt says it plainly: chosen once, cannot be changed,
                 factory reset to start over. The mode is shown read-only under Device info afterwards.
               </p>
-              <p className="text-xs text-neutral-500">
-                In this release both modes behave identically. The choice is recorded so that future,
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                In this release both modes work the same; the only visible difference is the line on
+                the home screen (&ldquo;Receive-only&rdquo; or &ldquo;Watch-only&rdquo;) and the Mode row
+                under Device info. The choice is recorded so that future,
                 mode-specific features (such as a balance view for personal monitors) apply to the right devices.
               </p>
             </SetupStepCard>
@@ -107,7 +109,7 @@ export default function FirstBootPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-neutral-400">•</span>
-                  Runs, repeated blocks and common passwords are refused with a short message; see <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">password best practices</Link>
+                  Runs, repeated blocks and common passwords are refused with a short message; see <Link href="/docs/security/password-practices" className="text-accent-700 dark:text-accent-dark-400 hover:underline">password best practices</Link>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-neutral-400">•</span>
@@ -118,9 +120,9 @@ export default function FirstBootPage() {
                   Enter the new password once on the unlock screen to reach the wallet step
                 </li>
               </ul>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
                 There is no default code and no way to skip this step. Back returns to the mode picker.
-                Details in <Link href="/docs/security/pin-setup" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Access Password</Link>.
+                Details in <Link href="/docs/security/access-password" className="text-accent-700 dark:text-accent-dark-400 hover:underline">Access Password</Link>.
               </p>
             </SetupStepCard>
 
@@ -132,7 +134,7 @@ export default function FirstBootPage() {
               description="Choose how the device gets its receiving addresses"
             >
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                The "Set up wallet" screen offers the same options as Wallet settings later on:
+                The "Set up wallet" screen offers the same four wallet sources as Wallet settings later on (Wallet settings adds the Privacy switch):
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 <WalletOption
@@ -142,7 +144,7 @@ export default function FirstBootPage() {
                 />
                 <WalletOption
                   title="Restore wallet"
-                  description="Enter an existing seed phrase of 12 to 24 words, then answer the passphrase prompt. The seed is used once and erased."
+                  description="Enter an existing seed phrase of 12, 15, 18, 21 or 24 words, then answer the passphrase prompt. The seed is used once and erased."
                   best="Full privacy, existing wallet"
                 />
                 <WalletOption
@@ -156,16 +158,16 @@ export default function FirstBootPage() {
                   best="Quickest setup, no privacy"
                 />
               </div>
-              <p className="text-xs text-neutral-500 mt-3">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
                 Create wallet appears only on boards with a certified tap-entropy source (the CYD has one).
-                Compare the options in <Link href="/docs/wallet/options" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Wallet Options</Link>.
+                Compare the options in <Link href="/docs/wallet/options" className="text-accent-700 dark:text-accent-dark-400 hover:underline">Wallet Options</Link>.
               </p>
             </SetupStepCard>
           </div>
 
           <div className="mt-6 p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Setup complete</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
@@ -206,8 +208,8 @@ export default function FirstBootPage() {
                   Flip the Network row to online. The device connects and starts watching the blockchain
                 </li>
               </ul>
-              <p className="text-xs text-neutral-500 mt-3">
-                Only 2.4 GHz networks are supported. 5 GHz networks do not appear.
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
+                Only 2.4 GHz networks are supported. The network name is typed by hand (there is no list to pick from), so enter the name of the 2.4 GHz network.
               </p>
             </SetupStepCard>
 
@@ -221,12 +223,12 @@ export default function FirstBootPage() {
                 PayDeck talks to a Rostrum server (Nexa's Electrum implementation) over TLS.
               </p>
               <div className="p-3 rounded bg-neutral-100 dark:bg-neutral-800 mb-3">
-                <p className="text-xs text-neutral-500 mb-1">Default server:</p>
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Default server:</p>
                 <code className="text-sm text-neutral-900 dark:text-white">electrum.nexa.org:20004</code>
               </div>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
                 The default works for most users. Change the host and port here if you{" "}
-                <Link href="/docs/setup/own-server" className="text-accent-600 dark:text-accent-dark-400 hover:underline">run your own server</Link>.
+                <Link href="/docs/setup/own-server" className="text-accent-700 dark:text-accent-dark-400 hover:underline">run your own server</Link>.
               </p>
             </SetupStepCard>
           </div>
@@ -252,7 +254,7 @@ export default function FirstBootPage() {
             <VerifyCard
               icon={<Zap className="w-5 h-5" />}
               title="Connection"
-              check="The status icons show Wi-Fi and the node connected"
+              check="The Wi-Fi icon in the top bar is green while connected, and Network settings reads Online, watching"
             />
             <VerifyCard
               icon={<Settings className="w-5 h-5" />}
@@ -312,7 +314,7 @@ export default function FirstBootPage() {
               problem="Device stuck on the boot logo"
               solutions={[
                 "Wait up to 2 minutes (secure builds encrypt the flash on first boot)",
-                "On a Standard build, check the serial output for errors",
+                "Released builds print no logs over serial; to see them, build from source with CFG_DEBUG set to 1 and monitor at 115200 baud",
                 "Reflash the firmware"
               ]}
             />
@@ -354,7 +356,7 @@ export default function FirstBootPage() {
           </p>
           <Link
             href="/docs/setup/wifi"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             WiFi Configuration
             <ArrowRight className="w-4 h-4" />
@@ -369,7 +371,7 @@ export default function FirstBootPage() {
 function BootStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <p className="text-neutral-600 dark:text-neutral-400">{text}</p>
@@ -394,15 +396,15 @@ function SetupStepCard({
   return (
     <div className="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs text-neutral-400 font-medium">Step {number}</span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Step {number}</span>
           </div>
           <h3 className="font-semibold text-neutral-900 dark:text-white">{title}</h3>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
       <div className="pl-14">
@@ -417,7 +419,7 @@ function ModeOption({ title, description }: { title: string; description: string
   return (
     <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
-      <p className="text-xs text-neutral-500">{description}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 }
@@ -427,8 +429,8 @@ function WalletOption({ title, description, best }: { title: string; description
   return (
     <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
-      <p className="text-xs text-neutral-500 mb-2">{description}</p>
-      <p className="text-xs text-accent-600 dark:text-accent-dark-400">{best}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">{description}</p>
+      <p className="text-xs text-accent-700 dark:text-accent-dark-400">{best}</p>
     </div>
   );
 }
@@ -442,7 +444,7 @@ function VerifyCard({ icon, title, check }: { icon: React.ReactNode; title: stri
       </div>
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white text-sm mb-1">{title}</h4>
-        <p className="text-xs text-neutral-500">{check}</p>
+        <p className="text-xs text-neutral-500 dark:text-neutral-400">{check}</p>
       </div>
     </div>
   );
@@ -455,11 +457,11 @@ function NextStepCard({ href, title, description }: { href: string; title: strin
       href={href}
       className="group p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
     >
-      <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors mb-1">
+      <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-accent-700 dark:group-hover:text-accent-dark-400 transition-colors mb-1">
         {title}
       </h4>
-      <p className="text-xs text-neutral-500">{description}</p>
-      <span className="inline-flex items-center gap-1 text-xs text-accent-600 dark:text-accent-dark-400 mt-2">
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{description}</p>
+      <span className="inline-flex items-center gap-1 text-xs text-accent-700 dark:text-accent-dark-400 mt-2">
         Learn more <ArrowRight className="w-3 h-3" />
       </span>
     </Link>

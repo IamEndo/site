@@ -16,7 +16,7 @@ export default function SeedGenerationPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -65,33 +65,33 @@ export default function SeedGenerationPage() {
 
           <div className="grid sm:grid-cols-2 gap-3 mb-4">
             <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 <strong>WiFi disabled</strong> during seed creation
               </p>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 <strong>No computer required</strong> - any USB power works
               </p>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
-                <strong>Seed erased</strong> before network reconnects
+                <strong>WiFi switched off</strong> while you tap; seed erased before the restart
               </p>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 <strong>Watch-only</strong> - no private keys stored
               </p>
             </div>
           </div>
 
-          <p className="text-xs text-neutral-500">
-            PayDeck has no security chip because it doesn't need one - it never stores secrets. 
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">
+            PayDeck has no security chip because it doesn't need one - it never stores wallet secrets (seed, passphrase or private keys). 
             Only your xPub (public keys) remains after setup.
           </p>
         </section>
@@ -130,8 +130,9 @@ export default function SeedGenerationPage() {
               <div>
                 <div className="font-semibold text-red-900 dark:text-red-200 mb-2">Critical Warning</div>
                 <p className="text-sm text-red-800 dark:text-red-300 mb-2">
-                  Your seed phrase will be shown <strong>only once</strong>. PayDeck immediately 
-                  erases it after you verify. If you don't write it down correctly:
+                  Your seed phrase will be shown <strong>only once</strong>. After you verify it and
+                  answer the passphrase question, PayDeck derives the public key, erases the seed
+                  and restarts. If you don't write it down correctly:
                 </p>
                 <ul className="space-y-1 text-sm text-red-800 dark:text-red-300">
                   <li className="flex items-start gap-2">
@@ -171,15 +172,15 @@ export default function SeedGenerationPage() {
               description="The screen first calibrates the touch sensor, then shows a progress ring labelled in proven bits. Tap all over the screen until it is full, then tap Done."
             >
               <div className="mt-3 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800">
-                <p className="text-sm font-medium text-neutral-900 dark:text-white mb-2">For best randomness:</p>
+                <p className="text-sm font-medium text-neutral-900 dark:text-white mb-2">While tapping:</p>
                 <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
                   <li className="flex items-start gap-2">
                     <span className="text-neutral-400">•</span>
-                    Tap across the entire screen, not just one area
+                    Lift your finger and tap; a held finger counts only once
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-neutral-400">•</span>
-                    Vary your timing: some fast, some slow
+                    Taps closer together than a tenth of a second are ignored
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-neutral-400">•</span>
@@ -187,14 +188,14 @@ export default function SeedGenerationPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-neutral-400">•</span>
-                    <strong>Avoid patterns</strong>: don't tap fast in one spot
+                    Where and in what rhythm you tap does not change the seed
                   </li>
                 </ul>
                 <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">
-                  <p className="text-xs text-neutral-500 mb-1">
-                    <strong>Pro tip:</strong> Use dice! Divide screen into 6 zones, roll before each tap, tap in that zone.
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">
+                    <strong>Tip:</strong> dice can help you spread your taps: divide the screen into 6 zones, roll, tap in that zone. They do not add randomness to the seed, which comes only from sensor noise.
                   </p>
-                  <Link href="/docs/wallet/entropy" className="text-xs text-accent-600 dark:text-accent-dark-400 hover:underline">Learn more about entropy and dice method →</Link>
+                  <Link href="/docs/wallet/entropy" className="text-xs text-accent-700 dark:text-accent-dark-400 hover:underline">Learn more about entropy →</Link>
                 </div>
               </div>
             </Step>
@@ -237,7 +238,7 @@ export default function SeedGenerationPage() {
             >
               <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
                 <p className="text-xs text-amber-800 dark:text-amber-300">
-                  <strong>If you get one wrong:</strong> You'll need to start over. Take your time and verify against your written notes.
+                  <strong>If you get one wrong:</strong> the device shows &ldquo;Incorrect word&rdquo; and stays on that word, so correct it and continue. Tapping Back discards this seed.
                 </p>
               </div>
             </Step>
@@ -294,13 +295,13 @@ export default function SeedGenerationPage() {
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            Your seed phrase is the master key to your funds. If your PayDeck is lost, stolen, or damaged:
+            Your seed phrase is the master key to your funds (together with the passphrase, if you added one: the words alone then restore a different, empty wallet). If your PayDeck is lost, stolen, or damaged:
           </p>
 
           <div className="space-y-3">
             <RecoveryOption 
               title="New PayDeck Device"
-              description="Use 'Import Seed' to restore on a replacement device"
+              description="Use 'Restore wallet' to restore on a replacement device"
               href="/docs/wallet/import-seed"
             />
             <RecoveryOption 
@@ -318,7 +319,7 @@ export default function SeedGenerationPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                Your seed phrase works with any BIP39/BIP44 compatible wallet. You're not locked into PayDeck.
+                Your seed phrase follows the BIP39 and BIP44 standards with Nexa's path m/44'/29223'/0', so you're not locked into PayDeck. A recovery wallet must support that path and, if you added one, BIP39 passphrases.
               </p>
             </div>
           </div>
@@ -335,7 +336,7 @@ export default function SeedGenerationPage() {
           <div className="flex flex-wrap gap-3">
             <Link 
               href="/docs/wallet/import-seed"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
             >
               Import Seed
               <ArrowRight className="w-4 h-4" />
@@ -361,7 +362,7 @@ function PrepareCard({ icon, title, description }: { icon: React.ReactNode; titl
         {icon}
       </div>
       <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-xs text-neutral-500">{description}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 }
@@ -392,7 +393,7 @@ function RecoveryOption({ title, description, href }: { title: string; descripti
     <div className="flex items-center justify-between gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-neutral-500">{description}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
       </div>
       {href && <ArrowRight className="w-4 h-4 text-neutral-400" />}
     </div>

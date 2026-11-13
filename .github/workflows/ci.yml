@@ -19,8 +19,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      - run: npm run test:xpub
       - run: npm run build
       - name: Search index is up to date
-        run: git diff --exit-code app/docs/_data/search-index.json
+        run: git diff --exit-code app/docs/_data/search-index.json app/docs/_data/toc.json
       - name: Vendored flasher files are unmodified
         run: cd public/vendor/esp-web-tools-10.2.1 && sha256sum -c SHA256SUMS

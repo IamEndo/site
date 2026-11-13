@@ -151,7 +151,7 @@ export function DocsSearch() {
       >
         <Search className="w-4 h-4" aria-hidden="true" />
         <span className="hidden sm:inline">Search docs</span>
-        <kbd className="hidden md:inline font-mono text-[11px] px-1.5 py-0.5 rounded-sm border border-neutral-200 dark:border-neutral-800 text-neutral-500">
+        <kbd className="hidden md:inline font-mono text-[11px] px-1.5 py-0.5 rounded-sm border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400">
           {shortcut}
         </kbd>
       </button>
@@ -190,7 +190,7 @@ export function DocsSearch() {
           <button
             type="button"
             onClick={close}
-            className="font-mono text-[11px] px-1.5 py-0.5 rounded-sm border border-neutral-200 dark:border-neutral-800 text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+            className="font-mono text-[11px] px-1.5 py-0.5 rounded-sm border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
           >
             Esc
           </button>
@@ -217,7 +217,7 @@ export function DocsSearch() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-baseline gap-2">
                   <span className="font-medium truncate">{r.title}</span>
-                  <span className="text-xs text-neutral-500 flex-shrink-0">{r.section}</span>
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400 flex-shrink-0">{r.section}</span>
                 </div>
                 <div className="text-sm text-neutral-600 dark:text-neutral-400 truncate">
                   {r.detail}
@@ -230,7 +230,7 @@ export function DocsSearch() {
           ))}
         </ul>
 
-        <p className="px-4 py-3 text-sm text-neutral-500" role="status">
+        <p className="px-4 py-3 text-sm text-neutral-500 dark:text-neutral-400" role="status">
           {loadFailed
             ? "The search index could not be loaded. Reload the page and try again."
             : !index

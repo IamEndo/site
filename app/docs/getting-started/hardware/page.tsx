@@ -31,7 +31,7 @@ export default function HardwarePage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Cpu className="w-4 h-4" />
             Getting Started
           </div>
@@ -69,7 +69,7 @@ export default function HardwarePage() {
               <div className="w-48 h-32 rounded-lg bg-amber-100 dark:bg-amber-900/30 border-2 border-dashed border-amber-300 dark:border-amber-700 flex items-center justify-center">
                 <div className="text-center">
                   <Monitor className="w-8 h-8 text-amber-500 mx-auto mb-2" />
-                  <span className="text-xs text-amber-600 dark:text-amber-400">ESP32-2432S028R</span>
+                  <span className="text-xs text-amber-800 dark:text-amber-400">ESP32-2432S028R</span>
                 </div>
               </div>
               <div className="flex-1">
@@ -125,7 +125,7 @@ export default function HardwarePage() {
                 <SpecRow label="Touch" value="XPT2046 resistive touchscreen" />
                 <SpecRow label="Connectivity" value="WiFi 802.11 b/g/n (2.4GHz), Bluetooth 4.2 BLE" />
                 <SpecRow label="Power Input" value="5V via USB (USB-C or micro-USB)" />
-                <SpecRow label="Power Draw" value="~150 mA typical, ~200 mA peak" />
+                <SpecRow label="Power Draw" value="~180–250 mA typical, up to ~350 mA peak (Wi-Fi)" />
                 <SpecRow label="Dimensions" value="86mm × 50mm × 10mm (board only)" />
               </tbody>
             </table>
@@ -148,9 +148,9 @@ export default function HardwarePage() {
             <AccessoryCard 
               icon={<Zap className="w-5 h-5" />}
               title="USB Power Adapter"
-              description="Any 5V USB adapter with at least 500mA output. For permanent installation."
+              description="A 5V USB adapter rated 1A or more. For permanent installation."
               required={false}
-              tip="The device draws ~150 mA typical, ~200 mA peak. Any phone charger will work."
+              tip="The device draws roughly 180–250 mA, with peaks up to about 350 mA while Wi-Fi transmits. Any phone charger will work."
             />
           </div>
         </section>
@@ -172,7 +172,7 @@ export default function HardwarePage() {
                   <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Version</th>
                   <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">USB Ports</th>
                   <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">Display Driver</th>
-                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">PlatformIO Flag</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-800">PlatformIO Environment</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
@@ -180,13 +180,13 @@ export default function HardwarePage() {
                   <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">v1 / v2</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Single USB</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">ILI9341</td>
-                  <td className="px-4 py-3"><code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs">ILI9341_DRIVER</code></td>
+                  <td className="px-4 py-3"><code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs">esp32dev-hspi-ili9341-2v8</code></td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">v3</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Dual USB</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">ST7789</td>
-                  <td className="px-4 py-3"><code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs">ST7789_DRIVER</code></td>
+                  <td className="px-4 py-3"><code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs">esp32dev-hspi-st7789-2v8</code></td>
                 </tr>
               </tbody>
             </table>
@@ -241,8 +241,8 @@ export default function HardwarePage() {
               driver="Driver often pre-installed on Windows/macOS"
             />
           </div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-4">
-            See <Link href="/docs/installation/usb-drivers" className="text-accent-600 dark:text-accent-dark-400 hover:underline">USB Drivers</Link> for 
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
+            See <Link href="/docs/installation/usb-drivers" className="text-accent-700 dark:text-accent-dark-400 hover:underline">USB Drivers</Link> for 
             installation instructions.
           </p>
         </section>
@@ -293,9 +293,9 @@ export default function HardwarePage() {
             <EnclosureOption 
               icon={<Printer className="w-6 h-6" />}
               title="3D Print Your Own"
-              description="Download STL files from the repository and print at home or use a local print service."
-              linkText="Download STL files"
-              linkHref="https://gitlab.com/IamEndo/paydeck/-/tree/main/enclosure"
+              description="Download a community case model for this board from Printables and print it at home or through a local print service."
+              linkText="Open the model on Printables"
+              linkHref="https://www.printables.com/model/793451-esp32-2432s028-usb-c-module-case-cheap-yellow-disp"
               external={true}
             />
             <EnclosureOption 
@@ -371,7 +371,7 @@ export default function HardwarePage() {
           </p>
           <Link 
             href="/docs/getting-started/prerequisites"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Software Setup
             <ArrowRight className="w-4 h-4" />
@@ -388,7 +388,7 @@ function QuickSpec({ icon, label, value }: { icon: React.ReactNode; label: strin
     <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
       <div className="flex justify-center text-neutral-400 mb-1">{icon}</div>
       <div className="text-lg font-bold text-neutral-900 dark:text-white">{value}</div>
-      <div className="text-xs text-neutral-500">{label}</div>
+      <div className="text-xs text-neutral-500 dark:text-neutral-400">{label}</div>
     </div>
   );
 }
@@ -438,13 +438,13 @@ function AccessoryCard({
           <span className={`px-2 py-0.5 rounded text-xs font-medium ${
             required 
               ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300' 
-              : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400'
+              : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200'
           }`}>
             {required ? 'Required' : 'Optional'}
           </span>
         </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">{description}</p>
-        <p className="text-xs text-neutral-500 dark:text-neutral-500 italic">{tip}</p>
+        <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">{tip}</p>
       </div>
     </div>
   );
@@ -456,7 +456,7 @@ function VariantCard({ chip, description, driver }: { chip: string; description:
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="font-semibold text-neutral-900 dark:text-white mb-1">{chip}</div>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">{description}</p>
-      <p className="text-xs text-neutral-500 dark:text-neutral-500">{driver}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{driver}</p>
     </div>
   );
 }
@@ -494,11 +494,11 @@ function EnclosureOption({
 }) {
   return (
     <div className="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
-      <div className="text-neutral-400 dark:text-neutral-500 mb-3">{icon}</div>
+      <div className="text-neutral-400 dark:text-neutral-400 mb-3">{icon}</div>
       <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">{title}</h3>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{description}</p>
       {comingSoon ? (
-        <span className="inline-flex items-center gap-1 text-sm text-neutral-400 dark:text-neutral-500">
+        <span className="inline-flex items-center gap-1 text-sm text-neutral-500 dark:text-neutral-400">
           Coming soon
         </span>
       ) : (
@@ -506,7 +506,7 @@ function EnclosureOption({
           href={linkHref}
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
-          className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+          className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
         >
           {linkText}
           {external && <ExternalLink className="w-3 h-3" />}
@@ -537,7 +537,7 @@ function SourceOption({
         <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs font-medium">
           {price}
         </span>
-        <span className="text-xs text-neutral-500">
+        <span className="text-xs text-neutral-500 dark:text-neutral-400">
           Shipping: {shipping}
         </span>
       </div>
@@ -552,7 +552,7 @@ function SourceOption({
         </div>
         <div>
           {cons.map((con, i) => (
-            <div key={i} className="flex items-center gap-1.5 text-neutral-500 dark:text-neutral-500">
+            <div key={i} className="flex items-center gap-1.5 text-neutral-500 dark:text-neutral-400">
               <XCircle className="w-3.5 h-3.5 text-neutral-400" />
               {con}
             </div>

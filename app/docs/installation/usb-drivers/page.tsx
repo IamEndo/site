@@ -3,7 +3,7 @@ import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { Download, ArrowRight, CheckCircle2, Info, Terminal, Apple, ExternalLink } from "lucide-react";
-import { LinuxIcon, TroubleshootItem, VerifyStep, WindowsIcon } from "../../_components/DocsBlocks";
+import { CodeBlock, LinuxIcon, TroubleshootItem, VerifyStep, WindowsIcon } from "../../_components/DocsBlocks";
 
 export const metadata: Metadata = docsMetadata("/docs/installation/usb-drivers", {
   title: 'USB Drivers',
@@ -16,7 +16,7 @@ export default function USBDriversPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Download className="w-4 h-4" />
             Installation
           </div>
@@ -74,7 +74,7 @@ export default function USBDriversPage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 <strong>Device detected?</strong> Skip to <Link href="/docs/installation/building" className="underline">Building Firmware</Link>. 
                 If not, continue below to install drivers.
@@ -166,11 +166,11 @@ export default function USBDriversPage() {
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                 CH340 drivers are built into the Linux kernel (2.6+). No installation needed.
               </p>
-              <p className="text-sm text-neutral-500">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 If your user can't access the port, add yourself to the dialout group:
               </p>
-              <CodeBlock code="sudo usermod -a -G dialout $USER" />
-              <p className="text-xs text-neutral-500 mt-2">Log out and back in for the change to take effect.</p>
+              <CodeBlock className="mt-2" code="sudo usermod -a -G dialout $USER" />
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">Log out and back in for the change to take effect.</p>
             </div>
           </div>
         </section>
@@ -228,7 +228,7 @@ export default function USBDriversPage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
@@ -293,7 +293,7 @@ export default function USBDriversPage() {
           </p>
           <Link 
             href="/docs/installation/building"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Building Firmware
             <ArrowRight className="w-4 h-4" />
@@ -322,7 +322,7 @@ function OSCheckCard({ icon, os, steps, success }: { icon: React.ReactNode; os: 
           </li>
         ))}
       </ol>
-      <p className="text-xs text-accent-600 dark:text-accent-dark-400">{success}</p>
+      <p className="text-xs text-accent-700 dark:text-accent-dark-400">{success}</p>
     </div>
   );
 }
@@ -336,7 +336,7 @@ function ChipCard({ name, description, identifier, common }: { name: string; des
         {common && <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs">Most common</span>}
       </div>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">{description}</p>
-      <p className="text-xs text-neutral-500">{identifier}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{identifier}</p>
     </div>
   );
 }
@@ -374,26 +374,17 @@ function DriverInstallCard({
         ))}
       </ol>
       {note && (
-        <p className="text-xs text-amber-600 dark:text-amber-400 mb-4">{note}</p>
+        <p className="text-xs text-amber-700 dark:text-amber-400 mb-4">{note}</p>
       )}
       <a 
         href={downloadUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+        className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
       >
         {downloadText}
         <ExternalLink className="w-3 h-3" />
       </a>
     </div>
-  );
-}
-
-// Component: Code Block
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="p-2 rounded bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-xs font-mono overflow-x-auto mt-2">
-      <code>{code}</code>
-    </pre>
   );
 }

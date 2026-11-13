@@ -16,13 +16,13 @@ const points = [
     icon: <Lock className="w-5 h-5" aria-hidden="true" />,
     title: "Encrypted, verified connections",
     description:
-      "Payment data comes from Rostrum servers over TLS with certificate verification. You can point the device at a server you run yourself.",
+      "By default, payment data comes from a Rostrum server over TLS with certificate verification. You can point the device at a server you run yourself.",
   },
   {
     icon: <KeyRound className="w-5 h-5" aria-hidden="true" />,
     title: "Locked with your password",
     description:
-      "Settings are protected by an access password of 8 to 128 characters. After 15 wrong attempts the device wipes itself.",
+      "The menu and settings are locked with an access password of 8 to 128 characters. After 15 wrong attempts in a row the device wipes itself.",
   },
   {
     icon: <FileCheck2 className="w-5 h-5" aria-hidden="true" />,
@@ -38,7 +38,7 @@ export function Security() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <ScrollReveal>
           <div className="max-w-2xl mb-16 md:mb-20">
-            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 mb-3">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
               Security
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">

@@ -5,6 +5,7 @@ import { Hero } from "./_components/sections/Hero";
 import { Features } from "./_components/sections/Features";
 import { Device } from "./_components/sections/Device";
 import { HowItWorks } from "./_components/sections/HowItWorks";
+import { Screens } from "./_components/sections/Screens";
 import { Comparison } from "./_components/sections/Comparison";
 import { Security } from "./_components/sections/Security";
 import { FAQ } from "./_components/sections/FAQ";
@@ -98,6 +99,7 @@ export default function HomePage() {
         <Features />
         <Device />
         <HowItWorks />
+        <Screens />
         <Comparison />
         <Security />
         <FAQ />

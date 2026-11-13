@@ -30,7 +30,7 @@ export default function NetworkSecurityPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Settings className="w-4 h-4" />
             Setup
           </div>
@@ -58,13 +58,13 @@ export default function NetworkSecurityPage() {
             <SecurityFact 
               icon={<Globe className="w-5 h-5" />}
               title="Outbound Only"
-              description="PayDeck only makes outbound connections to Rostrum servers. No inbound ports need to be opened."
+              description="PayDeck only makes outbound connections: to its Rostrum server, to DNS, and to public time servers (NTP). No inbound ports need to be opened."
               positive={true}
             />
             <SecurityFact 
               icon={<Lock className="w-5 h-5" />}
               title="TLS Encrypted"
-              description="All connections use WSS (WebSocket Secure) with TLS encryption on port 20004."
+              description="By default all Rostrum traffic uses WSS (WebSocket Secure) with TLS encryption on port 20004."
               positive={true}
             />
             <SecurityFact 
@@ -243,19 +243,25 @@ export default function NetworkSecurityPage() {
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TCP/WSS</td>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20004</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Rostrum WSS (required)</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Rostrum WSS (required)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TCP/WS</td>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20003</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Rostrum WS (optional, unencrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Rostrum WS (optional, unencrypted)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">UDP</td>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">53</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">DNS (if using hostname)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">DNS (if using hostname)</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Outbound</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">UDP</td>
+                  <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">123</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">NTP time sync (pool.ntp.org, time.google.com, time.nist.gov)</td>
                 </tr>
                 <tr className="bg-red-50/50 dark:bg-red-950/20">
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Inbound</td>
@@ -348,7 +354,7 @@ export default function NetworkSecurityPage() {
           </p>
           <Link 
             href="/docs/wallet/options"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Wallet Options
             <ArrowRight className="w-4 h-4" />
@@ -364,12 +370,12 @@ function SecurityFact({ icon, title, description, positive }: { icon: React.Reac
   return (
     <div className={`p-4 rounded-lg border ${positive ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20'}`}>
       <div className="flex items-start gap-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${positive ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'}`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${positive ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'}`}>
           {icon}
         </div>
         <div>
           <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -392,7 +398,7 @@ function DeploymentCard({ title, risk, description, children }: { title: string;
           {risk} Risk
         </span>
       </div>
-      <p className="text-sm text-neutral-500 mb-4">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">{description}</p>
       {children}
     </div>
   );
@@ -414,7 +420,7 @@ function IsolationMethod({ title, difficulty, description, steps }: { title: str
           {difficulty}
         </span>
       </div>
-      <p className="text-sm text-neutral-500 mb-3">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">{description}</p>
       <ol className="space-y-1">
         {steps.map((step, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">

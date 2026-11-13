@@ -16,7 +16,7 @@ export default function EnablingPrivacyPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Privacy
           </div>
@@ -24,7 +24,7 @@ export default function EnablingPrivacyPage() {
             Enabling Privacy Mode
           </h1>
           <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            Generate a fresh address for each payment to prevent transaction linking.
+            Use a fresh address for each payment to prevent transaction linking. Privacy is off by default.
           </p>
         </div>
 
@@ -43,16 +43,16 @@ export default function EnablingPrivacyPage() {
             <RequirementCard 
               title="Works With"
               items={[
-                "Generate Seed",
-                "Import Seed",
-                "Import xPub"
+                "Create wallet (new seed)",
+                "Restore wallet (existing seed)",
+                "Import xPub key"
               ]}
               works={true}
             />
             <RequirementCard 
               title="Does Not Work With"
               items={[
-                "Manual Address mode"
+                "Enter address (one fixed address)"
               ]}
               works={false}
             />
@@ -85,17 +85,17 @@ export default function EnablingPrivacyPage() {
             <Step 
               number={2} 
               title="Find Privacy Mode"
-              description="Look for 'Privacy Mode', 'Fresh Addresses', or 'Address Rotation' option"
+              description="In Wallet settings, find the row named Privacy. Its second line reads 'Reuses address' while privacy is off"
             />
           
             <Step 
               number={3} 
               title="Toggle On"
-              description="Enable the privacy mode toggle. The setting takes effect immediately."
+              description="Tap the row and confirm 'Enable privacy mode?' with Enable. 'Privacy enabled' appears and the row now reads 'Rotates addresses'. From firmware 0.5.1 the device also moves to an address it has never shown before. Without a seed or xPub the device says 'Cannot enable privacy'."
             >
               <div className="mt-3 flex items-center gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-                <ToggleRight className="w-5 h-5 text-accent-600 dark:text-accent-dark-400" />
-                <span className="text-sm text-accent-800 dark:text-accent-dark-300">Privacy Mode: Enabled</span>
+                <ToggleRight className="w-5 h-5 text-accent-700 dark:text-accent-dark-400" />
+                <span className="text-sm text-accent-800 dark:text-accent-dark-300">Privacy: Rotates addresses</span>
               </div>
             </Step>
           </div>
@@ -122,7 +122,7 @@ export default function EnablingPrivacyPage() {
               icon={<EyeOff className="w-5 h-5" />}
               title="Privacy On"
               items={[
-                "New address for each payment",
+                "New address after every paid or cancelled invoice",
                 "Transactions not linked on chain",
                 "More addresses in wallet"
               ]}
@@ -207,7 +207,7 @@ export default function EnablingPrivacyPage() {
             <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <li className="flex items-start gap-2">
                 <span className="text-neutral-400">•</span>
-                Toggle off in Settings
+                Tap the Privacy row in Wallet settings again and confirm with Disable
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-neutral-400">•</span>
@@ -242,7 +242,7 @@ export default function EnablingPrivacyPage() {
           </p>
           <Link 
             href="/docs/privacy/derivation"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Address Derivation
             <ArrowRight className="w-4 h-4" />
@@ -277,7 +277,7 @@ function ModeCard({ icon, title, items, enabled }: { icon: React.ReactNode; titl
   return (
     <div className={`p-4 rounded-lg border ${enabled ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-2 mb-3">
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${enabled ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${enabled ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'}`}>
           {icon}
         </div>
         <h4 className={`font-medium ${enabled ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-700 dark:text-neutral-300'}`}>
@@ -303,7 +303,7 @@ function InfoItem({ title, description }: { title: string; description: string }
       <CheckCircle2 className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
         <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
-        <span className="text-neutral-500"> - {description}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {description}</span>
       </div>
     </div>
   );

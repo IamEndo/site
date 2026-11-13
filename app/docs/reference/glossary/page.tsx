@@ -14,7 +14,7 @@ export default function GlossaryPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <BookOpen className="w-4 h-4" />
             Reference
           </div>
@@ -30,7 +30,7 @@ export default function GlossaryPage() {
         <dl className="space-y-6">
           <Term 
             term="0-conf (Zero Confirmation)"
-            definition="A transaction that has been broadcast to the network but not yet included in a block. Nexa uses double-spend proofs to make 0-conf transactions secure for most use cases."
+            definition="A transaction that has been broadcast to the network but not yet included in a block. Nexa uses double-spend proofs to make 0-conf transactions secure for most use cases. PayDeck accepts payments at 0-conf, as reported by its Rostrum server, and does not check double-spend proofs itself."
           />
         
           <Term 
@@ -95,7 +95,7 @@ export default function GlossaryPage() {
         
           <Term 
             term="Entropy"
-            definition="Randomness used to generate cryptographic keys. Good entropy is essential for secure seed phrase generation. Sources include hardware random number generators and physical dice."
+            definition="Randomness used to generate cryptographic keys. Good entropy is essential for secure seed phrase generation. Wallets in general draw it from hardware random number generators or physical dice; PayDeck generates seeds only from touch-sensor noise collected while you tap the screen."
           />
         
           <Term 
@@ -145,7 +145,7 @@ export default function GlossaryPage() {
         
           <Term 
             term="Wallet Mode"
-            definition="Receive only (point-of-sale terminal) or Watch only (personal wallet monitor). Chosen once in the setup wizard and immutable afterwards; a factory reset is the only way to change it."
+            definition="Receive only (point-of-sale terminal) or Watch only (personal wallet monitor). Chosen once in the setup wizard and immutable afterwards; a factory reset is the only way to change it. In firmware 0.5.1 both modes behave the same apart from the label on the home screen."
           />
         
           <Term 

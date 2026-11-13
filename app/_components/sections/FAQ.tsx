@@ -15,7 +15,7 @@ export function FAQ() {
           <ScrollReveal>
             <div className="space-y-6">
               <div>
-                <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 mb-3">
+                <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
                   FAQ
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
@@ -28,7 +28,7 @@ export function FAQ() {
               </p>
 
               <div className="pt-4 space-y-4">
-                <p className="text-sm text-neutral-500">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">
                   Have a question not listed here?
                 </p>
                 <div className="flex flex-wrap gap-3">

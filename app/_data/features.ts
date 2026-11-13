@@ -2,7 +2,7 @@ export const features = [
   {
     id: "non-custodial",
     title: "Non-custodial",
-    description: "Your keys, your funds. The device is watch-only and never touches your private keys.",
+    description: "Your keys, your funds. The device is watch-only and never stores private keys. Import a public key or address to keep your seed off it entirely.",
   },
   {
     id: "instant",

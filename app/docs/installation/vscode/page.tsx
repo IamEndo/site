@@ -3,7 +3,7 @@ import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { Download, ArrowRight, CheckCircle2, ExternalLink, Apple } from "lucide-react";
-import { LinuxIcon, WindowsIcon } from "../../_components/DocsBlocks";
+import { CodeBlock, LinuxIcon, WindowsIcon } from "../../_components/DocsBlocks";
 
 export const metadata: Metadata = docsMetadata("/docs/installation/vscode", {
   title: 'Installing VS Code',
@@ -16,7 +16,7 @@ export default function VSCodePage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Download className="w-4 h-4" />
             Installation
           </div>
@@ -165,7 +165,7 @@ export default function VSCodePage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
@@ -208,7 +208,7 @@ export default function VSCodePage() {
           </p>
           <Link 
             href="/docs/installation/platformio"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Install PlatformIO
             <ArrowRight className="w-4 h-4" />
@@ -228,11 +228,11 @@ function OSCard({ icon, name, details, recommended }: { icon: React.ReactNode; n
         <div>
           <div className="font-medium text-neutral-900 dark:text-white">{name}</div>
           {recommended && (
-            <span className="text-xs text-accent-600 dark:text-accent-dark-400">Most common</span>
+            <span className="text-xs text-accent-700 dark:text-accent-dark-400">Most common</span>
           )}
         </div>
       </div>
-      <p className="text-sm text-neutral-500 dark:text-neutral-500">{details}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{details}</p>
     </div>
   );
 }
@@ -253,20 +253,11 @@ function InstallStep({ number, text }: { number: number; text: string }) {
 function VerifyStep({ number, text }: { number: number; text: React.ReactNode }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-neutral-600 dark:text-neutral-400 pt-0.5">{text}</p>
     </div>
-  );
-}
-
-// Component: Code Block
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="p-3 rounded-lg bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-sm font-mono overflow-x-auto">
-      <code>{code}</code>
-    </pre>
   );
 }
 

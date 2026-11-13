@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Zap, Chrome, CircleHelp } from "lucide-react";
 import { DocsArticle } from "../../_components/DocsArticle";
 import { Flasher } from "./_components/Flasher";
-import { FIRMWARE_VERSION } from "@/lib/constants";
+import { FIRMWARE_VERSION, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = docsMetadata("/docs/install/web-flasher", {
   title: "Web Flasher",
@@ -42,7 +42,7 @@ export default function WebFlasherPage() {
       <div className="max-w-4xl">
         {/* Hero */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Zap className="w-4 h-4" />
             Install
           </div>
@@ -68,7 +68,7 @@ export default function WebFlasherPage() {
               On other browsers, use the{" "}
               <Link
                 href="/docs/installation/building"
-                className="text-accent-600 dark:text-accent-dark-400 underline"
+                className="text-accent-700 dark:text-accent-dark-400 underline"
               >
                 manual installation guide
               </Link>
@@ -97,11 +97,11 @@ export default function WebFlasherPage() {
                   micro-USB board = ILI9341. See{" "}
                   <Link
                     href="/docs/getting-started/hardware"
-                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                    className="text-accent-700 dark:text-accent-dark-400 underline"
                   >
                     Hardware Requirements
                   </Link>{" "}
-                  for photos and the full table. Both images are the same
+                  for the full table. Both images are the same
                   firmware; only the panel driver differs.
                 </>
               }
@@ -140,7 +140,7 @@ export default function WebFlasherPage() {
                   setup wizard. Continue with the{" "}
                   <Link
                     href="/docs/installation/first-boot"
-                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                    className="text-accent-700 dark:text-accent-dark-400 underline"
                   >
                     first-boot guide
                   </Link>{" "}
@@ -166,7 +166,7 @@ export default function WebFlasherPage() {
                   either CH340 or CP210x &mdash; install the{" "}
                   <Link
                     href="/docs/installation/usb-drivers"
-                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                    className="text-accent-700 dark:text-accent-dark-400 underline"
                   >
                     matching driver
                   </Link>
@@ -198,7 +198,7 @@ export default function WebFlasherPage() {
                   download. Follow the{" "}
                   <Link
                     href="/docs/security/production-mode"
-                    className="text-accent-600 dark:text-accent-dark-400 underline"
+                    className="text-accent-700 dark:text-accent-dark-400 underline"
                   >
                     secure build guide
                   </Link>{" "}
@@ -220,7 +220,7 @@ export default function WebFlasherPage() {
               href={`https://gitlab.com/IamEndo/paydeck/-/tree/v${FIRMWARE_VERSION}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-600 dark:text-accent-dark-400 underline"
+              className="text-accent-700 dark:text-accent-dark-400 underline"
             >
               v{FIRMWARE_VERSION} source tree
             </a>
@@ -234,7 +234,7 @@ export default function WebFlasherPage() {
               href="https://gitlab.com/IamEndo/paydeck/-/releases"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-600 dark:text-accent-dark-400 underline"
+              className="text-accent-700 dark:text-accent-dark-400 underline"
             >
               GitLab releases page
             </a>
@@ -248,13 +248,46 @@ export default function WebFlasherPage() {
           </div>
 
           <div className="mt-6">
-            <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-500 mb-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
               Verify locally
             </div>
             <pre className="p-4 rounded-lg bg-neutral-900 dark:bg-black border border-neutral-800 text-xs text-neutral-100 font-mono overflow-x-auto">
               <code>{`sha256sum paydeck-v${FIRMWARE_VERSION}-*-merged.bin`}</code>
             </pre>
           </div>
+
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-10 mb-3">
+            Check the maintainer&apos;s signature
+          </h3>
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+            The hashes above are only as trustworthy as this web page. For independent
+            proof, check the application inside the image against the release&apos;s{" "}
+            <code className="font-mono text-sm">SHA256SUMS</code> file, which is signed with
+            the maintainer&apos;s OpenPGP key. The application starts 65,536 bytes
+            (0x10000) into the merged image and runs to the end of the file, so its hash
+            can be computed straight from the file you downloaded here.
+          </p>
+          <pre className="p-4 rounded-lg bg-neutral-900 dark:bg-black border border-neutral-800 text-xs text-neutral-100 font-mono overflow-x-auto">
+            <code>{`# 1. Get the signed checksum file and the maintainer's public key
+curl -LO https://gitlab.com/IamEndo/paydeck/-/raw/v${FIRMWARE_VERSION}/releases/v${FIRMWARE_VERSION}/SHA256SUMS
+curl -LO https://gitlab.com/IamEndo/paydeck/-/raw/v${FIRMWARE_VERSION}/releases/v${FIRMWARE_VERSION}/SHA256SUMS.asc
+curl -L ${SITE.signingKeyUrl} | gpg --import
+
+# 2. Verify the signature. Expect "Good signature" and this key fingerprint:
+#    ${SITE.signingKeyFingerprint}
+gpg --verify SHA256SUMS.asc SHA256SUMS
+
+# 3. Hash the application part of the image you are about to flash
+tail -c +65537 paydeck-v${FIRMWARE_VERSION}-st7789-merged.bin | sha256sum
+
+# 4. The result must equal the "esp32-cyd-st7789" line (or "ili9341" for that image)
+cat SHA256SUMS`}</code>
+          </pre>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-3 leading-relaxed">
+            gpg will add a warning that the key is not certified by a trusted signature
+            unless you have marked it as trusted yourself. That is expected; what matters
+            is &ldquo;Good signature&rdquo; together with the fingerprint above.
+          </p>
         </section>
       </div>
     </DocsArticle>
@@ -329,19 +362,19 @@ function ReleaseRow({
           <a
             href={`/firmware/${file}`}
             download
-            className="text-sm font-medium text-neutral-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors break-all"
+            className="text-sm font-medium text-neutral-900 dark:text-white hover:text-accent-700 dark:hover:text-accent-dark-400 transition-colors break-all"
           >
             {file}
           </a>
-          <div className="text-xs text-neutral-500 dark:text-neutral-500">
+          <div className="text-xs text-neutral-500 dark:text-neutral-400">
             {variant}
           </div>
         </div>
-        <span className="text-xs font-mono text-neutral-500 dark:text-neutral-500 flex-shrink-0">
+        <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 flex-shrink-0">
           {formatBytes(size)}
         </span>
       </div>
-      <code className="block text-xs font-mono text-neutral-500 dark:text-neutral-500 break-all">
+      <code className="block text-xs font-mono text-neutral-500 dark:text-neutral-400 break-all">
         {hash}
       </code>
     </div>

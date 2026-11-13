@@ -23,7 +23,7 @@ export default function DerivationPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Privacy
           </div>
@@ -49,7 +49,7 @@ export default function DerivationPage() {
 
           <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
             <div className="font-mono text-sm text-center text-neutral-600 dark:text-neutral-400">
-              <p className="mb-2">Seed Phrase (12 or 24 words)</p>
+              <p className="mb-2">Seed Phrase (12 to 24 words)</p>
               <p className="text-neutral-400 mb-2">↓</p>
               <p className="mb-2">Master Key</p>
               <p className="text-neutral-400 mb-2">↓</p>
@@ -116,32 +116,32 @@ export default function DerivationPage() {
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">m</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">-</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Master key (root)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Master key (root)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">44'</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">BIP44</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Purpose (multi-account)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Purpose (multi-account)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">29223'</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Nexa</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Coin type (Nexa's registered number)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Coin type (Nexa's registered number)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">0'</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Account</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Account index (first account)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Account index (first account)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">0</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">External</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Chain (0 = receiving, 1 = change)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Chain (0 = receiving, 1 = change)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">n</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">0, 1, 2...</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Address index (increments)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Address index (increments)</td>
                 </tr>
               </tbody>
             </table>
@@ -200,16 +200,20 @@ export default function DerivationPage() {
 
           <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-4">
             <div className="space-y-2 font-mono text-sm">
-              <p className="text-neutral-600 dark:text-neutral-400">Invoice 1 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">0</span></p>
-              <p className="text-neutral-600 dark:text-neutral-400">Invoice 2 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">1</span></p>
-              <p className="text-neutral-600 dark:text-neutral-400">Invoice 3 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">2</span></p>
-              <p className="text-neutral-500">... and so on</p>
+              <p className="text-neutral-600 dark:text-neutral-400">Privacy off → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">0</span> (always)</p>
+              <p className="text-neutral-600 dark:text-neutral-400">Privacy invoice 1 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">1</span></p>
+              <p className="text-neutral-600 dark:text-neutral-400">Privacy invoice 2 → m/44'/29223'/0'/0/<span className="text-accent-500 dark:text-accent-dark-500">2</span></p>
+              <p className="text-neutral-500 dark:text-neutral-400">... and so on</p>
             </div>
           </div>
 
-          <p className="text-sm text-neutral-500">
-            The counter is stored persistently on the device. After a factory reset, 
-            it starts from 0 again (which is fine, old addresses still work).
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Index 0 is the address used while privacy is off. Turning privacy on moves to the
+            next unused index, and the index then advances after every paid or cancelled invoice
+            (leaving the QR screen with Back keeps the same address). The counter is stored on the
+            device and is erased by a factory reset: if you set the same wallet up again, the
+            device starts over and hands out addresses it has used before. Payments to them
+            still arrive, but they are no longer unlinked from the earlier ones.
           </p>
         </section>
 
@@ -249,7 +253,7 @@ export default function DerivationPage() {
           </p>
           <Link 
             href="/docs/privacy/tradeoffs"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Privacy Tradeoffs
             <ArrowRight className="w-4 h-4" />
@@ -281,7 +285,7 @@ function BIPCard({ number, title, description }: { number: string; title: string
 function ProcessCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
-      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
         {icon}
       </div>
       <div>

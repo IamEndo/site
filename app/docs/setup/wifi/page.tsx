@@ -28,7 +28,7 @@ export default function WiFiPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Settings className="w-4 h-4" />
             Setup
           </div>
@@ -36,8 +36,9 @@ export default function WiFiPage() {
             WiFi Configuration
           </h1>
           <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            PayDeck requires a WiFi connection to communicate with Rostrum servers 
-            and monitor the blockchain for incoming payments.
+            PayDeck uses WiFi to reach a Rostrum server and detect incoming payments
+            automatically. WiFi is optional: in offline mode the device shows QR codes
+            without any network and you confirm each payment yourself.
           </p>
         </div>
 
@@ -95,7 +96,7 @@ export default function WiFiPage() {
             <Step 
               number={1} 
               title="Open WiFi Settings"
-              description="From the main menu, select 'WiFi' or 'Network'"
+              description="Tap Menu, enter your access password, then open Network settings and Wi-Fi settings"
             />
             <Step 
               number={2} 
@@ -109,19 +110,23 @@ export default function WiFiPage() {
             />
             <Step 
               number={4} 
-              title="Save and Connect"
-              description="Tap 'Save' to store credentials and connect to the network"
+              title="Tap OK"
+              description="The device tries to connect for up to 6 seconds. The credentials are saved only if the connection succeeds."
             />
           </div>
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Connection Successful</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
-                  When connected, the WiFi icon appears in the status bar and the device 
-                  automatically connects to the configured Rostrum server.
+                  A &ldquo;Connected&rdquo; message with the device&apos;s IP address appears and the
+                  WiFi icon in the top bar turns from grey to green. A new device starts in
+                  offline mode, so one more step is needed before it watches for payments: go
+                  back to Network settings, tap <strong>Network</strong> and confirm &ldquo;Go
+                  online&rdquo;. After that the device brings WiFi up whenever it creates an
+                  invoice; it does not stay connected on the home screen.
                 </p>
               </div>
             </div>
@@ -136,13 +141,13 @@ export default function WiFiPage() {
         
           <div className="space-y-3">
             <TipItem 
-              tip="Tap the shift key to toggle uppercase/lowercase"
+              tip="It is a phone-style keypad: tap a key repeatedly to cycle through its letters and digit"
             />
             <TipItem 
-              tip="Use the symbol key (123 or #+=) for numbers and special characters"
+              tip="The abc/ABC key switches capitals and the #@! key opens the symbols"
             />
             <TipItem 
-              tip="Long-press backspace to clear the entire field"
+              tip="Del removes one character per tap"
             />
             <TipItem 
               tip="Double-check your password before saving"
@@ -160,7 +165,7 @@ export default function WiFiPage() {
             <SecurityCard 
               icon={<Shield className="w-5 h-5" />}
               title="Credential Storage"
-              description="WiFi credentials are stored in the device's NVS (Non-Volatile Storage). In production mode, NVS is encrypted with a device-specific key."
+              description="The network name is stored in the device's NVS (Non-Volatile Storage). The WiFi password is always stored encrypted with a device-bound key (AES-256-GCM). Secure and production builds additionally encrypt the whole flash."
             />
             <SecurityCard 
               icon={<Wifi className="w-5 h-5" />}
@@ -170,7 +175,7 @@ export default function WiFiPage() {
             <SecurityCard 
               icon={<Lock className="w-5 h-5" />}
               title="Network Monitoring"
-              description="PayDeck only makes outbound connections to Rostrum servers. No inbound connections are accepted, reducing attack surface."
+              description="PayDeck only makes outbound connections: to its Rostrum server, to DNS, and to public time servers (NTP) for payment timestamps. No inbound connections are accepted, reducing attack surface."
             />
           </div>
         </section>
@@ -249,9 +254,9 @@ export default function WiFiPage() {
               ]}
             />
             <TroubleshootItem 
-              problem="Network not appearing"
+              problem="Connection failed"
               solutions={[
-                "Confirm the network is broadcasting (not hidden)",
+                "The network name is typed by hand (there is no network list) and is case-sensitive",
                 "Ensure it's a 2.4 GHz network",
                 "Check if MAC filtering is enabled on router",
                 "Restart the PayDeck device"
@@ -270,7 +275,7 @@ export default function WiFiPage() {
           </p>
           <Link 
             href="/docs/setup/rostrum"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Rostrum Servers
             <ArrowRight className="w-4 h-4" />
@@ -306,7 +311,7 @@ function RequirementCard({
               <span className="px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs">Required</span>
             )}
           </div>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -317,7 +322,7 @@ function RequirementCard({
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
@@ -343,7 +348,7 @@ function SecurityCard({ icon, title, description }: { icon: React.ReactNode; tit
   return (
     <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>

@@ -23,7 +23,7 @@ export default function FactoryResetPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
@@ -118,8 +118,10 @@ export default function FactoryResetPage() {
             <Step number={5} text="The device erases its storage, restarts and shows the setup wizard" />
           </div>
 
-          <p className="text-sm text-neutral-500 mb-8">
-            Fifteen consecutive wrong passwords on the unlock screen trigger the same wipe automatically.
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-8">
+            Fifteen consecutive wrong passwords on the unlock screen trigger the same wipe automatically,
+            and so does entering the optional{" "}
+            <Link href="/docs/security/duress-password" className="underline">duress password</Link>.
           </p>
 
           <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-4">
@@ -136,9 +138,9 @@ export default function FactoryResetPage() {
             </code>
           </div>
 
-          <p className="text-sm text-neutral-500 mb-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
             Then flash the firmware again, either with PlatformIO or the{" "}
-            <Link href="/docs/install/web-flasher" className="text-accent-600 dark:text-accent-dark-400 hover:underline">web flasher</Link>,
+            <Link href="/docs/install/web-flasher" className="text-accent-700 dark:text-accent-dark-400 hover:underline">web flasher</Link>,
             which erases the chip before installing. Use the ILI9341 environment name on a single-USB board.
           </p>
 
@@ -146,8 +148,9 @@ export default function FactoryResetPage() {
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-amber-800 dark:text-amber-300">
-                <strong>Production mode devices:</strong> cannot be reflashed. Factory reset from the menu
-                is the only option, so a forgotten password on a sealed device cannot be recovered.
+                <strong>Production mode devices:</strong> cannot be reflashed. If the password is
+                forgotten, enter 15 wrong passwords in a row on the unlock screen: the device wipes
+                itself and restarts in the setup wizard. The old settings are gone; the device stays usable.
               </p>
             </div>
           </div>
@@ -172,7 +175,7 @@ export default function FactoryResetPage() {
             <SetupItem
               step="Password"
               description="A new access password, 8 to 128 characters"
-              href="/docs/security/pin-setup"
+              href="/docs/security/access-password"
             />
             <SetupItem
               step="Wallet"
@@ -181,7 +184,7 @@ export default function FactoryResetPage() {
             />
             <SetupItem
               step="Network"
-              description="Then, from the Menu: Wi-Fi and node settings"
+              description="Then, from the Menu: Wi-Fi settings, Node settings, and switch Network to online (a reset device starts offline)"
               href="/docs/setup/wifi"
             />
           </div>
@@ -191,13 +194,14 @@ export default function FactoryResetPage() {
         <section className="mb-12">
           <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-6 h-6 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-6 h-6 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">Your Funds Are Safe</h3>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                   Factory reset only erases device settings. Your cryptocurrency is on the
-                  blockchain, not on the device. As long as you have your seed phrase backed up,
-                  you can restore access by entering the seed into PayDeck or any compatible wallet.
+                  blockchain, not on the device. With your seed phrase (and the passphrase, if you set
+                  one) you can spend the funds from any compatible Nexa wallet. Restoring the seed on
+                  PayDeck only brings back the same receiving addresses; PayDeck itself cannot spend.
                 </p>
               </div>
             </div>
@@ -214,7 +218,7 @@ export default function FactoryResetPage() {
           </p>
           <Link
             href="/docs/installation/first-boot"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             First Boot Guide
             <ArrowRight className="w-4 h-4" />
@@ -233,7 +237,7 @@ function EraseCard({ title, items, erased }: { title: string; items: string[]; e
         {erased ? (
           <Trash2 className="w-4 h-4 text-red-600 dark:text-red-400" />
         ) : (
-          <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400" />
+          <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400" />
         )}
         <h4 className={`font-medium ${erased ? 'text-red-700 dark:text-red-300' : 'text-accent-700 dark:text-accent-dark-300'}`}>
           {title}
@@ -269,7 +273,7 @@ function ReasonItem({ text }: { text: string }) {
 function Step({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="w-6 h-6 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">
         {number}
       </div>
       <p className="text-sm text-neutral-700 dark:text-neutral-300">{text}</p>
@@ -283,7 +287,7 @@ function SetupItem({ step, description, href }: { step: string; description: str
     <Link href={href} className="flex items-center justify-between p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
       <div>
         <span className="font-medium text-neutral-900 dark:text-white">{step}</span>
-        <span className="text-neutral-500"> - {description}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {description}</span>
       </div>
       <ArrowRight className="w-4 h-4 text-neutral-400" />
     </Link>

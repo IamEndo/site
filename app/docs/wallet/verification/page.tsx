@@ -28,7 +28,7 @@ export default function VerificationPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -171,7 +171,7 @@ export default function VerificationPage() {
             <Step 
               number={3} 
               title="Enter Your Seed Words"
-              description="Carefully enter the seed phrase you wrote down during PayDeck setup"
+              description="Carefully enter the seed phrase you wrote down during PayDeck setup. If you added a passphrase on PayDeck, enter exactly the same passphrase here too; the words alone open a different, empty wallet."
             >
               <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
                 <p className="text-xs text-amber-800 dark:text-amber-300">
@@ -188,7 +188,7 @@ export default function VerificationPage() {
             >
               <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
                   <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                     <strong>Addresses match?</strong> Your seed is correctly recorded. 
                     Both wallets are viewing the same funds.
@@ -267,12 +267,12 @@ export default function VerificationPage() {
               </div>
               <div>
                 <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Otoplo</h4>
-                <p className="text-sm text-neutral-500 mb-2">Multi-platform wallet with social features</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">Multi-platform wallet with social features</p>
                 <a 
                   href="https://otoplo.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+                  className="text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
                 >
                   Visit →
                 </a>
@@ -291,7 +291,7 @@ export default function VerificationPage() {
           </p>
           <Link 
             href="/docs/wallet/import-xpub"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Import xPub
             <ArrowRight className="w-4 h-4" />
@@ -319,12 +319,12 @@ function ComparisonCard({
   return (
     <div className={`p-5 rounded-lg border ${highlighted ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-center gap-3 mb-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highlighted ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
           {icon}
         </div>
         <div>
           <h4 className="font-semibold text-neutral-900 dark:text-white">{title}</h4>
-          <p className="text-xs text-neutral-500">{subtitle}</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">{subtitle}</p>
         </div>
       </div>
       <ul className="space-y-1">
@@ -344,12 +344,12 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
   return (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>

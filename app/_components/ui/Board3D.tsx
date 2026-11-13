@@ -2828,17 +2828,23 @@ export function Board() {
 // ─────────────────────────────────────────────────────────────────────
 function AutoOrbit({
   enabled,
+  nudge,
   radPerSec = 0.13,
   children,
 }: {
   enabled: boolean;
+  /** Rotation (radians) requested from the keyboard; consumed each frame. */
+  nudge: React.RefObject<number>;
   radPerSec?: number;
   children: React.ReactNode;
 }) {
   const ref = React.useRef<THREE.Group>(null);
   useFrame((_, delta) => {
-    if (enabled && ref.current) {
-      ref.current.rotation.y += radPerSec * Math.min(delta, 0.1);
+    if (!ref.current) return;
+    if (enabled) ref.current.rotation.y += radPerSec * Math.min(delta, 0.1);
+    if (nudge.current !== 0) {
+      ref.current.rotation.y += nudge.current;
+      nudge.current = 0;
     }
   });
   return <group ref={ref}>{children}</group>;
@@ -2900,10 +2906,24 @@ export function Board3D() {
   const wrapRef = React.useRef<HTMLDivElement>(null);
   const active = useSceneActive(wrapRef);
   const reducedMotion = usePrefersReducedMotion();
+  const nudge = React.useRef(0);
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    nudge.current += e.key === "ArrowLeft" ? -0.3 : 0.3;
+    setInteracted(true);
+  };
 
   return (
     <CanvasErrorBoundary>
-    <div ref={wrapRef} className="w-full h-full" role="img" aria-label="Interactive 3D model of the ESP32-2432S028R board. Drag to rotate.">
+    <div
+      ref={wrapRef}
+      className="w-full h-full rounded-sm focus-visible:outline-neutral-400 dark:focus-visible:outline-neutral-500"
+      role="group"
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+      aria-label="Interactive 3D model of the ESP32-2432S028R board. Drag, or focus it and press the left and right arrow keys, to rotate."
+    >
       <Canvas
         shadows
         camera={{ position: [0, 0, 2.6], fov: 32 }}
@@ -2955,7 +2975,7 @@ export function Board3D() {
             the old "city" HDRI (which mirrored apartment buildings in
             the display glass). */}
         <React.Suspense fallback={null}>
-          <Environment files="/hdri/studio_small_03_1k.hdr" environmentIntensity={0.26} />
+          <Environment files="/hdri/studio_small_03_256.hdr" environmentIntensity={0.26} />
         </React.Suspense>
 
         <ContactShadows
@@ -2968,7 +2988,7 @@ export function Board3D() {
           color="#000000"
         />
 
-        <AutoOrbit enabled={!interacted && !reducedMotion}>
+        <AutoOrbit enabled={!interacted && !reducedMotion} nudge={nudge}>
           <group rotation={[0, 0, Math.PI / 2]}>
             <Board />
           </group>

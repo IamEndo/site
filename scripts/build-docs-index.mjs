@@ -1,4 +1,4 @@
-// Builds app/docs/_data/search-index.json from the docs page sources.
+// Builds app/docs/_data/search-index.json and toc.json from the docs page sources.
 // Runs before every build (npm "prebuild") and on demand: npm run docs:index
 // No dependencies: the pages are plain TSX, so titles, descriptions, h2
 // headings and visible text are pulled out with regular expressions.
@@ -64,6 +64,7 @@ function sectionOf(href) {
 }
 
 const index = [];
+const toc = {};
 for (const file of pages(docsDir).sort()) {
   const src = readFileSync(file, "utf8");
   const rel = relative(join(root, "app"), dirname(file)).split(sep).join("/");
@@ -86,8 +87,22 @@ for (const file of pages(docsDir).sort()) {
   }
   const uniqueHeadings = headings.map((h) => (seen.get(h.id) === 1 ? h : { text: h.text }));
 
+  // "On this page" list for the first paint (the page refines it from the
+  // real DOM after hydration). Same id scheme as DocsArticle: -2, -3 on repeats.
+  const used = new Set();
+  toc[href] = headings.map((h) => {
+    let id = h.id, n = 2;
+    while (used.has(id)) id = `${h.id}-${n++}`;
+    used.add(id);
+    return { id, text: h.text };
+  });
+
   // Visible text: JSX text nodes plus the string props the page helpers render.
-  const body = src.slice(src.indexOf(metaBlock) + metaBlock.length);
+  // Content a page pulls in from app/_data (e.g. the release list) counts too.
+  let body = src.slice(src.indexOf(metaBlock) + metaBlock.length);
+  for (const m of src.matchAll(/from ["']@\/app\/_data\/([\w-]+)["']/g)) {
+    body += "\n" + readFileSync(join(root, "app", "_data", `${m[1]}.ts`), "utf8");
+  }
   const parts = [];
   for (const m of body.matchAll(/>([^<>{}]*[A-Za-z]{3}[^<>{}]*)</g)) {
     const t = clean(m[1]);
@@ -113,6 +128,7 @@ for (const file of pages(docsDir).sort()) {
   index.push({ href, title, section: sectionOf(href), description, headings: uniqueHeadings, text });
 }
 
+writeFileSync(join(docsDir, "_data", "toc.json"), JSON.stringify(toc) + "\n");
 const out = join(docsDir, "_data", "search-index.json");
 writeFileSync(out, JSON.stringify(index) + "\n");
 console.log(`docs search index: ${index.length} pages, ${(JSON.stringify(index).length / 1024).toFixed(0)} KB -> ${relative(root, out)}`);

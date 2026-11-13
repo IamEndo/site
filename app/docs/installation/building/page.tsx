@@ -16,7 +16,7 @@ export default function BuildingPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wrench className="w-4 h-4" />
             Installation
           </div>
@@ -68,7 +68,7 @@ export default function BuildingPage() {
                 Download ZIP
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <p className="text-xs text-neutral-500 mt-2">Extract to a folder on your computer</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">Extract to a folder on your computer</p>
             </OptionCard>
           </div>
         </section>
@@ -123,17 +123,22 @@ export default function BuildingPage() {
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Development</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended for most users</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Recommended: dual-USB boards (ST7789 panel)</td>
+                </tr>
+                <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-hspi-ili9341-2v8</td>
+                  <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Development</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Recommended: single micro-USB boards (ILI9341 panel)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">None (IDF reference)</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Base for the secure builds</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Base for the secure builds</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-secure</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Secure Development</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Flash + NVS encrypted, still reflashable</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Flash + NVS encrypted, reflashable a limited number of times</td>
                 </tr>
                 <tr className="bg-red-50/50 dark:bg-red-950/20">
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-release</td>
@@ -165,9 +170,23 @@ export default function BuildingPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                <strong>Recommendation:</strong> Use <code className="px-1 py-0.5 rounded bg-blue-100 dark:bg-blue-900 text-xs">esp32dev-hspi-st7789-2v8</code> for 
-                development and testing. Since PayDeck operates in watch-only mode and never stores private keys, 
+                <strong>Recommendation:</strong> Use the development environment that matches your
+                panel: <code className="px-1 py-0.5 rounded bg-blue-100 dark:bg-blue-900 text-xs">esp32dev-hspi-st7789-2v8</code> for
+                dual-USB boards or <code className="px-1 py-0.5 rounded bg-blue-100 dark:bg-blue-900 text-xs">esp32dev-hspi-ili9341-2v8</code> for
+                single micro-USB boards. Since PayDeck operates in watch-only mode and never stores private keys,
                 development mode is secure enough for most use cases.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800">
+            <div className="flex gap-3">
+              <Info className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-red-800 dark:text-red-300">
+                <strong>The <code className="text-xs">esp32dev-idf*</code> environments are built for the ST7789
+                (dual-USB) panel only.</strong> There is no secure or production environment for ILI9341
+                boards. Do not seal an ILI9341 board with <code className="text-xs">esp32dev-idf-release</code>:
+                the screen would stay white and the step cannot be undone.
               </p>
             </div>
           </div>
@@ -184,12 +203,14 @@ export default function BuildingPage() {
           </p>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Development mode (recommended):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Development mode (recommended), dual-USB board:</p>
             <CodeBlock code="pio run -t upload -e esp32dev-hspi-st7789-2v8" />
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mt-4 mb-2">Development mode, single micro-USB board:</p>
+            <CodeBlock code="pio run -t upload -e esp32dev-hspi-ili9341-2v8" />
           </div>
 
           <div className="mb-6">
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Secure development (real flash + NVS encryption, still reflashable):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Secure development (real flash + NVS encryption, reflashable a limited number of times; ST7789 boards only):</p>
             <CodeBlock code="pio run -t upload -e esp32dev-idf-secure" />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
               First boot encrypts the flash and burns dev-mode eFuses. Use a board you can dedicate.
@@ -223,7 +244,7 @@ esp32dev-hspi-st7789-2v8     SUCCESS   00:00:42`} />
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 If you see <code className="px-1 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900 text-xs">[SUCCESS]</code>, the firmware has been built and uploaded to the device.
               </p>
@@ -251,7 +272,7 @@ Hard resetting via RTS pin...
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success!</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
@@ -289,10 +310,10 @@ Hard resetting via RTS pin...
             <TroubleshootItem 
               problem="Display shows white/blank screen after flash"
               solutions={[
-                "Most ESP32 boards use ST7789 driver (default configuration)",
-                "Some board revisions use the ILI9341 display controller instead of ST7789",
-                "If display is blank, check platformio.ini for driver configuration",
-                "Check serial output for error messages"
+                "A white screen means the wrong panel driver; nothing is damaged",
+                "Single micro-USB board: flash esp32dev-hspi-ili9341-2v8 instead of esp32dev-hspi-st7789-2v8",
+                "Dual-USB board: flash esp32dev-hspi-st7789-2v8 instead of esp32dev-hspi-ili9341-2v8",
+                "Released builds print no serial logs; set CFG_DEBUG to 1 in src/main.ino to get them (115200 baud)"
               ]}
             />
             <TroubleshootItem 
@@ -317,7 +338,7 @@ Hard resetting via RTS pin...
           </p>
           <Link 
             href="/docs/installation/first-boot"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             First Boot
             <ArrowRight className="w-4 h-4" />
@@ -336,7 +357,7 @@ function OptionCard({ title, description, recommended, children }: { title: stri
         <h3 className="font-semibold text-neutral-900 dark:text-white">{title}</h3>
         {recommended && <span className="px-2 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300 text-xs">Recommended</span>}
       </div>
-      <p className="text-sm text-neutral-500 mb-3">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">{description}</p>
       {children}
     </div>
   );
@@ -346,7 +367,7 @@ function OptionCard({ title, description, recommended, children }: { title: stri
 function Step({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-neutral-600 dark:text-neutral-400 pt-0.5">{text}</p>

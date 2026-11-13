@@ -29,7 +29,7 @@ export default function RostrumPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Settings className="w-4 h-4" />
             Setup
           </div>
@@ -87,7 +87,7 @@ export default function RostrumPage() {
           <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
-                <p className="text-sm text-neutral-500 mb-1">Public Rostrum Server</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">Public Rostrum Server</p>
                 <code className="text-lg font-mono text-neutral-900 dark:text-white">electrum.nexa.org:20004</code>
               </div>
               <div className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export default function RostrumPage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-accent-800 dark:text-accent-dark-300">
                 The default server is suitable for most users. It's operated by the Nexa community 
                 and provides reliable, low-latency connections.
@@ -129,13 +129,13 @@ export default function RostrumPage() {
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20004</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WSS (WebSocket Secure)</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TLS encrypted</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs font-medium">Recommended</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs font-medium">Recommended</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20003</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WS (WebSocket)</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Unencrypted</td>
-                  <td className="px-4 py-3 text-amber-600 dark:text-amber-400 text-xs font-medium">Not recommended</td>
+                  <td className="px-4 py-3 text-amber-700 dark:text-amber-400 text-xs font-medium">Not recommended</td>
                 </tr>
               </tbody>
             </table>
@@ -145,8 +145,10 @@ export default function RostrumPage() {
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-amber-800 dark:text-amber-300">
-                <strong>Always use port 20004 (WSS)</strong> when possible. Unencrypted connections 
-                on port 20003 expose your address queries to network observers.
+                <strong>Always use port 20004 (WSS)</strong> when possible. An unencrypted connection
+                on port 20003 does more than expose your address queries: the server is not
+                authenticated, so anyone on the network path can impersonate it and make the
+                device show a payment that never happened.
               </p>
             </div>
           </div>
@@ -166,7 +168,7 @@ export default function RostrumPage() {
             <Step 
               number={1} 
               title="Access Node Settings"
-              description="From the main menu, select 'Node' or 'Server'"
+              description="Tap Menu, enter your access password, then open Network settings and Node settings"
             />
             <Step 
               number={2} 
@@ -180,13 +182,13 @@ export default function RostrumPage() {
             />
             <Step 
               number={4} 
-              title="Configure TLS"
-              description="Enable TLS for port 20004, disable for port 20003"
+              title="Choose WSS or WS"
+              description="The keyboard has a key labelled WSS or WS; tap it to switch (WSS means TLS). It does not change a port you already typed, so make the port match: 20004 for WSS, 20003 for WS. An empty port field takes the default for the chosen scheme."
             />
             <Step 
               number={5} 
-              title="Save and Connect"
-              description="Tap 'Save' to disconnect from the current server and connect to the new one"
+              title="Tap OK"
+              description="'Settings saved' appears and the device uses the new server from the next connection."
             />
           </div>
         </section>
@@ -222,7 +224,7 @@ export default function RostrumPage() {
 
           <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800 mb-6">
             <div className="flex gap-3">
-              <Lock className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <Lock className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-2">What Rostrum Servers Cannot See</div>
                 <ul className="space-y-1 text-sm text-accent-800 dark:text-accent-dark-300">
@@ -303,7 +305,7 @@ export default function RostrumPage() {
           </p>
           <Link 
             href="/docs/setup/own-server"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Running Your Own Server
             <ArrowRight className="w-4 h-4" />
@@ -319,12 +321,12 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
   return (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -335,7 +337,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>

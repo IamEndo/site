@@ -6,7 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 export function Step({ number, title, description, children }: { number: number; title: string; description: string; children?: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div className="flex-1">
@@ -37,18 +37,20 @@ export function TroubleshootItem({ problem, solutions }: { problem: string; solu
 export function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
-      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400">
+      <div className="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400">
         {icon}
       </div>
-      <p className="text-xs text-neutral-500 mb-1">{label}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{label}</p>
       <p className="font-semibold text-neutral-900 dark:text-white">{value}</p>
     </div>
   );
 }
 
-export function CodeBlock({ code }: { code: string }) {
+export function CodeBlock({ code, className }: { code: string; className?: string }) {
   return (
-    <pre className="p-3 rounded-lg bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-xs font-mono overflow-x-auto">
+    <pre
+      className={`p-3 rounded-lg bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-xs font-mono overflow-x-auto ${className ?? ""}`}
+    >
       <code>{code}</code>
     </pre>
   );
@@ -57,7 +59,7 @@ export function CodeBlock({ code }: { code: string }) {
 export function VerifyStep({ number, text }: { number: number; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
+      <div className="w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center text-sm font-medium flex-shrink-0">
         {number}
       </div>
       <p className="text-neutral-600 dark:text-neutral-400 pt-0.5">{text}</p>
@@ -71,7 +73,7 @@ export function UseCase({ title, description }: { title: string; description: st
       <CheckCircle2 className="w-5 h-5 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-neutral-500">{description}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );

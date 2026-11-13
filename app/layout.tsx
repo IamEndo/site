@@ -87,6 +87,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  alternates: {
+    types: { "application/atom+xml": [{ url: "/releases.xml", title: "PayDeck firmware releases" }] },
+  },
   category: "technology",
 };
 

@@ -16,7 +16,7 @@ export default function OwnServerPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Settings className="w-4 h-4" />
             Setup
           </div>
@@ -43,13 +43,13 @@ export default function OwnServerPage() {
             />
             <BenefitCard 
               icon={<Lock className="w-5 h-5" />}
-              title="Trustless Verification"
-              description="Verify transactions against your own full node. No trust in external servers."
+              title="Your Own Source of Truth"
+              description="PayDeck trusts what its server reports. With your own node, that trust rests on a machine you run instead of someone else's."
             />
             <BenefitCard 
               icon={<Server className="w-5 h-5" />}
               title="Full Control"
-              description="Configure ports, SSL certificates, and access controls exactly as needed."
+              description="Choose the ports and access controls yourself. Note the certificate requirement for WSS below."
             />
             <BenefitCard 
               icon={<Cpu className="w-5 h-5" />}
@@ -78,22 +78,22 @@ export default function OwnServerPage() {
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Operating System</td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Linux, macOS, Windows</td>
-                  <td className="px-4 py-3 text-neutral-500">Linux (Ubuntu/Debian)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Linux (Ubuntu/Debian)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">RAM</td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">4 GB</td>
-                  <td className="px-4 py-3 text-neutral-500">8+ GB</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">8+ GB</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Storage</td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">50 GB SSD</td>
-                  <td className="px-4 py-3 text-neutral-500">100+ GB SSD</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">100+ GB SSD</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Network</td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Stable connection</td>
-                  <td className="px-4 py-3 text-neutral-500">10+ Mbps</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">10+ Mbps</td>
                 </tr>
               </tbody>
             </table>
@@ -123,12 +123,13 @@ export default function OwnServerPage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800 mb-6">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Linux: Enabled by Default</div>
+                <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Rostrum Comes with the Node</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
-                  Just run <code className="px-1 py-0.5 rounded bg-accent-100 dark:bg-accent-dark-900 text-xs">nexad</code> and 
-                  Rostrum starts automatically on ports 20001-20004.
+                  The Nexa full node ships with Rostrum and starts it for you. By default it listens
+                  on port 20001 (TCP) and 20003 (WebSocket); the encrypted ports 20002 and 20004
+                  need a certificate (see below).
                 </p>
               </div>
             </div>
@@ -138,22 +139,23 @@ export default function OwnServerPage() {
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-medium text-amber-900 dark:text-amber-200 mb-1">macOS/Windows: Must Enable Manually</div>
+                <div className="font-medium text-amber-900 dark:text-amber-200 mb-1">If Rostrum Does Not Start</div>
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  On other platforms, add the <code className="px-1 py-0.5 rounded bg-amber-100 dark:bg-amber-900 text-xs">-electrum</code> flag 
-                  to enable the built-in server.
+                  Add the <code className="px-1 py-0.5 rounded bg-amber-100 dark:bg-amber-900 text-xs">-electrum</code> flag
+                  to enable the built-in server. <code className="px-1 py-0.5 rounded bg-amber-100 dark:bg-amber-900 text-xs">nexad -help</code> lists
+                  every <code className="px-1 py-0.5 rounded bg-amber-100 dark:bg-amber-900 text-xs">-electrum.*</code> option of your version.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="mb-4">
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Start Nexa with Rostrum (macOS/Windows):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Start Nexa with Rostrum explicitly:</p>
             <CodeBlock code="nexad -electrum" />
           </div>
 
           <div className="mb-4">
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Configure as private (local only):</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Restrict it to this machine only (PayDeck then cannot reach it; use the machine's LAN address instead to let PayDeck connect):</p>
             <CodeBlock code="nexad -electrum.host=127.0.0.1 -electrum.ws.host=127.0.0.1" />
           </div>
         </section>
@@ -227,32 +229,32 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20001</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">TCP</td>
-                  <td className="px-4 py-3 text-neutral-500">Electrum RPC (unencrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Electrum RPC (unencrypted)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20002</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">SSL/TLS</td>
-                  <td className="px-4 py-3 text-neutral-500">Electrum RPC (encrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Electrum RPC (encrypted)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20003</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WebSocket</td>
-                  <td className="px-4 py-3 text-neutral-500">WS (unencrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">WS (unencrypted)</td>
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">20004</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">WebSocket Secure</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">WSS (PayDeck uses this)</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400">WSS (PayDeck uses this)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">21000</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">HTTP</td>
-                  <td className="px-4 py-3 text-neutral-500">REST API (unencrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">REST API (unencrypted)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-neutral-900 dark:text-white">21001</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">HTTPS</td>
-                  <td className="px-4 py-3 text-neutral-500">REST API (encrypted)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">REST API (encrypted)</td>
                 </tr>
               </tbody>
             </table>
@@ -273,17 +275,17 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
             <Step 
               number={1} 
               title="Access Node Settings"
-              description="From the PayDeck menu, select 'Node' or 'Server'"
+              description="Tap Menu, enter your access password, then open Network settings and Node settings"
             />
             <Step 
               number={2} 
               title="Enter Your Server Address"
-              description="For local server: 127.0.0.1 or your machine's LAN IP (e.g., 192.168.1.100)"
+              description="Enter the server's LAN IP (e.g. 192.168.1.100) or host name. Not 127.0.0.1: on the PayDeck that is the device itself."
             />
             <Step 
               number={3} 
-              title="Enter Port 20004"
-              description="Use 20004 for WSS (encrypted) or 20003 for WS (unencrypted on local network)"
+              title="Choose the Scheme and Port"
+              description="Tap the WSS/WS key on the keyboard, then enter the matching port: 20004 for WSS (encrypted) or 20003 for WS (unencrypted)."
             />
             <Step 
               number={4} 
@@ -296,8 +298,19 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                <strong>Local network:</strong> If PayDeck and Rostrum are on the same network, 
-                you can use port 20003 (WS) without SSL since traffic doesn't leave your network.
+                <strong>Certificates:</strong> for WSS the device accepts only a certificate that
+                chains to the Let&apos;s Encrypt root (ISRG Root X1). A self-signed or private-CA
+                certificate is rejected, and firmware 0.5.1 has no way to import your own. Get a
+                Let&apos;s Encrypt certificate for a domain name that points at your server (for
+                example with certbot) and give it to Rostrum with{" "}
+                <code className="text-xs">--ssl-cert-file</code> and{" "}
+                <code className="text-xs">--ssl-key-file</code> (through{" "}
+                <code className="text-xs">-electrum.rawarg</code> when nexad starts Rostrum for
+                you), then enter that same domain name as the host on PayDeck. If your server
+                has no Let&apos;s Encrypt certificate, the remaining option is WS on port
+                20003. That connection is neither encrypted nor authenticated: anyone on the same
+                network can impersonate the server and fake a payment, so use it only on a
+                network you fully control.
               </p>
             </div>
           </div>
@@ -312,7 +325,7 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
           <div className="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
-                <Server className="w-6 h-6 text-neutral-500" />
+                <Server className="w-6 h-6 text-neutral-500 dark:text-neutral-400" />
               </div>
               <div>
                 <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">Official Rostrum Documentation</h3>
@@ -324,7 +337,7 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
                   href="https://nexa.gitlab.io/rostrum/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
                 >
                   nexa.gitlab.io/rostrum
                   <ExternalLink className="w-3 h-3" />
@@ -344,7 +357,7 @@ rostrum --db-dir ./rostrum-db --electrum-rpc-addr 127.0.0.1:20001`} />
           </p>
           <Link 
             href="/docs/setup/network-security"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Network Security
             <ArrowRight className="w-4 h-4" />
@@ -360,12 +373,12 @@ function BenefitCard({ icon, title, description }: { icon: React.ReactNode; titl
   return (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <h3 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h3>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -382,7 +395,7 @@ function InstallMethod({ icon, title, description, code }: { icon: React.ReactNo
         </div>
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
       <CodeBlock code={code} />
@@ -394,7 +407,7 @@ function InstallMethod({ icon, title, description, code }: { icon: React.ReactNo
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>

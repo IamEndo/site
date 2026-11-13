@@ -23,7 +23,7 @@ export default function SpecificationsPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <BookOpen className="w-4 h-4" />
             Reference
           </div>
@@ -50,7 +50,7 @@ export default function SpecificationsPage() {
                 <SpecRow label="RAM" value="520 KB SRAM" />
                 <SpecRow label="Flash" value="4 MB" />
                 <SpecRow label="WiFi" value="802.11 b/g/n (2.4 GHz only)" />
-                <SpecRow label="Power" value="USB-C, 5V" />
+                <SpecRow label="Power" value="5V over USB (USB-C or micro-USB, by board variant)" />
               </tbody>
             </table>
           </div>
@@ -68,8 +68,8 @@ export default function SpecificationsPage() {
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <SpecRow label="Size" value="2.8 inches diagonal" />
                 <SpecRow label="Resolution" value="320 x 240 pixels" />
-                <SpecRow label="Type" value="IPS LCD" />
-                <SpecRow label="Driver" value="ST7789" />
+                <SpecRow label="Type" value="TFT LCD" />
+                <SpecRow label="Driver" value="ST7789 or ILI9341 (separate firmware image for each)" />
                 <SpecRow label="Touch" value="Resistive (XPT2046)" />
                 <SpecRow label="Interface" value="SPI (HSPI)" />
               </tbody>
@@ -90,7 +90,7 @@ export default function SpecificationsPage() {
                 <SpecRow label="Protocol" value="WebSocket Secure (WSS)" />
                 <SpecRow label="Server" value="Rostrum (Nexa blockchain indexer)" />
                 <SpecRow label="Default Port" value="20004 (WSS)" />
-                <SpecRow label="TLS" value="Required (certificate verification)" />
+                <SpecRow label="TLS" value="On by default (certificate verified against ISRG Root X1); plain WS can be selected and is not recommended" />
                 <SpecRow label="Root CA" value="ISRG Root X1 (Let's Encrypt)" />
               </tbody>
             </table>
@@ -158,26 +158,32 @@ export default function SpecificationsPage() {
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-hspi-st7789-2v8</td>
-                  <td className="px-4 py-3 text-neutral-500">No</td>
-                  <td className="px-4 py-3 text-neutral-500">No</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">Yes</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400">Yes</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-hspi-ili9341-2v8</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400">Yes</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf</td>
-                  <td className="px-4 py-3 text-neutral-500">No</td>
-                  <td className="px-4 py-3 text-neutral-500">No</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400">Yes</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400">Yes</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-secure</td>
-                  <td className="px-4 py-3 text-neutral-500">Yes (flash + NVS)</td>
-                  <td className="px-4 py-3 text-neutral-500">No</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Yes (flash + NVS)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">No</td>
                   <td className="px-4 py-3 text-amber-600 dark:text-amber-400">Limited</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-white">esp32dev-idf-release</td>
-                  <td className="px-4 py-3 text-neutral-500">Yes (permanent)</td>
-                  <td className="px-4 py-3 text-neutral-500">V2, RSA (permanent)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Yes (permanent)</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">V2, RSA (permanent)</td>
                   <td className="px-4 py-3 text-red-600 dark:text-red-400">Never</td>
                 </tr>
               </tbody>
@@ -208,6 +214,10 @@ export default function SpecificationsPage() {
               title="Access Password"
               description="8 to 128 characters, PBKDF2-derived key wraps the master key (AES-256-GCM), 15-strike wipe"
             />
+            <FeatureCard
+              title="Duress Password"
+              description="Optional second password that factory-wipes the device instead of unlocking it (firmware 0.5.1 and later)"
+            />
             <FeatureCard 
               title="Secure Memory"
               description="Seed phrases zeroed after use"
@@ -229,7 +239,7 @@ export default function SpecificationsPage() {
           </p>
           <Link 
             href="/docs/reference/glossary"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Glossary
             <ArrowRight className="w-4 h-4" />
@@ -255,7 +265,7 @@ function FeatureCard({ title, description }: { title: string; description: strin
   return (
     <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-neutral-500">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 }

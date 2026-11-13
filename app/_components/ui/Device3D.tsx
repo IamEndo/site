@@ -1856,17 +1856,23 @@ function Device() {
 // ─────────────────────────────────────────────────────────────────
 function AutoOrbit({
   enabled,
+  nudge,
   speed = 0.0021,
   children,
 }: {
   enabled: boolean;
+  /** Rotation (radians) requested from the keyboard; consumed each frame. */
+  nudge: React.RefObject<number>;
   speed?: number;
   children: React.ReactNode;
 }) {
   const ref = React.useRef<THREE.Group>(null);
   useFrame(() => {
-    if (enabled && ref.current) {
-      ref.current.rotation.y += speed;
+    if (!ref.current) return;
+    if (enabled) ref.current.rotation.y += speed;
+    if (nudge.current !== 0) {
+      ref.current.rotation.y += nudge.current;
+      nudge.current = 0;
     }
   });
   return <group ref={ref}>{children}</group>;
@@ -1926,10 +1932,24 @@ export function Device3D() {
   const wrapRef = React.useRef<HTMLDivElement>(null);
   const active = useSceneActive(wrapRef);
   const reducedMotion = usePrefersReducedMotion();
+  const nudge = React.useRef(0);
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    nudge.current += e.key === "ArrowLeft" ? -0.3 : 0.3;
+    setInteracted(true);
+  };
 
   return (
     <CanvasErrorBoundary>
-    <div ref={wrapRef} className="w-full h-full" role="img" aria-label="Interactive 3D model of a PayDeck terminal. Drag to rotate.">
+    <div
+      ref={wrapRef}
+      className="w-full h-full rounded-sm focus-visible:outline-neutral-400 dark:focus-visible:outline-neutral-500"
+      role="group"
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+      aria-label="Interactive 3D model of a PayDeck terminal. Drag, or focus it and press the left and right arrow keys, to rotate."
+    >
     <Canvas
       shadows
       camera={{ position: [0.95, 0.4, 2.05], fov: 30 }}
@@ -1970,7 +1990,7 @@ export function Device3D() {
       <pointLight position={[-2, -2, 2]} intensity={0.18} color="#9c7ec0" />
 
       <React.Suspense fallback={null}>
-        <Environment files="/hdri/potsdamer_platz_1k.hdr" environmentIntensity={0.5} />
+        <Environment files="/hdri/potsdamer_platz_256.hdr" environmentIntensity={0.5} />
       </React.Suspense>
 
       {/* Soft contact shadow under the device */}
@@ -1984,7 +2004,7 @@ export function Device3D() {
         color="#000000"
       />
 
-      <AutoOrbit enabled={!interacted && !reducedMotion}>
+      <AutoOrbit enabled={!interacted && !reducedMotion} nudge={nudge}>
         <group rotation={[0, 0.28, 0]}>
           <Device />
         </group>

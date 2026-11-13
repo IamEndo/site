@@ -7,6 +7,9 @@ import { getNextDoc, getPrevDoc, getDocTitle, getDocSection } from '../_data/nav
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SITE } from '@/lib/constants';
 import { slugify } from '@/lib/slug';
+import tocData from '../_data/toc.json';
+
+const initialToc = tocData as Record<string, TocItem[] | undefined>;
 
 interface DocsArticleProps {
   children: React.ReactNode;
@@ -24,7 +27,9 @@ interface TocItem {
  * honoured here because the browser could not resolve it by itself.
  */
 function useToc(articleRef: React.RefObject<HTMLElement | null>, pathname: string) {
-  const [items, setItems] = useState<TocItem[]>([]);
+  // Start from the build-time list so the box is in the first paint (no layout
+  // shift); the effect below replaces it with what is really in the DOM.
+  const [items, setItems] = useState<TocItem[]>(() => initialToc[pathname] ?? []);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -144,7 +149,7 @@ export function DocsArticle({ children }: DocsArticleProps) {
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
-          className="flex flex-wrap items-center gap-2 text-sm text-neutral-500 dark:text-neutral-500 mb-6"
+          className="flex flex-wrap items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 mb-6"
         >
           <Link href="/docs" className="hover:text-neutral-900 dark:hover:text-neutral-200">
             Docs
@@ -188,7 +193,7 @@ export function DocsArticle({ children }: DocsArticleProps) {
             >
               <ChevronLeft className="w-4 h-4" aria-hidden="true" />
               <span>
-                <span className="text-neutral-500 dark:text-neutral-500 block text-xs">Previous</span>
+                <span className="text-neutral-500 dark:text-neutral-400 block text-xs">Previous</span>
                 <span className="text-neutral-900 dark:text-white font-medium">{prevDoc.title}</span>
               </span>
             </Link>
@@ -202,7 +207,7 @@ export function DocsArticle({ children }: DocsArticleProps) {
               className="flex items-center gap-2 px-4 py-2 rounded-sm border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors text-sm text-right"
             >
               <span>
-                <span className="text-neutral-500 dark:text-neutral-500 block text-xs">Next</span>
+                <span className="text-neutral-500 dark:text-neutral-400 block text-xs">Next</span>
                 <span className="text-neutral-900 dark:text-white font-medium">{nextDoc.title}</span>
               </span>
               <ChevronRight className="w-4 h-4" aria-hidden="true" />
@@ -220,7 +225,7 @@ export function DocsArticle({ children }: DocsArticleProps) {
             aria-label="On this page"
             className="sticky top-28 max-h-[calc(100vh-9rem)] overflow-y-auto"
           >
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
               On this page
             </p>
             <TocList items={items} activeId={activeId} />

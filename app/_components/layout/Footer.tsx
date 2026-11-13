@@ -13,7 +13,7 @@ export function Footer() {
           {/* Left - Brand & description */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <Origami className="w-6 h-6 text-neutral-900 dark:text-white" />
+              <Origami className="w-6 h-6 text-neutral-900 dark:text-white" aria-hidden="true" />
               <span className="font-semibold text-neutral-900 dark:text-white tracking-tight">
                 {SITE.name}
               </span>
@@ -27,9 +27,9 @@ export function Footer() {
           {/* Right - Links grid */}
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <h4 className="text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500 mb-4">
+              <h2 className="text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4">
                 Navigation
-              </h4>
+              </h2>
               <ul className="space-y-3">
                 {NAV_LINKS.map((link) => {
                   const cls =
@@ -51,9 +51,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500 mb-4">
+              <h2 className="text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4">
                 Connect
-              </h4>
+              </h2>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -63,7 +63,7 @@ export function Footer() {
                     className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors inline-flex items-center gap-1"
                   >
                     GitLab
-                    <ArrowUpRight className="w-3 h-3" />
+                    <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
                   </a>
                 </li>
                 <li>
@@ -74,7 +74,7 @@ export function Footer() {
                     className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors inline-flex items-center gap-1"
                   >
                     Telegram
-                    <ArrowUpRight className="w-3 h-3" />
+                    <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
                   </a>
                 </li>
                 <li>
@@ -85,8 +85,24 @@ export function Footer() {
                     className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors inline-flex items-center gap-1"
                   >
                     X
-                    <ArrowUpRight className="w-3 h-3" />
+                    <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
                   </a>
+                </li>
+                <li>
+                  <Link
+                    href="/docs/reference/releases"
+                    className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
+                  >
+                    Release notes
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/docs/security/model#reporting-vulnerabilities"
+                    className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
+                  >
+                    Report a vulnerability
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -95,11 +111,11 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="py-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-neutral-500 dark:text-neutral-500">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">
             © {currentYear} {SITE.name}. Open-source firmware provided as-is.
           </p>
-          <p className="text-xs text-neutral-500 dark:text-neutral-500 text-center md:text-right">
-            PayDeck never holds keys, funds, or user data. Users are responsible for their own&nbsp;security.
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center md:text-right">
+            PayDeck never stores private keys or holds funds. Users are responsible for their own&nbsp;security.
           </p>
         </div>
       </div>

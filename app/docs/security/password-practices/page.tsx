@@ -10,7 +10,7 @@ import {
   XCircle
 } from 'lucide-react';
 
-export const metadata: Metadata = docsMetadata("/docs/security/pin-practices", {
+export const metadata: Metadata = docsMetadata("/docs/security/password-practices", {
   title: 'Password Best Practices',
   description: 'Guidelines for choosing a strong PayDeck access password that is practical to type on the on-screen keypad.',
 });
@@ -21,7 +21,7 @@ export default function PasswordPracticesPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Security
           </div>
@@ -41,7 +41,7 @@ export default function PasswordPracticesPage() {
           </h2>
 
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            On the device, fifteen wrong guesses wipe everything, so guessing at the screen is hopeless.
+            On the device, fifteen wrong guesses in a row wipe everything, so guessing at the screen is hopeless.
             The password also has to hold up if someone copies the flash memory of a Standard build and
             attacks the wrapped master key offline, where nothing limits the number of guesses.
             That is why PayDeck replaced its earlier six-digit PIN with a password: a PIN has a million
@@ -67,17 +67,17 @@ export default function PasswordPracticesPage() {
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Roughly 180,000 years</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Twelve or more random characters, or four random words</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white">Twelve or more random characters, or six or more random words</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Out of reach of any rig</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             A large GPU rig shortens the eight-character case to days for the weakest choices, which is why
-            the minimum is a floor, not a target. Secure builds encrypt the flash and stop the dump itself;
-            see <Link href="/docs/security/production-mode" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Secure &amp; Production Builds</Link>.
+            the minimum is a floor, not a target. A sealed production build encrypts the flash and stops the dump itself;
+            see <Link href="/docs/security/production-mode" className="text-accent-700 dark:text-accent-dark-400 hover:underline">Secure &amp; Production Builds</Link>.
           </p>
         </section>
 
@@ -112,7 +112,7 @@ export default function PasswordPracticesPage() {
             />
           </div>
 
-          <p className="text-sm text-neutral-500 mt-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
             The device rejects the obvious patterns (runs, repeats, a short list of common passwords) when a
             password is set. Everything else is accepted, so a password that passes the check is not
             automatically a good one.
@@ -216,7 +216,7 @@ export default function PasswordPracticesPage() {
           <div className="space-y-4">
             <ContextCard
               scenario="Personal device at home"
-              recommendation="Four random words"
+              recommendation="Four or five random words (four are about as strong as eight random characters)"
             />
             <ContextCard
               scenario="Retail counter with staff"
@@ -224,7 +224,7 @@ export default function PasswordPracticesPage() {
             />
             <ContextCard
               scenario="Unattended public location"
-              recommendation="Long passphrase plus a secure build"
+              recommendation="Long passphrase plus a sealed production build"
             />
           </div>
         </section>
@@ -238,8 +238,9 @@ export default function PasswordPracticesPage() {
                 <div className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Remember</div>
                 <p className="text-sm text-blue-800 dark:text-blue-300">
                   The password protects the device configuration, not your funds. PayDeck is watch-only and
-                  cannot spend anything. A forgotten password cannot be recovered on the device: the only way
-                  back is a USB erase and reflash, and a sealed production device cannot be reflashed at all.
+                  cannot spend anything. A forgotten password cannot be recovered: the way back is a wipe,
+                  either by entering fifteen wrong passwords in a row or, on a Standard build, by a USB
+                  erase and reflash. Either way the device has to be set up again.
                 </p>
               </div>
             </div>
@@ -256,7 +257,7 @@ export default function PasswordPracticesPage() {
           </p>
           <Link
             href="/docs/security/model"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Security Model
             <ArrowRight className="w-4 h-4" />
@@ -273,7 +274,7 @@ function ExampleCard({ title, examples, good }: { title: string; examples: { val
     <div className={`p-4 rounded-lg border ${good ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-950/20'}`}>
       <div className="flex items-center gap-2 mb-4">
         {good ? (
-          <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400" />
+          <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400" />
         ) : (
           <XCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
         )}
@@ -287,7 +288,7 @@ function ExampleCard({ title, examples, good }: { title: string; examples: { val
             <code className={`font-mono px-2 py-0.5 rounded whitespace-nowrap ${good ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'}`}>
               {item.value}
             </code>
-            <span className="text-neutral-500 text-xs text-right">{item.reason}</span>
+            <span className="text-neutral-500 dark:text-neutral-400 text-xs text-right">{item.reason}</span>
           </li>
         ))}
       </ul>
@@ -302,7 +303,7 @@ function MistakeItem({ mistake, why }: { mistake: string; why: string }) {
       <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
       <div>
         <span className="font-medium text-neutral-900 dark:text-white">{mistake}</span>
-        <span className="text-neutral-500"> - {why}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {why}</span>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export default function ManualAddressPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -110,7 +110,7 @@ export default function ManualAddressPage() {
             <Step 
               number={1} 
               title="Select Manual Address"
-              description="From the wallet setup screen, choose 'Manual address' as your wallet mode"
+              description="From the Set up wallet screen (or Wallet settings later), choose 'Enter address'"
             />
             <Step 
               number={2} 
@@ -118,7 +118,7 @@ export default function ManualAddressPage() {
               description="Use the on-screen keyboard to enter your Nexa receiving address"
             >
               <div className="mt-3 p-3 rounded bg-neutral-100 dark:bg-neutral-800">
-                <p className="text-xs text-neutral-500 mb-1">Example Nexa address:</p>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Example Nexa address:</p>
                 <code className="text-xs text-neutral-900 dark:text-white break-all">nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz</code>
               </div>
             </Step>
@@ -130,7 +130,7 @@ export default function ManualAddressPage() {
             <Step 
               number={4} 
               title="Save and Complete"
-              description="Tap 'Save' to store the address. PayDeck is now ready to accept payments."
+              description="Tap OK. 'Address saved' appears and PayDeck is ready to accept payments."
             />
           </div>
         </section>
@@ -144,7 +144,7 @@ export default function ManualAddressPage() {
           <div className="space-y-3">
             <Tip text="Have your address visible on another device to type accurately" />
             <Tip text="Test with a small payment first to verify the address is correct" />
-            <Tip text="Consider QR code scanning if available in your wallet" />
+            <Tip text="The address is typed by hand; read it back character by character before tapping OK" />
             <Tip text="Keep a backup of the address in case you need to reconfigure" />
           </div>
         </section>
@@ -218,12 +218,12 @@ export default function ManualAddressPage() {
             Want better privacy?
           </h3>
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            Generate a seed phrase to enable unique addresses for every payment.
+            Create or restore a seed wallet, then switch on Privacy in Wallet settings, to get a unique address for every payment. A fixed address entered here stays in use until Privacy is on.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link 
               href="/docs/wallet/seed-generation"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
             >
               Generate Seed (Recommended)
               <ArrowRight className="w-4 h-4" />
@@ -248,7 +248,7 @@ function StatCard({ icon, label, value, warning }: { icon: React.ReactNode; labe
       <div className={`w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center ${warning ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-500'}`}>
         {icon}
       </div>
-      <p className="text-xs text-neutral-500 mb-1">{label}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{label}</p>
       <p className={`font-semibold ${warning ? 'text-amber-600 dark:text-amber-400' : 'text-neutral-900 dark:text-white'}`}>{value}</p>
     </div>
   );
@@ -261,7 +261,7 @@ function UseCase({ title, description, good }: { title: string; description: str
       <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${good ? 'text-accent-500 dark:text-accent-dark-500' : 'text-red-500'}`} />
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-        <p className="text-sm text-neutral-500">{description}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );
@@ -282,7 +282,7 @@ function AddressSource({ title, description, url }: { title: string; description
   const content = (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 transition-colors">
       <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-neutral-500">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 

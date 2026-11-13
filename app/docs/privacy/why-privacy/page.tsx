@@ -28,7 +28,7 @@ export default function WhyPrivacyPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Privacy
           </div>
@@ -181,7 +181,7 @@ export default function WhyPrivacyPage() {
                 <p className="text-accent-800 dark:text-accent-dark-300">Payment 3 → Address C</p>
               </div>
               <p className="text-xs text-accent-700 dark:text-accent-dark-300">
-                Each payment isolated. No visible connection.
+                Each payment isolated. No visible connection on the blockchain.
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function WhyPrivacyPage() {
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            PayDeck's privacy mode automatically generates a new address for each payment:
+            PayDeck's privacy mode moves to a new address after every paid or cancelled invoice:
           </p>
 
           <div className="space-y-3">
@@ -260,7 +260,7 @@ export default function WhyPrivacyPage() {
             </p>
             <Link 
               href="/docs/privacy/tradeoffs" 
-              className="text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+              className="text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
             >
               Learn about privacy tradeoffs →
             </Link>
@@ -277,7 +277,7 @@ export default function WhyPrivacyPage() {
           </p>
           <Link 
             href="/docs/privacy/enabling"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Enable Privacy Mode
             <ArrowRight className="w-4 h-4" />
@@ -315,7 +315,7 @@ function ImplicationCard({ icon, title, description }: { icon: React.ReactNode; 
         </div>
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -326,7 +326,7 @@ function ImplicationCard({ icon, title, description }: { icon: React.ReactNode; 
 function FeatureItem({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-      <EyeOff className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0" />
+      <EyeOff className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0" />
       <p className="text-sm text-accent-800 dark:text-accent-dark-300">{text}</p>
     </div>
   );
@@ -339,7 +339,7 @@ function UseCaseItem({ title, description }: { title: string; description: strin
       <Shield className="w-4 h-4 text-accent-500 dark:text-accent-dark-500 flex-shrink-0 mt-0.5" />
       <div>
         <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
-        <span className="text-neutral-500"> - {description}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {description}</span>
       </div>
     </div>
   );

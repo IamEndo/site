@@ -17,7 +17,7 @@ function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       aria-current={isActive ? 'page' : undefined}
       className={`block py-1.5 pl-4 border-l text-sm transition-colors ${
         isActive
-          ? 'border-accent-500 dark:border-accent-dark-500 text-accent-600 dark:text-accent-dark-400 font-medium bg-accent-50 dark:bg-accent-dark-950/30'
+          ? 'border-accent-500 dark:border-accent-dark-500 text-accent-700 dark:text-accent-dark-400 font-medium bg-accent-50 dark:bg-accent-dark-950/30'
           : 'border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-600'
       }`}
     >
@@ -45,7 +45,7 @@ function NavSectionComponent({
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={panelId}
-        className="w-full flex items-center justify-between py-2 px-1 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors"
+        className="w-full flex items-center justify-between py-2 px-1 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors"
       >
         {section.title}
         <ChevronDown 
@@ -146,7 +146,7 @@ export function DocsSidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed bottom-4 right-4 z-50 lg:hidden p-3 rounded-full bg-accent-500 dark:bg-accent-dark-500 text-white shadow-lg hover:bg-accent-600 dark:hover:bg-accent-dark-600 transition-colors"
+        className="fixed bottom-4 right-4 z-50 lg:hidden p-3 rounded-full bg-accent-500 dark:bg-accent-dark-500 text-white shadow-lg hover:bg-accent-700 dark:hover:bg-accent-dark-600 transition-colors"
         aria-label={mobileOpen ? 'Close documentation menu' : 'Open documentation menu'}
         aria-expanded={mobileOpen}
         aria-controls="docs-sidebar"
@@ -174,7 +174,7 @@ export function DocsSidebar() {
         <div className="p-6 pt-20 lg:pt-6">
           <Link
             href="/docs"
-            className="block text-lg font-semibold text-neutral-900 dark:text-white mb-6 hover:text-accent-600 dark:hover:text-accent-dark-400 transition-colors"
+            className="block text-lg font-semibold text-neutral-900 dark:text-white mb-6 hover:text-accent-700 dark:hover:text-accent-dark-400 transition-colors"
           >
             Documentation
           </Link>

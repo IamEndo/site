@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { Step } from "../../_components/DocsBlocks";
 
-export const metadata: Metadata = docsMetadata("/docs/security/pin-setup", {
+export const metadata: Metadata = docsMetadata("/docs/security/access-password", {
   title: 'Access Password',
   description: 'How the PayDeck access password protects the device, how it is set during first-run setup, and how to change it.',
 });
@@ -25,7 +25,7 @@ export default function PasswordSetupPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Security
           </div>
@@ -99,7 +99,7 @@ export default function PasswordSetupPage() {
               text="Going back to the home screen locks the vault. Opening the Menu asks for the password again. Taking payments keeps working while locked."
             />
             <FactItem
-              title="Fifteen wrong attempts wipe the device"
+              title="Fifteen wrong attempts in a row wipe the device"
               text="From the tenth wrong attempt the device shows how many attempts remain. On the fifteenth it erases itself to factory state. The attempt counter is saved before each check, so cutting power mid-guess does not reset it."
             />
             <FactItem
@@ -117,9 +117,9 @@ export default function PasswordSetupPage() {
 
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             The password is step 2 of the{" "}
-            <Link href="/docs/installation/first-boot" className="text-accent-600 dark:text-accent-dark-400 hover:underline">first-run setup wizard</Link>.
+            <Link href="/docs/installation/first-boot" className="text-accent-700 dark:text-accent-dark-400 hover:underline">first-run setup wizard</Link>.
             A fresh device cannot reach the wallet, the settings or the payment screen until a password exists,
-            so there is no default code and no unprotected window.
+            so there is no usable default code and no unprotected window: the internal provisioning default is replaced before any wallet or setting exists.
           </p>
 
           <div className="space-y-4">
@@ -149,7 +149,7 @@ export default function PasswordSetupPage() {
               <div className="mt-3 p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800">
                 <p className="text-xs text-neutral-600 dark:text-neutral-400">
                   Choose something you can type on a phone-style keypad without looking it up.
-                  See <Link href="/docs/security/pin-practices" className="text-accent-600 dark:text-accent-dark-400 hover:underline">password best practices</Link>.
+                  See <Link href="/docs/security/password-practices" className="text-accent-700 dark:text-accent-dark-400 hover:underline">password best practices</Link>.
                 </p>
               </div>
             </Step>
@@ -183,7 +183,7 @@ export default function PasswordSetupPage() {
             </div>
           </div>
 
-          <p className="text-sm text-neutral-500 mt-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
             The rules apply when a password is set or changed. On the unlock screen the device simply tries what you typed.
           </p>
         </section>
@@ -203,8 +203,13 @@ export default function PasswordSetupPage() {
             </ol>
           </div>
 
-          <p className="text-sm text-neutral-500 mt-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
             There is no option to remove the password. A financial device without a lock is not a configuration PayDeck offers.
+          </p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
+            Changing the access password clears a{" "}
+            <Link href="/docs/security/duress-password" className="underline">duress password</Link>{" "}
+            if you had set one. The prompt says so; set the duress password again afterwards.
           </p>
         </section>
 
@@ -218,11 +223,14 @@ export default function PasswordSetupPage() {
             <div className="flex gap-3">
               <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">USB erase and reflash required</div>
+                <div className="font-semibold text-amber-900 dark:text-amber-200 mb-2">The device has to be wiped</div>
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  The menu, including factory reset, is locked behind the password, so a forgotten password
-                  cannot be recovered on the device. The only way back is to erase and reflash the firmware
-                  over USB, which wipes every setting, the wallet configuration and the password.
+                  A forgotten password cannot be recovered, and the menu, including factory reset, is
+                  locked behind it. There are two ways back, and both wipe every setting, the wallet
+                  configuration and the password. Enter a wrong password fifteen times in a row: the
+                  device erases itself and starts the setup wizard (the waits between attempts grow,
+                  so this takes several minutes). Or, on a Standard build, erase and reflash the
+                  firmware over USB.
                   See <Link href="/docs/maintenance/factory-reset" className="underline font-medium">Factory Reset</Link>.
                 </p>
               </div>
@@ -236,11 +244,11 @@ export default function PasswordSetupPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
-              After the reflash the setup wizard runs again: mode, new password, wallet.
+              After the wipe the setup wizard runs again: mode, new password, wallet.
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
-              Production (sealed) devices cannot be reflashed. A forgotten password on a sealed device means the device is finished.
+              Production (sealed) devices cannot be reflashed, so fifteen wrong attempts are the only way to reset one.
             </li>
           </ul>
         </section>
@@ -254,8 +262,8 @@ export default function PasswordSetupPage() {
             What makes a password strong on a device that is typed on a keypad.
           </p>
           <Link
-            href="/docs/security/pin-practices"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            href="/docs/security/password-practices"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Password Best Practices
             <ArrowRight className="w-4 h-4" />
@@ -306,9 +314,9 @@ function ProtectionCard({ title, items, protected: isProtected }: { title: strin
     <div className={`p-4 rounded-lg border ${isProtected ? 'border-accent-200 dark:border-accent-dark-800 bg-accent-50/50 dark:bg-accent-dark-950/20' : 'border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900'}`}>
       <div className="flex items-center gap-2 mb-3">
         {isProtected ? (
-          <Lock className="w-4 h-4 text-accent-600 dark:text-accent-dark-400" />
+          <Lock className="w-4 h-4 text-accent-700 dark:text-accent-dark-400" />
         ) : (
-          <Key className="w-4 h-4 text-neutral-500" />
+          <Key className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
         )}
         <h4 className={`font-medium ${isProtected ? 'text-accent-700 dark:text-accent-dark-300' : 'text-neutral-700 dark:text-neutral-300'}`}>
           {title}

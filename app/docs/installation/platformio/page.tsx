@@ -3,7 +3,7 @@ import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from '../../_components/DocsArticle';
 import Link from 'next/link';
 import { Download, Terminal, ArrowRight, CheckCircle2, Clock, AlertTriangle, Info, Home } from "lucide-react";
-import { TroubleshootItem, VerifyStep } from "../../_components/DocsBlocks";
+import { CodeBlock, TroubleshootItem, VerifyStep } from "../../_components/DocsBlocks";
 
 export const metadata: Metadata = docsMetadata("/docs/installation/platformio", {
   title: 'Installing PlatformIO',
@@ -16,7 +16,7 @@ export default function PlatformIOPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Download className="w-4 h-4" />
             Installation
           </div>
@@ -132,7 +132,11 @@ export default function PlatformIOPage() {
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-6">
-            PlatformIO needs the Espressif 32 platform to compile code for ESP32 devices:
+            PlatformIO needs the Espressif 32 platform to compile code for ESP32 devices. The
+            PayDeck project pins the exact version it builds with
+            (<code className="font-mono text-sm">espressif32 ~6.6.0</code> in <code className="font-mono text-sm">platformio.ini</code>),
+            and PlatformIO downloads that version by itself on the first build, so the manual
+            install below is optional:
           </p>
 
           <div className="space-y-4">
@@ -185,7 +189,7 @@ export default function PlatformIOPage() {
 
           <div className="p-4 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-accent-900 dark:text-accent-dark-200 mb-1">Success</div>
                 <p className="text-sm text-accent-800 dark:text-accent-dark-300">
@@ -237,15 +241,15 @@ export default function PlatformIOPage() {
             </p>
             <div className="space-y-2">
               <div>
-                <span className="text-xs text-neutral-500">Windows:</span>
+                <span className="text-xs text-neutral-500 dark:text-neutral-400">Windows:</span>
                 <CodeBlock code="rmdir /s %USERPROFILE%\.platformio" />
               </div>
               <div>
-                <span className="text-xs text-neutral-500">macOS / Linux:</span>
+                <span className="text-xs text-neutral-500 dark:text-neutral-400">macOS / Linux:</span>
                 <CodeBlock code="rm -rf ~/.platformio" />
               </div>
             </div>
-            <p className="text-xs text-neutral-500 mt-3">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
               After deleting, restart VS Code. PlatformIO will re-download everything.
             </p>
           </div>
@@ -261,7 +265,7 @@ export default function PlatformIOPage() {
           </p>
           <Link 
             href="/docs/installation/usb-drivers"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             USB Drivers
             <ArrowRight className="w-4 h-4" />
@@ -276,7 +280,7 @@ export default function PlatformIOPage() {
 function InstallStep({ number, title, description }: { number: number; title: string; description: React.ReactNode }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
@@ -291,20 +295,11 @@ function InstallStep({ number, title, description }: { number: number; title: st
 function ReadyIndicator({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
+      <div className="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center">
         {icon}
       </div>
       <p className="text-sm text-neutral-600 dark:text-neutral-400">{text}</p>
     </div>
-  );
-}
-
-// Component: Code Block
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="p-2 rounded bg-neutral-900 dark:bg-neutral-950 text-neutral-100 text-xs font-mono overflow-x-auto">
-      <code>{code}</code>
-    </pre>
   );
 }
 

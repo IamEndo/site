@@ -27,7 +27,7 @@ export default function ImportSeedPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -65,13 +65,13 @@ export default function ImportSeedPage() {
 
           <div className="grid sm:grid-cols-2 gap-3">
             <div className="flex items-start gap-2 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-accent-800 dark:text-accent-dark-300">
-                <strong>WiFi disabled</strong> during seed import
+                <strong>Network disconnected</strong> during seed import (the radio is idle, not powered down)
               </p>
             </div>
             <div className="flex items-start gap-2 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
-              <CheckCircle2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                 <strong>Seed erased</strong> before network reconnects
               </p>
@@ -119,7 +119,7 @@ export default function ImportSeedPage() {
                 <ul className="space-y-1 text-sm text-amber-800 dark:text-amber-300">
                   <li className="flex items-start gap-2">
                     <span className="text-amber-500">•</span>
-                    Use production firmware for encrypted memory
+                    Use a secure or production build for encrypted flash storage
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-500">•</span>
@@ -166,7 +166,7 @@ export default function ImportSeedPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-neutral-400">•</span>
-                    Double-check spelling before confirming each word
+                    The whole phrase goes into one field that shows only its last part, so check each word as you type it
                   </li>
                 </ul>
               </div>
@@ -175,7 +175,7 @@ export default function ImportSeedPage() {
             <Step 
               number={3} 
               title="Confirm Import"
-              description="Review that every word is correct, then confirm. The device then asks whether the seed has a passphrase."
+              description="Tap OK once for the whole phrase. The device checks every word and the checksum, then asks whether the seed has a passphrase. After that it derives the public key, erases the seed and restarts."
             />
           
             <Step 
@@ -185,7 +185,7 @@ export default function ImportSeedPage() {
             >
               <div className="mt-3 p-3 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
                 <div className="flex items-start gap-2">
-                  <Trash2 className="w-4 h-4 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+                  <Trash2 className="w-4 h-4 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
                   <p className="text-xs text-accent-800 dark:text-accent-dark-300">
                     <strong>Seed erased:</strong> Only your xPub (public keys) is stored. 
                     Your seed phrase and private keys are never saved to the device.
@@ -278,7 +278,7 @@ export default function ImportSeedPage() {
               problem="Import fails"
               solutions={[
                 "Enter 12, 15, 18, 21 or 24 words",
-                "Check for extra spaces before/after words",
+                "The message names the problem: 'Word N is not a seed word', 'Got N words, need 12, 15, 18, 21 or 24' or 'Checksum failed, check each word'",
                 "Verify the checksum (the last word depends on all the others)"
               ]}
             />
@@ -295,7 +295,7 @@ export default function ImportSeedPage() {
           </p>
           <Link 
             href="/docs/wallet/import-xpub"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Import xPub
             <ArrowRight className="w-4 h-4" />

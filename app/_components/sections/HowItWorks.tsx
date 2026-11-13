@@ -8,7 +8,7 @@ export function HowItWorks() {
         {/* Section header */}
         <ScrollReveal>
           <div className="max-w-2xl mb-16 md:mb-20">
-            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 mb-3">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
               Getting started
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
@@ -23,7 +23,7 @@ export function HowItWorks() {
             <ScrollReveal key={step.number} delay={index * 120}>
               <div className="relative group">
                 {/* Step number */}
-                <div className="text-5xl md:text-6xl font-bold text-neutral-100 dark:text-neutral-900 mb-4 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+                <div aria-hidden="true" className="text-5xl md:text-6xl font-bold text-neutral-200 dark:text-neutral-800 mb-4 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
                   {step.number}
                 </div>
 

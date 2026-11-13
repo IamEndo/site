@@ -42,7 +42,7 @@ export function Comparison() {
         {/* Section header */}
         <ScrollReveal>
           <div className="max-w-2xl mb-16 md:mb-20">
-            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 mb-3">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
               Comparison
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
@@ -60,13 +60,13 @@ export function Comparison() {
               </caption>
               <thead>
                 <tr className="bg-neutral-100 dark:bg-neutral-900">
-                  <th scope="col" className="px-4 md:px-6 py-4 text-sm font-medium text-neutral-500 text-left">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-sm font-medium text-neutral-600 dark:text-neutral-400 text-left">
                     Aspect
                   </th>
                   <th scope="col" className="px-4 md:px-6 py-4 text-sm font-medium text-neutral-900 dark:text-white text-left border-l border-neutral-200 dark:border-neutral-800">
                     PayDeck
                   </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-sm font-medium text-neutral-500 text-left border-l border-neutral-200 dark:border-neutral-800">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-sm font-medium text-neutral-600 dark:text-neutral-400 text-left border-l border-neutral-200 dark:border-neutral-800">
                     Traditional
                   </th>
                 </tr>
@@ -87,11 +87,11 @@ export function Comparison() {
                     </th>
                     <td className="px-4 md:px-6 py-4 text-sm text-neutral-900 dark:text-white border-l border-neutral-200 dark:border-neutral-800 align-middle">
                       <span className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-accent-600 dark:text-accent-dark-500 flex-shrink-0 hidden sm:block" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-accent-700 dark:text-accent-dark-500 flex-shrink-0 hidden sm:block" aria-hidden="true" />
                         <span>{row.paydeck}</span>
                       </span>
                     </td>
-                    <td className="px-4 md:px-6 py-4 text-sm text-neutral-500 border-l border-neutral-200 dark:border-neutral-800 align-middle">
+                    <td className="px-4 md:px-6 py-4 text-sm text-neutral-500 dark:text-neutral-400 border-l border-neutral-200 dark:border-neutral-800 align-middle">
                       <span className="flex items-center gap-2">
                         <X className="w-4 h-4 text-neutral-400 flex-shrink-0 hidden sm:block" aria-hidden="true" />
                         <span>{row.traditional}</span>

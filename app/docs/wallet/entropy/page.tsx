@@ -29,7 +29,7 @@ export default function EntropyPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -93,7 +93,7 @@ export default function EntropyPage() {
                 <strong>The solution:</strong> Use a physical noise source that no algorithm can reproduce. 
                 Every tap on the touch panel is read by an analog-to-digital converter whose lowest bits are 
                 genuine electrical noise, different on every read even when your finger does not move. 
-                That noise, and nothing else, becomes your seed.
+                Those raw readings are the only input to your seed, and only their noisy low bits are counted toward it.
               </p>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function EntropyPage() {
             <IsolationCard 
               icon={<WifiOff className="w-5 h-5" />}
               title="WiFi Disabled"
-              description="Network connections are disabled during seed generation. The MCU is completely isolated from the outside world."
+              description="WiFi is switched off while you tap. In offline mode (the default, and always during first-run setup) it stays off; on a device in online mode it can reconnect once the words are on screen, so create a wallet in offline mode if you want no radio at all until the restart."
             />
             <IsolationCard 
               icon={<Zap className="w-5 h-5" />}
@@ -123,7 +123,7 @@ export default function EntropyPage() {
             <IsolationCard 
               icon={<Trash2 className="w-5 h-5" />}
               title="Immediate Wipe"
-              description="The seed phrase is erased from memory immediately after you verify it, before any network activity resumes."
+              description="After you verify the words and answer the passphrase question, the device derives the public key, erases the seed from memory and restarts."
             />
             <IsolationCard 
               icon={<Shield className="w-5 h-5" />}
@@ -153,16 +153,18 @@ export default function EntropyPage() {
             <div className="grid sm:grid-cols-2 gap-2 text-sm">
               <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Up to seven raw 12-bit X readings from the touch ADC
+                Seven raw 12-bit X readings from the touch ADC
               </div>
               <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                 <span className="w-2 h-2 rounded-full bg-accent-500 dark:bg-accent-dark-500"></span>
-                Up to seven raw 12-bit Y readings from the touch ADC
+                Seven raw 12-bit Y readings from the touch ADC
               </div>
             </div>
-            <p className="text-xs text-neutral-500 mt-3">
-              Nothing else enters the seed: not the tap position on screen, not the timing, not the pressure, 
-              not the hardware RNG, not the clock, not the device MAC. Each credited reading counts for a 
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
+              Nothing else enters the seed: not the timing, not the pressure, not the hardware RNG,
+              not the clock, not the device MAC. The readings are hashed in whole, so the rough
+              position of a tap is part of the hash, but it earns no credit: only the noisy low
+              bits are counted. Each credited reading counts for a 
               fixed fraction of a bit, set at half the min-entropy measured for this board with the NIST 
               SP 800-90B tool, so the firmware deliberately under-counts what it collects.
             </p>
@@ -184,23 +186,26 @@ export default function EntropyPage() {
         {/* Critical: Avoiding Patterns */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
-            Critical: Avoid Patterns
+            How to Tap
           </h2>
         
           <div className="p-5 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 mb-6">
             <div className="flex gap-3">
               <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-red-900 dark:text-red-200 mb-2">Your Attention is Required</div>
+                <div className="font-semibold text-red-900 dark:text-red-200 mb-2">Keep the sensor readings changing</div>
                 <p className="text-sm text-red-800 dark:text-red-300 mb-3">
-                  The security of your seed depends on <strong>unpredictable</strong> taps. 
-                  If you tap in a predictable pattern, you reduce the effective entropy.
+                  The seed is built only from electrical noise in the touch sensor, so a tapping
+                  pattern cannot make it predictable. What poor tapping <strong>can</strong> do is
+                  fail to earn credit: readings that repeat are not counted, and if a health test
+                  trips, the ring stops advancing and Done stays disabled. Tap Back and start
+                  again. (If a test trips after the ring is already full, Done shows &ldquo;Seed
+                  generation failed&rdquo;.) Things that do not help:
                 </p>
                 <div className="space-y-2">
-                  <BadPattern text="Tapping fast in one spot" />
-                  <BadPattern text="Tapping in a regular rhythm" />
-                  <BadPattern text="Following a predictable path (circles, zigzags)" />
-                  <BadPattern text="Holding one spot instead of tapping: the health tests stop crediting it" />
+                  <BadPattern text="Holding a finger down: a held touch is read once, at the moment it lands" />
+                  <BadPattern text="Tapping faster than ten times a second: taps closer than 0.1 s are ignored" />
+                  <BadPattern text="Trying to tap 'randomly': position and rhythm do not affect the seed or the credit" />
                 </div>
               </div>
             </div>
@@ -208,13 +213,12 @@ export default function EntropyPage() {
 
           <div className="p-5 rounded-lg bg-accent-50 dark:bg-accent-dark-950/30 border border-accent-200 dark:border-accent-dark-800">
             <div className="flex gap-3">
-              <CheckCircle2 className="w-6 h-6 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-6 h-6 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">Good Entropy Practices</div>
+                <div className="font-semibold text-accent-900 dark:text-accent-dark-200 mb-2">Good Practice</div>
                 <div className="space-y-2">
-                  <GoodPattern text="Use the entire screen area" />
-                  <GoodPattern text="Vary your timing: some fast, some slow" />
-                  <GoodPattern text="Be creative and unpredictable" />
+                  <GoodPattern text="Lift your finger fully between taps" />
+                  <GoodPattern text="Tap at a steady, unhurried pace" />
                   <GoodPattern text="Keep tapping until the progress ring is full" />
                 </div>
               </div>
@@ -226,12 +230,13 @@ export default function EntropyPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
             <Dice5 className="w-6 h-6" />
-            Using Dice for Extra Randomness
+            Using Dice (Optional)
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            For maximum security, you can incorporate physical dice to add non-electronic 
-            randomness that is completely independent of any computer system.
+            Dice do not add randomness to the seed: the device credits only sensor noise, and
+            where you tap does not matter. Some people still like a routine for the minute or
+            two of tapping; this is one, and it is entirely optional.
           </p>
 
           <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
@@ -250,7 +255,6 @@ export default function EntropyPage() {
             <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <p><strong>Method:</strong> Roll a die before each tap. Tap in the zone matching the number.</p>
               <p><strong>Variation:</strong> Use two dice for a 12-zone grid (2×6 or 3×4 layout).</p>
-              <p><strong>Timing:</strong> Vary your timing based on the roll (odd = quick tap, even = slow tap).</p>
             </div>
           </div>
 
@@ -258,9 +262,8 @@ export default function EntropyPage() {
             <div className="flex gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                The device credits only the sensor noise, not where you tap, so dice are optional. 
-                They are a good way to spread your taps over the whole panel and to keep yourself from 
-                settling into one spot or one rhythm.
+                If you want dice to contribute to the seed itself, generate the seed phrase
+                from dice with a method you trust, then use Restore wallet to enter it.
               </p>
             </div>
           </div>
@@ -273,7 +276,7 @@ export default function EntropyPage() {
           </h2>
         
           <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-            All credited readings are mixed into a SHA-512 pool. Even if some readings carry patterns, 
+            Every reading, credited or not, is mixed into a SHA-512 pool. Even if some readings carry patterns, 
             the conditioned output is uniformly distributed, and the fail-closed accounting makes sure 
             enough genuine noise went in before anything comes out.
           </p>
@@ -315,7 +318,7 @@ export default function EntropyPage() {
             />
             <SecurityPoint 
               title="Watch-Only by Design"
-              description="After seed generation/import, only the xPub (public keys) is stored. The seed is erased immediately, before WiFi reconnects or any further operation."
+              description="After seed generation/import, only the xPub (public keys) is stored. The seed is erased as soon as the public key has been derived, and the device restarts."
             />
             <SecurityPoint 
               title="Human Input Only"
@@ -343,22 +346,22 @@ export default function EntropyPage() {
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Hardware wallet</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Dedicated TRNG chip</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Supply chain attacks</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Supply chain attacks</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Software wallet</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">OS random (/dev/urandom)</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Compromised OS, malware</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Compromised OS, malware</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Dice rolls only</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Physical randomness</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">User error, calculation mistakes</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">User error, calculation mistakes</td>
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                   <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">PayDeck</td>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400">Raw touch-sensor noise from human taps, NIST-measured</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Physical probing of the touch bus</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Physical probing of the touch bus</td>
                 </tr>
               </tbody>
             </table>
@@ -375,7 +378,7 @@ export default function EntropyPage() {
           </p>
           <Link 
             href="/docs/wallet/seed-generation"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Seed Generation Guide
             <ArrowRight className="w-4 h-4" />
@@ -401,12 +404,12 @@ function IsolationCard({ icon, title, description }: { icon: React.ReactNode; ti
   return (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
     </div>
@@ -427,7 +430,7 @@ function BadPattern({ text }: { text: string }) {
 function GoodPattern({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-2 text-sm text-accent-800 dark:text-accent-dark-300">
-      <span className="w-4 h-4 rounded-full bg-accent-200 dark:bg-accent-dark-900 flex items-center justify-center text-accent-600 dark:text-accent-dark-400 text-xs">✓</span>
+      <span className="w-4 h-4 rounded-full bg-accent-200 dark:bg-accent-dark-900 flex items-center justify-center text-accent-700 dark:text-accent-dark-400 text-xs">✓</span>
       {text}
     </div>
   );
@@ -442,7 +445,7 @@ function ProcessStep({ number, title, description }: { number: number; title: st
       </div>
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-white text-sm">{title}</h4>
-        <p className="text-xs text-neutral-500">{description}</p>
+        <p className="text-xs text-neutral-500 dark:text-neutral-400">{description}</p>
       </div>
     </div>
   );

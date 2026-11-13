@@ -143,7 +143,7 @@ export function Flasher() {
       {/* What this installs */}
       <div className="p-4 rounded-lg border border-accent-500 bg-accent-50 dark:bg-accent-dark-950/30 dark:border-accent-dark-500">
         <div className="flex items-start gap-3">
-          <Cpu className="w-5 h-5 text-accent-600 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
+          <Cpu className="w-5 h-5 text-accent-700 dark:text-accent-dark-400 flex-shrink-0 mt-0.5" />
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="font-medium text-neutral-900 dark:text-white">
@@ -205,7 +205,7 @@ export function Flasher() {
                   <span
                     className={`w-3 h-3 rounded-full border ${
                       active
-                        ? "border-accent-600 bg-accent-600 dark:border-accent-dark-400 dark:bg-accent-dark-400"
+                        ? "border-accent-600 bg-accent-700 dark:border-accent-dark-400 dark:bg-accent-dark-400"
                         : "border-neutral-400 dark:border-neutral-600"
                     }`}
                   />
@@ -216,7 +216,7 @@ export function Flasher() {
                 <div className="text-sm text-neutral-700 dark:text-neutral-300 mt-1">
                   {v.board}
                 </div>
-                <div className="text-xs text-neutral-500 dark:text-neutral-500">
+                <div className="text-xs text-neutral-600 dark:text-neutral-400">
                   {v.hint}
                 </div>
               </button>
@@ -245,7 +245,7 @@ export function Flasher() {
             </p>
             <Link
               href="/docs/security/production-mode"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 dark:text-accent-dark-400 hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-700 dark:text-accent-dark-400 hover:underline"
             >
               Step-by-step: build a secure / production device
               <ArrowRight className="w-4 h-4" />
@@ -291,17 +291,17 @@ export function Flasher() {
               <Usb className="w-4 h-4" />
               {buttonLabel}
             </button>
-            <span slot="unsupported" className="text-sm text-neutral-500">
+            <span slot="unsupported" className="text-sm text-neutral-500 dark:text-neutral-400">
               Browser not supported.
             </span>
-            <span slot="not-allowed" className="text-sm text-neutral-500">
+            <span slot="not-allowed" className="text-sm text-neutral-500 dark:text-neutral-400">
               Open this page over HTTPS to flash.
             </span>
           </esp-web-install-button>
         ) : (
           <button
             disabled
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm bg-neutral-200 dark:bg-neutral-800 text-neutral-500 cursor-not-allowed font-medium"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm bg-neutral-200 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 cursor-not-allowed font-medium"
           >
             <Usb className="w-4 h-4" />
             {serialSupported === false
@@ -313,7 +313,7 @@ export function Flasher() {
               : buttonLabel}
           </button>
         )}
-        <p className="text-xs text-neutral-500 dark:text-neutral-500">
+        <p className="text-xs text-neutral-500 dark:text-neutral-400">
           {scriptStatus === "error"
             ? "Could not load the flasher script. Reload the page; if it keeps failing, check the browser console for blocked requests (ad-blockers, network)."
             : "A browser dialog will ask which USB device to connect."}

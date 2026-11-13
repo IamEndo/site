@@ -49,6 +49,13 @@ const nextConfig = {
     '192.168.0.226',
     '*.trycloudflare.com',
   ],
+  async redirects() {
+    return [
+      // The PIN became an access password in firmware 0.5.0; keep old links working.
+      { source: '/docs/security/pin-setup', destination: '/docs/security/access-password', permanent: true },
+      { source: '/docs/security/pin-practices', destination: '/docs/security/password-practices', permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },
@@ -56,6 +63,10 @@ const nextConfig = {
         // Versioned directory: the files never change under this path.
         source: '/vendor/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+      {
+        source: '/.well-known/security.txt',
+        headers: [{ key: 'Content-Type', value: 'text/plain; charset=utf-8' }],
       },
       {
         // Lighting maps for the 3D scenes (from pmndrs/drei-assets, CC0 Poly Haven HDRIs).

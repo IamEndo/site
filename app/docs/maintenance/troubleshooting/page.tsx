@@ -26,7 +26,7 @@ export default function TroubleshootingPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
@@ -98,6 +98,7 @@ export default function TroubleshootingPage() {
             <TroubleshootItem 
               problem="Server connects but no payment detection"
               solutions={[
+                "If the QR screen shows Back / Confirm / Cancel, the device is in offline mode: switch Menu, Network settings, Network to online",
                 "Verify wallet address/xPub is correct",
                 "Check if server is fully synced with blockchain",
                 "Try a different Rostrum server",
@@ -126,17 +127,17 @@ export default function TroubleshootingPage() {
             <TroubleshootItem 
               problem="Screen is blank or white"
               solutions={[
-                "Verify correct firmware for your display variant",
+                "A white screen means the image for the other panel was flashed; nothing is damaged",
+                "Single micro-USB board: flash the ILI9341 image. Dual-USB board: flash the ST7789 image",
                 "Check if device is powered (USB connection)",
-                "Wait 30 seconds for boot to complete",
-                "Try reflashing firmware"
+                "Secure and production builds take 1-2 minutes on their first boot (flash encryption); do not cut power"
               ]}
             />
             <TroubleshootItem 
               problem="Display colors look wrong"
               solutions={[
-                "Verify correct display driver (ST7789 for ESP32-2432S028R)",
-                "Check build environment matches your hardware"
+                "Wrong colours mean the image for the other panel was flashed",
+                "Use the ILI9341 image on single micro-USB boards and the ST7789 image on dual-USB boards"
               ]}
             />
             <TroubleshootItem 
@@ -144,8 +145,7 @@ export default function TroubleshootingPage() {
               solutions={[
                 "Clean the screen",
                 "Restart the device",
-                "Check if touch calibration is needed",
-                "Verify firmware includes touch driver"
+                "Check that you flashed the image for your board variant"
               ]}
             />
           </div>
@@ -162,7 +162,8 @@ export default function TroubleshootingPage() {
             <TroubleshootItem 
               problem="Payment not detected"
               solutions={[
-                "Check Rostrum server connection status",
+                "A new or reset device starts in offline mode and detects nothing: switch Menu, Network settings, Network to online",
+                "Network settings should read 'Online, watching'",
                 "Verify payment was sent to correct address",
                 "Wait a few seconds (network propagation)",
                 "Check if payment is visible in block explorer",
@@ -202,8 +203,7 @@ export default function TroubleshootingPage() {
               solutions={[
                 "Try different USB cable",
                 "Try different USB power source",
-                "Hold boot button while connecting power",
-                "Try reflashing firmware"
+                "Try reflashing firmware (holding the BOOT button while plugging in puts the board in flashing mode)"
               ]}
             />
             <TroubleshootItem 
@@ -217,9 +217,10 @@ export default function TroubleshootingPage() {
             <TroubleshootItem 
               problem="Stuck on loading screen"
               solutions={[
-                "Wait up to 60 seconds (first boot can be slow)",
-                "Check WiFi credentials if trying to connect",
-                "Check Rostrum server if trying to sync"
+                "A 'Preparing invoice...' spinner that ends with 'Connection timeout' after 15 seconds means Wi-Fi or the node is unreachable",
+                "Open Wi-Fi settings and tap OK: the device answers 'Connected' with an IP address or 'Connection failed'",
+                "Check the host, port and WSS/WS choice in Node settings",
+                "To keep selling meanwhile, switch to offline mode and confirm payments yourself"
               ]}
             />
           </div>
@@ -271,7 +272,7 @@ export default function TroubleshootingPage() {
           </p>
           <Link 
             href="/docs/maintenance/factory-reset"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Factory Reset
             <ArrowRight className="w-4 h-4" />

@@ -23,8 +23,8 @@ app/
 ├── _data/                      Landing page content (features, steps, FAQ, device, releases)
 ├── _components/
 │   ├── layout/                 Header, Footer
-│   ├── sections/               Hero, Features, Device, HowItWorks, Comparison, Security, FAQ
-│   └── ui/                     Button, Accordion, ScrollReveal, ThemeToggle, Device3D, Board3D
+│   ├── sections/               Hero, Features, Device, HowItWorks, Screens, Comparison, Security, FAQ
+│   └── ui/                     Button, Accordion, ScrollReveal, ThemeToggle, DeviceScreen, Device3D, Board3D
 └── docs/
     ├── layout.tsx
     ├── _data/navigation.ts     Sidebar structure; also drives the sitemap and prev/next links
@@ -40,9 +40,13 @@ lib/
 
 public/
 ├── firmware/                   Web-flasher images and manifests
+├── screens/                    Firmware screen renders (see "Device screenshots")
+├── hdri/                       Lighting maps for the 3D scenes
+├── .well-known/security.txt
 └── vendor/esp-web-tools-*/     Vendored flasher library (unmodified, with SHA256SUMS)
 
-scripts/build-docs-index.mjs    Builds the docs search index
+scripts/build-docs-index.mjs    Builds the docs search index and the per-page heading list
+scripts/shrink-hdr.mjs          Downsamples a Radiance .hdr lighting map
 ```
 
 ## Development
@@ -61,7 +65,8 @@ npm start            # serves the build on $PORT
 `metadata = docsMetadata("/docs/<section>/<page>", { title, description })`, wrap the
 content in `<DocsArticle>`, and add the page to `app/docs/_data/navigation.ts`.
 Every `<h2>` automatically gets an anchor and appears under "On this page".
-Run `npm run docs:index` and commit the updated `search-index.json`.
+Run `npm run docs:index` and commit the updated `search-index.json` and `toc.json`.
+If you rename a page, add a redirect in `next.config.mjs`.
 
 **Publish a firmware release.**
 
@@ -69,7 +74,21 @@ Run `npm run docs:index` and commit the updated `search-index.json`.
 2. Set `FIRMWARE_VERSION` in `lib/constants.ts` (the hero, the 3D label, structured
    data and the flasher file names all read it).
 3. Update the sizes and SHA-256 hashes in `app/docs/install/web-flasher/page.tsx`.
-4. Add the release to `app/_data/releases.ts`.
+4. Add the release to `app/_data/releases.ts` (feeds the Release Notes page and
+   the Atom feed at `/releases.xml`).
+5. Check the docs against the firmware changelog for anything the release
+   added or changed.
+
+**Yearly.** `public/.well-known/security.txt` carries an `Expires` date
+(currently 2027-11-01). Move it forward before it passes.
+
+**Device screenshots.** The images in `public/screens/` are rendered by the
+firmware's host simulator (`tests/sim`, `make gallery` in the firmware
+repository) and recompressed. Re-copy them when the firmware UI changes; use
+them through `<DeviceScreen name="..." />`.
+
+**3D lighting maps.** `public/hdri/*.hdr` are 256x128 reductions of two CC0
+Poly Haven maps, made with `scripts/shrink-hdr.mjs`.
 
 **Upgrade the flasher library.** Vendor the new `dist/web/` files into a new
 versioned directory under `public/vendor/`, verify the tarball against the npm

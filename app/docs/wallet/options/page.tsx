@@ -28,7 +28,7 @@ export default function WalletOptionsPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Wallet
           </div>
@@ -51,7 +51,7 @@ export default function WalletOptionsPage() {
                 PayDeck is a <strong>watch-only</strong> wallet. It generates receiving addresses and 
                 monitors for payments, but <strong>cannot spend funds</strong>. When you enter a seed 
                 phrase, PayDeck derives only the public keys (xPub) for address generation, then 
-                <strong> immediately discards the seed</strong>. Private keys never exist on the device.
+                <strong> immediately discards the seed</strong>. Private keys are never stored; they exist in memory only for the moment of that derivation.
               </p>
             </div>
           </div>
@@ -75,35 +75,42 @@ export default function WalletOptionsPage() {
               </thead>
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
-                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Manual Address</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Manual Address <span className="font-normal text-xs text-neutral-500 dark:text-neutral-400">(&ldquo;Enter address&rdquo;)</span></td>
                   <td className="px-4 py-3"><PrivacyBadge level="low" /></td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Simplest</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Quick setup, testing</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Simplest</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Quick setup, testing</td>
                 </tr>
                 <tr className="bg-accent-50/50 dark:bg-accent-dark-950/20">
                   <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium flex items-center gap-2">
-                    Generate Seed
+                    Generate Seed <span className="font-normal text-xs text-neutral-500 dark:text-neutral-400">(&ldquo;Create wallet&rdquo;)</span>
                     <Star className="w-3 h-3 text-accent-500 dark:text-accent-dark-500" />
                   </td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Medium</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Recommended</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Medium</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Recommended</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import Seed</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import Seed <span className="font-normal text-xs text-neutral-500 dark:text-neutral-400">(&ldquo;Restore wallet&rdquo;)</span></td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Medium</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Existing wallet</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Medium</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Existing wallet</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import xPub</td>
+                  <td className="px-4 py-3 text-neutral-900 dark:text-white font-medium">Import xPub <span className="font-normal text-xs text-neutral-500 dark:text-neutral-400">(&ldquo;Import xPub key&rdquo;)</span></td>
                   <td className="px-4 py-3"><PrivacyBadge level="high" /></td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Advanced</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Developers</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Advanced</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Developers</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed">
+            The names in quotes are the rows on the device. &ldquo;High&rdquo; privacy is what a seed
+            or xPub wallet makes possible, not what you get by default: Privacy is a switch in
+            Wallet settings and starts off, so one address is reused until you turn it on. A
+            fixed address entered earlier with &ldquo;Enter address&rdquo; also stays in use while
+            Privacy is off.
+          </p>
         </section>
 
         {/* Manual Address */}
@@ -138,7 +145,7 @@ export default function WalletOptionsPage() {
             recommended={true}
             href="/docs/wallet/seed-generation"
             pros={[
-              "New address for every payment (privacy)",
+              "Can use a new address for every payment once Privacy is switched on",
               "Full control of key generation",
               "Can recover wallet with seed phrase"
             ]}
@@ -162,7 +169,7 @@ export default function WalletOptionsPage() {
             pros={[
               "Use addresses from existing wallet",
               "Consolidates payments to known wallet",
-              "Privacy mode enabled"
+              "Privacy mode available"
             ]}
             cons={[
               "Must enter seed on device (briefly exposed)",
@@ -188,7 +195,7 @@ export default function WalletOptionsPage() {
             cons={[
               "Most wallets don't support xPub export",
               "Advanced/developer feature",
-              "111+ character string to enter manually"
+              "141-character key in PayDeck's own format, typed by hand, with no checksum"
             ]}
           />
         </section>
@@ -239,7 +246,7 @@ export default function WalletOptionsPage() {
           <div className="flex flex-wrap gap-3">
             <Link 
               href="/docs/wallet/seed-generation"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
             >
               Generate Seed
               <ArrowRight className="w-4 h-4" />
@@ -298,7 +305,7 @@ function WalletOptionCard({
   return (
     <div className={`p-6 rounded-lg border ${recommended ? 'border-accent-300 dark:border-accent-dark-700 bg-accent-50/30 dark:bg-accent-dark-950/10' : 'border-neutral-200 dark:border-neutral-800'}`}>
       <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
+        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${recommended ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
           {icon}
         </div>
         <div className="flex-1">
@@ -348,7 +355,7 @@ function WalletOptionCard({
 
       <Link 
         href={href}
-        className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline font-medium"
+        className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline font-medium"
       >
         Setup guide
         <ArrowRight className="w-3 h-3" />
@@ -380,7 +387,7 @@ function DecisionCard({
             <span className="font-medium text-neutral-900 dark:text-white">{recommendation}</span>
             {highlighted && <Star className="w-4 h-4 text-accent-500 dark:text-accent-dark-500" />}
           </div>
-          <p className="text-xs text-neutral-500 mt-1">{note}</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">{note}</p>
         </div>
         <Link
           href={href}

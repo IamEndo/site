@@ -26,7 +26,7 @@ export default function TradeoffsPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Shield className="w-4 h-4" />
             Privacy
           </div>
@@ -81,8 +81,8 @@ export default function TradeoffsPage() {
               icon={<EyeOff className="w-5 h-5" />}
               title="Fresh Addresses (Privacy On)"
               pros={[
-                "Transactions not linked",
-                "Revenue hidden",
+                "Transactions not linked on the blockchain",
+                "Revenue cannot be totalled from one address",
                 "Better security"
               ]}
               cons={[
@@ -209,6 +209,7 @@ export default function TradeoffsPage() {
           </p>
 
           <div className="space-y-3">
+            <LimitationItem text="The Rostrum server the device uses sees every address it asks about and can link them; running your own server avoids this" />
             <LimitationItem text="Consolidation transactions can link addresses" />
             <LimitationItem text="Timing analysis can sometimes correlate payments" />
             <LimitationItem text="IP address correlation is possible without additional precautions" />
@@ -244,23 +245,23 @@ export default function TradeoffsPage() {
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Simplicity</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Better</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">More complex</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Better</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">More complex</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Privacy</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">None</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Better</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">None</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Better</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Accounting</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Easier</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Requires wallet</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Easier</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Requires wallet</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Consolidation</td>
-                  <td className="px-4 py-3 text-accent-600 dark:text-accent-dark-400 text-xs">Not needed</td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">Sometimes needed</td>
+                  <td className="px-4 py-3 text-accent-700 dark:text-accent-dark-400 text-xs">Not needed</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400 text-xs">Sometimes needed</td>
                 </tr>
               </tbody>
             </table>
@@ -277,7 +278,7 @@ export default function TradeoffsPage() {
           </p>
           <Link 
             href="/docs/privacy/enabling"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Configure Privacy Mode
             <ArrowRight className="w-4 h-4" />
@@ -300,7 +301,7 @@ function ComparisonCard({ icon, title, pros, cons }: { icon: React.ReactNode; ti
       </div>
       <div className="space-y-3">
         <div>
-          <p className="text-xs text-accent-600 dark:text-accent-dark-400 font-medium mb-1">Pros</p>
+          <p className="text-xs text-accent-700 dark:text-accent-dark-400 font-medium mb-1">Pros</p>
           <ul className="space-y-1">
             {pros.map((pro, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-neutral-600 dark:text-neutral-400">
@@ -356,7 +357,7 @@ function RecommendationCard({ scenario, recommendation, reason }: { scenario: st
       <div className="flex items-start justify-between gap-4">
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{scenario}</h4>
-          <p className="text-sm text-neutral-500">{reason}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{reason}</p>
         </div>
         <div className={`px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${isOn ? 'bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-300' : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'}`}>
           {recommendation}

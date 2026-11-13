@@ -16,6 +16,7 @@ import {
   Settings,
   HelpCircle
 } from 'lucide-react';
+import { DocsArticle } from "./_components/DocsArticle";
 
 export const metadata: Metadata = docsMetadata("/docs", {
   title: 'Introduction',
@@ -24,10 +25,11 @@ export const metadata: Metadata = docsMetadata("/docs", {
 
 export default function DocsPage() {
   return (
+    <DocsArticle>
     <div className="max-w-4xl">
       {/* Hero Section */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+        <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
           <BookOpen className="w-4 h-4" />
           Documentation
         </div>
@@ -44,15 +46,15 @@ export default function DocsPage() {
       <div className="grid sm:grid-cols-3 gap-4 mb-12">
         <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
           <div className="text-2xl font-bold text-neutral-900 dark:text-white">around $10</div>
-          <div className="text-sm text-neutral-500">Hardware cost</div>
+          <div className="text-sm text-neutral-500 dark:text-neutral-400">Hardware cost</div>
         </div>
         <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
           <div className="text-2xl font-bold text-neutral-900 dark:text-white">0%</div>
-          <div className="text-sm text-neutral-500">Platform fees</div>
+          <div className="text-sm text-neutral-500 dark:text-neutral-400">Platform fees</div>
         </div>
         <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
           <div className="text-2xl font-bold text-neutral-900 dark:text-white">100%</div>
-          <div className="text-sm text-neutral-500">Open source</div>
+          <div className="text-sm text-neutral-500 dark:text-neutral-400">Open source</div>
         </div>
       </div>
 
@@ -70,7 +72,7 @@ export default function DocsPage() {
           </p>
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
             Unlike cloud-based payment processors, PayDeck connects directly to the blockchain through Rostrum 
-            servers. Your private keys never leave your control. There are no monthly fees, no transaction fees, 
+            servers. Your private keys never leave your control. There are no monthly fees, no PayDeck transaction fees (only the Nexa network fee paid by the sender), 
             and no account requirements.
           </p>
         </div>
@@ -95,7 +97,7 @@ export default function DocsPage() {
           <FeatureCard 
             icon={<Zap className="w-5 h-5" />}
             title="Instant Verification"
-            description="Transactions appear within seconds. Accept 0-conf for speed, or wait for confirmations when security matters more than immediacy."
+            description="Transactions appear within seconds and are accepted as soon as the server reports them (0-conf). The device has no option to wait for block confirmations; for a large amount, check the receipt in a block explorer before handing over the goods."
           />
           <FeatureCard 
             icon={<Code className="w-5 h-5" />}
@@ -119,7 +121,7 @@ export default function DocsPage() {
           <Step 
             number={1}
             title="Setup"
-            description="Flash the firmware, connect to WiFi, configure your wallet with a seed phrase or receiving address."
+            description="Flash the firmware, run the setup wizard (mode, password, wallet), then connect WiFi and switch the network on."
             isLast={false}
           />
           <Step 
@@ -231,7 +233,7 @@ export default function DocsPage() {
           <Prerequisite text="Connecting hardware to your computer via USB" />
           <Prerequisite text="Basic understanding of cryptocurrency wallets" />
         </ul>
-        <p className="text-neutral-500 dark:text-neutral-500 text-sm mt-4">
+        <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-4">
           No programming experience required. Familiarity with embedded development (PlatformIO, ESP32) 
           is helpful only if you want to modify the firmware.
         </p>
@@ -244,13 +246,13 @@ export default function DocsPage() {
         </h2>
         <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
           <div className="flex gap-3">
-            <HelpCircle className="w-5 h-5 text-neutral-500 flex-shrink-0 mt-0.5" />
+            <HelpCircle className="w-5 h-5 text-neutral-500 dark:text-neutral-400 flex-shrink-0 mt-0.5" />
             <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <p>If you run into issues or have questions:</p>
               <ul className="list-disc list-inside space-y-1 ml-1">
-                <li>Check the <Link href="/docs/maintenance/troubleshooting" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Troubleshooting</Link> guide</li>
-                <li>Open an issue on <a href="https://gitlab.com/IamEndo/paydeck" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">GitLab</a></li>
-                <li>Join the <a href="https://t.me/paydeckproject" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-dark-400 hover:underline">Telegram community</a> for real-time help</li>
+                <li>Check the <Link href="/docs/maintenance/troubleshooting" className="text-accent-700 dark:text-accent-dark-400 hover:underline">Troubleshooting</Link> guide</li>
+                <li>Open an issue on <a href="https://gitlab.com/IamEndo/paydeck" target="_blank" rel="noopener noreferrer" className="text-accent-700 dark:text-accent-dark-400 hover:underline">GitLab</a></li>
+                <li>Join the <a href="https://t.me/paydeckproject" target="_blank" rel="noopener noreferrer" className="text-accent-700 dark:text-accent-dark-400 hover:underline">Telegram community</a> for real-time help</li>
               </ul>
             </div>
           </div>
@@ -267,21 +269,21 @@ export default function DocsPage() {
         </p>
         <Link 
           href="/docs/getting-started/hardware"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
         >
           Hardware Requirements
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>
     </div>
+    </DocsArticle>
   );
 }
 
-// Component: Feature Card
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
+      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center">
         {icon}
       </div>
       <div>
@@ -297,7 +299,7 @@ function Step({ number, title, description, isLast }: { number: number; title: s
   return (
     <div className="flex gap-4">
       <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
+        <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
           {number}
         </div>
         {!isLast && <div className="w-px h-full bg-neutral-200 dark:bg-neutral-800 my-2" />}
@@ -314,7 +316,7 @@ function Step({ number, title, description, isLast }: { number: number; title: s
 function SecurityMode({ level, color, description }: { level: string; color: 'blue' | 'yellow' | 'red'; description: string }) {
   const colors = {
     blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
-    yellow: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+    yellow: 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800',
     red: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800',
   };
   
@@ -334,15 +336,15 @@ function DocSection({ icon, title, description, href }: { icon: React.ReactNode;
       className="group p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-accent-300 dark:hover:border-accent-dark-700 hover:bg-accent-50/50 dark:hover:bg-accent-dark-950/20 transition-colors"
     >
       <div className="flex items-center gap-3 mb-2">
-        <div className="text-neutral-400 group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors">
+        <div className="text-neutral-400 group-hover:text-accent-700 dark:group-hover:text-accent-dark-400 transition-colors">
           {icon}
         </div>
-        <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-dark-400 transition-colors">
+        <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-accent-700 dark:group-hover:text-accent-dark-400 transition-colors">
           {title}
         </h3>
         <ArrowRight className="w-4 h-4 text-neutral-300 dark:text-neutral-600 group-hover:text-accent-500 dark:group-hover:text-accent-dark-400 ml-auto transition-colors" />
       </div>
-      <p className="text-sm text-neutral-500 dark:text-neutral-500">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
     </Link>
   );
 }

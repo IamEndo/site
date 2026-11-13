@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { History, ArrowUpRight, Download } from "lucide-react";
+import { History, ArrowUpRight, Download, Rss } from "lucide-react";
 import { docsMetadata } from "@/lib/docs-metadata";
 import { DocsArticle } from "../../_components/DocsArticle";
 import { releases } from "@/app/_data/releases";
@@ -26,7 +26,7 @@ export default function ReleasesPage() {
     <DocsArticle>
       <div className="max-w-4xl">
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <History className="w-4 h-4" aria-hidden="true" />
             Reference
           </div>
@@ -56,6 +56,13 @@ export default function ReleasesPage() {
             Full changelog on GitLab
             <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
           </a>
+          <a
+            href="/releases.xml"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white hover:bg-neutral-50 dark:hover:bg-neutral-800 text-sm font-medium transition-colors"
+          >
+            <Rss className="w-4 h-4" aria-hidden="true" />
+            Release feed
+          </a>
         </div>
 
         <div className="space-y-10">
@@ -65,10 +72,13 @@ export default function ReleasesPage() {
               className="pb-10 border-b border-neutral-200 dark:border-neutral-800 last:border-b-0"
             >
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                <h2
+                  id={`v${release.version.replace(/\./g, "-")}`}
+                  className="text-2xl font-bold text-neutral-900 dark:text-white"
+                >
                   v{release.version}
                 </h2>
-                <time dateTime={release.date} className="text-sm text-neutral-500">
+                <time dateTime={release.date} className="text-sm text-neutral-500 dark:text-neutral-400">
                   {formatDate(release.date)}
                 </time>
                 {release.version === FIRMWARE_VERSION && (

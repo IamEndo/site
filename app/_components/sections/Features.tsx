@@ -26,7 +26,7 @@ export function Features() {
         {/* Section header - left aligned */}
         <ScrollReveal>
           <div className="max-w-2xl mb-16 md:mb-20">
-            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 mb-3">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
               Why PayDeck
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">

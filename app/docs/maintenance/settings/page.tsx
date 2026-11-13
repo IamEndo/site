@@ -24,7 +24,7 @@ export default function SettingsPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wrench className="w-4 h-4" />
             Maintenance
           </div>
@@ -65,7 +65,7 @@ export default function SettingsPage() {
               <p className="text-sm text-blue-800 dark:text-blue-300">
                 The password is mandatory and set during{" "}
                 <Link href="/docs/installation/first-boot" className="underline font-medium">first-run setup</Link>.
-                If you forget it, the menu, including factory reset, stays locked. Recovery is a USB erase and reflash.
+                If you forget it, the menu, including factory reset, stays locked. The way back is a wipe: enter 15 wrong passwords in a row (the device erases itself and restarts in the setup wizard) or, on a Standard build, erase and reflash over USB.
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function SettingsPage() {
               description="Wi-Fi and node"
               items={[
                 "Wi-Fi settings: network name (SSID) and password",
-                "Node settings: Rostrum server host and port",
+                "Node settings: Rostrum server host and port, and the WSS/WS key that turns TLS on or off",
                 "Network: switch between online (payments verified automatically) and offline (QR payments only)",
                 "On a board without Wi-Fi this screen only states that the device is offline"
               ]}
@@ -121,13 +121,14 @@ export default function SettingsPage() {
             <SettingCategory
               icon={<Lock className="w-5 h-5" />}
               title="More settings"
-              description="Password and factory reset"
+              description="Passwords and factory reset"
               items={[
                 "Change password: set a new access password",
-                "Device info: firmware version, hardware, wallet mode",
-                "Factory reset: erase everything and run setup again"
+                "Duress password: optional second password that erases the device",
+                "Factory reset: erase everything and run setup again",
+                "Device info: firmware version, hardware, wallet mode"
               ]}
-              href="/docs/security/pin-setup"
+              href="/docs/security/access-password"
             />
 
             <SettingCategory
@@ -135,7 +136,7 @@ export default function SettingsPage() {
               title="Transactions"
               description="Recent payments"
               items={[
-                "Payment history with amount, time and status",
+                "The last 15 payments with amount, time and status (older entries are overwritten)",
                 "Transaction detail with an explorer QR code"
               ]}
               href="/docs/usage/confirmation"
@@ -186,7 +187,7 @@ export default function SettingsPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
-              Secrets (xPub, address, Wi-Fi password) are encrypted under the master key, which is wrapped by your password
+              The account xPub is encrypted under the master key, which is wrapped by your password. The key that derives receiving addresses, a manually entered address, the Wi-Fi password and the node settings are encrypted with a device-bound key instead (derived from the chip ID, not from the password), so the terminal can take payments while locked. On a Standard build that does not stop someone who copies the flash chip
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
@@ -213,7 +214,7 @@ export default function SettingsPage() {
           </p>
           <Link
             href="/docs/maintenance/factory-reset"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Factory Reset
             <ArrowRight className="w-4 h-4" />
@@ -234,7 +235,7 @@ function SettingCategory({ icon, title, description, items, href }: { icon: Reac
         </div>
         <div>
           <h4 className="font-medium text-neutral-900 dark:text-white">{title}</h4>
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
         </div>
       </div>
       <ul className="space-y-1 ml-13">
@@ -261,7 +262,7 @@ function NoteItem({ title, description }: { title: string; description: string }
       <Info className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
       <div>
         <span className="font-medium text-neutral-900 dark:text-white">{title}</span>
-        <span className="text-neutral-500"> - {description}</span>
+        <span className="text-neutral-500 dark:text-neutral-400"> - {description}</span>
       </div>
     </div>
   );

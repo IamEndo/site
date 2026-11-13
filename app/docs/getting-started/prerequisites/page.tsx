@@ -29,7 +29,7 @@ export default function SoftwareSetupPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Download className="w-4 h-4" />
             Getting Started
           </div>
@@ -106,7 +106,7 @@ export default function SoftwareSetupPage() {
                   href="https://git-scm.com/downloads" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
                 >
                   Download Git
                   <ExternalLink className="w-3 h-3" />
@@ -137,7 +137,7 @@ export default function SoftwareSetupPage() {
                     Operating System
                   </td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">Windows 10, macOS 10.15, Linux</td>
-                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">Latest version</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">Latest version</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
@@ -145,7 +145,7 @@ export default function SoftwareSetupPage() {
                     RAM
                   </td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">4 GB</td>
-                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">8 GB</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">8 GB</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
@@ -153,7 +153,7 @@ export default function SoftwareSetupPage() {
                     Disk Space
                   </td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">2 GB free</td>
-                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">5 GB free</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">5 GB free</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-neutral-600 dark:text-neutral-400 flex items-center gap-2">
@@ -161,7 +161,7 @@ export default function SoftwareSetupPage() {
                     USB Port
                   </td>
                   <td className="px-4 py-3 text-neutral-900 dark:text-white">USB 2.0</td>
-                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-500">USB 3.0</td>
+                  <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">USB 3.0</td>
                 </tr>
               </tbody>
             </table>
@@ -233,7 +233,7 @@ export default function SoftwareSetupPage() {
             <TimeItem task="Building firmware (first build)" time="5-10 min" />
             <TimeItem task="Flashing to device" time="1-2 min" />
           </div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
             After initial setup, rebuilding and flashing takes under 2 minutes.
           </p>
         </section>
@@ -248,7 +248,7 @@ export default function SoftwareSetupPage() {
           </p>
           <Link 
             href="/docs/installation/vscode"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Install VS Code
             <ArrowRight className="w-4 h-4" />
@@ -282,7 +282,7 @@ function SoftwareCard({
   return (
     <div className="p-5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       <div className="flex gap-4">
-        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center">
+        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center">
           {icon}
         </div>
         <div className="flex-1">
@@ -294,12 +294,12 @@ function SoftwareCard({
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{description}</p>
           {note && (
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 mb-3 italic">{note}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-3 italic">{note}</p>
           )}
           {isInternal ? (
             <Link 
               href={downloadUrl}
-              className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
             >
               {downloadText}
               <ArrowRight className="w-3 h-3" />
@@ -309,7 +309,7 @@ function SoftwareCard({
               href={downloadUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-dark-400 hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-accent-700 dark:text-accent-dark-400 hover:underline"
             >
               {downloadText}
               <ExternalLink className="w-3 h-3" />
@@ -338,7 +338,7 @@ function ChecklistItem({
   return (
     <div className="flex gap-4">
       <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
+        <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm">
           {number}
         </div>
         {!isLast && <div className="w-px h-full bg-neutral-200 dark:bg-neutral-800 my-2" />}
@@ -350,7 +350,7 @@ function ChecklistItem({
           {link && (
             <>
               {' '}
-              <Link href={link.href} className="text-accent-600 dark:text-accent-dark-400 hover:underline">
+              <Link href={link.href} className="text-accent-700 dark:text-accent-dark-400 hover:underline">
                 {link.text} →
               </Link>
             </>

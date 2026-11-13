@@ -16,9 +16,10 @@ export default function ProductionModePage() {
 
       <p>
         The <a href="/docs/install/web-flasher">web flasher</a> installs the
-        Standard build only. That build is fully functional and protects your
-        password and settings in software, but it does <strong>not</strong> encrypt
-        the flash or lock the device to signed firmware.
+        Standard build only. That build is fully functional and keeps its master
+        key encrypted under your password, but it does <strong>not</strong> encrypt
+        the flash or lock the device to signed firmware, so someone who copies the
+        flash chip can read the stored settings and payment history.
       </p>
 
       <p>
@@ -75,7 +76,7 @@ export default function ProductionModePage() {
         genuinely fine.
       </p>
 
-      <h2>The two secure build environments</h2>
+      <h2>Build environments</h2>
 
       <p>
         PayDeck&apos;s <code>platformio.ini</code> defines these builds. The
@@ -101,6 +102,13 @@ export default function ProductionModePage() {
             <td>No</td>
             <td>Yes</td>
             <td>Any ESP32</td>
+          </tr>
+          <tr>
+            <td><code>esp32dev-hspi-ili9341-2v8</code></td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Any ESP32 (ILI9341 panel)</td>
           </tr>
           <tr>
             <td><code>esp32dev-idf</code></td>
@@ -175,9 +183,11 @@ strings nvs.bin        # should show nothing meaningful
 
       <div className="my-6 p-4 rounded-sm border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-950/30">
         <p className="text-amber-700 dark:text-amber-300 text-sm m-0">
-          <strong>Stop here if all you want is at-rest encryption</strong> on a
-          board you still control. The permanent Secure Boot seal below is only
-          for devices you are deploying and never want to touch again.
+          <strong>This stage is for testing the encryption stack</strong> on a
+          board you still control. It makes a raw read of the flash chip
+          unreadable, but JTAG and UART-download decryption stay enabled and
+          unsigned firmware still boots, so it does not protect a device that
+          someone else can get hold of. Only the permanent seal below does.
         </p>
       </div>
 

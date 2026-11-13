@@ -24,7 +24,7 @@ export default function ReceivingPaymentsPage() {
       <div className="max-w-4xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-dark-400 font-medium mb-4">
+          <div className="flex items-center gap-2 text-sm text-accent-700 dark:text-accent-dark-400 font-medium mb-4">
             <Wallet className="w-4 h-4" />
             Usage
           </div>
@@ -80,7 +80,7 @@ export default function ReceivingPaymentsPage() {
             <FlowStep 
               number={2}
               title="Show the QR code to your customer"
-              note="The QR code contains your address and the payment amount"
+              note="The QR code contains your address and the payment amount (plus a per-invoice id in online mode)"
             />
             <FlowStep 
               number={3}
@@ -108,7 +108,7 @@ export default function ReceivingPaymentsPage() {
         
           <div className="space-y-4">
             <StateCard 
-              state="Waiting"
+              state="Awaiting payment"
               description="QR code displayed, waiting for customer to pay"
               color="blue"
             />
@@ -152,9 +152,12 @@ export default function ReceivingPaymentsPage() {
           <div className="mt-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
             <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Offline Mode</h4>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              When not connected to a Rostrum server, PayDeck operates in offline mode. 
-              In this mode, you'll need to verify payments manually using a block explorer 
-              or your wallet app.
+              Offline mode is a setting (Menu, Network settings, Network) and is the default on a
+              new device. The QR code is shown immediately, you check the payment in a block
+              explorer or your wallet app, and then tap Confirm. The screen then reads
+              &ldquo;Payment confirmed&rdquo;: that records your decision, the device has verified
+              nothing. In online mode, if the server cannot be reached within 15 seconds the
+              device shows &ldquo;Connection timeout&rdquo; and no QR code.
             </p>
           </div>
         </section>
@@ -198,11 +201,11 @@ export default function ReceivingPaymentsPage() {
           <ul className="space-y-2 text-neutral-600 dark:text-neutral-400">
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
-              Funds are in your wallet (accessible via Wally, Otoplo, etc.)
+              Funds are in your wallet. Wally is fully compatible: it shows payments received through PayDeck live, and you can spend them right away
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
-              Tap to clear the screen and prepare for next payment
+              The success screen returns to the home screen by itself after about 2.5 seconds
             </li>
             <li className="flex items-start gap-2">
               <span className="text-neutral-400">•</span>
@@ -221,7 +224,7 @@ export default function ReceivingPaymentsPage() {
           </p>
           <Link 
             href="/docs/usage/invoices"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-accent-700 hover:bg-accent-800 dark:bg-accent-dark-600 dark:hover:bg-accent-dark-700 text-white font-medium transition-colors"
           >
             Creating Invoices
             <ArrowRight className="w-4 h-4" />
@@ -236,14 +239,14 @@ export default function ReceivingPaymentsPage() {
 function StepCard({ number, icon, title, description }: { number: number; icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
-      <div className="w-10 h-10 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm mx-auto mb-3">
+      <div className="w-10 h-10 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm mx-auto mb-3">
         {number}
       </div>
-      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-600 dark:text-accent-dark-400 flex items-center justify-center mx-auto mb-2">
+      <div className="w-10 h-10 rounded-lg bg-accent-100 dark:bg-accent-dark-900/30 text-accent-700 dark:text-accent-dark-400 flex items-center justify-center mx-auto mb-2">
         {icon}
       </div>
       <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-neutral-500">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 }
@@ -252,12 +255,12 @@ function StepCard({ number, icon, title, description }: { number: number; icon: 
 function FlowStep({ number, title, note }: { number: number; title: string; note: string }) {
   return (
     <div className="flex gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-      <div className="w-8 h-8 rounded-full bg-accent-600 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-accent-700 dark:bg-accent-dark-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
         {number}
       </div>
       <div>
         <p className="font-medium text-neutral-900 dark:text-white">{title}</p>
-        <p className="text-sm text-neutral-500">{note}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{note}</p>
       </div>
     </div>
   );
@@ -297,7 +300,7 @@ function TipCard({ title, description }: { title: string; description: string })
   return (
     <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
       <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{title}</h4>
-      <p className="text-sm text-neutral-500">{description}</p>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400">{description}</p>
     </div>
   );
 }

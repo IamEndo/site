@@ -14,7 +14,7 @@ const Device3D = dynamic(
 
 function DeviceFallback() {
   return (
-    <div className="w-full h-full flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-xs">
+    <div className="w-full h-full flex items-center justify-center text-neutral-500 dark:text-neutral-400 text-xs">
       Loading device…
     </div>
   );
@@ -65,7 +65,7 @@ export function Hero() {
             <div className="animate-hero-in opacity-0" style={{ animationDelay: "100ms" }}>
               <Link
                 href="/docs/reference/releases"
-                className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors"
+                className="inline-flex items-center text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors"
               >
                 Latest version available &middot; v{FIRMWARE_VERSION}
               </Link>
@@ -132,8 +132,8 @@ export function Hero() {
             {/* Glow behind device - dark mode (purple) */}
             <div className="absolute -inset-10 rounded-full pointer-events-none opacity-0 animate-glow-in hidden dark:block bg-[radial-gradient(ellipse_at_center,rgba(140,95,173,0.08),transparent_70%)]" />
             <Device3D />
-            <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-400 dark:text-neutral-600 select-none pointer-events-none">
-              drag to rotate
+            <p className="absolute bottom-1 right-2 text-[10px] sm:text-[11px] font-mono text-neutral-600 dark:text-neutral-300 select-none pointer-events-none">
+              drag or use ← → to rotate
             </p>
           </div>
         </div>
@@ -145,7 +145,7 @@ export function Hero() {
         >
           <a
             href="#features"
-            className="flex flex-col items-center gap-2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
+            className="flex flex-col items-center gap-2 text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
           >
             <span className="text-xs uppercase tracking-wider">Learn more</span>
             <ArrowDown className="w-4 h-4 animate-bounce" aria-hidden="true" />

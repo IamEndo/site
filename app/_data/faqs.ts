@@ -22,7 +22,7 @@ export const faqs = [
   {
     id: "offline",
     question: "Do I need constant internet?",
-    answer: "A connection is required for real-time payment display. If it drops, you can still accept payments manually.",
+    answer: "A connection is needed for automatic payment detection. Without one, switch the device to offline mode in its network settings: it then shows the QR code right away and you confirm each payment yourself after checking it in your wallet.",
   },
   {
     id: "compliance",
